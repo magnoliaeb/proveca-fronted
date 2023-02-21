@@ -1,0 +1,34 @@
+.filter {
+  .v-breadcrumbs {
+    padding-left: 0;
+    .v-breadcrumbs__item {
+      font-weight: 300 !important;
+      font-size: 15px !important;
+      line-height: 20px !important;
+      /* identical to box height */
+
+      color: #000000 !important;
+    }
+    .v-breadcrumbs__item--disabled {
+      font-weight: 300 !important;
+      font-size: 15px !important;
+      line-height: 20px !important;
+      /* identical to box height */
+
+      color: #2cafe5 !important;
+    }
+  }
+}
+
+@media screen and (min-width: $md) {
+  .filter {
+    .v-breadcrumbs {
+      .v-breadcrumbs__item {
+        font-size: 12px !important;
+      }
+      .v-breadcrumbs__item--disabled {
+        font-size: 18px !important;
+      }
+    }
+  }
+}

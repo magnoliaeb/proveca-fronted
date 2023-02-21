@@ -1,0 +1,242 @@
+<template>
+  <section class="pt-6 pb-14">
+    <v-row>
+      <v-col cols="12" md="12" class="text-center">
+        <h2>Estamos para ayudarte</h2>
+        <p class="mt-4">
+          Si tienes preguntas sobre tu orden o sobre nuestros productos, déjanos
+          tus datos y nuestro equipo resolvera todas tus dudas
+        </p>
+      </v-col>
+    </v-row>
+    <div class="content-form mx-auto mt-10">
+      <validation-observer ref="observer" v-slot="{ invalid }">
+        <v-form @submit.prevent="sendForm">
+          <v-row class="mt-4">
+            <v-col cols="12" md="6" class="py-0">
+              <validation-provider
+                v-slot="{ errors }"
+                name="El nombre"
+                :rules="{
+                  required: true,
+                  min: 5,
+                }"
+              >
+                <v-text-field
+                  height="64px"
+                  ref="name"
+                  autocomplete="name"
+                  color="blue-ligth"
+                  id="name"
+                  type="text"
+                  v-model.trim.trim="form.name"
+                  solo
+                  flat
+                  outlined
+                  :error-messages="errors"
+                  placeholder="Nombre*"
+                />
+              </validation-provider>
+            </v-col>
+            <v-col cols="12" md="6" class="py-0">
+              <validation-provider
+                v-slot="{ errors }"
+                name="El telefono"
+                rules="required"
+              >
+                <v-text-field
+                  height="64px"
+                  autocomplete="tel"
+                  ref="phone"
+                  color="blue-ligth"
+                  id="phone"
+                  type="text"
+                  v-model.trim.trim="form.phone"
+                  solo
+                  flat
+                  outlined
+                  :error-messages="errors"
+                  placeholder="Teléfono*"
+                />
+              </validation-provider>
+            </v-col>
+            <v-col cols="12" class="py-0">
+              <validation-provider
+                v-slot="{ errors }"
+                name="El correo"
+                rules="required|email"
+              >
+                <v-text-field
+                  height="64px"
+                  ref="email"
+                  autocomplete="email"
+                  color="blue-ligth"
+                  id="email"
+                  type="email"
+                  v-model.trim.trim="form.email"
+                  solo
+                  flat
+                  outlined
+                  :error-messages="errors"
+                  placeholder="Correo electrónico*"
+                />
+              </validation-provider>
+            </v-col>
+
+            <v-col cols="12" class="py-0">
+              <validation-provider
+                v-slot="{ errors }"
+                name="El mensaje"
+                rules="required"
+              >
+                <v-textarea
+                  ref="message"
+                  outlined
+                  autocomplete="off"
+                  v-model.trim="form.message"
+                  id="message"
+                  auto-grow
+                  flat
+                  solo
+                  :error-messages="errors"
+                  placeholder="Código postal*"
+                ></v-textarea>
+              </validation-provider>
+            </v-col>
+            <v-col
+              cols="12"
+              md="auto"
+              class="py-0 d-flex justify-center mx-auto"
+            >
+              <v-btn
+                :loading="isLoading"
+                :disabled="isDisabled && invalid"
+                type="submit"
+                depressed
+                outlined
+                >ENVIAR</v-btn
+              >
+            </v-col>
+          </v-row>
+        </v-form>
+      </validation-observer>
+    </div>
+    <AlertDialog
+      @closeAlert="showAlert = false"
+      :showAlert="showAlert"
+      :titleAlert="titleAlert"
+      :textAlert="textAlert"
+      :iconAlert="iconAlert"
+    />
+  </section>
+</template>
+
+<script>
+import { ValidationProvider, ValidationObserver } from "vee-validate";
+
+export default {
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
+  data() {
+    return {
+      isDisabled: false,
+      isLoading: false,
+      form: {
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      },
+      showAlert: true,
+      titleAlert: "¡Gracias por tu mensaje!",
+      textAlert: "Pronto recibirás respuesta de nuestros ejecutivos ",
+      iconAlert: "like",
+      email: "",
+    };
+  },
+  methods: {
+    async sendForm() {
+      this.isDisabled = true;
+      if (await this.$refs.observer.validate()) {
+        this.isLoading = true;
+        this.showAlert = true;
+
+        // this.$api.$contact
+        //   .simple(this.form)
+        //   .then(() => {
+        //     this.$refs.modal.open();
+        //     this.clear();
+        //   })
+        //   .catch((e) => this.$swal("Error", e, "error"))
+        //   .finally(() => {
+        //     this.isLoading = false;
+        //     this.isDisabled = false;
+        //   });
+      } else {
+        const inputForm = Object.keys(this.form);
+        for (let i = 0; i < inputForm.length; i++) {
+          const element = inputForm[i];
+          if (this.$refs[element].hasError) {
+            this.$refs[element].focus();
+            return;
+          }
+        }
+      }
+    },
+    clear() {
+      this.form.name = "";
+      this.form.email = "";
+      this.form.phone = "";
+      this.form.message = "";
+      this.$refs.observer.reset();
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+button {
+  width: 471px !important;
+  height: 81px !important;
+  background: #f8f8f8 !important;
+  border: 3.55166px solid #2cafe5 !important;
+  border-radius: 14.2066px !important;
+  font-weight: 800 !important;
+  font-size: 20px !important;
+  line-height: 26px !important;
+  color: #2cafe5 !important;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 39px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+p {
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 138%;
+  /* or 29px */
+
+  text-align: center;
+
+  color: #000000;
+}
+
+.content-form {
+  max-width: 828px;
+  // border: 1px solid orange;
+}
+
+@media screen and (min-width: $md) {
+  //   button {
+  //     width: 134px !important;
+  //   }
+}
+</style>

@@ -1,0 +1,144 @@
+@import "./partials/reset";
+@import "./partials/my-variabls";
+@import "./partials/fonts";
+@import "./partials/standard";
+
+// componentes
+// @import "./components/suscribe";
+// @import "./components/order";
+@import "./components/header-filter";
+@import "./components/home_slider";
+// @import "./components/single-product";
+// @import "./components/search-form";
+
+.content.content-box {
+  width: 73%;
+  height: 100%;
+}
+
+// caruseles
+.custom-arrow.slick-arrow.slick-next,
+.custom-arrow.slick-arrow.slick-prev {
+  position: absolute !important;
+  right: -10px !important;
+  display: flex !important;
+  align-items: center;
+  height: 100% !important;
+  justify-content: center;
+  top: 0;
+  z-index: 10 !important;
+}
+.custom-arrow.slick-arrow.slick-prev {
+  left: -10px !important;
+}
+
+.slick-slider {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+}
+
+.content {
+  width: 97%;
+  margin: 0 auto;
+  // border: 1px solid red;
+}
+
+.v-toolbar__content {
+  height: 100% !important;
+  padding: 0 !important;
+}
+button.primary {
+  background: #f8f8f8 !important;
+  border: 3px solid #2cafe5 !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  font-size: 16px !important;
+  line-height: 21px !important;
+  /* identical to box height */
+  max-width: 317px !important;
+  height: 64px !important;
+  color: #2cafe5 !important;
+}
+
+// .alert {
+//   position: fixed;
+//   bottom: 0;
+//   width: 100%;
+//   left: 0;
+//   right: 0;
+//   margin-bottom: 0;
+//   border-radius: 0 !important;
+// }
+
+@media screen and (min-width: $sm) {
+  .content {
+    width: 95%;
+  }
+}
+@media screen and (min-width: $md) {
+  .content {
+    width: 95%;
+  }
+  // .alert {
+  //   position: fixed;
+  //   bottom: 10px;
+  //   width: 300px;
+  //   max-width: 300px;
+  //   left: auto;
+  //   right: 10px;
+  // }
+}
+@media screen and (min-width: $lg) {
+  .content {
+    width: 85%;
+    max-width: 1600px;
+  }
+}
+@media screen and (min-width: $xl) {
+  .content {
+    width: 70%;
+  }
+}
+// components
+
+.v-skeleton-loader__image.v-skeleton-loader__bone {
+  height: 100%;
+}
+
+.scale:hover {
+  transform: scale(1.1);
+  -webkit-transition: transform 0.5s ease-out;
+  -moz-transition: transform 0.5s ease-out;
+  -o-transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out;
+}
+.scale-1-5:hover {
+  transform: scale(1.5);
+  -webkit-transition: transform 0.5s ease-out;
+  -moz-transition: transform 0.5s ease-out;
+  -o-transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out;
+}
+
+// zoom
+.zoom-on-hover {
+  height: 100% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  img.normal {
+    height: 100%;
+    object-fit: cover;
+  }
+  img.zoom {
+    height: auto;
+    object-fit: cover;
+    // height: 90% !important;
+    // object-fit: cover !important;
+  }
+}

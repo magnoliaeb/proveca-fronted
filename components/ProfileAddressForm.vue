@@ -1,0 +1,256 @@
+<template>
+  <section class="">
+    <v-row no-gutters>
+      <v-col cols="12">
+        <validation-observer ref="observer" v-slot="{ invalid }">
+          <v-form @submit.prevent="sendForm">
+            <v-row>
+              <v-col cols="12" class="py-0">
+                <validation-provider
+                  v-slot="{ errors }"
+                  name="El nombre de la dirección"
+                  rules="required"
+                >
+                  <v-text-field
+                    solo
+                    flat
+                    outlined
+                    required
+                    :error-messages="errors"
+                    type="text"
+                    ref="name"
+                    v-model.trim="form.name"
+                    placeholder="Nombre de la dirección"
+                  />
+                </validation-provider>
+              </v-col>
+
+              <v-col cols="12" class="py-0">
+                <validation-provider
+                  v-slot="{ errors }"
+                  name="La calle y número"
+                  rules="required"
+                >
+                  <v-text-field
+                    solo
+                    flat
+                    outlined
+                    :error-messages="errors"
+                    id="street"
+                    type="text"
+                    v-model.trim="form.street"
+                    ref="street"
+                    placeholder="Calle y número"
+                  />
+                </validation-provider>
+              </v-col>
+
+              <v-col cols="12" lg="6" class="py-0">
+                <validation-provider
+                  v-slot="{ errors }"
+                  name="El apartamento / habitación / negocio"
+                  rules="required"
+                >
+                  <v-text-field
+                    solo
+                    flat
+                    outlined
+                    :error-messages="errors"
+                    id="street2"
+                    type="text"
+                    v-model.trim="form.street2"
+                    ref="street2"
+                    placeholder="Apartamento / habitación / negocio"
+                  />
+                </validation-provider>
+              </v-col>
+
+              <v-col cols="12" lg="6" class="py-0">
+                <validation-provider
+                  v-slot="{ errors }"
+                  name="La localidad / ciudad"
+                  rules="requiredF"
+                >
+                  <v-text-field
+                    solo
+                    flat
+                    outlined
+                    :error-messages="errors"
+                    id="city"
+                    type="text"
+                    v-model.trim="form.city"
+                    ref="city"
+                    placeholder="Localidad / ciudad"
+                  />
+                </validation-provider>
+              </v-col>
+
+              <v-col cols="12" md="6" class="py-0">
+                <validation-provider
+                  v-slot="{ errors }"
+                  name="El país"
+                  rules="required"
+                >
+                  <v-select
+                    solo
+                    flat
+                    outlined
+                    v-model="form.country_id"
+                    ref="country_id"
+                    :error-messages="errors"
+                    :items="countries"
+                    placeholder="País"
+                    item-text="name"
+                    item-value="id"
+                    v-on:change="loadStates()"
+                  >
+                    <template v-slot:append>
+                      <v-icon class="icon"> mdi-chevron-down </v-icon>
+                    </template>
+                  </v-select>
+                </validation-provider>
+              </v-col>
+
+              <v-col cols="12" md="6" class="py-0">
+                <validation-provider
+                  v-slot="{ errors }"
+                  name="El estado"
+                  rules="required"
+                >
+                  <v-select
+                    solo
+                    flat
+                    outlined
+                    v-model="form.state_id"
+                    ref="state_id"
+                    :error-messages="errors"
+                    :items="states"
+                    placeholder="Estado"
+                    item-text="name"
+                    item-value="id"
+                  >
+                    <template v-slot:append>
+                      <v-icon class="icon"> mdi-chevron-down </v-icon>
+                    </template>
+                  </v-select>
+                </validation-provider>
+              </v-col>
+
+              <v-col cols="12" sm="6" class="py-0">
+                <validation-provider
+                  v-slot="{ errors }"
+                  name="El código postal"
+                  :rules="{
+                    required: true,
+                  }"
+                >
+                  <v-text-field
+                    solo
+                    flat
+                    outlined
+                    :error-messages="errors"
+                    id="zip"
+                    type="text"
+                    v-model.trim="form.zip"
+                    ref="zip"
+                    placeholder="Código postal"
+                  />
+                </validation-provider>
+              </v-col>
+            </v-row>
+
+            <v-row class="mt-2 mt-md-4">
+              <v-col cols="12" sm="12" md="auto" class="">
+                <v-btn
+                  :loading="isLoading"
+                  :disabled="isLoading"
+                  type="submit"
+                  depressed
+                  >Agregar dirección</v-btn
+                >
+              </v-col>
+            </v-row>
+          </v-form>
+        </validation-observer>
+      </v-col>
+    </v-row>
+  </section>
+</template>
+
+<script>
+import { ValidationProvider, ValidationObserver } from "vee-validate";
+
+export default {
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
+  data() {
+    return {
+      isDisabled: false,
+      isLoading: false,
+      states: [],
+      form: {},
+    };
+  },
+
+  computed: {
+    address() {
+      return [];
+    },
+
+    countries() {
+      return [];
+    },
+  },
+
+  methods: {
+    async loadStates() {},
+
+    async sendForm() {},
+
+    create() {},
+
+    clear() {
+      this.form = {};
+      this.$refs.observer.reset();
+    },
+  },
+
+  async mounted() {},
+};
+</script>
+
+<style lang="scss" scoped>
+h1 {
+  font-family: "Josefin Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 126%;
+  /* or 21px */
+
+  text-transform: uppercase;
+
+  color: #464646;
+}
+
+a,
+button {
+  width: 250px !important;
+  height: 51px !important;
+  background: #f8f8f8 !important;
+  border: 3.54576px solid #2cafe5 !important;
+  border-radius: 14.183px !important;
+  font-weight: 800 !important;
+  font-size: 18.9107px !important;
+  line-height: 25px !important;
+  text-transform: initial !important;
+  /* identical to box height */
+
+  color: #2cafe5 !important;
+}
+
+@media screen and (min-width: $sm) {
+}
+</style>

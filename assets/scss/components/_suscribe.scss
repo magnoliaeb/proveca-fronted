@@ -1,0 +1,17 @@
+.group {
+  .v-input__slot {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: 0;
+    input {
+      &::placeholder {
+        font-size: 12px !important;
+        color: #565a5e !important;
+        font-style: italic !important;
+      }
+    }
+  }
+  .v-text-field--outlined fieldset {
+    border-right-color: transparent;
+  }
+}

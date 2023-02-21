@@ -1,0 +1,28 @@
+<template>
+  <div class="content pt-8 pb-16">
+    <v-row>
+      <v-col cols="12" md="auto">
+        <BtnGoBack />
+      </v-col>
+    </v-row>
+
+    <v-row class="align-start justify-space-between">
+      <v-col cols="12" sm="12" md="7" lg="8" class="px-0">
+        <!-- formulario -->
+        <ProfileAddressForm />
+      </v-col>
+    </v-row>
+  </div>
+</template>
+
+<script>
+import ProfileAddressForm from "../../components/ProfileAddressForm.vue";
+export default {
+  components: { ProfileAddressForm },
+  head: {
+    title: "Agregar dirección",
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>

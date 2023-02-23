@@ -1,39 +1,63 @@
 <template>
-  <div class="">
-    <div class="d-flex justify-center align-center">
-      <div class="circle"></div>
-      <h2 class="mx-5">Productos <span>destacados</span></h2>
-      <div class="circle"></div>
-    </div>
-  </div>
+	<div class="d-flex justify-center align-center">
+		<h2
+			class="text-break flex-column flex-sm-row d-flex align-center justify-center"
+			style="position: relative"
+		>
+			<div class="circle left"></div>
+			Productos <span class="d-block d-sm-inline">{{ title }}</span>
+			<div class="circle right"></div>
+		</h2>
+	</div>
 </template>
 
 <script>
-export default {};
+export default {
+	props: {
+		title: {
+			type: String,
+			default: 'destacados',
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
 h2 {
-  font-weight: 300;
-  font-size: 31.5917px;
-  line-height: 41px;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-  text-align: center;
+	font-weight: 300;
+	font-size: 18.98px;
+	letter-spacing: 0.11em;
+	text-transform: uppercase;
+	text-align: center;
 
-  color: #aeaeae !important;
-  span {
-    font-weight: 900;
-    color: #000;
-  }
+	color: #aeaeae !important;
+	span {
+		font-weight: 900;
+		color: #000;
+	}
 }
 .circle {
-  width: 13.85px;
-  height: 13.85px;
-
-  background: #2cafe5;
-  border-radius: 50%;
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background: #2cafe5;
+	border-radius: 50%;
+}
+.circle.left {
+	left: -10%;
+	// bottom: 0;
+}
+.circle.right {
+	right: -10%;
+	// bottom: 0;
 }
 @media screen and (min-width: $md) {
+	h2 {
+		font-size: 31.5917px;
+	}
+	.circle {
+		width: 13.85px;
+		height: 13.85px;
+	}
 }
 </style>

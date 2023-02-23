@@ -1,81 +1,107 @@
 <template>
-  <div class="filter">
-    <v-row>
-      <v-col cols="12" lg="2" xl="2" class="">
-        <h2 class="text-left">Filtros</h2>
-      </v-col>
-      <v-col cols="12" lg="10" xl="10" class="px-0 px-lg-3">
-        <v-breadcrumbs class="px-0" :items="items">
-          <!-- <template v-slot:divider>
-            <v-icon icon="mdi-chevron-right"></v-icon> </template
-        > -->
-        </v-breadcrumbs>
-      </v-col>
-    </v-row>
-    <div class="d-flex justify-space-between align-center">
-      <!-- <div class="icon hidden-lg-and-up">
-        <v-btn depressed icon dark @click="drawerFilter">
-          <img src="../assets/imgs/iconos/filter.svg" alt="filter-icon" />
-        </v-btn>
-      </div> -->
-    </div>
-  </div>
+	<div class="filter">
+		<v-row class="justify-space-between align-center">
+			<v-col cols="auto" lg="2" xl="2" class="d-none d-lg-block">
+				<h2 class="text-left">Filtros</h2>
+			</v-col>
+			<v-col cols="auto" lg="10" class="">
+				<v-breadcrumbs class="px-0" :items="items">
+					<!-- <template v-slot:divider>
+						<v-icon icon="mdi-chevron-right"></v-icon>
+					</template> -->
+				</v-breadcrumbs>
+			</v-col>
+			<v-col cols="auto" class="d-block d-lg-none">
+				<div class="d-flex align-center">
+					<v-btn
+						class="mr-2"
+						depressed
+						:small="$vuetify.breakpoint.smAndDown"
+						icon
+						text
+						@click="drawerFilter"
+					>
+						<img
+							class="icon"
+							src="../assets/imgs/iconos/filter-list.svg"
+							alt="filter-icon"
+						/>
+					</v-btn>
+					<span>Filtros</span>
+				</div>
+			</v-col>
+		</v-row>
+	</div>
 </template>
 
 <script>
 export default {
-  computed: {
-    items() {
-      let items = [
-        {
-          text: "Inicio",
-          href: "/",
-          disabled: false,
-        },
-        {
-          text: "Productos",
-          href: "/productos",
-          disabled: true,
-        },
-      ];
+	computed: {
+		items() {
+			let items = [
+				{
+					text: 'Inicio',
+					href: '/',
+					disabled: false,
+				},
+				{
+					text: 'Productos',
+					href: '/productos',
+					disabled: true,
+				},
+			];
 
-      //   if (this.$store.state.product.filters.brand) {
-      //     items.push({
-      //       text: this.$store.state.product.filters.brand,
-      //       href: "breadcrumbs_link_1",
-      //     });
-      //   }
+			//   if (this.$store.state.product.filters.brand) {
+			//     items.push({
+			//       text: this.$store.state.product.filters.brand,
+			//       href: "breadcrumbs_link_1",
+			//     });
+			//   }
 
-      items[items.length - 1].disabled = true;
+			items[items.length - 1].disabled = true;
 
-      return items;
-    },
-  },
-  methods: {
-    drawerFilter() {
-      //   this.$store.dispatch("products/drawerFilter", true);
-    },
-  },
+			return items;
+		},
+	},
+	methods: {
+		drawerFilter() {
+			//   this.$store.dispatch("products/drawerFilter", true);
+		},
+	},
 };
 </script>
 
 <style lang="scss" scoped>
-// .menu {
-//   z-index: 300;
-//   height: 100%;
-// }
-// .filter {
-//   position: relative;
-// }
-
+* {
+	// border: 1px solid red;
+}
 h2 {
-  font-weight: 700;
-  font-size: 23px;
-  line-height: 30px;
-  /* identical to box height */
+	font-weight: 700;
+	font-size: 23px;
+	line-height: 30px;
+	text-transform: uppercase;
+	color: #2cafe5;
+}
+.icon {
+	height: 24px;
+	height: 24px;
+}
 
-  text-transform: uppercase;
+span {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 18px;
 
-  color: #2cafe5;
+	color: #2cafe5;
+}
+
+@media screen and (min-width: $md) {
+	.icon {
+		height: 30px;
+		height: 30px;
+	}
+	span {
+		font-size: 18px;
+	}
 }
 </style>

@@ -1,30 +1,28 @@
 <template>
-  <div class="content">
-    <v-row>
-      <v-col cols="12" lg="">
-        <v-btn @click="$router.back()" text>
-          <v-icon left>mdi-chevron-left </v-icon>
-          Regresar
-        </v-btn>
-      </v-col>
-    </v-row>
+	<div class="content">
+		<v-row>
+			<v-col cols="12" md="auto">
+				<BtnGoBack />
+			</v-col>
+		</v-row>
 
-    <v-row class="align-start justify-space-between pt-8 pb-16">
-      <v-col cols="12" sm="12" md="7" lg="8" class="">
-        <!-- formulario -->
-        <!-- <ProfileAddressForm /> -->
-      </v-col>
-    </v-row>
-  </div>
+		<v-row class="my-6 no-gutters">
+			<v-col cols="12" sm="12" md="10" lg="8" class="">
+				<!-- formulario -->
+				<ProfileAddressForm />
+			</v-col>
+		</v-row>
+	</div>
 </template>
 
 <script>
-// import ProfileAddressForm from "../../../components/ProfileAddressForm.vue";
+import BtnGoBack from '../../../components/BtnGoBack.vue';
+import ProfileAddressForm from '../../../components/ProfileAddressForm.vue';
 export default {
-  components: { ProfileAddressForm },
-  head: {
-    title: "Editar dirección",
-  },
+	components: { ProfileAddressForm, BtnGoBack },
+	head: {
+		title: 'Editar dirección',
+	},
 };
 </script>
 

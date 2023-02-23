@@ -1,14 +1,14 @@
 <template>
 	<v-app dark>
-		<TheHeader />
+		<TheHeader class="d-none d-lg-block" />
 
-		<v-main class="pt-14">
+		<v-main class="pt-lg-14">
 			<v-container fluid class="pa-0">
 				<Nuxt class="animate__animated animate__fadeIn" />
 			</v-container>
 		</v-main>
 
-		<TheFooter />
+		<TheFooter class="" />
 	</v-app>
 </template>
 
@@ -20,7 +20,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-h2 {
-}
-</style>
+<style lang="scss" scoped></style>

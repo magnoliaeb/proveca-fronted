@@ -1,18 +1,29 @@
 * {
-  // margin: 0;
-  // padding: 0;
-  text-decoration: none;
-  list-style: none;
-  // font-family: "Gotham";
-  // border: 1px solid green;
+	// margin: 0;
+	// padding: 0;
+	text-decoration: none;
+	list-style: none;
+	// font-family: "Gotham";
+	// border: 1px solid green;
 }
 
 ul,
 ol {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .row {
-  margin: 0;
+	margin: 0;
 }
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+//

@@ -3,9 +3,9 @@
 		<div class="content">
 			<v-row class="justify-center">
 				<v-col class="mb-4 mb-lg-0 text-left" cols="12" sm="8" md="10" lg="3">
-					<router-link to="/" class="d-flex justify-center justify-lg-start">
+					<nuxt-link to="/" class="d-flex justify-center justify-lg-start">
 						<img class="logo" src="../assets/imgs/logo.svg" alt="logo" />
-					</router-link>
+					</nuxt-link>
 					<p class="mt-4 text-center text-md-left">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -31,17 +31,26 @@
 								<p class="text-break">{{ item.name }}</p>
 							</div>
 							<div
+								v-if="item.email"
 								class="d-flex align-start justify-center justify-md-start"
-								v-else
 							>
-								<nux-link :to="item.name" class="d-flex align-center">
-									<img
-										class="mr-3 icon"
-										:src="require(`../assets/imgs/iconos/${item.icon}.svg`)"
-										:alt="item.name"
-									/>
-									<span>{{ item.name }}</span>
-								</nux-link>
+								<img
+									class="mr-3 icon"
+									:src="require(`../assets/imgs/iconos/${item.icon}.svg`)"
+									:alt="item.name"
+								/>
+								<a :href="`mailto:${item.name}`">{{ item.name }}</a>
+							</div>
+							<div
+								v-if="item.phone"
+								class="d-flex align-start justify-center justify-md-start"
+							>
+								<img
+									class="mr-3 icon"
+									:src="require(`../assets/imgs/iconos/${item.icon}.svg`)"
+									:alt="item.name"
+								/>
+								<a :href="`tel:+:${item.name}`">{{ item.name }}</a>
 							</div>
 						</li>
 					</ul>

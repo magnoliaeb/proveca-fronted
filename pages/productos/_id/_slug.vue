@@ -11,8 +11,8 @@
 				<v-row class="align-center">
 					<v-col cols="auto">
 						<v-btn depressed dark @click="$router.back()">
-							<v-icon dark left>mdi-chevron-left </v-icon>
-							Regresar</v-btn
+							<v-icon dark>mdi-chevron-left </v-icon>
+							<span class="d-none d-md-block">Regresar</span></v-btn
 						>
 					</v-col>
 					<v-col cols="auto">
@@ -125,12 +125,22 @@ export default {
 button {
 	background: #2cafe5 !important;
 	border-radius: 3px !important;
-	width: 116px !important;
+	min-width: 20px !important;
+	width: 20px !important;
+	// width: 116px !important;
 	height: 30px !important;
 	font-weight: 300 !important;
 	font-size: 15px !important;
 	line-height: 20px !important;
 	color: #ffffff !important;
 	text-transform: initial !important;
+}
+
+@media screen and (min-width: $md) {
+	button {
+		min-width: 116px !important;
+		width: 116px !important;
+		// width: 116px !important;
+	}
 }
 </style>

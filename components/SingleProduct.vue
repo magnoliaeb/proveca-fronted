@@ -128,7 +128,7 @@ export default {
 	data() {
 		return {
 			qty: 10,
-			// loading: false,
+			loading: false,
 			// alert: false,
 			// duration: 3000,
 		};
@@ -139,6 +139,10 @@ export default {
 		},
 	},
 	methods: {
+		inc() {},
+		dec() {},
+		updateQty() {},
+		add() {},
 		// add() {
 		// 	this.loading = true;
 		// 	this.$app.$cart

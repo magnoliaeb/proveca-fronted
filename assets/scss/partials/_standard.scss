@@ -1,3 +1,9 @@
+a#register,
+button#register,
+button#filters,
+button#login,
+button#cart,
+button#menu,
 button#popover,
 button#search {
 	.v-btn__content {
@@ -124,6 +130,16 @@ button.button-danger {
 	}
 }
 
+.dialog-address-box {
+	// border: 2px solid red !important;
+	border-radius: 24px !important;
+}
+
+.card-dialog-contact {
+	background: #ffffff !important;
+	border-radius: 22px !important;
+}
+
 @media screen and (min-width: $sm) {
 	// .title-header {
 	// 	p {
@@ -169,9 +185,11 @@ button.button-danger {
 	button.button-primary {
 		height: 64px !important;
 	}
-	.v-slide-group__content {
-		flex-direction: column !important;
-		overflow: hidden !important;
+	.single-product {
+		.v-slide-group__content {
+			flex-direction: column !important;
+			overflow: hidden !important;
+		}
 	}
 }
 @media screen and (min-width: $lg) {

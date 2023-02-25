@@ -14,20 +14,20 @@
 			<v-col cols="auto" class="d-block d-lg-none">
 				<div class="d-flex align-center">
 					<v-btn
+						id="filters"
 						class="mr-2"
 						depressed
 						:small="$vuetify.breakpoint.smAndDown"
-						icon
 						text
-						@click="drawerFilter"
+						@click="openFilters"
 					>
 						<img
 							class="icon"
 							src="../assets/imgs/iconos/filter-list.svg"
 							alt="filter-icon"
 						/>
+						<span>Filtros</span>
 					</v-btn>
-					<span>Filtros</span>
 				</div>
 			</v-col>
 		</v-row>
@@ -64,8 +64,8 @@ export default {
 		},
 	},
 	methods: {
-		drawerFilter() {
-			//   this.$store.dispatch("products/drawerFilter", true);
+		openFilters() {
+			this.$store.dispatch('website/showFilters', true);
 		},
 	},
 };

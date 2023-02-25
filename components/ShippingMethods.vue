@@ -53,7 +53,14 @@
 <script>
 import CardPayment from './CardPayment.vue';
 
-export default { components: { CardPayment } };
+export default {
+	components: { CardPayment },
+	data() {
+		return {
+			isLoading: false,
+		};
+	},
+};
 </script>
 
 <style lang="scss" scoped>

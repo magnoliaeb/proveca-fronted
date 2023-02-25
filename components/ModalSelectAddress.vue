@@ -1,94 +1,118 @@
 <template>
 	<div>
 		<client-only>
+			<v-btn
+				color="primary"
+				class=""
+				block
+				depressed
+				text
+				@click.stop="dialog = true"
+				large
+			>
+				<img
+					class="mr-3"
+					src="../assets/imgs/iconos/map-ping.svg"
+					alt="perfil"
+				/>
+				<p v-if="!hasCode" class="text-capitalize text-left my-0">
+					<span>ingresa tu </span> <br />
+					ubicación
+				</p>
+				<p v-else class="text-capitalize text-left my-0">C.P. 44210</p>
+			</v-btn>
 			<v-dialog
 				v-model="dialog"
 				transition="dialog-bottom-transition"
-				max-width="450"
+				max-width="560px"
+				content-class="dialog-address-box"
 			>
-				<template v-slot:activator="{ on, attrs }">
+				<v-card v-model="dialog" class="py-2 px-md-6 py-md-8">
 					<v-btn
-						color="primary"
-						class=""
-						depressed
+						absolute
+						right
+						top
+						color="#000"
+						@click="closeModel"
 						text
-						v-bind="attrs"
-						v-on="on"
-						large
+						icon
+						depressed
+						small
 					>
-						<img
-							class="mr-sm-3"
-							src="../assets/imgs/iconos/map-ping.svg"
-							alt="perfil"
-						/>
-						<p
-							v-if="!hasCode"
-							class="text-capitalize text-left hidden-xs-only my-0"
-						>
-							<span>ingresa tu </span> <br />
-							ubicación
-						</p>
-						<p v-else class="text-capitalize text-left hidden-xs-only my-0">
-							C.P. 44210
-						</p>
+						<v-icon>mdi-close</v-icon>
 					</v-btn>
-				</template>
-				<template v-slot:default="dialog">
-					<v-card>
-						<v-card-title class="">
-							<h2><span>Elije tú</span> ubicación</h2>
-						</v-card-title>
-
-						<v-card-text>
-							<p class="mb-4 mt-3">
-								Selecciona una dirección de envó para ver las opciones de envío
-							</p>
-							<v-btn
-								depressed
-								@click="dialog.value = false"
-								block
-								large
-								:to="{ name: 'iniciar-sesion' }"
-								>Inicia sesión</v-btn
-							>
-							<h3 class="mt-4">o introduce un código postal en México</h3>
-							<form @submit.prevent="sendForm">
-								<v-row class="mt-4">
-									<v-col cols="12" md="8">
-										<!-- input -->
-										<v-text-field
-											height="45px"
-											type="text"
-											v-model.trim="code"
-											solo
-											flat
-											outlined
-											hide-details
+					<v-card-title class="d-flex justify-center">
+						<h2 class="text-center mb-4">
+							Selecciona una dirección de entrega
+						</h2>
+					</v-card-title>
+					<v-window v-model="step">
+						<v-window-item :value="1">
+							<v-card-text>
+								<v-btn
+									class="add justify-start text-break"
+									depressed
+									@click="step = 2"
+									block
+									large
+								>
+									<img
+										class="mr-3 d-none d-sm-block"
+										width="20px"
+										height="20px"
+										src="../assets/imgs/iconos/ping-black.svg"
+										alt="ping"
+									/>
+									Agregar una nueva dirección</v-btn
+								>
+								<v-btn
+									class="current mt-8 justify-space-between"
+									depressed
+									@click="dialog.value = false"
+									block
+									large
+									tile
+								>
+									<div class="d-flex align-center">
+										<img
+											class="mr-3 d-none d-sm-block"
+											width="20px"
+											height="20px"
+											src="../assets/imgs/iconos/focus.svg"
+											alt="focus"
 										/>
-									</v-col>
-									<v-col cols="12" md="4">
-										<v-btn
-											type="submit"
-											class="btn-confir"
-											depressed
-											outlined
-											:loading="isLoading"
-											:disabled="isDisabled && invalid"
-											>Confirmar</v-btn
-										>
-									</v-col>
-								</v-row>
-							</form>
-						</v-card-text>
-					</v-card>
-				</template>
+										<span>Utilizar mi dirección actual</span>
+									</div>
+									<img
+										class=""
+										width="20px"
+										height="20px"
+										src="../assets/imgs/iconos/chevron-right.svg"
+										alt="chevron-right"
+									/>
+									<!-- <v-icon icon="mdi-chevron-right"></v-icon> -->
+								</v-btn>
+							</v-card-text>
+						</v-window-item>
+
+						<v-window-item :value="2">
+							<v-card-text>
+								<CardFormAddress />
+							</v-card-text>
+						</v-window-item>
+					</v-window>
+				</v-card>
 			</v-dialog>
 		</client-only>
 	</div>
 </template>
 
 <script>
+import CardFormAddress from './CardFormAddress.vue';
 export default {
+	components: {
+		CardFormAddress,
+	},
 	data() {
 		return {
 			code: '',
@@ -96,9 +120,13 @@ export default {
 			hasCode: false,
 			isDisabled: false,
 			isLoading: false,
+			step: 1,
 		};
 	},
 	methods: {
+		closeModel() {
+			this.dialog = false;
+		},
 		sendForm() {
 			if (this.code.length > 0) {
 				this.isLoading = true;
@@ -118,77 +146,58 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
-	/* or 12px */
+h2 {
+	font-weight: 900;
+	font-size: 18px;
+	line-height: 33px;
+	/* identical to box height */
 
-	p {
-		font-weight: 400 !important;
-		color: #434343 !important;
-		font-size: 12px !important;
-	}
+	color: #000000;
+}
+button.add {
+	font-weight: 400 !important;
+	font-size: 13px !important;
+	line-height: 21px !important;
+	/* identical to box height */
+
+	color: #000000 !important;
+	background: #f7f7f7 !important;
+	border: 1px solid #959595 !important;
+	border-radius: 10px !important;
+	height: 50px !important;
+	text-transform: initial !important;
+}
+button.current {
+	font-weight: 400 !important;
+	font-size: 13px !important;
+	line-height: 21px !important;
+	/* identical to box height */
+
+	color: #000000 !important;
+	border-bottom: 0.5px solid #7e7e7e !important;
+	height: 50px !important;
+	text-transform: initial !important;
+	background-color: transparent !important;
 }
 
 p {
-	font-size: 14px;
-	font-weight: 500;
-}
-a {
-	font-size: 14px !important;
-	letter-spacing: 0px !important;
-	color: white !important;
-	font-weight: 500 !important;
-	font-weight: 300 !important;
-	//   background-color: $secondary !important;
-	text-transform: initial;
-	height: 40px !important;
-}
-h2 {
-	font-size: 17px;
-}
-h3 {
-	font-size: 13px;
-	color: #000000;
-	font-weight: 800;
-	width: 80%;
-	margin: 0 auto;
-	text-align: center;
-	position: relative;
-	&::after,
-	&::before {
-		position: absolute;
-		content: '';
-		margin: 0 -24px;
-		width: 20px;
-		height: 1px;
-		background-color: #dedede;
-		top: 50%;
-		right: 0;
-	}
-	&::before {
-		left: 0;
-	}
-}
-.btn-confir {
-	font-size: 14px !important;
-	letter-spacing: 0px !important;
-	color: black !important;
-	font-weight: 500 !important;
-	font-weight: 300 !important;
-	text-transform: initial;
-	height: 40px !important;
-	width: 100% !important;
-}
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 96.3%;
+	/* or 12px */
 
-@media screen and (min-width: $sm) {
-	p {
-		font-size: 14px;
-	}
+	color: #434343;
+}
+@media screen and (min-width: $md) {
 	h2 {
-		font-size: 22px;
+		font-size: 25px;
 	}
 
-	h3 {
-		font-size: 15px;
+	button.add {
+		font-size: 16px !important;
+	}
+	button.current {
+		font-size: 16px !important;
 	}
 }
 </style>

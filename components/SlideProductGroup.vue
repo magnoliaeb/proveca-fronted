@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div class="single-product">
 		<v-slide-group
 			v-model="model"
 			class=""

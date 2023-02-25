@@ -4,20 +4,48 @@
 			<v-app-bar color="#F5F5F5" absolute flat class="nav">
 				<div class="content">
 					<v-row class="align-center justify-space-between">
-						<v-col cols="2" md="auto" class="pa-0">
+						<v-col cols="auto" md="auto" class="pa-0 d-lg-none">
+							<v-btn
+								@click="openMenu"
+								id="menu"
+								fab
+								text
+								:small="$vuetify.breakpoint.xsOnly"
+							>
+								<img
+									class="pa-1"
+									height="35px"
+									width="35px"
+									src="../assets/imgs/iconos/menu.svg"
+									alt="menu"
+								/>
+							</v-btn>
+						</v-col>
+						<v-col cols="auto" md="auto" class="pa-0">
 							<nuxt-link :to="{ name: 'index' }" class="d-block">
 								<img class="logo" src="../assets/imgs/logo.svg" alt="" />
 							</nuxt-link>
 						</v-col>
-						<v-col cols="12" md="4" lg="4" xl="5" class="">
+						<v-col cols="12" md="4" lg="4" xl="5" class="d-none d-lg-block">
 							<SearchForm />
 						</v-col>
-						<v-col cols="6" md="6" lg="auto" class="pa-0 d-flex align-center">
+						<v-col
+							cols="auto"
+							lg="auto"
+							class="pa-0 d-flex align-center justify-end"
+						>
 							<!-- codigo postal -->
-							<ModalSelectAddress />
+							<ModalSelectAddress class="d-none d-lg-block" />
 
-							<div class="mx-4" style="position: relative">
-								<v-btn color="primary" depressed text @click="goToLogin" large>
+							<div class="mx-4 d-none d-lg-block" style="position: relative">
+								<v-btn
+									color="primary"
+									id="login"
+									depressed
+									text
+									@click="goToLogin"
+									large
+								>
 									<div class="d-flex align-center">
 										<img
 											class="mr-sm-3"
@@ -28,7 +56,7 @@
 											v-if="isAuthenticate"
 											class="text-capitalize text-left hidden-xs-only my-0"
 										>
-											<span class="font-weight-black">{{ user.name }}</span>
+											<span class="font-weight-black">Isabella</span>
 										</p>
 										<p
 											v-else
@@ -39,67 +67,69 @@
 										</p>
 									</div>
 								</v-btn>
-								<v-expand-transition>
-									<LoginPopover
-										v-if="showPopover"
-										@closePopover="showPopover = false"
-									/>
-								</v-expand-transition>
 							</div>
-							<v-btn color="primary" depressed text large class="">
+							<v-btn
+								color="primary"
+								id="cart"
+								@click="openCart"
+								depressed
+								text
+								:large="!$vuetify.breakpoint.xsOnly"
+								:small="$vuetify.breakpoint.xsOnly"
+								:fab="$vuetify.breakpoint.xsOnly"
+								class=""
+							>
 								<img
-									class="mr-3"
+									height="35px"
+									width="35px"
+									class="mr-sm-3 pa-1 psm-0"
 									src="../assets/imgs/iconos/shopping-cart.svg"
 									alt="shopping-cart"
 								/>
-								<p class="mb-0">($143.00)</p>
+								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0">($143.00)</p>
 							</v-btn>
 						</v-col>
 					</v-row>
 
-					<v-row class="hidden-md-and-up mx-0">
+					<!-- <v-row class="hidden-md-and-up mx-0">
 						<v-col cols="12" class="">
-							<!-- <SearchForm /> -->
 						</v-col>
-					</v-row>
+					</v-row> -->
 				</div>
 			</v-app-bar>
+			<SearchForm class="d-block d-lg-none" />
+			<HeaderBottom class="d-none d-lg-block" />
 
-			<!-- siderbar login -->
-			<!-- <LoginSiderbar /> -->
-			<!-- sider cart -->
-
-			<!-- menu rigth filtros -->
-			<!-- <v-navigation-drawer
-        v-model="drawerFilter"
-        right
-        class="menu-filter"
-        fixed
-      >
-        <v-row class="justify-center pt-10">
-          <v-col cols="11" class="pt-0">
-            <FilterProducts />
-          </v-col>
-        </v-row>
-      </v-navigation-drawer> -->
+			<LoginSiderbar />
+			<RegisterSidebar />
+			<FilterSidebar />
+			<ProfileSidebar />
+			<CartSidebar />
+			<MenuSidebar />
 		</div>
-		<!-- <HeaderBottom /> -->
 	</nav>
 </template>
 
 <script>
-import LoginSiderbar from './LoginSiderbar.vue';
-// import LoginSiderbar from "./LoginSiderbar.vue";
+import LoginSiderbar from './LoginSidebar.vue';
+import RegisterSidebar from './RegisterSidebar.vue';
+import FilterSidebar from './FilterSidebar.vue';
+import ProfileSidebar from './ProfileSidebar.vue';
+import CartSidebar from './CartSidebar.vue';
+import MenuSidebar from './MenuSidebar.vue';
 import SearchForm from './SearchForm.vue';
+import HeaderBottom from './HeaderBottom.vue';
 export default {
-	components: { LoginSiderbar, SearchForm },
-	data() {
-		return {
-			drawer: false,
-			showPopover: false,
-		};
+	components: {
+		LoginSiderbar,
+		RegisterSidebar,
+		FilterSidebar,
+		ProfileSidebar,
+		MenuSidebar,
+		CartSidebar,
+		SearchForm,
+		HeaderBottom,
 	},
-	//   components: { SearchForm },
 
 	computed: {
 		isAuthenticate() {
@@ -111,28 +141,23 @@ export default {
 			//   return this.$auth.user || false;
 			return false;
 		},
-
-		drawerFilter: {
-			get() {
-				return this.$store.getters['website/getDrawerFilter'];
-			},
-			set(value) {
-				this.$store.dispatch('website/drawerFilter', value);
-			},
-		},
 	},
 	methods: {
-		openPopover() {
-			this.showPopover = !this.showPopover;
+		openMenu() {
+			this.$store.dispatch('website/showMenu', true);
 		},
-		// closeLoginSider() {
-		//   this.drawerLogin = false;
-		// },
+		openProfile() {
+			this.$store.dispatch('website/showProfile', true);
+		},
+		openCart() {
+			this.$store.dispatch('website/showCart', true);
+		},
+
 		goToLogin() {
 			if (this.isAuthenticate) {
-				this.openPopover();
+				this.openProfile();
 			} else {
-				this.$store.dispatch('website/showLogin', false);
+				this.$store.dispatch('website/showLogin', true);
 
 				// this.$router.push({ name: "login" });
 			}
@@ -152,13 +177,12 @@ nav {
 }
 .nav {
 	//   border: 1px solid red;
-	min-height: 80px;
+	min-height: 85px;
 }
 
 .logo {
-	width: 119px;
-	object-fit: cover;
-	height: 65px;
+	width: 93px;
+	height: 51px;
 	object-fit: contain;
 }
 
@@ -173,24 +197,15 @@ span {
 	color: #434343 !important;
 }
 
-// menu filter
-.menu-filter {
-	width: 90% !important;
-	max-width: 425px;
-}
 @media screen and (min-width: $md) {
-	.menu-filter {
-		width: 60% !important;
+	.logo {
+		width: 119px;
+		height: 65px;
 	}
 }
 @media screen and (min-width: $lg) {
 	.nav {
-		min-height: 92px;
-	}
-	.logo {
-		width: 117px;
-		max-width: 117px;
-		height: 80px;
+		min-height: 80px;
 	}
 }
 </style>

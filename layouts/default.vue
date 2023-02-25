@@ -1,8 +1,8 @@
 <template>
 	<v-app dark>
-		<TheHeader class="d-none d-lg-block" />
+		<TheHeader class="" />
 
-		<v-main class="pt-lg-14">
+		<v-main class="mt-16 pt-4">
 			<v-container fluid class="pa-0">
 				<Nuxt class="animate__animated animate__fadeIn" />
 			</v-container>

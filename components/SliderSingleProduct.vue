@@ -72,6 +72,7 @@ export default {
 	data() {
 		return {
 			// imgSelected: this.product.images.original_profile,
+			imgSelected: null,
 			products: [
 				{
 					id: 1,
@@ -141,9 +142,9 @@ export default {
 		};
 	},
 	methods: {
-		// changeImgSelected(img) {
-		// 	this.imgSelected = img;
-		// },
+		changeImgSelected(img) {
+			this.imgSelected = img;
+		},
 	},
 };
 </script>

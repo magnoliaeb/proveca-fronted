@@ -24,25 +24,20 @@
 				</v-col>
 			</v-row>
 		</form>
-		<!-- <AlertDialog
-      @closeAlert="showAlert = false"
-      :showAlert="showAlert"
-      :titleAlert="titleAlert"
-      :textAlert="textAlert"
-      :iconAlert="iconAlert"
-    /> -->
+		<AlertDialogSuscribe />
 	</div>
 </template>
 
 <script>
+import AlertDialogSuscribe from './AlertDialogSuscribe.vue';
+
 export default {
+	components: { AlertDialogSuscribe },
+
 	data() {
 		return {
 			showAlert: false,
-			titleAlert: '¡GRACIAS POR SUSCRIBIRTE!',
-			textAlert: 'Pronto recibirás nuestras promociones',
-			iconAlert: 'Email-black',
-			email: '',
+
 			isLoading: false,
 		};
 	},
@@ -50,7 +45,6 @@ export default {
 		sendForm() {
 			if (this.email.length > 0) {
 				this.isLoading = true;
-
 				this.$store
 					.dispatch('subscribers/subscribe', {
 						name: this.email,

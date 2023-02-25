@@ -245,7 +245,7 @@ img {
 }
 
 h3 {
-	// font-family: 'Inter';
+	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 300;
 	font-size: 17px;

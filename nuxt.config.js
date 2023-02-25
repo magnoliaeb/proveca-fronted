@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors';
+// import '@mdi/font/css/materialdesignicons.css'; // Ensure you are using css-loader
 
 export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
@@ -95,6 +96,7 @@ export default {
 		'@/assets/scss/main.scss',
 		'vue-slick-carousel/dist/vue-slick-carousel.css',
 		'animate.css/animate.min.css',
+		'@mdi/font/css/materialdesignicons.css',
 	],
 	env: {
 		//

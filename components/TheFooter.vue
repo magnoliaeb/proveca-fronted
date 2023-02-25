@@ -2,7 +2,13 @@
 	<v-footer color="#F9FAFB" dark class="pb-16 pt-10 py-md-16 px-0">
 		<div class="content">
 			<v-row class="justify-center">
-				<v-col class="mb-4 mb-lg-0 text-left" cols="12" sm="8" md="10" lg="3">
+				<v-col
+					class="mb-4 mb-lg-0 text-left mt-lg-n10"
+					cols="12"
+					sm="8"
+					md="10"
+					lg="3"
+				>
 					<nuxt-link to="/" class="d-flex justify-center justify-lg-start">
 						<img class="logo" src="../assets/imgs/logo.svg" alt="logo" />
 					</nuxt-link>

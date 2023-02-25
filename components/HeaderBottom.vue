@@ -133,7 +133,7 @@ export default {
 }
 
 span {
-	// font-family: 'Inter';
+	font-family: 'Inter';
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 17px;

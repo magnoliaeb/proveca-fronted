@@ -9,9 +9,9 @@
 			</v-col>
 			<v-col cols="auto" sm="auto" class="py-0">
 				<v-breadcrumbs class="px-0" :items="items">
-					<!-- <template v-slot:divider>
-							<v-icon icon="mdi-chevron-right"></v-icon>
-						</template> -->
+					<template v-slot:divider>
+						<v-icon>mdi-chevron-right</v-icon>
+					</template>
 				</v-breadcrumbs>
 			</v-col>
 		</v-row>

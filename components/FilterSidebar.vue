@@ -24,13 +24,18 @@
 				<h2>Filtros</h2>
 			</v-col>
 		</v-row>
+
 		<v-row class="mb-4">
 			<v-col cols="12">
 				<v-divider dark style="border-color: #2cafe5"></v-divider>
 			</v-col>
 		</v-row>
 
-		<FilterProducts />
+		<v-row class="">
+			<v-col cols="12">
+				<FilterProducts />
+			</v-col>
+		</v-row>
 	</v-navigation-drawer>
 </template>
 

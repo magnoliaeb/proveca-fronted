@@ -6,9 +6,9 @@
 			</v-col>
 			<v-col cols="auto" lg="10" class="">
 				<v-breadcrumbs class="px-0" :items="items">
-					<!-- <template v-slot:divider>
-						<v-icon icon="mdi-chevron-right"></v-icon>
-					</template> -->
+					<template v-slot:divider>
+						<v-icon>mdi-chevron-right</v-icon>
+					</template>
 				</v-breadcrumbs>
 			</v-col>
 			<v-col cols="auto" class="d-block d-lg-none">

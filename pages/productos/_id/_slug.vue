@@ -17,9 +17,9 @@
 					</v-col>
 					<v-col cols="auto">
 						<v-breadcrumbs :items="breadcrumbs" class="px-0">
-							<!-- <template v-slot:divider>
-						<v-icon icon="mdi-chevron-right"></v-icon>
-					</template> -->
+							<template v-slot:divider>
+								<v-icon>mdi-chevron-right</v-icon>
+							</template>
 						</v-breadcrumbs>
 					</v-col>
 				</v-row>

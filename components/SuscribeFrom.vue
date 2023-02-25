@@ -24,7 +24,7 @@
 				</v-col>
 			</v-row>
 		</form>
-		<AlertDialogSuscribe />
+		<!-- <AlertDialogSuscribe /> -->
 	</div>
 </template>
 

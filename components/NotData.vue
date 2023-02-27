@@ -1,6 +1,6 @@
 <template>
 	<v-row class="justify-center empty align-center">
-		<v-col cols="12" sm="auto">
+		<v-col cols="12" sm="auto" md="10" lg="10">
 			<div>
 				<div class="icon">
 					<img

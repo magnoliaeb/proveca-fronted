@@ -39,6 +39,7 @@ export default {
 			showAlert: false,
 
 			isLoading: false,
+			email: null,
 		};
 	},
 	methods: {

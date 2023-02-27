@@ -1,50 +1,55 @@
 <template>
-	<u-animate
-		name="animate__fadeIn"
-		delay="1s"
-		duration="1s"
-		:iteration="1"
-		:offset="0"
-		animateClass="animate__animated"
-		:begin="$vuetify.breakpoint.mdAndDown ? true : false"
-	>
-		<v-row>
-			<v-col cols="12" sm="6" md="4" class="offset-sm-6 offset-md-8">
-				<v-row>
-					<v-col cols="12" class="d-flex justify-space-between">
-						<p>Subtotal</p>
-						<span>{{ $util.getMoneyFormat(order.items_subtotal) }}</span>
-					</v-col>
-					<v-col cols="12" class="d-flex justify-space-between">
-						<p>Descuento</p>
-						<span>{{ $util.getMoneyFormat(discount) }}</span>
-					</v-col>
+	<v-row class="no-gutters mt-4">
+		<v-col cols="12" sm="6" md="4" class="offset-sm-6 offset-md-8">
+			<v-row tag="ul">
+				<v-col cols="12" class="">
+					<h3>Resumen</h3>
+				</v-col>
+				<v-col
+					tag="li"
+					cols="12"
+					class="d-flex li justify-space-between align-center"
+				>
+					<p class="mb-0">Subtotal</p>
+					<span>{{ $util.getMoneyFormat(25.23) }}</span>
+				</v-col>
+				<v-col
+					tag="li"
+					cols="12"
+					class="d-flex li justify-space-between align-center"
+				>
+					<p class="mb-0">Descuento</p>
+					<span>{{ $util.getMoneyFormat(23) }}</span>
+				</v-col>
+				<v-col
+					tag="li"
+					cols="12"
+					class="d-flex justify-space-between align-center"
+				>
+					<p class="mb-0">Envio</p>
+					<span>{{ $util.getMoneyFormat(0) }}</span>
+				</v-col>
+				<v-col cols="12" class="pt-0 px-0">
+					<v-divider style="background-color: #2cafe5"></v-divider>
+				</v-col>
 
-					<v-col
-						v-for="(service, i) in order.services"
-						:key="i"
-						cols="12"
-						class="d-flex justify-space-between"
+				<v-col cols="12" class="d-flex justify-space-between align-center">
+					<p class="total">Total</p>
+					<span class="total">{{ $util.getMoneyFormat(2345) }}</span>
+				</v-col>
+				<!-- <v-col cols="12" class="d-flex justify-end mt-8 px-0">
+					<v-btn
+						depressed
+						class="button-primary"
+						:loading="isLoading"
+						@click="add"
 					>
-						<p>{{ service.name }}</p>
-						<span>{{ $util.getMoneyFormat(service.price_total) }}</span>
-					</v-col>
-
-					<v-col cols="12" class="d-flex justify-space-between">
-						<p class="total">Total</p>
-						<span class="total">{{
-							$util.getMoneyFormat(order.amount_total)
-						}}</span>
-					</v-col>
-					<v-col cols="12" class="d-flex justify-end mt-8 px-0">
-						<v-btn depressed class="primary" :loading="isLoading" @click="add">
-							Agregar todo al carrito
-						</v-btn>
-					</v-col>
-				</v-row>
-			</v-col>
-		</v-row>
-	</u-animate>
+						Agregar todo al carrito
+					</v-btn>
+				</v-col> -->
+			</v-row>
+		</v-col>
+	</v-row>
 </template>
 
 <script>
@@ -100,33 +105,49 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-	font-size: 16px;
-	color: #272727;
+h3 {
+	font-weight: 500;
+	font-size: 16.5744px;
+	line-height: 22px;
+	/* identical to box height */
+
+	text-transform: uppercase;
+
+	color: #000000;
 }
 p,
 span {
-	font-size: 14px;
-	font-family: 'Gotham';
-	font-weight: normal;
-	font-size: 16px;
-	line-height: 20px;
-	color: #272727;
+	font-weight: 300;
+	font-size: 16.5744px;
+	line-height: 22px;
+	/* identical to box height */
+
+	color: #000000;
 }
 p.total,
 span.total {
-	font-size: 16px;
-	font-weight: 500;
+	font-weight: 900;
+	font-size: 16.5744px;
+	line-height: 22px;
+	/* identical to box height */
+
+	text-transform: uppercase;
+
+	color: #2cafe5;
+}
+
+.li {
+	border-bottom: 1px solid #e9e9e9;
 }
 
 @media screen and (min-width: $sm) {
-	p,
-	span {
-		font-size: 16px;
-	}
-	p.total,
-	span.total {
-		font-size: 19px;
-	}
+	// p,
+	// span {
+	// 	font-size: 16px;
+	// }
+	// p.total,
+	// span.total {
+	// 	font-size: 19px;
+	// }
 }
 </style>

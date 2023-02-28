@@ -40,6 +40,7 @@ body {
 
 p {
 	margin-bottom: 1rem;
+	color: purple;
 }
 
 h1,

@@ -7,7 +7,7 @@
 			<h5>
 				<span class="">{{ 'default_code' }} </span>
 				<span>·{{ ' weight' }}kg</span> ·
-				<span>{{ 10 | currency }}</span>
+				<span>{{ 10 }}</span>
 			</h5>
 		</v-col>
 		<v-col cols="auto" class="">

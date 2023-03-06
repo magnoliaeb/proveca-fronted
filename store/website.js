@@ -5,6 +5,7 @@ export const state = () => ({
 	showProfile: false,
 	showCart: false,
 	showMenu: false,
+	showDialogInfo: true,
 });
 
 export const mutations = {
@@ -26,6 +27,9 @@ export const mutations = {
 	SET_SHOW_MENU(state, value) {
 		state.showMenu = value;
 	},
+	SET_SHOW_DIALOG_INFO(state, value) {
+		state.showDialogInfo = value;
+	},
 };
 export const actions = {
 	showLogin({ commit }, value) {
@@ -45,6 +49,9 @@ export const actions = {
 	},
 	showMenu({ commit }, value) {
 		commit('SET_SHOW_MENU', value);
+	},
+	showDialogInfo({ commit }, value) {
+		commit('SET_SHOW_DIALOG_INFO', value);
 	},
 };
 
@@ -66,5 +73,8 @@ export const getters = {
 	},
 	getShowMenu(state) {
 		return state.showMenu;
+	},
+	getShowDialogInfo(state) {
+		return state.showDialogInfo;
 	},
 };

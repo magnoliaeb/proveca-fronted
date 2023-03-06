@@ -106,6 +106,7 @@
 			<ProfileSidebar />
 			<CartSidebar />
 			<MenuSidebar />
+			<DialogProductInfo />
 		</div>
 	</nav>
 </template>
@@ -119,6 +120,7 @@ import CartSidebar from './CartSidebar.vue';
 import MenuSidebar from './MenuSidebar.vue';
 import SearchForm from './SearchForm.vue';
 import HeaderBottom from './HeaderBottom.vue';
+import DialogProductInfo from './DialogProductInfo.vue';
 export default {
 	components: {
 		LoginSiderbar,
@@ -129,6 +131,7 @@ export default {
 		CartSidebar,
 		SearchForm,
 		HeaderBottom,
+		DialogProductInfo,
 	},
 
 	computed: {

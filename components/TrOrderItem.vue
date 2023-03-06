@@ -89,7 +89,7 @@ export default {
 <style lang="scss" scoped>
 p {
 	font-weight: 400;
-	font-size: 19.5574px;
+	font-size: $fs-base;
 	line-height: 25px;
 
 	color: #7d7d7d;

@@ -160,35 +160,32 @@ img.icon {
 }
 h3 {
 	font-weight: 700;
-	font-size: 19px;
-	line-height: 25px;
-	font-style: normal;
+	font-size: $fs-md;
 	letter-spacing: 0.125em;
 	text-transform: uppercase;
 	color: #196382;
+	font-style: normal;
 }
 
 p,
 a,
 span {
 	font-weight: 400 !important;
-	font-size: 15px !important;
-	line-height: 20px !important;
+	font-size: $fs-sm !important;
 	text-transform: initial !important;
 	color: #434343 !important;
 }
 
 .bottom {
 	background: #2cafe5;
-	font-size: 15px;
+	font-size: $fs-sm;
 	width: 100%;
 	text-align: center;
 	position: absolute;
 	bottom: 0;
 	a {
 		font-weight: 400 !important;
-		font-size: 15px !important;
-		line-height: 20px !important;
+		font-size: $fs-sm !important;
 		color: #ffffff !important;
 		&:hover {
 			text-decoration: underline;

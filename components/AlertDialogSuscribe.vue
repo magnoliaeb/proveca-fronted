@@ -89,7 +89,7 @@ img {
 		width: 60px;
 	}
 	h2 {
-		font-size: 25px;
+		font-size: $fs-xl;
 	}
 	p {
 		font-size: 20px;

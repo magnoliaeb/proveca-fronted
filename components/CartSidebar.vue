@@ -120,14 +120,13 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 900;
-	font-size: 25px;
-	line-height: 33px;
+	font-size: $fs-xl;
 	color: #000000;
 }
 
 p {
 	font-weight: 300;
-	font-size: 16px;
+	font-size: $fs-base;
 	line-height: 21px;
 	/* identical to box height */
 
@@ -137,7 +136,7 @@ p {
 
 h5 {
 	font-weight: 600;
-	font-size: 16px;
+	font-size: $fs-base;
 	line-height: 21px;
 	/* identical to box height */
 

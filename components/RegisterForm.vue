@@ -99,7 +99,10 @@
 		</div>
 		<v-row class="justify-center my-6">
 			<v-col cols="12" md="auto" class="text-center">
-				<nuxt-link to="/iniciar-sesion" @click.native="openLogin"
+				<nuxt-link
+					class="fs-base"
+					to="/iniciar-sesion"
+					@click.native="openLogin"
 					>¿Ya tienes cuenta? <span>Inicia Sesión</span></nuxt-link
 				>
 			</v-col>
@@ -176,19 +179,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-	// border: 1px solid red;
-}
-
 .content-form {
 	max-width: 481px;
 }
 
 a {
 	font-weight: 500;
-	font-size: 18px;
-	line-height: 23px;
-	color: #000000;
+	color: #000;
+	font-size: $fs-sm;
 	span {
 		color: #2cafe5;
 		text-decoration: underline;

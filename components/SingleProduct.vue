@@ -1,9 +1,9 @@
 <template>
-	<v-row class="justify-space-between py-6">
+	<v-row class="justify-space-between py-md-6">
 		<v-col cols="12" md="12" lg="auto" class="">
 			<SliderSingleProduct />
 		</v-col>
-		<v-col cols="12" sm="12" md="12" lg="5" class="pa-0">
+		<v-col cols="12" sm="12" md="12" lg="5" xl="6" class="pa-0">
 			<v-row class="justify-space-between align-end">
 				<v-col cols="12">
 					<h2>Atún Dolores en Agua 133gr</h2>
@@ -165,68 +165,51 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 700;
-	font-size: 18px;
-	line-height: 39px;
-	/* identical to box height */
+	font-size: $fs-2xl;
 
 	color: #2cafe5;
 }
 h3 {
 	font-weight: 300;
-	font-size: 14px;
-	line-height: 20px;
-	/* identical to box height */
-
+	font-size: $fs-md;
 	color: #2cafe5;
 }
 h4 {
 	font-weight: 300;
-	font-size: 14px;
-	line-height: 26px;
-	/* identical to box height */
+	font-size: $fs-base;
 
 	span {
 		font-weight: 500;
-		font-size: 14px;
-		line-height: 26px;
-		/* identical to box height */
+		font-size: $fs-base;
 
 		color: #2cafe5;
 	}
 	s {
 		font-weight: 300;
-		font-size: 14px;
-		line-height: 26px;
-		/* identical to box height */
+		font-size: $fs-base;
 
 		text-decoration-line: line-through;
 
 		color: rgba(0, 0, 0, 0.2);
 	}
 }
-p {
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 20px;
-
-	color: #000000;
-}
 
 h5 {
 	font-weight: 700;
-	font-size: 18px;
-	line-height: 33px;
-	/* identical to box height */
-
+	font-size: $fs-md;
 	color: #2cafe5;
+}
+p {
+	font-weight: 400;
+	font-size: $fs-base;
+	color: #000000;
 }
 
 button.blue-dark {
 	text-indent: initial !important;
 	font-weight: 300 !important;
-	font-size: 20px !important;
+	font-size: $fs-md !important;
 	line-height: 26px !important;
-	/* identical to box height */
 
 	color: #ffffff !important;
 	border-radius: 11px !important;
@@ -237,9 +220,8 @@ button.blue-dark {
 button.blue-light {
 	text-indent: initial !important;
 	font-weight: 300 !important;
-	font-size: 20px !important;
+	font-size: $fs-md !important;
 	line-height: 26px !important;
-	/* identical to box height */
 
 	color: #ffffff !important;
 	border-radius: 11px !important;
@@ -275,7 +257,7 @@ ul {
 		justify-content: center;
 		border-radius: 50%;
 		border: 1px solid $primary;
-		font-size: 16px;
+		font-size: $fs-sm;
 		span {
 			color: #000000;
 		}
@@ -293,7 +275,7 @@ input {
 	text-align: center;
 	height: 100%;
 	font-weight: 300;
-	font-size: 17.7583px;
+	font-size: $fs-base;
 	line-height: 23px;
 	color: #2cafe5;
 	&:focus {
@@ -308,25 +290,5 @@ input {
 	button.blue-light {
 		height: 60px !important;
 	}
-	h2 {
-		font-size: 30px;
-	}
-	h3 {
-		font-size: 20px;
-	}
-	h4 {
-		font-size: 20px;
-		span {
-			font-size: 20px;
-		}
-		s {
-			font-size: 20px;
-		}
-	}
-
-	// button {
-	// 	font-size: 15px !important;
-	// 	height: 49px !important;
-	// }
 }
 </style>

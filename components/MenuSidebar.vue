@@ -215,7 +215,7 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 900;
-	font-size: 25px;
+	font-size: $fs-xl;
 	line-height: 33px;
 	color: #000000;
 	span {
@@ -231,11 +231,11 @@ h2 {
 	border-radius: 50%;
 }
 .circle.left {
-	left: -25%;
+	left: -30%;
 	// bottom: 0;
 }
 .circle.right {
-	right: -25%;
+	right: -30%;
 	// bottom: 0;
 }
 
@@ -248,20 +248,14 @@ h3 {
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 300;
-	font-size: 17px;
-	line-height: 21px;
-	/* identical to box height */
-
+	font-size: $fs-base;
 	color: #000000;
 }
 
 a.login,
 button.login {
 	font-weight: 400 !important;
-	font-size: 14px !important;
-	line-height: 96.3% !important;
-	/* or 13px */
-
+	font-size: $fs-sm !important;
 	color: #434343 !important;
 	text-transform: initial !important;
 }

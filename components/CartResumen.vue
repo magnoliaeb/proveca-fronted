@@ -1,5 +1,5 @@
 <template>
-	<v-row class="">
+	<v-row class="mt-6 mt-lg-0">
 		<v-col>
 			<v-card flat color="#fff" width="" class="rounded-card py-6 px-3">
 				<h3 class="mb-4">Resumen</h3>
@@ -46,28 +46,18 @@
 
 h3 {
 	font-weight: 500;
-	font-size: 16.5744px;
-	line-height: 22px;
-	/* identical to box height */
-
+	font-size: $fs-md;
 	text-transform: uppercase;
-
 	color: #000000;
 }
 p {
 	font-weight: 300;
-	font-size: 16.5744px;
-	line-height: 22px;
-	/* identical to box height */
-
+	font-size: $fs-base;
 	color: #000000;
 }
 span {
 	font-weight: 300;
-	font-size: 16.5744px;
-	line-height: 22px;
-	/* identical to box height */
-
+	font-size: $fs-base;
 	color: #000000;
 }
 
@@ -83,12 +73,8 @@ li {
 
 	h4,
 	span {
-		font-style: normal;
 		font-weight: 900;
-		font-size: 16.5744px;
-		line-height: 22px;
-		/* identical to box height */
-
+		font-size: $fs-base;
 		text-transform: uppercase;
 
 		color: #2cafe5;

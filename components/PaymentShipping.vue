@@ -207,16 +207,14 @@ export default {
 <style lang="scss" scoped>
 h3 {
 	font-weight: 400;
-	font-size: 17px;
-	line-height: 22px;
+	font-size: $fs-base;
 
 	color: #000000;
 }
 
 h4 {
 	font-weight: 400;
-	font-size: 17px;
-	line-height: 22px;
+	font-size: $fs-base;
 
 	color: #000000;
 }
@@ -236,14 +234,5 @@ button {
 }
 
 @media screen and (min-width: $sm) {
-	// .img-paypal {
-	// 	height: 40px;
-	// }
-	// h3 {
-	// 	font-size: 16px;
-	// }
-	// h4 {
-	// 	font-size: 14px;
-	// }
 }
 </style>

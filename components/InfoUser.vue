@@ -47,22 +47,16 @@ export default {
 <style lang="scss" scoped>
 h3 {
 	font-weight: 700;
-	font-size: 25px;
-	line-height: 33px;
+	font-size: $fs-xl;
 	color: #000000;
 }
 
 p {
 	font-weight: 400;
-	font-size: 20px;
-	line-height: 26px;
+	font-size: $fs-md;
 	color: #000000;
 }
-// a,
-// button {
-// 	width: 250px !important;
-// 	height: 51px !important;
-// }
+
 button,
 a {
 	max-width: 350px !important;

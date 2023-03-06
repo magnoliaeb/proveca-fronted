@@ -67,10 +67,7 @@ export default {
 h3 {
 	font-style: normal;
 	font-weight: 700;
-	font-size: 23px;
-	line-height: 30px;
-	/* identical to box height */
-
+	font-size: $fs-lg;
 	color: #000000;
 	text-transform: initial;
 }

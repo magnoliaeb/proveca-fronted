@@ -39,15 +39,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-	// border: 1px solid red;
-}
 h3 {
 	font-weight: 700;
-	font-size: 16px;
+	font-size: $fs-lg;
 	line-height: 30px;
-	/* identical to box height */
-
 	color: #000000;
 }
 
@@ -57,13 +52,9 @@ a {
 
 @media screen and (min-width: $sm) {
 	a {
-		// width: 259px;
 		max-width: 259px;
 	}
 }
 @media screen and (min-width: $md) {
-	h3 {
-		font-size: 23px;
-	}
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div class="mb-6">
+	<div :class="{ 'mb-6': showBtnGoBack }">
 		<v-row
 			class="justify-space-between align-center"
 			:class="{ 'justify-end': !showBtnGoBack }"
@@ -7,7 +7,7 @@
 			<v-col cols="auto" v-if="showBtnGoBack">
 				<BtnGoBack />
 			</v-col>
-			<v-col cols="auto" sm="auto" class="py-0">
+			<v-col cols="auto" sm="auto" :class="{ 'px-3': showBtnGoBack }">
 				<v-breadcrumbs class="px-0" :items="items">
 					<template v-slot:divider>
 						<v-icon>mdi-chevron-right</v-icon>

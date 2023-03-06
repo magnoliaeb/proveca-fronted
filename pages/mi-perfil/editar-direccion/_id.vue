@@ -1,5 +1,5 @@
 <template>
-	<div class="content">
+	<div class="content py-16">
 		<v-row>
 			<v-col cols="12" md="auto">
 				<BtnGoBack />

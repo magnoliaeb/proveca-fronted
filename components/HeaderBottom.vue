@@ -135,7 +135,7 @@ export default {
 span {
 	font-family: 'Inter';
 	font-weight: 300;
-	font-size: 14px;
+	font-size: $fs-xs;
 	line-height: 17px;
 	color: #000000;
 	text-transform: initial !important;

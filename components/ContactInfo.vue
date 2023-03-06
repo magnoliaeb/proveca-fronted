@@ -16,7 +16,7 @@
 					:alt="item.name"
 				/>
 
-				<p class="text-break">{{ item.name }}</p>
+				<p class="text-break fs-base">{{ item.name }}</p>
 				<!-- <v-btn v-else text>{{ item.name }}</v-btn> -->
 			</v-col>
 		</v-row>
@@ -71,15 +71,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-	// border: 1px solid red;
-}
 p {
 	font-weight: 400;
-	font-size: 19px;
-	line-height: 138%;
-	/* or 26px */
-
 	text-align: center;
 
 	color: #000000;

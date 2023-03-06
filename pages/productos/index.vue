@@ -3,7 +3,7 @@
 		<div class="content">
 			<HeaderFilter />
 
-			<v-row class="mt-6">
+			<v-row class="mt-3 mt-md-6">
 				<v-col cols="12" lg="2" xl="2" class="d-none d-lg-block">
 					<FilterProducts />
 				</v-col>

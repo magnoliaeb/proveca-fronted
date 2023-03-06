@@ -3,7 +3,6 @@
 	// padding: 0;
 	text-decoration: none;
 	list-style: none;
-	// font-family: "Gotham";
 	// border: 1px solid green;
 }
 
@@ -28,15 +27,99 @@ input[type='number'] {
 }
 //
 
-// html {
-// 	// font-size: 100%;
-// 	font-size: 14px;
-// 	border: 1px solid red;
-// } /*16px*/
+html {
+	font-size: 14px;
+}
 
-// @media screen and (min-width: $md) {
-// 	html {
-// 		// font-size: 100%;
-// 		: 16px;
-// 	} /*16px*/
-// }
+@media screen and (min-width: $md) {
+	html {
+		font-size: 16px;
+	}
+}
+@media screen and (min-width: $lg) {
+	html {
+		font-size: 18px;
+	}
+
+	// body {
+	// 	background: white;
+	// 	font-family: 'Hanken Grotesk', sans-serif;
+	// 	font-weight: 400;
+	// 	line-height: 1.75;
+	// 	color: #000000;
+	// }
+
+	// p {
+	// 	margin-bottom: 1rem;
+	// }
+
+	// h1,
+	// h2,
+	// h3,
+	// h4,
+	// h5 {
+	// 	margin: 3rem 0 1.38rem;
+	// 	font-family: 'Hanken Grotesk', sans-serif;
+	// }
+
+	.fs-4xl,
+	.fs-3xl,
+	.fs-2xl,
+	.fs-xl,
+	.fs-lg,
+	.fs-md,
+	.fs-base,
+	.fs-sm,
+	.fs-xs,
+	.fs-caption {
+		// font-weight: 400;
+		line-height: 1.3;
+		// color: #000000;
+	}
+
+	.fs-6xl {
+		font-size: $fs-6xl;
+	}
+	.fs-5xl {
+		font-size: $fs-5xl;
+	}
+	.fs-4xl {
+		font-size: $fs-4xl;
+	}
+
+	.fs-3xl {
+		font-size: $fs-3xl;
+	}
+
+	.fs-2xl {
+		font-size: $fs-2xl;
+	}
+
+	.fs-xl {
+		font-size: $fs-xl;
+	}
+
+	.fs-lg {
+		font-size: $fs-lg;
+	}
+
+	.fs-md {
+		font-size: $fs-md;
+	}
+
+	.fs-base {
+		font-size: $fs-base;
+	}
+
+	.fs-sm {
+		font-size: $fs-sm;
+	}
+
+	.fs-xs {
+		font-size: $fs-xs;
+	}
+
+	.fs-caption {
+		font-size: $fs-caption;
+	}
+}

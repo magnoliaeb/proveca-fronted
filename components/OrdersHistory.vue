@@ -26,7 +26,7 @@
 				</v-col>
 			</v-row>
 
-			<SimpleTableOrder :orders="orders" />
+			<SimpleTableOrder class="mt-3 mt-md-6" :orders="orders" />
 		</template>
 		<NotData v-else :text="text" :title="title" :icon="icon" />
 	</div>
@@ -62,6 +62,11 @@ export default {
 <style lang="scss" scoped>
 .icon {
 	color: black;
-	font-size: 15px;
+	font-size: $fs-base;
+}
+
+h4 {
+	font-weight: 700;
+	font-size: $fs-base;
 }
 </style>

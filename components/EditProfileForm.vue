@@ -151,8 +151,6 @@ button {
 }
 
 // @media screen and (min-width: $sm) {
-//   h2 {
-//     font-size: 37px;
-//   }
+
 // }
 </style>

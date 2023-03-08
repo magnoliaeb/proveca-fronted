@@ -28,9 +28,9 @@
 						v-for="(product, index) in products"
 						:key="index"
 						cols="6"
-						sm="6"
-						md="4"
-						lg="4"
+						sm="4"
+						md="3"
+						lg="3"
 						xl="3"
 					>
 						<ProductCard :product="product" />

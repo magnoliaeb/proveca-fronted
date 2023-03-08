@@ -56,13 +56,12 @@ article {
 	h3 {
 		font-style: normal;
 		font-weight: normal;
-		font-size: 15px;
-		line-height: 20px;
+		font-size: $fs-md;
 		color: #000000;
 	}
 	h4 {
 		font-weight: 300;
-		font-size: 12px;
+		font-size: $fs-sm;
 		line-height: 30px;
 		color: #1a1a1a;
 	}
@@ -75,20 +74,12 @@ article {
 
 .btn-change {
 	font-weight: normal !important;
-	font-size: 14px !important;
+	font-size: $fs-sm !important;
 	text-decoration-line: underline !important;
 	color: #3e3e3e !important;
 	text-transform: initial !important;
 }
 
 @media screen and (min-width: $sm) {
-	article {
-		h3 {
-			font-size: 17.3752px;
-		}
-		h4 {
-			font-size: 14px;
-		}
-	}
 }
 </style>

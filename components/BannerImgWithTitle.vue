@@ -10,10 +10,10 @@
 			width="100%"
 			:src="require(`../assets/imgs/${path}/${bg}.jpg`)"
 		>
-			<v-container class="fill-height pb-10">
+			<v-container class="fill-height pb-md-10">
 				<v-row class="fill-height justify-center align-end">
 					<v-col cols="auto" md="auto">
-						<h1>{{ title }}</h1>
+						<h1 class="fs-6xl">{{ title }}</h1>
 					</v-col>
 				</v-row>
 			</v-container>
@@ -50,16 +50,11 @@ img {
 }
 h1 {
 	font-weight: 800;
-	font-size: 33px;
-	line-height: 59px;
 	text-transform: uppercase;
 	color: #ffffff;
 }
 
 @media screen and (min-width: $md) {
-	h1 {
-		font-size: 45px;
-	}
 	.banner {
 		height: 45vh;
 	}

@@ -4,7 +4,7 @@
 			<client-only>
 				<VueSlickCarousel v-bind="slickOptions">
 					<div
-						class="pr-3 pr-lg-4"
+						class="product-content"
 						v-for="(product, index) in products"
 						:key="index"
 					>
@@ -211,4 +211,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.product-content {
+	max-width: 280px;
+}
+</style>

@@ -29,8 +29,7 @@ export default {};
 
 p {
 	font-weight: 400;
-	font-size: 18px;
-	line-height: 26px;
+	font-size: $fs-md;
 	text-align: center;
 	color: #000000;
 	opacity: 0.38;
@@ -38,18 +37,11 @@ p {
 
 h1 {
 	font-weight: 900;
-	font-size: 20px;
-	line-height: 33px;
+	font-size: $fs-xl;
 	text-align: center;
 	color: #000000;
 }
 
 @media screen and (min-width: $md) {
-	h1 {
-		font-size: 26px;
-	}
-	p {
-		font-size: 20px;
-	}
 }
 </style>

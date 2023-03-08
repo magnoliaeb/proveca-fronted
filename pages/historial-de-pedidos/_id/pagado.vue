@@ -24,19 +24,19 @@
       <h3>Un momento por favor.</h3>
     </v-col> -->
 						<v-col cols="12" sm="12">
-							<article class="pa-6 py-4">
+							<article class="pa-3 pa-sm-6 py-4">
 								<div class="py-2">
 									<h4 class="mb-5">Pago</h4>
 
-									<div class="d-flex justify-space-between my-2 mx-3">
+									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
 										<p class="">Subtotal</p>
 										<span>{{ $util.getMoneyFormat(100) }}</span>
 									</div>
-									<div class="d-flex justify-space-between my-2 mx-3">
+									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
 										<p class="">Descuento</p>
 										<span>{{ $util.getMoneyFormat(20) }}</span>
 									</div>
-									<div class="d-flex justify-space-between my-2 mx-3">
+									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
 										<p class="">Envío</p>
 										<span>{{ $util.getMoneyFormat(0) }}</span>
 									</div>
@@ -59,24 +59,21 @@
 								<div class="py-2">
 									<h4 class="mb-5">Resumen de compra</h4>
 
-									<!-- table -->
-									<table>
-										<tr class="">
-											<th class="text-left">Productos</th>
-											<th>Cant</th>
-											<th class="hidden-md-and-up">Precio</th>
-											<th class="hidden-sm-and-down">P. Unitario</th>
-											<th>Total</th>
-										</tr>
-										<tr
-											class=""
-											v-for="(item, index) in [1, 2, 3, 4]"
-											:key="index"
+									<v-row
+										class="flex justify-space-between py-3 d-md-none"
+										tag="li"
+									>
+										<v-col
+											cols="12"
+											md="auto"
+											class="flex-grow-0 d-flex justify-center justify-sm-start"
 										>
-											<td class="d-flex align-center">
+											<nuxt-link
+												class="d-block"
+												:to="{ name: 'productos-id', params: { id: 1 } }"
+											>
 												<v-img
 													:width="heightImg"
-													:max-width="heightImg"
 													transition="scale-transition"
 													:height="heightImg"
 													:src="`https://picsum.photos/500/300?image=${
@@ -87,7 +84,7 @@
 													}`"
 													:alt="'product.name'"
 													aspect-ratio="1"
-													class="grey lighten-3 img mr-3 scale"
+													class="grey lighten-3 scale"
 												>
 													<template v-slot:placeholder>
 														<v-row
@@ -104,23 +101,86 @@
 														</v-row>
 													</template>
 												</v-img>
-												<span>{{ 'Coca Cola 600ml' }}</span>
-											</td>
-											<td class="text-center">{{ 15 }}</td>
-											<td class="text-center">
-												{{ $util.getMoneyFormat(30) }}
-											</td>
-											<td class="text-center">
-												{{ $util.getMoneyFormat(3265) }}
-											</td>
-										</tr>
-									</table>
+											</nuxt-link>
+										</v-col>
+										<v-col cols="auto" md="" class="text-left flex-grow-1">
+											<h3 class="mb-2">
+												{{ 'Coca Cola 600ml' }}
+											</h3>
+											<p class="">{{ '$ 20.00' }}</p>
+										</v-col>
+										<v-col cols="auto" md="auto" class="text-right d-md-block">
+											<span class="">
+												{{ $util.getMoneyFormat(345.0) }}
+											</span>
+											<small class="d-block my-3">{{ 3 }} pz</small>
+										</v-col>
+									</v-row>
+
+									<!-- table -->
+									<div class="d-none d-md-block">
+										<table class="">
+											<tr class="">
+												<th class="text-left">Productos</th>
+												<th>Cant</th>
+												<th class="hidden-md-and-up">Precio</th>
+												<th class="hidden-sm-and-down">P. Unitario</th>
+												<th>Total</th>
+											</tr>
+											<tr
+												class=""
+												v-for="(item, index) in [1, 2, 3, 4]"
+												:key="index"
+											>
+												<td class="d-flex align-center">
+													<v-img
+														:width="heightImg"
+														:max-width="heightImg"
+														transition="scale-transition"
+														:height="heightImg"
+														:src="`https://picsum.photos/500/300?image=${
+															8 * 5 + 10
+														}`"
+														:lazy-src="`https://picsum.photos/10/6?image=${
+															8 * 5 + 10
+														}`"
+														:alt="'product.name'"
+														aspect-ratio="1"
+														class="grey lighten-3 img mr-3 scale"
+													>
+														<template v-slot:placeholder>
+															<v-row
+																class="fill-height ma-0"
+																align="center"
+																justify="center"
+															>
+																<v-progress-circular
+																	:size="30"
+																	:width="3"
+																	indeterminate
+																	color="primary"
+																></v-progress-circular>
+															</v-row>
+														</template>
+													</v-img>
+													<span>{{ 'Coca Cola 600ml' }}</span>
+												</td>
+												<td class="text-center">{{ 15 }}</td>
+												<td class="text-center">
+													{{ $util.getMoneyFormat(30) }}
+												</td>
+												<td class="text-center">
+													{{ $util.getMoneyFormat(3265) }}
+												</td>
+											</tr>
+										</table>
+									</div>
 								</div>
 
 								<div class="py-2">
 									<h4 class="mb-5">Dirección de envío</h4>
 
-									<div class="my-2 mx-3">
+									<div class="my-2 mx-1 mx-sm-3">
 										<p class="">
 											Claudia Espinosa Monrroy Correo: clau.esmo@gmail.com
 											<br />Donato Guerra #23 Colonia Centro C.P. 44210
@@ -132,10 +192,8 @@
 								<div class="py-2">
 									<h4 class="mb-5">Método de Pago</h4>
 
-									<div class="my-2 mx-3">
-										<p class="">
-											Número de tarjeta: **** **** **** 2475
-										</p>
+									<div class="my-2 mx-1 mx-sm-3">
+										<p class="">Número de tarjeta: **** **** **** 2475</p>
 									</div>
 								</div>
 							</article>
@@ -307,7 +365,7 @@ export default {
 <style lang="scss" scoped>
 .content-article {
 	max-width: 512px;
-	width: 512px;
+	// width: 512px;
 	margin: 0 auto;
 }
 article {
@@ -316,35 +374,30 @@ article {
 }
 h2 {
 	font-weight: 700;
-	font-size: 24px;
-	line-height: 31px;
+	font-size: $fs-xl;
 	text-transform: uppercase;
-
 	color: #2cafe5;
 }
 
 h3 {
 	font-weight: 300;
-	font-size: 15px;
-	line-height: 20px;
-	/* identical to box height */
-
+	font-size: $fs-md;
 	color: #000000;
 }
 h4 {
 	font-weight: 900;
-	font-size: 18px;
-	line-height: 23px;
-
+	font-size: $fs-base;
 	color: #000000;
 }
-p,
+p {
+	font-weight: 300;
+	font-size: $fs-base;
+	color: #000000;
+}
+
 span {
 	font-weight: 300;
-	font-size: 15px;
-	line-height: 20px;
-	/* identical to box height */
-
+	font-size: $fs-sm;
 	color: #000000;
 }
 .card-total {
@@ -353,9 +406,7 @@ span {
 	h4,
 	span {
 		font-weight: 800;
-		font-size: 18px;
-		line-height: 23px;
-
+		font-size: $fs-base;
 		color: #2cafe5;
 	}
 }
@@ -365,77 +416,21 @@ table {
 }
 th {
 	font-weight: 300;
-	font-size: 14;
-	line-height: 12px;
+	font-size: $fs-xs;
 	padding-bottom: 10px;
-	/* identical to box height */
-
 	color: #000000;
 }
 tr {
 	margin: 10px 0 !important;
-	border: 2px solid red !important;
 }
 td {
 	padding-bottom: 10px;
 	font-weight: 500;
-	font-size: 14px;
-	line-height: 10px;
-	/* identical to box height */
-
-	color: #000000;
-}
-
-p.text {
-	font-weight: 500;
-	font-size: 9px;
-	line-height: 12px;
-	/* identical to box height */
-
+	font-size: $fs-xs;
 	color: #000000;
 }
 
 @media screen and (min-width: $sm) {
-	// h2 {
-	// 	font-size: 25px;
-	// }
-	// h3 {
-	// 	font-size: 16px;
-	// }
-	// h4 {
-	// 	font-size: 19px;
-	// }
-	// p,
-	// span {
-	// 	font-size: 14px;
-	// }
-	// .card-total {
-	// 	h4,
-	// 	span {
-	// 		font-size: 19px;
-	// 	}
-	// }
-
-	// th {
-	// 	font-size: 11px;
-
-	// 	&:first-child {
-	// 		h5 {
-	// 			font-size: 19px;
-	// 		}
-	// 	}
-	// }
-	// td {
-	// 	font-size: 14px;
-	// }
-
-	// h5 {
-	// 	font-size: 19px;
-	// }
-
-	// p.text {
-	// 	font-size: 14px;
-	// }
 }
 @media screen and (min-width: $md) {
 }

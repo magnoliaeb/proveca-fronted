@@ -32,11 +32,8 @@ export default {
 h2 {
 	font-style: normal;
 	font-weight: 900;
-	font-size: 23px;
-	line-height: 30px;
-	/* identical to box height */
+	font-size: $fs-lg;
 	text-align: left;
-
 	color: #000;
 
 	span {

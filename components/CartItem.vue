@@ -222,24 +222,19 @@ export default {
 <style lang="scss" scoped>
 h4 {
 	font-weight: 500;
-	font-size: 17.7583px;
-	line-height: 23px;
-
+	font-size: $fs-base;
 	color: #000000;
 }
 
 p {
 	font-weight: 300;
-	font-size: 17.7583px;
-	line-height: 23px;
+	font-size: $fs-base;
 	color: #000000;
 }
 
 h6 {
 	font-weight: 700;
-	font-size: 17.7583px;
-	line-height: 23px;
-
+	font-size: $fs-base;
 	color: #2cafe5;
 }
 
@@ -262,7 +257,7 @@ h6 {
 		color: #000000;
 		border-radius: 50%;
 		border: 1px solid $primary;
-		font-size: 16px;
+		font-size: $fs-sm;
 	}
 	button.left {
 		left: -5px;
@@ -276,8 +271,7 @@ input {
 	text-align: center;
 	height: 100%;
 	font-weight: 300;
-	font-size: 17.7583px;
-	line-height: 23px;
+	font-size: $fs-base;
 	color: #000000;
 	&:focus {
 		outline: none;
@@ -299,16 +293,6 @@ li {
 }
 
 @media screen and (min-width: $sm) {
-	// h4 {
-	// 	font-size: 16px;
-	// }
-	// p {
-	// 	font-size: 12px;
-	// }
-	// h6,
-	// span {
-	// 	font-size: 14px;
-	// }
 	li {
 		&:hover {
 			cursor: pointer;

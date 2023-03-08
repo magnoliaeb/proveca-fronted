@@ -138,7 +138,7 @@ export default {
 		isAuthenticate() {
 			// return this.$store.getters["user/gethIsAutenticate"];
 			//   return this.$auth.loggedIn || false;
-			return false;
+			return true;
 		},
 		user() {
 			//   return this.$auth.user || false;
@@ -192,11 +192,7 @@ nav {
 p,
 span {
 	font-weight: 400 !important;
-	font-size: 12px !important;
-	line-height: 96.3% !important;
-	//   border: 1px solid red !important;
-	/* or 12px */
-
+	font-size: $fs-xs !important;
 	color: #434343 !important;
 }
 

@@ -2,7 +2,7 @@
 	<v-app dark>
 		<TheHeader class="" />
 
-		<v-main class="mt-16 pt-4">
+		<v-main class="mt-16 pt-8 pt-md-6">
 			<v-container fluid class="pa-0">
 				<Nuxt class="animate__animated animate__fadeIn" />
 			</v-container>

@@ -32,7 +32,7 @@
 				</client-only>
 			</nuxt-link>
 		</div>
-		<div class="px-3 mt-4 mt-md-6">
+		<div class="px-3 mt-4">
 			<div class="product-title mb-4 mb-md-6">
 				<h4>
 					<nuxt-link
@@ -135,7 +135,7 @@ export default {
 article {
 	border-bottom: 1px solid #ededed;
 	background-color: white;
-	// max-width: 350px;
+	// max-width: 250px;
 }
 
 .img-content {
@@ -161,8 +161,8 @@ h4,
 a {
 	font-style: normal;
 	font-weight: 500;
-	font-size: 15px;
-	line-height: 25px;
+	font-size: $fs-md;
+	// line-height: 25px;
 	/* identical to box height */
 
 	color: #aeaeae;
@@ -171,25 +171,13 @@ a {
 	}
 }
 
-// h4 {
-//   position: absolute;
-//   bottom: 0;
-//   background: purple;
-//   width: 100%;
-//   text-align: center;
-// }
 p {
 	font-weight: 500;
-	font-size: 18px;
-	line-height: 29px;
-
+	font-size: $fs-md;
 	color: #aeaeae;
 	span {
 		font-weight: 300;
-		font-size: 15px;
-		line-height: 25px;
-		/* identical to box height */
-
+		font-size: $fs-base;
 		color: #aeaeae;
 	}
 }
@@ -211,16 +199,15 @@ button.cart {
 }
 
 @media screen and (min-width: $md) {
-	h4,
-	a {
-		font-size: 19.1888px;
+	.product-title {
+		min-height: 55px;
+		height: 55px;
 	}
-	p {
-		font-size: 22.575px;
-
-		span {
-			font-size: 19.1888px;
-		}
+}
+@media screen and (min-width: $lg) {
+	.product-title {
+		min-height: 60px;
+		height: 60px;
 	}
 }
 </style>

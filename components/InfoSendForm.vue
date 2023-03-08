@@ -549,26 +549,18 @@ export default {
 h3 {
 	font-style: normal;
 	font-weight: 700;
-	font-size: 23px;
-	line-height: 30px;
-	/* identical to box height */
-
+	font-size: $fs-lg;
 	color: #000000;
 	text-transform: initial;
 }
 span {
 	font-weight: 400;
-	font-size: 17px;
-	line-height: 22px;
+	font-size: $fs-base;
 	text-transform: uppercase;
-
 	color: #000000;
 	small {
 		font-weight: 400;
-		font-size: 13px;
-		line-height: 17px;
-		/* identical to box height */
-
+		font-size: $fs-xs;
 		color: #000000;
 		text-transform: initial !important;
 	}
@@ -582,9 +574,5 @@ span {
 // }
 
 @media screen and (min-width: $md) {
-	//   button {
-	//     width: 335px !important;
-	//     height: 39px !important;
-	//   }
 }
 </style>

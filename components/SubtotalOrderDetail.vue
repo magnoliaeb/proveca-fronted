@@ -107,9 +107,7 @@ export default {
 <style lang="scss" scoped>
 h3 {
 	font-weight: 500;
-	font-size: 16.5744px;
-	line-height: 22px;
-	/* identical to box height */
+	font-size: $fs-base;
 
 	text-transform: uppercase;
 
@@ -118,18 +116,14 @@ h3 {
 p,
 span {
 	font-weight: 300;
-	font-size: 16.5744px;
-	line-height: 22px;
-	/* identical to box height */
+	font-size: $fs-base;
 
 	color: #000000;
 }
 p.total,
 span.total {
 	font-weight: 900;
-	font-size: 16.5744px;
-	line-height: 22px;
-	/* identical to box height */
+	font-size: $fs-base;
 
 	text-transform: uppercase;
 
@@ -141,13 +135,5 @@ span.total {
 }
 
 @media screen and (min-width: $sm) {
-	// p,
-	// span {
-	// 	font-size: 16px;
-	// }
-	// p.total,
-	// span.total {
-	// 	font-size: 19px;
-	// }
 }
 </style>

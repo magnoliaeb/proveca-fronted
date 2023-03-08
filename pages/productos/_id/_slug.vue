@@ -26,7 +26,7 @@
 				<SingleProduct />
 			</div>
 			<div class="content">
-				<v-row class="py-8">
+				<v-row class="py-4 py-md-8">
 					<v-col cols="12">
 						<v-divider style="background-color: #2cafe5"></v-divider>
 					</v-col>
@@ -127,10 +127,9 @@ button {
 	border-radius: 3px !important;
 	min-width: 20px !important;
 	width: 20px !important;
-	// width: 116px !important;
 	height: 30px !important;
 	font-weight: 300 !important;
-	font-size: 15px !important;
+	font-size: $fs-sm !important;
 	line-height: 20px !important;
 	color: #ffffff !important;
 	text-transform: initial !important;
@@ -140,7 +139,6 @@ button {
 	button {
 		min-width: 116px !important;
 		width: 116px !important;
-		// width: 116px !important;
 	}
 }
 </style>

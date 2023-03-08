@@ -29,19 +29,14 @@
 				</v-btn>
 			</div>
 		</v-col>
-		<v-col cols="auto" md="4" class="d-none d-md-block">
+		<v-col cols="auto" md="auto" class="d-none d-md-block">
 			<div class="">
-				<v-btn
-					class="mb-4 float-right"
-					:class="{ selected: item.selected }"
-					text
-				>
+				<v-btn class="" :class="{ selected: item.selected }" text>
 					<v-icon class="" left>mdi-check</v-icon>
 					Dirección predeterminada
 				</v-btn>
 				<v-btn
 					:to="{ name: 'mi-perfil-editar-direccion-id', params: { id: 1 } }"
-					class="float-right d-block"
 					text
 					:loading="isBusy"
 				>
@@ -91,18 +86,13 @@ export default {
 }
 h3 {
 	font-weight: 700;
-	font-size: 25px;
-	line-height: 33px;
-	/* identical to box height */
+	font-size: $fs-xl;
 
 	color: #000000;
 }
 p {
 	font-weight: 400;
-	font-size: 20px;
-	line-height: 26px;
-	/* identical to box height */
-
+	font-size: $fs-md;
 	color: #000000;
 }
 
@@ -110,9 +100,7 @@ button,
 a {
 	text-transform: inherit !important;
 	font-weight: 700 !important;
-	font-size: 16px !important;
-	line-height: 21px !important;
-	/* identical to box height */
+	font-size: $fs-sm !important;
 	text-decoration-line: underline !important;
 	color: #aeaeae !important;
 }

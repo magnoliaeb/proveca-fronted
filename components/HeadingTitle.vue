@@ -25,11 +25,10 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 300;
-	font-size: 18.98px;
+	font-size: $fs-3xl;
 	letter-spacing: 0.11em;
 	text-transform: uppercase;
 	text-align: center;
-
 	color: #aeaeae !important;
 	span {
 		font-weight: 900;
@@ -52,9 +51,6 @@ h2 {
 	// bottom: 0;
 }
 @media screen and (min-width: $md) {
-	h2 {
-		font-size: 31.5917px;
-	}
 	.circle {
 		width: 13.85px;
 		height: 13.85px;

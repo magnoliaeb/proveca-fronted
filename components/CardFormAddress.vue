@@ -108,9 +108,7 @@ export default {
 <style lang="scss" scoped>
 label {
 	font-weight: 400;
-	font-size: 17px;
-	line-height: 22px;
-
+	font-size: $fs-base;
 	color: #000000;
 	span {
 		color: $primary;

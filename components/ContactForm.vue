@@ -2,8 +2,8 @@
 	<section class="pt-6 pb-14">
 		<v-row>
 			<v-col cols="12" md="12" class="text-center">
-				<h2>Estamos para ayudarte</h2>
-				<p class="mt-4">
+				<h2 class="fs-2xl">Estamos para ayudarte</h2>
+				<p class="mt-4 fs-md mt-8 d-block">
 					Si tienes preguntas sobre tu orden o sobre nuestros productos, déjanos
 					tus datos y nuestro equipo resolvera todas tus dudas
 				</p>
@@ -201,15 +201,11 @@ button {
 
 h2 {
 	font-weight: 700;
-	font-size: 24px;
-	line-height: 39px;
 	color: #000000;
 }
 
 p {
 	font-weight: 400;
-	font-size: 18px;
-	line-height: 138%;
 	text-align: center;
 	color: #000000;
 }
@@ -220,12 +216,5 @@ p {
 }
 
 @media screen and (min-width: $md) {
-	h2 {
-		font-size: 30px;
-	}
-
-	p {
-		font-size: 21px;
-	}
 }
 </style>

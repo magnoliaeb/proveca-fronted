@@ -163,31 +163,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
-	font-weight: 500 !important;
-	font-size: 14px !important;
-	line-height: 12px !important;
-	color: #7f7f7f !important;
-	text-transform: capitalize !important;
-}
 h2 {
 	font-weight: normal;
-	font-size: 24px;
-	line-height: 29px;
+	font-size: $fs-xl;
 	letter-spacing: 3.2px;
 	color: #001f3f;
 }
 h4 {
 	font-weight: 600;
-	font-size: 19px;
-	line-height: 29px;
+	font-size: $fs-md;
 	color: #1a1a1a;
 }
 
 p {
 	font-weight: normal;
-	font-size: 16px;
-	line-height: 29px;
+	font-size: $fs-base;
 	color: #1a1a1a;
 }
 .bg-red {
@@ -208,15 +198,5 @@ p {
 }
 
 @media screen and (min-width: $sm) {
-	// h2 {
-	// 	font-size: 32px;
-	// }
-	// h4 {
-	// 	font-size: 19px;
-	// }
-
-	// p {
-	// 	font-size: 16px;
-	// }
 }
 </style>

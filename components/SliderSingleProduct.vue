@@ -1,7 +1,7 @@
 <template>
 	<div class="">
 		<v-row class="no-gutters justify-center">
-			<v-col cols="auto" md="auto" class="d-none d-md-flex">
+			<v-col cols="12" md="auto" class="d-none d-md-flex">
 				<SlideProductGroup
 					@changeImg="changeImgSelected"
 					:imagesProduct="imagesProduct"
@@ -16,6 +16,7 @@
 						:min-height="heightImg"
 						:height="heightImg"
 						:width="heightImg"
+						:max-width="heightImg"
 					>
 						<!-- <div style="width: 100%; height: 100%; position: relative"> -->
 						<zoom-on-hover :img-normal="imgSelected" :scale="1"></zoom-on-hover>
@@ -24,8 +25,8 @@
 				</client-only>
 			</v-col>
 		</v-row>
-		<v-row class="justify-center d-md-none">
-			<v-col cols="auto" sm="auto" class="mt-4">
+		<v-row class="justify-center d-md-none mt-md-4">
+			<v-col cols="auto" sm="auto" class="px-0">
 				<SlideProductGroup
 					@changeImg="changeImgSelected"
 					:imagesProduct="imagesProduct"
@@ -62,9 +63,9 @@ export default {
 				case 'md':
 					return '500px';
 				case 'lg':
-					return '500px';
+					return '550px';
 				case 'xl':
-					return '500px';
+					return '600px';
 			}
 		},
 	},

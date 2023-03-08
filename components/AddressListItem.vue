@@ -72,8 +72,7 @@ export default {
 <style lang="scss" scoped>
 button {
 	font-weight: 500 !important;
-	font-size: 17px !important;
-	line-height: 22px !important;
+	font-size: $fs-base !important;
 	// text-decoration-line: underline !important;
 	color: #000000 !important;
 	text-transform: initial !important;
@@ -85,8 +84,7 @@ button {
 
 h3 {
 	font-weight: 700;
-	font-size: 17px;
-	line-height: 22px;
+	font-size: $fs-md;
 	text-transform: uppercase;
 
 	color: #000000;
@@ -94,26 +92,16 @@ h3 {
 
 span.selected {
 	font-weight: 700;
-	font-size: 17px;
-	line-height: 22px;
+	font-size: $fs-base;
 	color: #2cafe5;
 }
 
 p {
 	font-weight: 400;
-	font-size: 17px;
-	line-height: 22px;
-
+	font-size: $fs-base;
 	color: #000000;
 }
 
 @media screen and (min-width: $sm) {
-	p {
-		font-size: 17px;
-	}
-
-	.btn-oulined {
-		font-size: 13px !important;
-	}
 }
 </style>

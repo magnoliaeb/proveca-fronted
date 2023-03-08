@@ -114,8 +114,7 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 900;
-	font-size: 25px;
-	line-height: 33px;
+	font-size: $fs-xl;
 	color: #000000;
 }
 
@@ -126,18 +125,13 @@ img {
 
 h3 {
 	font-weight: 400;
-	font-size: 16px;
-	line-height: 21px;
-
+	font-size: $fs-base;
 	color: #000000;
 }
 
 button.btn-logout {
 	font-weight: 800 !important;
-	font-size: 16px !important;
-	line-height: 21px !important;
-	/* identical to box height */
-
+	font-size: $fs-sm !important;
 	color: #2cafe5 !important;
 	border: 1px solid #000000 !important;
 	border-radius: 11px !important;

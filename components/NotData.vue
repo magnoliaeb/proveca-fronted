@@ -52,14 +52,9 @@ img {
 }
 h2 {
 	font-weight: 900;
-	font-size: 20px;
-	line-height: 33px;
-	/* identical to box height */
-
+	font-size: $fs-xl;
 	text-align: center;
-
 	color: #000000;
-
 	opacity: 0.38;
 }
 
@@ -69,26 +64,16 @@ h2 {
 
 p {
 	font-weight: 400;
-	font-size: 18px;
-	line-height: 26px;
-	/* identical to box height */
-
+	font-size: $fs-md;
 	text-align: center;
-
 	color: #000000;
 
 	opacity: 0.38;
 }
 
 @media screen and (min-width: $md) {
-	h2 {
-		font-size: 25px;
-	}
 	.empty {
 		height: 80vh;
-	}
-	p {
-		font-size: 20px;
 	}
 }
 </style>

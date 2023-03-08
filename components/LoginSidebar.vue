@@ -82,15 +82,13 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 900;
-	font-size: 25px;
-	line-height: 33px;
+	font-size: $fs-xl;
 	color: #000000;
 }
 
 p {
 	font-weight: 500;
-	font-size: 18px;
-	line-height: 23px;
+	font-size: $fs-base;
 	color: #000000;
 	a {
 		color: #2cafe5;

@@ -78,10 +78,7 @@ input {
 	}
 	&::placeholder {
 		font-weight: 400;
-		font-size: 15px;
-		line-height: 20px;
-		/* identical to box height */
-
+		font-size: $fs-base;
 		color: rgba(151, 151, 151, 0.54);
 	}
 }
@@ -89,11 +86,8 @@ button {
 	background: #2cafe5 !important;
 	border-radius: 5px !important;
 	font-weight: 700 !important;
-	font-size: 15px !important;
-	line-height: 72.3% !important;
+	font-size: $fs-base !important;
 	text-transform: initial !important;
-	/* identical to box height, or 11px */
-
 	text-align: center !important;
 
 	color: #ffffff !important;

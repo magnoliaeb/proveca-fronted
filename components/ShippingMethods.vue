@@ -14,7 +14,8 @@
 				:key="index"
 			>
 				<!-- :class="{ selected: true }" -->
-				<CardPayment :method="method" />
+				<CardPayment />
+				<!-- <CardPayment :method="method" /> -->
 			</v-col>
 		</v-row>
 		<v-row class="mt-4">
@@ -58,6 +59,7 @@ export default {
 	data() {
 		return {
 			isLoading: false,
+			method: {},
 		};
 	},
 };

@@ -21,12 +21,12 @@
 
 <script>
 export default {
-	props: {
-		method: {
-			type: Object,
-			default: null,
-		},
-	},
+	// props: {
+	// 	method: {
+	// 		type: Object,
+	// 		default: {},
+	// 	},
+	// },
 };
 </script>
 

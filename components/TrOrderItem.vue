@@ -30,7 +30,6 @@
 				<v-btn
 					class="button-primary"
 					depressed
-					:class="selectedBg"
 					:to="{ name: 'historial-de-pedidos-id', params: { id: 1 } }"
 				>
 					Pagar
@@ -46,12 +45,12 @@
 
 <script>
 export default {
-	props: {
-		order: {
-			type: Object,
-			default: {},
-		},
-	},
+	// props: {
+	// 	order: {
+	// 		type: Object,
+	// 		default: {},
+	// 	},
+	// },
 
 	computed: {
 		addresses() {
@@ -59,7 +58,8 @@ export default {
 		},
 
 		selectedBg() {
-			switch (this.order.payment_status) {
+			// switch (this.order.payment_status) {
+			switch (true) {
 				case 'unpaid':
 					return 'bg-red';
 					break;

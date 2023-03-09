@@ -106,7 +106,7 @@
 			<ProfileSidebar />
 			<CartSidebar />
 			<MenuSidebar />
-			<DialogProductInfo />
+			<!-- <DialogProductInfo /> -->
 		</div>
 	</nav>
 </template>

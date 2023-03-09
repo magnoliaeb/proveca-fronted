@@ -44,7 +44,7 @@ export default {
 		};
 	},
 	async fetch() {
-		await this.$store.dispatch('orders/loadOrders');
+		// await this.$store.dispatch('orders/loadOrders');
 	},
 
 	computed: {

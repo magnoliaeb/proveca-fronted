@@ -215,6 +215,7 @@ export default {
 		dec() {},
 		updateQty() {},
 		inc() {},
+		deleteItem() {},
 	},
 };
 </script>

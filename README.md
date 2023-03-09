@@ -1,34 +1,32 @@
 # proveca-front
 
-# proveca-front
-
 ## Maquetacion PROVECA
 
 ### `pages`
 
 Aqui encontraras todoas las páginas que lo integran
 
-- [registro](https://github.com/magnoliaeb/proveca-fronted/registro)
-- [solicitar-contrasena](https://github.com/magnoliaeb/proveca-fronted/solicitar-contrasena)
-- [inico](https://github.com/magnoliaeb/proveca-fronted/)
-- [contacto](https://github.com/magnoliaeb/proveca-fronted/contacto)
-- [nosotros](https://github.com/magnoliaeb/proveca-fronted/nosotros)
-- [productos](https://github.com/magnoliaeb/proveca-fronted/productos)
-- [detalle-producto](https://github.com/magnoliaeb/proveca-fronted/productos/1/1)
-<!-- - [login](https://github.com/magnoliaeb/proveca-fronted/login) -->
-- [historial-de-pedidos](https://github.com/magnoliaeb/proveca-fronted/historial-de-pedidos)
-- [detalle-pedido](https://github.com/magnoliaeb/proveca-fronted/historial-de-pedidos/3472983)
+- [registro](https://thriving-gnome-57e946.netlify.app/registro)
+- [solicitar-contrasena](https://thriving-gnome-57e946.netlify.app/solicitar-contrasena)
+- [inico](https://thriving-gnome-57e946.netlify.app/)
+- [contacto](https://thriving-gnome-57e946.netlify.app/contacto)
+- [nosotros](https://thriving-gnome-57e946.netlify.app/nosotros)
+- [productos](https://thriving-gnome-57e946.netlify.app/productos)
+- [detalle-producto](https://thriving-gnome-57e946.netlify.app/productos/1/1)
+<!-- - [login](https://thriving-gnome-57e946.netlify.app/login) -->
+- [historial-de-pedidos](https://thriving-gnome-57e946.netlify.app/historial-de-pedidos)
+- [detalle-pedido](https://thriving-gnome-57e946.netlify.app/historial-de-pedidos/3472983)
 
-- [mi-perfi](https://github.com/magnoliaeb/proveca-fronted/mi-perfil)
-- [editar-perfil](https://github.com/magnoliaeb/proveca-fronted/mi-perfil/editar-perfil)
-- [agregar-direccion](https://github.com/magnoliaeb/proveca-fronted/mi-perfil/agregar-direccion)
-- [editar-direccion](https://github.com/magnoliaeb/proveca-fronted/mi-perfil/editar-direccion/12)
-- [cambiar-contrasena](https://github.com/magnoliaeb/proveca-fronted/mi-perfil/cambiar-contrasena)
+- [mi-perfi](https://thriving-gnome-57e946.netlify.app/mi-perfil)
+- [editar-perfil](https://thriving-gnome-57e946.netlify.app/mi-perfil/editar-perfil)
+- [agregar-direccion](https://thriving-gnome-57e946.netlify.app/mi-perfil/agregar-direccion)
+- [editar-direccion](https://thriving-gnome-57e946.netlify.app/mi-perfil/editar-direccion/12)
+- [cambiar-contrasena](https://thriving-gnome-57e946.netlify.app/mi-perfil/cambiar-contrasena)
 
-- [mi-carrito](https://github.com/magnoliaeb/proveca-fronted/mi-carrito)
-- [elegir-direccion](https://github.com/magnoliaeb/proveca-fronted/mi-carrito/elegir-direccion)
-- [datos-de-envio](https://github.com/magnoliaeb/proveca-fronted/mi-carrito/datos-de-envio)
-- [pagar-pedido](https://github.com/magnoliaeb/proveca-fronted/pagar-pedido/12)
+- [mi-carrito](https://thriving-gnome-57e946.netlify.app/mi-carrito)
+- [elegir-direccion](https://thriving-gnome-57e946.netlify.app/mi-carrito/elegir-direccion)
+- [datos-de-envio](https://thriving-gnome-57e946.netlify.app/mi-carrito/datos-de-envio)
+- [pagar-pedido](https://thriving-gnome-57e946.netlify.app/pagar-pedido/12)
 
 ## Build Setup
 

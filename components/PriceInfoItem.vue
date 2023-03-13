@@ -98,7 +98,7 @@ export default {
 					$store: this.$store,
 				})
 				.then(() => {
-					this.$store.dispatch('website/showCart', true);
+					this.$observer.showCart = true
 				});
 
 			this.$store.dispatch('website/setDialogProduct', null);

@@ -2,7 +2,7 @@
 	<v-navigation-drawer
 		style="background-color: #fff; opacity: 0.9"
 		v-click-outside="clickOutside"
-		:value="showMenu"
+		:value="$observer.showMenu"
 		width="428px"
 		right
 		fixed
@@ -188,14 +188,9 @@ export default {
 		};
 	},
 
-	computed: {
-		showMenu() {
-			return this.$store.getters['website/getShowMenu'];
-		},
-	},
 	methods: {
 		closeMenu() {
-			this.$store.dispatch('website/showMenu', false);
+			this.$observer.showMenu = false
 		},
 
 		clickOutside(event) {
@@ -205,7 +200,7 @@ export default {
 			}
 		},
 		openLogin() {
-			this.$store.dispatch('website/showLogin', true);
+			this.$observer.showLogin = true
 			this.closeMenu();
 		},
 	},

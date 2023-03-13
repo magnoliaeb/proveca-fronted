@@ -111,7 +111,7 @@ export default {
 		},
 
 		closeCart() {
-			this.$store.dispatch('website/showCart', false);
+			this.$observer.showCart = false
 		},
 	},
 };

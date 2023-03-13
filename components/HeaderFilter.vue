@@ -65,7 +65,7 @@ export default {
 	},
 	methods: {
 		openFilters() {
-			this.$store.dispatch('website/showFilters', true);
+			this.$observer.showFilters = true
 		},
 	},
 };

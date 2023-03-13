@@ -2,7 +2,7 @@
 	<v-navigation-drawer
 		style="background-color: #f2f2f2"
 		v-click-outside="clickOutside"
-		:value="showFilters"
+		:value="$observer.showFilters"
 		width="373px"
 		right
 		fixed
@@ -47,14 +47,9 @@ export default {
 		FilterProducts,
 	},
 
-	computed: {
-		showFilters() {
-			return this.$store.getters['website/getShowFilters'];
-		},
-	},
 	methods: {
 		closeFilters() {
-			this.$store.dispatch('website/showFilters', false);
+			this.$observer.showFilters = false
 		},
 		clickOutside(event) {
 			if (event.target.id !== 'filters') {

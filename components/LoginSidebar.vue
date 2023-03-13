@@ -2,7 +2,7 @@
 	<v-navigation-drawer
 		style="background-color: #f2f2f2"
 		v-click-outside="clickOutside"
-		:value="showLogin"
+		:value="$observer.showLogin"
 		width="373px"
 		right
 		fixed
@@ -57,14 +57,9 @@ export default {
 		LoginForm,
 	},
 
-	computed: {
-		showLogin() {
-			return this.$store.getters['website/getShowLogin'];
-		},
-	},
 	methods: {
 		closeLogin() {
-			this.$store.dispatch('website/showLogin', false);
+			this.$observer.showLogin = false
 		},
 		clickOutside(event) {
 			if (event.target.id !== 'popover' && event.target.id != 'login') {
@@ -72,10 +67,10 @@ export default {
 			}
 		},
 		openRegister() {
-			this.$store.dispatch('website/showLogin', false);
-			this.$store.dispatch('website/showRegister', true);
-		},
-	},
+			this.$observer.showLogin = false
+			this.$observer.showRegister = true
+		}
+	}
 };
 </script>
 

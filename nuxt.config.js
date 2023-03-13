@@ -104,7 +104,7 @@ export default {
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
 	plugins: [
-		// { src: "~/plugins/app" },
+		{ src: "~/plugins/app" },
 		{ src: '@plugins/slick-slide.js', mode: 'client' },
 		{ src: '~/plugins/vee-validate' },
 		{ src: '~/plugins/sweet-modal', mode: 'client' },
@@ -187,27 +187,27 @@ export default {
 		types: ['@nuxt/types', '@nuxtjs/axios'],
 	},
 
-	// axios: {
-	//   baseURL: process.env.ENDPOINT,
-	//   //baseURL: 'http://ferrepacifico.local/api'
-	// },
+	axios: {
+	  baseURL: process.env.ENDPOINT,
+	  //baseURL: 'http://ferrepacifico.local/api'
+	},
 
-	// publicRuntimeConfig: {
-	//   $public: {
-	//     APP_NAME: process.env.APP_NAME,
-	//     APP_ENV: process.env.APP_ENV,
-	//     APP_URL: process.env.APP_URL,
-	//     BASE_APP_URL: process.env.BASE_APP_URL,
-	//     ENDPOINT: process.env.ENDPOINT,
-	//     google: {
-	//       key: process.env.GOOGLE_KEY,
-	//     },
-	//   },
-	//   //
-	// },
-	// privateRuntimeConfig: {
-	//   //
-	// },
+	publicRuntimeConfig: {
+	  $public: {
+	    APP_NAME: process.env.APP_NAME,
+	    APP_ENV: process.env.APP_ENV,
+	    APP_URL: process.env.APP_URL,
+	    BASE_APP_URL: process.env.BASE_APP_URL,
+	    ENDPOINT: process.env.ENDPOINT,
+	    google: {
+	      key: process.env.GOOGLE_KEY,
+	    },
+	  },
+	  //
+	},
+	privateRuntimeConfig: {
+	  //
+	},
 
 	// router: {
 	//   middleware: ["auth", "guest"],

@@ -1,6 +1,10 @@
 <template>
 	<v-row class="flex justify-space-between py-3" tag="li">
-		<v-col cols="12" md="auto" class="flex-grow-0">
+		<v-col
+			cols="12"
+			md="auto"
+			class="flex-grow-0 d-flex justify-center justify-sm-start"
+		>
 			<nuxt-link
 				class="d-block"
 				:to="{ name: 'productos-id', params: { id: 1 } }"
@@ -67,13 +71,13 @@ export default {
 				case 'xs':
 					return 80;
 				case 'sm':
-					return 80;
+					return 90;
 				case 'md':
 					return 90;
 				case 'lg':
-					return 90;
+					return 100;
 				case 'xl':
-					return 90;
+					return 100;
 			}
 		},
 	},
@@ -84,7 +88,7 @@ export default {
 h3,
 span {
 	font-weight: 800;
-	font-size: 18px;
+	font-size: $fs-lg;
 	line-height: 31px;
 
 	color: #7d7d7d;
@@ -92,7 +96,7 @@ span {
 
 p {
 	font-weight: 400;
-	font-size: 14px;
+	font-size: $fs-base;
 	line-height: 25px;
 
 	color: #7d7d7d;
@@ -102,7 +106,7 @@ small {
 	// font-family: "Gotham";
 	font-style: normal;
 	font-weight: normal;
-	font-size: 14px;
+	font-size: $fs-base;
 
 	color: #272727;
 }
@@ -134,13 +138,5 @@ button {
 	}
 }
 @media screen and (min-width: $md) {
-	h3,
-	span {
-		font-size: 24px;
-	}
-
-	p {
-		font-size: 19.5574px;
-	}
 }
 </style>

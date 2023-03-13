@@ -320,7 +320,7 @@ input {
 	&::placeholder {
 		font-style: italic;
 		font-weight: 300;
-		font-size: 15px;
+		font-size: $fs-base;
 		line-height: 20px;
 		/* identical to box height */
 
@@ -377,18 +377,18 @@ input {
 	}
 	h3 {
 		color: black;
-		font-size: 12px;
+		font-size: $fs-sm;
 		font-weight: 600;
 	}
 	h4 {
 		text-transform: uppercase;
 		color: #565a5e;
-		font-size: 12px;
+		font-size: $fs-sm;
 		font-weight: 500;
 	}
 	h5 {
 		color: #373736;
-		font-size: 11px;
+		font-size: $fs-xs;
 		font-weight: 700;
 	}
 }

@@ -61,8 +61,5 @@ ul {
 }
 
 @media screen and (min-width: $sm) {
-	// p {
-	// 	font-size: 17px;
-	// }
 }
 </style>

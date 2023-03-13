@@ -98,36 +98,22 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 800;
-	font-size: 22px;
-	line-height: 29px;
-	/* identical to box height */
-
+	font-size: $fs-lg;
 	color: #000000;
 }
 h3 {
 	font-weight: 700;
-	font-size: 20px;
-	line-height: 26px;
-	/* identical to box height */
-
+	font-size: $fs-md;
 	color: #000000;
 }
 a {
 	font-weight: 400 !important;
-	font-size: 17px !important;
-	line-height: 22px !important;
+	font-size: $fs-sm !important;
 	text-decoration-line: underline !important;
-
 	color: #aeaeae !important;
 	text-transform: initial !important;
 }
 
 @media screen and (min-width: $sm) {
-	h2 {
-		font-size: 19px;
-	}
-	h3 {
-		font-size: 16px;
-	}
 }
 </style>

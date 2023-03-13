@@ -1,5 +1,6 @@
 <template>
 	<v-navigation-drawer
+		class="d-lg-none"
 		style="background-color: #f2f2f2"
 		v-click-outside="clickOutside"
 		:value="$observer.showFilters"
@@ -63,8 +64,7 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 900;
-	font-size: 25px;
-	line-height: 33px;
+	font-size: $fs-xl;
 	color: #000000;
 }
 

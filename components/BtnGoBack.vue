@@ -12,9 +12,7 @@ export default {};
 <style lang="scss" scoped>
 button {
 	font-weight: 400 !important;
-	font-size: 17px !important;
-	line-height: 22px !important;
-
+	font-size: $fs-base !important;
 	color: #000000 !important;
 	border: 1px solid #2cafe5 !important;
 	border-radius: 6px !important;

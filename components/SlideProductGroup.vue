@@ -6,9 +6,11 @@
 			direction="vertical"
 			selected-class="bg-primary"
 			mandatory
+			show-arrows
+			max="4"
 		>
 			<v-slide-item
-				v-for="(img, index) in 4"
+				v-for="(img, index) in 3"
 				:key="index"
 				v-slot="{ active, toggle }"
 			>

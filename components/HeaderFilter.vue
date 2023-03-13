@@ -2,7 +2,7 @@
 	<div class="filter">
 		<v-row class="justify-space-between align-center">
 			<v-col cols="auto" lg="2" xl="2" class="d-none d-lg-block">
-				<h2 class="text-left">Filtros</h2>
+				<h2 class="text-left fs-lg">Filtros</h2>
 			</v-col>
 			<v-col cols="auto" lg="10" class="">
 				<v-breadcrumbs class="px-0" :items="items">
@@ -26,7 +26,7 @@
 							src="../assets/imgs/iconos/filter-list.svg"
 							alt="filter-icon"
 						/>
-						<span>Filtros</span>
+						<span class="fs-base">Filtros</span>
 					</v-btn>
 				</div>
 			</v-col>
@@ -72,13 +72,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-	// border: 1px solid red;
-}
 h2 {
 	font-weight: 700;
-	font-size: 23px;
-	line-height: 30px;
 	text-transform: uppercase;
 	color: #2cafe5;
 }
@@ -89,9 +84,6 @@ h2 {
 
 span {
 	font-weight: 500;
-	font-size: 14px;
-	line-height: 18px;
-
 	color: #2cafe5;
 }
 
@@ -99,9 +91,6 @@ span {
 	.icon {
 		height: 30px;
 		height: 30px;
-	}
-	span {
-		font-size: 18px;
 	}
 }
 </style>

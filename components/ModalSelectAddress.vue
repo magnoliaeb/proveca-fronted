@@ -148,15 +148,13 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 900;
-	font-size: 18px;
-	line-height: 33px;
-	/* identical to box height */
+	font-size: $fs-xl;
 
 	color: #000000;
 }
 button.add {
 	font-weight: 400 !important;
-	font-size: 13px !important;
+	font-size: $fs-sm !important;
 	line-height: 21px !important;
 	/* identical to box height */
 
@@ -169,7 +167,7 @@ button.add {
 }
 button.current {
 	font-weight: 400 !important;
-	font-size: 13px !important;
+	font-size: $fs-sm !important;
 	line-height: 21px !important;
 	/* identical to box height */
 
@@ -182,22 +180,10 @@ button.current {
 
 p {
 	font-weight: 400;
-	font-size: 12px;
-	line-height: 96.3%;
-	/* or 12px */
+	font-size: $fs-xs !important;
 
 	color: #434343;
 }
 @media screen and (min-width: $md) {
-	h2 {
-		font-size: 25px;
-	}
-
-	button.add {
-		font-size: 16px !important;
-	}
-	button.current {
-		font-size: 16px !important;
-	}
 }
 </style>

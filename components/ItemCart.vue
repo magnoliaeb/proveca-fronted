@@ -126,19 +126,13 @@ export default {
 
 p {
 	font-weight: 400;
-	font-size: 16px;
-	line-height: 21px;
-	/* identical to box height */
-
+	font-size: $fs-sm;
 	color: #000000;
 }
 
 h4 {
 	font-weight: 600;
-	font-size: 12.6145px;
-	line-height: 23px;
-	/* identical to box height, or 181% */
-
+	font-size: $fs-xs;
 	color: #00bedc;
 }
 

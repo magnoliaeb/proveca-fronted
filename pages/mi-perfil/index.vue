@@ -1,6 +1,6 @@
 <template>
 	<div class="">
-		<div class="content py-8 py-md-16">
+		<div class="content py-md-16">
 			<InfoUser class="" />
 
 			<MyAddresses class="my-14" />

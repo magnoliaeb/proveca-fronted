@@ -1,7 +1,7 @@
 <template>
 	<div class="content py-16">
-		<v-row class="justify-space-between d-none d-sm-flex mb-6">
-			<v-col cols="auto">
+		<v-row class="justify-space-between d-none d-sm-flex mb-3 align-center">
+			<v-col cols="auto" class="px-0 px-lg-3">
 				<h1>Mi Carrito</h1>
 			</v-col>
 			<HeadingTop />
@@ -38,4 +38,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h1 {
+	font-weight: 700;
+	font-size: $fs-lg;
+	color: #000000;
+}
+</style>

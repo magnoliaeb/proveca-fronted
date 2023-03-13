@@ -63,19 +63,8 @@ export default {
 <style lang="scss" scoped>
 h2 {
 	font-weight: 900;
-	font-size: 25px;
-	line-height: 33px;
+	font-size: $fs-xl;
 	color: #000000;
-}
-
-p {
-	font-weight: 400;
-	font-size: 13px;
-	line-height: 17px;
-	color: #000000;
-	a {
-		color: #2cafe5;
-	}
 }
 
 @media screen and (min-width: $sm) {

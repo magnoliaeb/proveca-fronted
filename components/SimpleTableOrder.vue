@@ -42,10 +42,7 @@ li {
 }
 span {
 	font-weight: 300;
-	font-size: 18.9684px;
-	line-height: 25px;
-	/* identical to box height */
-
+	font-size: $fs-md;
 	color: #2cafe5;
 }
 </style>

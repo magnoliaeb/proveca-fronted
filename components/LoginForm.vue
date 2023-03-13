@@ -187,15 +187,13 @@ export default {
 <style lang="scss" scoped>
 label.sider {
 	font-weight: normal;
-	font-size: 14px;
-
+	font-size: $fs-sm;
 	color: #3e3e3e;
 }
 
 a.link {
 	font-weight: normal;
-	font-size: 14px;
-
+	font-size: $fs-sm;
 	text-decoration-line: underline;
 
 	color: #3e3e3e;

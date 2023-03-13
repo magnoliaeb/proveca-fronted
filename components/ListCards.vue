@@ -39,31 +39,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h3 {
-	font-weight: 600;
-	font-size: 12px;
-	line-height: 29px;
-	/* identical to box height, or 181% */
-
-	color: #1a1a1a;
-}
-
 article {
 	border: 1px solid #979797;
 	border-radius: 10px;
 	max-width: 450px;
 	h3 {
-		font-family: 'Roboto';
 		font-style: normal;
 		font-weight: normal;
-		font-size: 15px;
-		line-height: 20px;
+		font-size: $fs-md;
 		color: #000000;
 	}
 	h4 {
 		font-weight: 300;
-		font-size: 12px;
-		line-height: 30px;
+		font-size: $fs-sm;
 		color: #1a1a1a;
 	}
 }
@@ -73,22 +61,11 @@ article {
 }
 .btn-change {
 	font-weight: normal !important;
-	font-size: 14px !important;
+	font-size: $fs-sm !important;
 	text-decoration-line: underline !important;
 	color: #3e3e3e !important;
 	text-transform: initial !important;
 }
 @media screen and (min-width: $sm) {
-	h3 {
-		font-size: 16px;
-	}
-	article {
-		h3 {
-			font-size: 17.3752px;
-		}
-		h4 {
-			font-size: 14px;
-		}
-	}
 }
 </style>

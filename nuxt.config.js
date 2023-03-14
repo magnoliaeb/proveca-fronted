@@ -109,6 +109,7 @@ export default {
 		{ src: '~/plugins/vee-validate' },
 		{ src: '~/plugins/sweet-modal', mode: 'client' },
 		{ src: '~/plugins/infinite-loading', ssr: false },
+		{ src: "@plugins/axios.js" },
 		{ src: '~/plugins/util' },
 		// { src: "~/plugins/image-zoomer", ssr: false },
 		{ src: '@/plugins/zoom-on-hover', ssr: false, mode: 'client' },
@@ -127,6 +128,7 @@ export default {
 	modules: [
 		'@nuxtjs/style-resources',
 		'@nuxtjs/axios',
+		"@nuxtjs/auth-next",
 		'vue-sweetalert2/nuxt',
 		'cookie-universal-nuxt',
 	],
@@ -209,7 +211,29 @@ export default {
 	  //
 	},
 
-	// router: {
-	//   middleware: ["auth", "guest"],
-	// },
+	auth: {
+		strategies: {
+		  local: {
+			token: {
+			  property: "token",
+			  global: true,
+			  name: "token",
+			  type: "",
+			},
+			user: {
+			  property: "",
+			  autoFetch: false,
+			},
+			endpoints: {
+			  login: { url: "/auth/login", method: "post" },
+			  logout: false, //{ url: '/api/auth/logout', method: 'post' },
+			  user: { url: "/auth/profile", method: "get" },
+			},
+		  },
+		},
+	  },
+
+	router: {
+	  middleware: ["auth", "guest"],
+	},
 };

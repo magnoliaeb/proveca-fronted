@@ -10,6 +10,7 @@ export default app => ({
             showCart: false,
             showMenu: false,
             showDialogInfo: false,
+            showDialogSuscribe: false,
 
             keys: {
                 // GridProducts: 1

@@ -35,8 +35,10 @@ export default {
 	},
 
 	created() {
-		this.$store.dispatch("products/loadFeaturedProducts")
-		this.$store.dispatch("products/loadTopProducts")
+		if(process.client) {
+			this.$store.dispatch("products/loadFeaturedProducts")
+			this.$store.dispatch("products/loadTopProducts")
+		}
 	}
 };
 </script>

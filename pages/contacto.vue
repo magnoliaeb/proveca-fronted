@@ -26,6 +26,7 @@ export default {
 		title: 'Contacto',
 	},
 	components: { ContactInfo, ContactForm, BannerImgWithTitle },
+	auth: false,
 };
 </script>
 

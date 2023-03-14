@@ -1,10 +1,13 @@
 <template>
-	<article v-if="product" class="py-2">
+	<article
+		v-if="product"
+		class="py-2"
+	>
 		<div class="img-content my-5">
 			<nuxt-link
 				:to="{
 					name: 'productos-id-slug',
-					params: { id: 1, slug: 12 },
+					params: { id: product.id, slug: product.slug },
 				}"
 			>
 				<client-only>
@@ -38,7 +41,7 @@
 					<nuxt-link
 						:to="{
 							name: 'productos-id-slug',
-							params: { id: 1, slug: 12 },
+							params: { id: product.id, slug: product.slug },
 						}"
 					>
 						{{ product.name }}

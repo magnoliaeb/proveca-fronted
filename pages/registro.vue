@@ -22,6 +22,8 @@ export default {
 		title: 'Registro',
 	},
 	components: { RegisterForm },
+
+	auth: false,
 };
 </script>
 

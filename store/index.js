@@ -9,10 +9,10 @@ export const actions = {
 
         await dispatch('identity/loadInitialData')
 
-        // await dispatch('cart/init')
+        await dispatch('cart/init')
 
         if($auth.user) {
-            // await dispatch('identity/loadAddresses')
+            await dispatch('identity/loadAddresses')
         }
     }
 }

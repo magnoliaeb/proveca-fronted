@@ -64,9 +64,7 @@
 								<label v-if="hasLabel" for="">Contraseña* </label>
 
 								<v-text-field
-									:append-icon="
-										showPassword ? 'mdi-eye-off-outline' : 'mdi-eye'
-									"
+									:append-icon="showPassword ? 'mdi-eye-off-outline' : 'mdi-eye'"
 									@click:append="showPassword = !showPassword"
 									color="blue-ligth"
 									id="password"
@@ -101,7 +99,7 @@
 			<v-col cols="12" md="auto" class="text-center">
 				<nuxt-link
 					class="fs-base"
-					to="/iniciar-sesion"
+					to="/login"
 					@click.native="openLogin"
 					>¿Ya tienes cuenta? <span>Inicia Sesión</span></nuxt-link
 				>
@@ -142,26 +140,51 @@ export default {
 	methods: {
 		async registerUser() {
 			this.isDisabled = true;
-
+			
 			if (await this.$refs.observer.validate()) {
 				this.isLoading = true;
-
-				this.$app.$auth.register(this.form).catch(() => {
-					this.isLoading = false;
-					this.isDisabled = false;
-					//this.clear()
-				});
+				this.isDisabled = true;
+				
+				this.$store
+					.dispatch("identity/signup", {
+						data: {
+							name: this.form.name,
+							email: this.form.email,
+							phone: this.form.phone,
+							password: this.form.password,
+							confirm_password: this.form.password,
+						},
+						
+						$nuxt: this.$nuxt,
+					})
+					.then((identity) => {
+						let items = this.$store.getters["cart/getItems"];
+						
+						this.$auth.setUserToken(identity.token);
+						this.$auth.setUser(identity);
+						this.$auth.$storage.setUniversal("token", identity.token);
+						
+						this.$nuxt.$emit("success-notify", "¡Bienvenido a Proveeca!");
+						
+						window.location.href = "/";
+						
+						if (items.length >= 1) {
+							window.location.href = `/carrito`;
+						} else {
+							window.location.href = `/productos`;
+						}
+					})
+					.catch((error) => {
+						this.isLoading = false;
+						this.isDisabled = false;
+					});
 			} else {
-				const inputForm = Object.keys(this.form);
-				for (let i = 0; i < inputForm.length; i++) {
-					const element = inputForm[i];
-					if (this.$refs[element].hasError) {
-						this.$refs[element].focus();
-						return;
-					}
-				}
+				Object.values(this.$refs).forEach((ref) => {
+					if (ref.hasError) ref.focus();
+				});
 			}
 		},
+
 		clear() {
 			this.form.name = '';
 			this.form.phone = '';

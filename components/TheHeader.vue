@@ -56,7 +56,7 @@
 											v-if="isAuthenticate"
 											class="text-capitalize text-left hidden-xs-only my-0"
 										>
-											<span class="font-weight-black">Isabella</span>
+											<span class="font-weight-black">{{ $auth.user.name }}</span>
 										</p>
 										<p
 											v-else
@@ -86,7 +86,7 @@
 									src="../assets/imgs/iconos/shopping-cart.svg"
 									alt="shopping-cart"
 								/>
-								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0">($143.00)</p>
+								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0">({{ getAmountTotal }})</p>
 							</v-btn>
 						</v-col>
 					</v-row>
@@ -136,14 +136,11 @@ export default {
 
 	computed: {
 		isAuthenticate() {
-			// return this.$store.getters["user/gethIsAutenticate"];
-			//   return this.$auth.loggedIn || false;
-			return true;
+			return this.$auth.user
 		},
-		user() {
-			//   return this.$auth.user || false;
-			return false;
-		},
+		getAmountTotal() {
+			return this.$store.getters["cart/getAmountTotal"];
+		}
 	},
 	methods: {
 		openMenu() {

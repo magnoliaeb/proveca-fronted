@@ -23,7 +23,7 @@
 						</v-breadcrumbs>
 					</v-col>
 				</v-row>
-				<SingleProduct />
+				<SingleProduct :product="product" />
 			</div>
 			<div class="content">
 				<v-row class="py-4 py-md-8">
@@ -42,41 +42,36 @@
 import ProductsRelated from '../../../components/ProductsRelated.vue';
 import SingleProduct from '../../../components/SingleProduct.vue';
 export default {
+	auth: false,
+
 	data() {
 		return {
 			ready: false,
 		};
 	},
+	
 	components: {
 		ProductsRelated,
 		SingleProduct,
 	},
-	head() {
-		return {
-			title: this.computedTitle,
-			meta: [
-				{
-					hid: 'description',
-					name: this.computedTitle,
-					content: this.computedDescription,
-				},
-				{ hid: 'keywords', name: 'keywords', content: '' },
-			],
-		};
-	},
+
 	computed: {
-		computedTitle() {
-			return null;
-			// return this.$store.state.product.show
-			// 	? this.$store.state.product.show.name
-			// 	: '';
-		},
+    	product() {
+      		return this.$store.getters["products/getProduct"];
+    	},
+
+    	computedTitle() {
+      		return this._.get(this.product, "meta_title");
+    	},
+
 		computedDescription() {
-			return null;
-			// return this.$store.state.product.show
-			// 	? this.$store.state.product.show.short_description
-			// 	: '';
-		},
+      		return this._.get(this.product, "meta_description");
+    	},
+
+    	computedKeywords() {
+      		return this._.get(this.product, "meta_keywords");
+    	},
+
 		breadcrumbs() {
 			let breadcrumbs = [
 				{
@@ -109,15 +104,62 @@ export default {
 			// });
 			return breadcrumbs;
 		},
-	},
-	//this.$route.params.id
-	//this.$route.params.slug
-	async fetch() {
-		//await this.$store.dispatch('product/show', this.$util.getSlug()).then(() => this.ready = true)
-		// await this.$store
-		// 	.dispatch('product/show', this.$route.params.id)
-		// 	.then(() => (this.ready = true));
-	},
+  	},
+	
+
+	created() {
+    	this.$store.dispatch("products/getProductById", this.$route.params.id);
+  	},
+
+	// computed: {
+	// 	computedTitle() {
+	// 		return null;
+	// 		// return this.$store.state.product.show
+	// 		// 	? this.$store.state.product.show.name
+	// 		// 	: '';
+	// 	},
+	// 	computedDescription() {
+	// 		return null;
+	// 		// return this.$store.state.product.show
+	// 		// 	? this.$store.state.product.show.short_description
+	// 		// 	: '';
+	// 	},
+	// 	breadcrumbs() {
+	// 		let breadcrumbs = [
+	// 			{
+	// 				text: 'Productos',
+	// 				href: '/productos',
+	// 				disabled: false,
+	// 			},
+	// 			{
+	// 				text: 'Alimentos',
+	// 				href: '/productos',
+	// 				disabled: false,
+	// 			},
+	// 			{
+	// 				text: 'Atún',
+	// 				href: '/productos',
+	// 				disabled: true,
+	// 			},
+	// 		];
+	// 		// if (this.$store.state.product.show.brand) {
+	// 		// 	breadcrumbs.push({
+	// 		// 		text: this.$store.state.product.show.brand.name,
+	// 		// 		href: `/productos?brand=${this.$store.state.product.show.brand.name}`,
+	// 		// 		disabled: false,
+	// 		// 	});
+	// 		// }
+	// 		// breadcrumbs.push({
+	// 		// 	text: this.$store.state.product.show.name,
+	// 		// 	href: 'breadcrumbs_link_1',
+	// 		// 	disabled: true,
+	// 		// });
+	// 		return breadcrumbs;
+	// 	},
+	// },
+
+	
+	
 };
 </script>
 

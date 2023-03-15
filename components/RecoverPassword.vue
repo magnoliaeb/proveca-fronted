@@ -100,14 +100,9 @@ export default {
 				this.isDisabled = false;
 				this.clear();
 			} else {
-				const inputForm = Object.keys(this.form);
-				for (let i = 0; i < inputForm.length; i++) {
-					const element = inputForm[i];
-					if (this.$refs[element].hasError) {
-						this.$refs[element].focus();
-						return;
-					}
-				}
+				Object.values(this.$refs).forEach((ref) => {
+					if (ref.hasError) ref.focus();
+				})
 			}
 		},
 

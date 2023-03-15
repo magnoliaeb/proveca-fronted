@@ -215,7 +215,7 @@
 							<v-btn
 								class="button-primary"
 								block
-								:to="{ name: 'categorias' }"
+								:to="{ name: 'productos' }"
 								depressed
 								>Ver más productos</v-btn
 							>

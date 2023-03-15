@@ -1,12 +1,15 @@
 <template>
-	<v-row class="justify-space-between py-md-6">
+	<v-row
+		v-if="product"
+		class="justify-space-between py-md-6"
+	>
 		<v-col cols="12" md="12" lg="auto" class="">
 			<SliderSingleProduct />
 		</v-col>
 		<v-col cols="12" sm="12" md="12" lg="5" xl="6" class="pa-0">
 			<v-row class="justify-space-between align-end">
 				<v-col cols="12">
-					<h2>Atún Dolores en Agua 133gr</h2>
+					<h2>{{ product.name }}</h2>
 				</v-col>
 
 				<v-col cols="5" class="d-flex align-center">
@@ -48,7 +51,7 @@
 									<button
 										v-ripple="{ class: `primary--text` }"
 										class="left"
-										@click="dec"
+										_click="dec"
 										:disabled="false"
 									>
 										<span>-</span>
@@ -64,7 +67,7 @@
 									<button
 										v-ripple="{ class: `primary--text` }"
 										class="right"
-										@click="inc"
+										_click="inc"
 										:disabled="false"
 									>
 										<span>+</span>
@@ -123,8 +126,17 @@
 
 <script>
 import SliderSingleProduct from './SliderSingleProduct.vue';
+import BuyableMixin from "~/mixins/BuyableMixin";
+
 export default {
-	components: { SliderSingleProduct },
+	components: {
+		SliderSingleProduct
+	},
+
+	mixins: [
+		BuyableMixin
+	],
+
 	data() {
 		return {
 			qty: 10,
@@ -132,33 +144,7 @@ export default {
 			// alert: false,
 			// duration: 3000,
 		};
-	},
-	computed: {
-		product() {
-			// return this.$store.state.product.show;
-		},
-	},
-	methods: {
-		inc() {},
-		dec() {},
-		updateQty() {},
-		add() {},
-		// add() {
-		// 	this.loading = true;
-		// 	this.$app.$cart
-		// 		.addItem({
-		// 			buyable_type: this.buyable.buyable_type,
-		// 			buyable_id: this.buyable.buyable_id,
-		// 			quantity: 1,
-		// 		})
-		// 		.then(() => this.showAlert())
-		// 		.finally(() => (this.loading = false));
-		// },
-		// showAlert() {
-		// 	this.alert = true;
-		// 	setTimeout(() => (this.alert = false), this.duration);
-		// },
-	},
+	}
 };
 </script>
 

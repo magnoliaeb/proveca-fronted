@@ -9,7 +9,7 @@
 							<h3 class="text-center">¿Ya tienes una cuenta?</h3>
 						</v-col>
 						<v-col cols="12" sm="6" md="6" class="d-flex justify-start">
-							<v-btn to="/iniciar-sesion" class="button-primary" depressed>
+							<v-btn to="/login" class="button-primary" depressed>
 								INICIA SESIÓN
 							</v-btn>
 						</v-col>

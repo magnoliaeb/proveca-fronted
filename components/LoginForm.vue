@@ -116,7 +116,7 @@ export default {
 						data: this.form,
 					})
 					.then((response) => {
-						this.$nuxt.$emit('success-notify', '¡Bienvenido a FreshBox!');
+						this.$nuxt.$emit('success-notify', '¡Bienvenido a Proveeca!');
 
 						this.$auth.setUserToken(response.token);
 						this.$auth.setUser(response.data);
@@ -149,7 +149,7 @@ export default {
 							if (this.$route.name != 'index') {
 								this.$router.push('/');
 							} else {
-								this.$router.push('/categorias');
+								this.$router.push('/productos');
 							}
 						}
 					})

@@ -132,7 +132,7 @@ export default {
 			],
 
 			links: [
-				{ name: 'Categorías', to: '/' },
+				{ name: 'Categorías', to: '/productos' },
 				{ name: 'Nosotros', to: '/nosotros' },
 				{ name: 'Contacto', to: '/contacto' },
 			],

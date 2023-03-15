@@ -56,6 +56,10 @@
 <script>
 import ProductCard from './ProductCard.vue';
 export default {
+	props: [
+		'products'
+	],
+
 	data() {
 		return {
 			slickOptions: {
@@ -95,118 +99,7 @@ export default {
 			},
 		};
 	},
-	computed: {
-		products() {
-			// return [];
-			return [
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-			];
-		},
-	},
+	
 	components: { ProductCard },
 };
 </script>

@@ -38,7 +38,7 @@
 					block
 					max-width="100%"
 					depressed
-					:to="{ name: 'iniciar-sesion' }"
+					:to="{ name: 'login' }"
 					dark
 				>
 					<span class="d-flex flex-wrap white--text text-center"

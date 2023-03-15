@@ -1,22 +1,20 @@
 <template>
-  <div class="py-16 password">
+  <div class="password">
     <div class="content">
-      <RecoverPassword class="" />
+      <ResetPassword />
     </div>
   </div>
 </template>
 
 <script>
-import RecoverPassword from "../components/RecoverPassword.vue";
+import ResetPassword from "../../../components/ResetPassword.vue";
 
 export default {
-  //   auth: false,
-  components: { RecoverPassword },
-  head: {
-    title: "Recuperar contraseña",
-  },
-
   auth: false,
+  components: { ResetPassword },
+  head: {
+    title: "Restablecer contraseña",
+  },
 };
 </script>
 

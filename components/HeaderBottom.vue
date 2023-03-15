@@ -8,12 +8,29 @@
 				<!-- <v-tabs-slider color="primary"></v-tabs-slider> -->
 
 				<li
+					class="flex-grow-1 d-flex justify-center align-center"
+				>
+					<nuxt-link
+						:to="{ name: 'productos'}"
+					>
+						<img
+							class="mr-2"
+							alt="user"
+							:src="require(`../assets/imgs/iconos/user.svg`)"
+						/>
+						<span>
+							Todas
+						</span>
+					</nuxt-link>
+				</li>
+
+				<li
 					v-for="(item, index) in categories"
 					:key="index"
 					class="flex-grow-1 d-flex justify-center align-center"
 				>
 					<nuxt-link
-						to="/productos/12/2"
+						:to="{ name: 'productos', query: { category_id: item.id } }"
 					>
 						<img
 							class="mr-2"

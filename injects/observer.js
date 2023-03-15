@@ -13,7 +13,7 @@ export default app => ({
             showDialogSuscribe: false,
 
             keys: {
-                // GridProducts: 1
+                GridProducts: 1
             },
 
             // socials: [

@@ -1,6 +1,6 @@
 <template>
 	<v-dialog
-		v-model="showAlert"
+		v-model="$observer.showDialogSuscribe"
 		max-width="710px"
 		persistent
 		content-class="card-dialog-contact"
@@ -41,16 +41,11 @@
 
 <script>
 export default {
-	data() {
-		return {
-			showAlert: true,
-		};
-	},
 	methods: {
 		closeAlert() {
-			this.showAlert = false;
-		},
-	},
+			this.$observer.showDialogSuscribe = false
+		}
+	}
 };
 </script>
 

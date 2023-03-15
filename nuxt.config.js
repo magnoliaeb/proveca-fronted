@@ -104,11 +104,12 @@ export default {
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
 	plugins: [
-		// { src: "~/plugins/app" },
+		{ src: "~/plugins/app" },
 		{ src: '@plugins/slick-slide.js', mode: 'client' },
 		{ src: '~/plugins/vee-validate' },
 		{ src: '~/plugins/sweet-modal', mode: 'client' },
 		{ src: '~/plugins/infinite-loading', ssr: false },
+		{ src: "@plugins/axios.js" },
 		{ src: '~/plugins/util' },
 		// { src: "~/plugins/image-zoomer", ssr: false },
 		{ src: '@/plugins/zoom-on-hover', ssr: false, mode: 'client' },
@@ -127,6 +128,7 @@ export default {
 	modules: [
 		'@nuxtjs/style-resources',
 		'@nuxtjs/axios',
+		"@nuxtjs/auth-next",
 		'vue-sweetalert2/nuxt',
 		'cookie-universal-nuxt',
 	],
@@ -187,29 +189,51 @@ export default {
 		types: ['@nuxt/types', '@nuxtjs/axios'],
 	},
 
-	// axios: {
-	//   baseURL: process.env.ENDPOINT,
-	//   //baseURL: 'http://ferrepacifico.local/api'
-	// },
+	axios: {
+	  baseURL: process.env.ENDPOINT,
+	  //baseURL: 'http://ferrepacifico.local/api'
+	},
 
-	// publicRuntimeConfig: {
-	//   $public: {
-	//     APP_NAME: process.env.APP_NAME,
-	//     APP_ENV: process.env.APP_ENV,
-	//     APP_URL: process.env.APP_URL,
-	//     BASE_APP_URL: process.env.BASE_APP_URL,
-	//     ENDPOINT: process.env.ENDPOINT,
-	//     google: {
-	//       key: process.env.GOOGLE_KEY,
-	//     },
-	//   },
-	//   //
-	// },
-	// privateRuntimeConfig: {
-	//   //
-	// },
+	publicRuntimeConfig: {
+	  $public: {
+	    APP_NAME: process.env.APP_NAME,
+	    APP_ENV: process.env.APP_ENV,
+	    APP_URL: process.env.APP_URL,
+	    BASE_APP_URL: process.env.BASE_APP_URL,
+	    ENDPOINT: process.env.ENDPOINT,
+	    google: {
+	      key: process.env.GOOGLE_KEY,
+	    },
+	  },
+	  //
+	},
+	privateRuntimeConfig: {
+	  //
+	},
 
-	// router: {
-	//   middleware: ["auth", "guest"],
-	// },
+	auth: {
+		strategies: {
+		  local: {
+			token: {
+			  property: "token",
+			  global: true,
+			  name: "token",
+			  type: "",
+			},
+			user: {
+			  property: "",
+			  autoFetch: false,
+			},
+			endpoints: {
+			  login: { url: "/auth/login", method: "post" },
+			  logout: false, //{ url: '/api/auth/logout', method: 'post' },
+			  user: { url: "/auth/profile", method: "get" },
+			},
+		  },
+		},
+	  },
+
+	router: {
+	  middleware: ["auth", "guest"],
+	},
 };

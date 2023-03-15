@@ -17,6 +17,16 @@ import TheFooter from '../components/TheFooter.vue';
 import TheHeader from '../components/TheHeader.vue';
 export default {
 	components: { TheFooter, TheHeader },
+
+	watch: {
+		"$route.query": {
+			immediate: false,
+			deep: true,
+			handler(query) {
+				this.$observer.routeQuery = this.$util.clone(query)
+			}
+		}
+	}
 };
 </script>
 

@@ -2,7 +2,7 @@
 	<v-navigation-drawer
 		style="background-color: #f2f2f2"
 		v-click-outside="clickOutside"
-		:value="showProfile"
+		:value="$observer.showProfile"
 		width="373px"
 		right
 		fixed
@@ -90,14 +90,9 @@ export default {
 		};
 	},
 
-	computed: {
-		showProfile() {
-			return this.$store.getters['website/getShowProfile'];
-		},
-	},
 	methods: {
 		closeProfile() {
-			this.$store.dispatch('website/showProfile', false);
+			this.$observer.showProfile = false
 		},
 		logout() {
 			this.closeProfile();

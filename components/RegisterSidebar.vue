@@ -2,7 +2,7 @@
 	<v-navigation-drawer
 		style="background-color: #f2f2f2"
 		v-click-outside="clickOutside"
-		:value="showRegister"
+		:value="$observer.showRegister"
 		width="373px"
 		right
 		fixed
@@ -47,14 +47,9 @@ export default {
 			isDisabled: false,
 		};
 	},
-	computed: {
-		showRegister() {
-			return this.$store.getters['website/getShowRegister'];
-		},
-	},
 	methods: {
 		closeRegister() {
-			this.$store.dispatch('website/showRegister', false);
+			this.$observer.showRegister = false
 		},
 		clickOutside(event) {
 			if (event.target.id !== 'register') {

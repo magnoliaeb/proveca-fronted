@@ -3,7 +3,7 @@
 		<div class="content">
 			<v-row class="">
 				<v-col cols="12">
-					<HeadingTitle />
+					<HeadingTitle :title="title" />
 				</v-col>
 			</v-row>
 			<v-row class="justify-center justify-md-start">
@@ -26,75 +26,11 @@
 import HeadingTitle from './HeadingTitle.vue';
 import ProductCard from './ProductCard.vue';
 export default {
-	async fetch() {
-		// this.products = await this.$store
-		//   .dispatch("product/featured")
-		//   .then((r) => r.data);
-	},
 	components: { ProductCard, HeadingTitle },
-	computed: {
-		products() {
-			return [
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-				},
-			];
-		},
-	},
+	props: [
+		'title',
+		'products'
+	]
 };
 </script>
 

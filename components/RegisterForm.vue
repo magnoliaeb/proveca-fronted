@@ -171,8 +171,8 @@ export default {
 			this.$refs.observer.reset();
 		},
 		openLogin() {
-			this.$store.dispatch('website/showLogin', true);
-			this.$store.dispatch('website/showRegister', false);
+			this.$observer.showLogin = true
+			this.$observer.showRegister = false
 		},
 	},
 };

@@ -35,6 +35,50 @@ export default ({app}, inject) => {
             }
     
             return this.mergeRecursive(target, ...sources);
+        },
+
+        getLocation() {
+            return `${app.$config.WEB_URL}${app.context.route.fullPath}`
+        },
+
+
+
+
+
+
+
+        getVariantFormat(variant) {
+            return variant.config.map(c => c.values[0].name).join('/')
+        },
+
+        getBase64(file) {
+            return new Promise((success, error) => {
+                let reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = function () {
+                    success(reader.result.split('data:image/png;base64,')[1])
+                }
+                reader.onerror = function (e) {
+                    error(null)
+                }  
+            })
+        },
+
+        getFormattedDate(dateString, type = 1) {
+            let date = new Date(dateString)
+            let formatted = ''
+
+            switch (type) {
+                case 1:
+                    formatted = date.toLocaleDateString('es-MX', {day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC'})
+                break
+
+                case 2:
+                    formatted = date.toLocaleDateString('es-MX', {day: 'numeric', month: 'long', timeZone: 'UTC'})
+                break
+            }
+
+            return formatted
         }
     }
 }

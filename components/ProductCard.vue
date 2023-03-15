@@ -1,10 +1,13 @@
 <template>
-	<article v-if="product" class="py-2">
+	<article
+		v-if="product"
+		class="py-2"
+	>
 		<div class="img-content my-5">
 			<nuxt-link
 				:to="{
 					name: 'productos-id-slug',
-					params: { id: 1, slug: 12 },
+					params: { id: product.id, slug: product.slug },
 				}"
 			>
 				<client-only>
@@ -12,8 +15,8 @@
 						:width="heightAndWidthImg"
 						transition="scale-transition"
 						:height="heightAndWidthImg"
-						:src="`https://picsum.photos/500/300?image=${8 * 5 + 10}`"
-						:lazy-src="`https://picsum.photos/10/6?image=${8 * 5 + 10}`"
+						:src="picture"
+						:lazy-src="picture"
 						:alt="product.name"
 						aspect-ratio="1"
 						class="grey lighten-3 img mx-auto scale"
@@ -38,10 +41,10 @@
 					<nuxt-link
 						:to="{
 							name: 'productos-id-slug',
-							params: { id: 1, slug: 12 },
+							params: { id: product.id, slug: product.slug },
 						}"
 					>
-						Chocolate Amargo savoy Nestle 200gr
+						{{ product.name }}
 					</nuxt-link>
 				</h4>
 			</div>
@@ -50,9 +53,9 @@
 					<p class="mb-0 mr-2">
 						{{ $util.getMoneyFormat(product.price) }}
 					</p>
-					<span>{{
+					<!-- <span>{{
 						$util.getMoneyFormat(product.price_without_discount)
-					}}</span>
+					}}</span> -->
 				</div>
 				<v-btn
 					class="cart px-1"
@@ -89,9 +92,16 @@ export default {
 	},
 
 	computed: {
-		buyable() {
-			return this.product.buyable_data;
+		picture() {
+			let picture = this.product.pictures.find(p => p.name == 'Principal')
+
+			return picture ? picture.url : `https://picsum.photos/500/300?image=${8 * 5 + 10}`
 		},
+
+		variant() {
+			return this.product.variants[0]
+		},
+
 		heightAndWidthImg() {
 			switch (this.$vuetify.breakpoint.name) {
 				case 'xs':

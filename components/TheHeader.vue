@@ -147,20 +147,20 @@ export default {
 	},
 	methods: {
 		openMenu() {
-			this.$store.dispatch('website/showMenu', true);
+			this.$observer.showMenu = true
 		},
 		openProfile() {
-			this.$store.dispatch('website/showProfile', true);
+			this.$observer.showProfile = true
 		},
 		openCart() {
-			this.$store.dispatch('website/showCart', true);
+			this.$observer.showCart = true
 		},
 
 		goToLogin() {
 			if (this.isAuthenticate) {
 				this.openProfile();
 			} else {
-				this.$store.dispatch('website/showLogin', true);
+				this.$observer.showLogin = true
 
 				// this.$router.push({ name: "login" });
 			}

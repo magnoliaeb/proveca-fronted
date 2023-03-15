@@ -3,12 +3,16 @@
 		<div class="">
 			<client-only>
 				<VueSlickCarousel v-bind="slickOptions">
-					<div class="px-2 mb-8" v-for="(item, index) in 10" :key="index">
+					<div
+						v-for="(item, index) in slides"
+						:key="index"
+						class="px-2 mb-8"
+					>
 						<client-only>
 							<v-img
 								transition="scale-transition"
-								:src="`https://picsum.photos/500/300?image=${8 * 5 + 10}`"
-								:lazy-src="`https://picsum.photos/10/6?image=${8 * 5 + 10}`"
+								:src="item.desktop_picture"
+								:lazy-src="item.desktop_picture"
 								aspect-ratio="1"
 								class="grey lighten-3 img mx-auto"
 							>
@@ -116,6 +120,12 @@ export default {
 			},
 		};
 	},
+
+	computed: {
+		slides() {
+			return this.$store.getters["identity/getBanners"];
+		}
+  	},
 };
 </script>
 

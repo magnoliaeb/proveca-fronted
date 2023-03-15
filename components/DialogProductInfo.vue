@@ -1,6 +1,6 @@
 <template>
 	<v-dialog
-		:value="showDialogInfo"
+		:value="$observer.showDialogInfo"
 		content-class="product-dialog-info"
 		persistent
 		max-width="380"
@@ -52,12 +52,8 @@ export default {
 	components: { PriceInfoItem },
 
 	computed: {
-		showDialogInfo() {
-			return this.$store.getters['website/getShowDialogInfo'];
-		},
-
 		product() {
-			return this.$store.getters['website/getDialogProduct'];
+			return {}
 		},
 
 		variants() {
@@ -69,7 +65,7 @@ export default {
 
 	methods: {
 		closeDialog() {
-			this.$store.dispatch('website/showDialogInfo', false);
+			this.$observer.showDialogInfo = false
 		},
 	},
 };

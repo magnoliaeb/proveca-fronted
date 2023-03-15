@@ -2,7 +2,7 @@
 	<v-navigation-drawer
 		style="background-color: #f2f2f2"
 		v-click-outside="clickOutside"
-		:value="showCart"
+		:value="$observer.showCart"
 		width="373px"
 		right
 		fixed
@@ -96,14 +96,9 @@ export default {
 		return {};
 	},
 
-	computed: {
-		showCart() {
-			return this.$store.getters['website/getShowCart'];
-		},
-	},
 	methods: {
 		closeCart() {
-			this.$store.dispatch('website/showCart', false);
+			this.$observer.showCart = false
 		},
 		logout() {
 			this.closeCart();

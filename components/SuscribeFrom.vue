@@ -24,7 +24,7 @@
 				</v-col>
 			</v-row>
 		</form>
-		<!-- <AlertDialogSuscribe /> -->
+		<AlertDialogSuscribe />
 	</div>
 </template>
 
@@ -36,8 +36,6 @@ export default {
 
 	data() {
 		return {
-			showAlert: false,
-
 			isLoading: false,
 			email: null,
 		};
@@ -52,7 +50,7 @@ export default {
 						email: this.email,
 					})
 					.then((response) => {
-						this.showAlert = true;
+						this.$observer.showDialogSuscribe = true
 						this.isLoading = false;
 						this.email = '';
 					});

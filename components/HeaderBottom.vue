@@ -1,29 +1,46 @@
 <template>
 	<div class="nav-bottom">
 		<div class="content">
-			<v-tabs
-				v-model="tab"
-				align-with-title
+			<ul
 				color="primary"
-				centered
-				hide-slider
+				class="d-flex align-items-center"
 			>
 				<!-- <v-tabs-slider color="primary"></v-tabs-slider> -->
 
-				<v-tab
-					to="/productos/12/2"
-					v-for="(item, index) in items"
-					:key="index"
-					class="d-flex align-center"
+				<li
+					class="flex-grow-1 d-flex justify-center align-center"
 				>
-					<img
-						class="mr-2"
-						:alt="item.icon"
-						:src="require(`../assets/imgs/iconos/${item.icon}.svg`)"
-					/>
-					<span>
-						{{ item.title }}
-					</span>
+					<nuxt-link
+						:to="{ name: 'productos'}"
+					>
+						<img
+							class="mr-2"
+							alt="user"
+							:src="require(`../assets/imgs/iconos/user.svg`)"
+						/>
+						<span>
+							Todas
+						</span>
+					</nuxt-link>
+				</li>
+
+				<li
+					v-for="(item, index) in categories"
+					:key="index"
+					class="flex-grow-1 d-flex justify-center align-center"
+				>
+					<nuxt-link
+						:to="{ name: 'productos', query: { category_id: item.id } }"
+					>
+						<img
+							class="mr-2"
+							alt="user"
+							:src="require(`../assets/imgs/iconos/user.svg`)"
+						/>
+						<span>
+							{{ item.name }}
+						</span>
+					</nuxt-link>
 					<!-- <v-menu bottom left>
 						<template v-slot:activator="{ on, attrs }">
 							<v-btn
@@ -42,61 +59,14 @@
 							</v-list-item>
 						</v-list>
 					</v-menu> -->
-				</v-tab>
-			</v-tabs>
+				</li>
+			</ul>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-	data() {
-		return {
-			items: [
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-				{
-					icon: 'user',
-					title: 'Abarrotes',
-				},
-			],
-			tab: null,
-		};
-	},
 	computed: {
 		categories() {
 			return this.$store.getters['products/getCategories'];

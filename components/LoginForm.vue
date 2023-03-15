@@ -136,7 +136,7 @@ export default {
 					.then(() => {
 						let cart = this.$store.state.cart.cart;
 
-						this.$store.dispatch('website/showLogin', false);
+						this.$observer.showLogin = false
 						this.clear();
 
 						if (cart != null && cart.items.length != 0) {
@@ -178,7 +178,7 @@ export default {
 			this.$refs.observer.reset();
 		},
 		closeSiderLogin() {
-			this.$store.dispatch('website/showLogin', false);
+			this.$observer.showLogin = false
 		},
 	},
 };

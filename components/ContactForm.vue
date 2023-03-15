@@ -99,7 +99,7 @@
 									flat
 									solo
 									:error-messages="errors"
-									placeholder="Código postal*"
+									placeholder="Escribe tu mensaje*"
 								></v-textarea>
 							</validation-provider>
 						</v-col>

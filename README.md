@@ -6,28 +6,6 @@
 
 Aqui encontraras todoas las páginas que lo integran
 
-- [registro](https://thriving-gnome-57e946.netlify.app/registro)
-- [solicitar-contrasena](https://thriving-gnome-57e946.netlify.app/solicitar-contrasena)
-- [inico](https://thriving-gnome-57e946.netlify.app/)
-- [contacto](https://thriving-gnome-57e946.netlify.app/contacto)
-- [nosotros](https://thriving-gnome-57e946.netlify.app/nosotros)
-- [productos](https://thriving-gnome-57e946.netlify.app/productos)
-- [detalle-producto](https://thriving-gnome-57e946.netlify.app/productos/1/1)
-<!-- - [login](https://thriving-gnome-57e946.netlify.app/login) -->
-- [historial-de-pedidos](https://thriving-gnome-57e946.netlify.app/historial-de-pedidos)
-- [detalle-pedido](https://thriving-gnome-57e946.netlify.app/historial-de-pedidos/3472983)
-
-- [mi-perfi](https://thriving-gnome-57e946.netlify.app/mi-perfil)
-- [editar-perfil](https://thriving-gnome-57e946.netlify.app/mi-perfil/editar-perfil)
-- [agregar-direccion](https://thriving-gnome-57e946.netlify.app/mi-perfil/agregar-direccion)
-- [editar-direccion](https://thriving-gnome-57e946.netlify.app/mi-perfil/editar-direccion/12)
-- [cambiar-contrasena](https://thriving-gnome-57e946.netlify.app/mi-perfil/cambiar-contrasena)
-
-- [mi-carrito](https://thriving-gnome-57e946.netlify.app/mi-carrito)
-- [elegir-direccion](https://thriving-gnome-57e946.netlify.app/mi-carrito/elegir-direccion)
-- [datos-de-envio](https://thriving-gnome-57e946.netlify.app/mi-carrito/datos-de-envio)
-- [pagar-pedido](https://thriving-gnome-57e946.netlify.app/pagar-pedido/12)
-
 ## Build Setup
 
 ```bash

@@ -60,9 +60,8 @@
 				<v-btn
 					class="cart px-1"
 					depressed
-					:loading="loading"
 					:disabled="false"
-					@click="add"
+					@click="openDialogInfo"
 				>
 					<img
 						src="../assets/imgs/iconos/cart-plus.svg"
@@ -85,7 +84,6 @@ export default {
 
 	data() {
 		return {
-			loading: false,
 			alert: false,
 			duration: 3000,
 		};
@@ -119,17 +117,21 @@ export default {
 	},
 
 	methods: {
-		add() {
-			this.loading = true;
+		// add() {
+		// 	this.loading = true;
 
-			this.$app.$cart
-				.addItem({
-					buyable_type: this.buyable.buyable_type,
-					buyable_id: this.buyable.buyable_id,
-					quantity: 1,
-				})
-				.then(() => this.showAlert())
-				.finally(() => (this.loading = false));
+		// 	this.$app.$cart
+		// 		.addItem({
+		// 			buyable_type: this.buyable.buyable_type,
+		// 			buyable_id: this.buyable.buyable_id,
+		// 			quantity: 1,
+		// 		})
+		// 		.then(() => this.showAlert())
+		// 		.finally(() => (this.loading = false));
+		// },
+
+		openDialogInfo() {
+			this.$observer.openDialogInfo(this.product)
 		},
 
 		showAlert() {

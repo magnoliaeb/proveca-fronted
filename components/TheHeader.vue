@@ -86,7 +86,7 @@
 									src="../assets/imgs/iconos/shopping-cart.svg"
 									alt="shopping-cart"
 								/>
-								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0">({{ getAmountTotal }})</p>
+								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0">({{ itemCount }})</p>
 							</v-btn>
 						</v-col>
 					</v-row>
@@ -106,7 +106,7 @@
 			<ProfileSidebar />
 			<CartSidebar />
 			<MenuSidebar />
-			<!-- <DialogProductInfo /> -->
+			<DialogProductInfo />
 		</div>
 	</nav>
 </template>
@@ -138,8 +138,8 @@ export default {
 		isAuthenticate() {
 			return this.$auth.user
 		},
-		getAmountTotal() {
-			return this.$store.getters["cart/getAmountTotal"];
+		itemCount() {
+			return this.$store.getters["cart/getItemCount"];
 		}
 	},
 	methods: {

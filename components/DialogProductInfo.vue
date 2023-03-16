@@ -1,6 +1,7 @@
 <template>
 	<v-dialog
-		:value="$observer.showDialogInfo"
+		v-if="product"
+		v-model="$observer.showDialogInfo"
 		content-class="product-dialog-info"
 		persistent
 		max-width="380"
@@ -20,27 +21,18 @@
 				</v-btn>
 				<v-row class="pt-5">
 					<v-col cols="12">
-						<h3 class="text-center">{{ 'Chocolate savoy 200 gr' }}</h3>
-						<!--
-              <h4 class="mt-4 text-center">Precio por kilo: $ {{ product.price }}</h4>
-              -->
+						<h3 class="text-center">{{ product.name }}</h3>
 					</v-col>
 				</v-row>
 
 				<div>
 					<PriceInfoItem
-						v-for="(variant, i) in 4"
+						v-for="(variant, i) in variants"
 						:key="i"
 						:product="product"
 						:variant="variant"
 					/>
 				</div>
-
-				<!-- <div v-else>
-					<p class="text-center font-weight-bold font-italic pa-4">
-						Producto actualmente no disponible
-					</p>
-				</div> -->
 			</div>
 		</v-card>
 	</v-dialog>
@@ -49,25 +41,37 @@
 <script>
 import PriceInfoItem from './PriceInfoItem.vue';
 export default {
-	components: { PriceInfoItem },
+	components: {
+		PriceInfoItem
+	},
 
 	computed: {
 		product() {
-			return {}
+			return this.$observer.productDialogInfo
 		},
 
 		variants() {
 			return this.product.variants.filter(
-				(variant) => variant.stock >= 1 && variant.price > 0
-			);
-		},
+				variant => variant.stock >= 1 && variant.price > 0
+			)
+		}
 	},
 
 	methods: {
 		closeDialog() {
 			this.$observer.showDialogInfo = false
-		},
+		}
 	},
+
+	created() {
+    	// this.items = this.product.variants.map(variant => {
+      	// 	return {
+        // 		product: this.product,
+        // 		variant: variant,
+        // 		qty: 0,
+      	// 	}
+    	// })
+  	}
 };
 </script>
 

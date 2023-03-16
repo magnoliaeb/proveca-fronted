@@ -10,6 +10,7 @@ export default app => ({
             showCart: false,
             showMenu: false,
             showDialogInfo: false,
+            productDialogInfo: null,
             showDialogSuscribe: false,
 
             keys: {
@@ -55,6 +56,11 @@ export default app => ({
         updateKey(name) {
             this.keys[name] = new Date().getTime()
         },
+
+        openDialogInfo(product) {
+            this.showDialogInfo = true
+            this.productDialogInfo = product
+        }
 
         // confirmCart() {
         //     app.store.dispatch('cart/confirm', {

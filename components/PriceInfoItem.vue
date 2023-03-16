@@ -5,9 +5,8 @@
 	>
 		<v-col cols="12" sm="auto" class="">
 			<h5>
-				<span class="">{{ 'default_code' }} </span>
-				<span>·{{ ' weight' }}kg</span> ·
-				<span>{{ 10 }}</span>
+				<span class="">{{ $util.getVariantFormat(variant) }}</span>
+				<span>{{ $util.getMoneyFormat(variant.price) }}</span>
 			</h5>
 		</v-col>
 		<v-col cols="auto" class="">
@@ -21,7 +20,7 @@
 			<v-tooltip color="primary" bottom>
 				<template v-slot:activator="{ on, attrs }">
 					<v-btn
-						@click="addProduct"
+						@click="addToCart(qty)"
 						depressed
 						outlined
 						id="add-product-dialog"
@@ -47,63 +46,76 @@
 </template>
 
 <script>
+import BuyableMixin from "~/mixins/BuyableMixin";
+
 export default {
-	props: ['product', 'variant'],
+	props: [
+		'product',
+		'variant'
+	],
+
+	mixins: [
+		BuyableMixin
+	],
 
 	data() {
 		return {
-			qty: 1,
-		};
+			qty: 1
+		}
 	},
 
 	methods: {
 		dec() {
 			if (this.qty > 1) {
-				this.qty = this.qty - 1;
+				this.qty = this.qty - 1
 			}
 		},
 
 		inc() {
-			this.qty = this.qty + 1;
-		},
+			this.qty = this.qty + 1
+		}
 
-		addProduct() {
-			//if (! this.$auth.loggedIn) {
-			//  return this.$router.push({ name: "login" });
-			//}
+		// addProduct() {
+		// 	//if (! this.$auth.loggedIn) {
+		// 	//  return this.$router.push({ name: "login" });
+		// 	//}
 
-			let item = {
-				product: {
-					id: this.product.id,
-					name: this.product.name,
-					slug: this.product.slug,
-					type: this.product.type,
-					is_sale_kg: this.product.is_sale_kg,
-					presentation: this.product.presentation,
-				},
-				weight: this.variant.weight,
-				picture: this.product.picture,
-				variant: {
-					id: this.variant.id,
-					price: this.variant.price,
-					stock: this.variant.stock,
-				},
-				qty: this.qty,
-			};
+		// 	let item = {
+		// 		product: {
+		// 			id: this.product.id,
+		// 			name: this.product.name,
+		// 			slug: this.product.slug,
+		// 			type: this.product.type,
+		// 			is_sale_kg: this.product.is_sale_kg,
+		// 			presentation: this.product.presentation,
+		// 		},
+		// 		weight: this.variant.weight,
+		// 		picture: this.product.picture,
+		// 		variant: {
+		// 			id: this.variant.id,
+		// 			price: this.variant.price,
+		// 			stock: this.variant.stock,
+		// 		},
+		// 		qty: this.qty,
+		// 	};
 
-			this.$store
-				.dispatch('cart/addItem', {
-					$nuxt: this.$nuxt,
-					item: item,
-					$store: this.$store,
-				})
-				.then(() => {
-					this.$observer.showCart = true
-				});
+		// 	this.$store
+		// 		.dispatch('cart/addItem', {
+		// 			$nuxt: this.$nuxt,
+		// 			item: item,
+		// 			$store: this.$store,
+		// 		})
+		// 		.then(() => {
+		// 			this.$observer.showCart = true
+		// 		});
 
-			this.$store.dispatch('website/setDialogProduct', null);
-		},
+		// 	this.$observer.showDialogInfo = false
+		// },
 	},
+
+	created() {
+		this.selectedVariant = this.variant
+	}
 };
 </script>
 

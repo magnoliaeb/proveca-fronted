@@ -1,21 +1,26 @@
 <template>
 	<v-row tag="li" class="align-start mb-2">
+		<span v-show="false">{{ item }}</span>
+
 		<v-col cols="auto" class="py-0">
 			<nuxt-link
 				class="d-block"
 				@click.native="closeCart"
 				:to="{
 					name: 'productos-id-slug',
-					params: { id: 1, slug: 10 },
+					params: {
+						id: item.product.id,
+						slug: item.product.slug
+					}
 				}"
 			>
 				<v-img
 					:width="heightImg"
 					transition="scale-transition"
 					:height="heightImg"
-					:src="`https://picsum.photos/500/300?image=${8 * 5 + 10}`"
-					:lazy-src="`https://picsum.photos/10/6?image=${8 * 5 + 10}`"
-					:alt="'product.name'"
+					:src="image"
+					:lazy-src="image"
+					:alt="item.name"
 					aspect-ratio="1"
 					class="grey lighten-3 img mx-auto scale"
 				>
@@ -39,15 +44,18 @@
 					@click.native="closeCart"
 					:to="{
 						name: 'productos-id-slug',
-						params: { id: 1, slug: 10 },
+						params: {
+							id: item.product.id,
+							slug: item.product.slug
+						}
 					}"
 				>
-					<p class="mb-0">Pan blanco Bimbo</p>
-					<p class="mb-0">Mediano</p>
-					<p>1 pieza 680g</p>
+					<p class="mb-0">{{ item.name }}</p>
+					<p class="mb-0">{{ $util.getVariantFormat(variant) }}</p>
+					<p>{{ item.qty }} pieza(s)</p>
 				</nuxt-link>
 
-				<h4>{{ $util.getMoneyFormat(45.0) }}</h4>
+				<h4>{{ formattedTotal }}</h4>
 			</div>
 		</v-col>
 		<v-col cols="2" class="d-flex justify-center py-0">
@@ -64,8 +72,12 @@
 </template>
 
 <script>
+import CartItemMixin from '~/mixins/CartItemMixin'
+
 export default {
-	props: ['item'],
+	mixins: [
+    	CartItemMixin
+	],
 
 	data() {
 		return {
@@ -88,31 +100,13 @@ export default {
 				case 'xl':
 					return 90;
 			}
-		},
+		}
 	},
 
 	methods: {
-		deleteItem() {
-			this.isBusy = true;
-			this.positionItem = this.item.product.id;
-
-			setTimeout(() => {
-				this.$store
-					.dispatch('cart/deleteItem', {
-						$nuxt: this.$nuxt,
-						item: this.item,
-						$store: this.$store,
-					})
-					.finally(() => {
-						this.isBusy = false;
-						this.positionItem = this.null;
-					});
-			}, 1000);
-		},
-
 		closeCart() {
 			this.$observer.showCart = false
-		},
+		}
 	},
 };
 </script>

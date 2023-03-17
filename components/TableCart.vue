@@ -30,10 +30,9 @@
 
 			<ul>
 				<CartItem
-					v-for="(item, index) in 4"
+					v-for="(item, index) in items"
 					:key="index"
 					:item="item"
-					:index="index"
 				/>
 			</ul>
 		</v-col>
@@ -48,23 +47,9 @@ export default {
 
 	computed: {
 		items() {
-			return [
-				{
-					item: {
-						product: {
-							id: 1,
-							slug: 'product-1',
-							picture: {
-								url: '',
-							},
-						},
-						name: 'product 1',
-					},
-				},
-			];
-			// return this.$store.getters['cart/getItem'];
-		},
-	},
+      		return this.$store.getters["cart/getItems"]
+    	}
+	}
 };
 </script>
 

@@ -6,31 +6,117 @@
 				<ul>
 					<li class="d-flex py-2 py-md-4 justify-space-between align-center">
 						<p class="mb-0">Subtotal</p>
-						<span>{{ $util.getMoneyFormat(123.45) }}</span>
+						<span>{{ formattedSubtotal }}</span>
 					</li>
 					<li class="d-flex py-2 py-md-4 justify-space-between align-center">
 						<p class="mb-0">Descuento</p>
-						<span>{{ $util.getMoneyFormat(98.0) }}</span>
+						<span>{{ formattedDiscount }}</span>
 					</li>
 					<!-- <div class="d-md-flex py-2 py-md-4 justify-space-between align-center ">
 			  <h5>IVA</h5>
 			  <span>{{ $util.getMoneyFormat($store.state.cart.content.tax) }}</span>
 			</div> -->
-					<li class="d-flex py-2 py-md-4 justify-space-between align-center">
+					<!-- <li class="d-flex py-2 py-md-4 justify-space-between align-center">
 						<p class="mb-0">Envio (Recoger en tienda)</p>
 						<span>{{ $util.getMoneyFormat(0.0) }}</span>
-					</li>
+					</li> -->
 				</ul>
 
 				<div class="d-flex mt-6 justify-space-between card-total px-2 py-3">
 					<h4>Total</h4>
-					<span>{{ $util.getMoneyFormat(122.23) }}</span>
+					<span>{{ formattedTotal }}</span>
 				</div>
-				<v-btn class="mt-7 button-primary" depressed block>Continuar</v-btn>
+
+				<v-btn
+					class="mt-7 button-primary"
+					depressed
+					block
+				>
+					{{ buttonText }}
+				</v-btn>
 			</v-card>
 		</v-col>
 	</v-row>
 </template>
+
+<script>
+	import CartMixin from '~/mixins/CartMixin'
+
+	export default {
+		mixins: [
+			CartMixin
+		],
+
+		computed: {
+			page() {
+				return this.$route.name
+			},
+
+			buttonText() {
+				let buttonText = "";
+
+				switch (this.page) {
+					case "carrito":
+						buttonText = "Continuar";
+					break
+
+					case "carrito-datos-del-envio":
+						buttonText = "Continuar"
+					break
+
+					case "carrito-elegir-direccion":
+						buttonText = "Continuar a facturación"
+					break
+
+					case "carrito-datos-del-cliente":
+						buttonText = "Continuar con el pago"
+					break
+				}
+
+				return buttonText;
+			},
+
+			isEnabled() {
+				let isEnabled = false;
+
+				switch (this.page) {
+					case "carrito":
+						isEnabled = true
+					break
+
+					case "carrito-elegir-direccion":
+						isEnabled = this.$store.getters["cart/getSelectedShippingMethod"]
+					break;
+
+					case "carrito-datos-del-cliente":
+						isEnabled = this.$auth.user
+					break
+				}
+
+				return isEnabled;
+			}
+		},
+
+		methods: {
+			nextStep() {
+				switch (this.$route.name) {
+					case "carrito":
+						if (this.$auth.user) {
+							this.$router.push({ name: "carrito-elegir-direccion" })
+						} else {
+							this.$router.push({ name: "carrito-datos-del-envio" })
+						}
+					break;
+
+					case "carrito-elegir-direccion":
+						this.$router.push({ name: "carrito-datos-del-cliente" })
+					break;
+				}
+			},
+		}
+	}
+</script>
+
 
 <style lang="scss" scoped>
 * {

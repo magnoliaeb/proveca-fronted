@@ -35,7 +35,13 @@ export default {
             return this.product
                 ? this.product.variants.find(v => v.id == this.item.product_product_id)
                 : null
-        }
+        },
+
+        image() {
+			return this.product && this.product.picture.url
+                ? this.product.picture.url
+                : `https://picsum.photos/500/300?image=${8 * 5 + 10}`
+		}
     },
 
     watch: {

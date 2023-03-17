@@ -74,43 +74,6 @@ export default {
 		inc() {
 			this.qty = this.qty + 1
 		}
-
-		// addProduct() {
-		// 	//if (! this.$auth.loggedIn) {
-		// 	//  return this.$router.push({ name: "login" });
-		// 	//}
-
-		// 	let item = {
-		// 		product: {
-		// 			id: this.product.id,
-		// 			name: this.product.name,
-		// 			slug: this.product.slug,
-		// 			type: this.product.type,
-		// 			is_sale_kg: this.product.is_sale_kg,
-		// 			presentation: this.product.presentation,
-		// 		},
-		// 		weight: this.variant.weight,
-		// 		picture: this.product.picture,
-		// 		variant: {
-		// 			id: this.variant.id,
-		// 			price: this.variant.price,
-		// 			stock: this.variant.stock,
-		// 		},
-		// 		qty: this.qty,
-		// 	};
-
-		// 	this.$store
-		// 		.dispatch('cart/addItem', {
-		// 			$nuxt: this.$nuxt,
-		// 			item: item,
-		// 			$store: this.$store,
-		// 		})
-		// 		.then(() => {
-		// 			this.$observer.showCart = true
-		// 		});
-
-		// 	this.$observer.showDialogInfo = false
-		// },
 	},
 
 	created() {

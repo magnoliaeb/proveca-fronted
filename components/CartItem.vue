@@ -1,6 +1,8 @@
 <template>
 	<v-row tag="li" class="py-3 py-lg-4 align-stretch" no-gutters>
-		<!-- <span v-show="true">{{ item }}</span> -->
+		
+		<span v-show="false">{{ item }}</span>
+
 		<v-col cols="9" sm="5" class="d-flex justify-space-between">
 			<v-row class="">
 				<v-col
@@ -12,7 +14,10 @@
 						class="mr-3"
 						:to="{
 							name: 'productos-id-slug',
-							params: { id: 10, slug: 'chocolate-savoy' },
+							params: {
+								id: item.product.id,
+								slug: item.product.slug
+							}
 						}"
 					>
 						<v-img
@@ -20,9 +25,9 @@
 							:height="heightImg"
 							:width="heightImg"
 							:min-width="heightImg"
-							:src="`https://picsum.photos/500/300?image=${8 * 5 + 10}`"
-							:lazy-src="`https://picsum.photos/10/6?image=${8 * 5 + 10}`"
-							:alt="'product-img'"
+							:src="image"
+							:lazy-src="image"
+							:alt="item.name"
 							aspect-ratio="1"
 							class="grey lighten-3"
 						>
@@ -42,10 +47,13 @@
 						class="d-none d-sm-block"
 						:to="{
 							name: 'productos-id-slug',
-							params: { id: 10, slug: 'chocolate-savoy' },
+							params: {
+								id: item.product.id,
+								slug: item.product.slug
+							}
 						}"
 					>
-						<h4 class="mb-3">Choclate savoy nestle 200gr</h4>
+						<h4 class="mb-3">{{ item.name }}</h4>
 					</nuxt-link>
 					<!-- movil -->
 					<div class="d-flex d-sm-none flex-column">
@@ -53,10 +61,13 @@
 							class="d-block"
 							:to="{
 								name: 'productos-id-slug',
-								params: { id: 10, slug: 'chocolate-savoy' },
+								params: {
+									id: item.product.id,
+									slug: item.product.slug
+								}
 							}"
 						>
-							<h4 class="">Choclate savoy nestle 200gr</h4>
+							<h4 class="">{{ item.name }}</h4>
 						</nuxt-link>
 						<div class="d-flex my-4">
 							<div class="group-input">
@@ -180,21 +191,13 @@
 </template>
 
 <script>
-// import CartItemMixin from '~/mixins/CartItemMixin';
+import CartItemMixin from '~/mixins/CartItemMixin'
 
 export default {
-	// mixins: [CartItemMixin],
-	props: {
-		item: {
-			type: Object,
-			default: {},
-		},
-	},
-	data() {
-		return {
-			qty: 15,
-		};
-	},
+	mixins: [
+		CartItemMixin
+	],
+
 	computed: {
 		heightImg() {
 			switch (this.$vuetify.breakpoint.name) {
@@ -210,13 +213,7 @@ export default {
 					return 90;
 			}
 		},
-	},
-	methods: {
-		dec() {},
-		updateQty() {},
-		inc() {},
-		deleteItem() {},
-	},
+	}
 };
 </script>
 

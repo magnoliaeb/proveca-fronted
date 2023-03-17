@@ -31,10 +31,10 @@
 		</v-row>
 		<ul>
 			<ItemCart
+				v-for="(item, index) in items"
+				:item="item"
 				class="list-complete-item"
 				:key="`key-${index}`"
-				v-for="(item, index) in 3"
-				:item="item"
 			/>
 		</ul>
 		<v-row class="mb-2">
@@ -43,12 +43,12 @@
 			</v-col>
 		</v-row>
 		<div class="">
-			<v-row class="justify-space-between align-center" v-if="true">
+			<v-row class="justify-space-between align-center" v-if="itemCount">
 				<v-col cols="auto">
 					<p>Cantidad de productos:</p>
 				</v-col>
 				<v-col cols="auto" class="text-right pt-0">
-					<p>30</p>
+					<p>{{ itemCount }}</p>
 				</v-col>
 			</v-row>
 			<v-row class="justify-space-between align-center" v-else>
@@ -57,21 +57,21 @@
 				</v-col>
 			</v-row>
 
-			<v-row class="justify-space-between align-center">
+			<!-- <v-row class="justify-space-between align-center">
 				<v-col cols="auto">
 					<p>Envío::</p>
 				</v-col>
 				<v-col cols="auto" class="text-right pt-0">
 					<p>{{ $util.getMoneyFormat(53.0) }}</p>
 				</v-col>
-			</v-row>
+			</v-row> -->
 
 			<v-row class="justify-space-between align-center">
 				<v-col cols="auto">
 					<h5>Total</h5>
 				</v-col>
 				<v-col cols="auto" class="text-right pt-0">
-					<h5>{{ $util.getMoneyFormat(350.23) }}</h5>
+					<h5>{{ formattedTotal }}</h5>
 				</v-col>
 			</v-row>
 			<v-row class="my-6">
@@ -79,30 +79,37 @@
 					<v-btn
 						class="button-primary"
 						@click.native="closeCart"
-						:to="{ name: 'carrito' }"
+						:to="'/carrito'"
 						block
 						depressed
-						>Hacer mi pedido</v-btn
 					>
-				</v-col>
+						Hacer mi pedido
+					</v-btn
+				></v-col>
 			</v-row>
 		</div>
 	</v-navigation-drawer>
 </template>
 
 <script>
+import CartMixin from '~/mixins/CartMixin'
+
 export default {
-	data() {
-		return {};
-	},
+	mixins: [
+    	CartMixin
+  	],
+
+	computed: {
+    	items() {
+      		return this.$store.getters["cart/getItems"]
+    	}
+  	},
 
 	methods: {
 		closeCart() {
 			this.$observer.showCart = false
 		},
-		logout() {
-			this.closeCart();
-		},
+		
 		clickOutside(event) {
 			if (event.target.id !== 'cart') {
 				this.closeCart();

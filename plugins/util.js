@@ -48,7 +48,9 @@ export default ({app}, inject) => {
 
 
         getVariantFormat(variant) {
-            return variant.config.map(c => c.values[0].name).join('/')
+            return variant
+                ? variant.config.map(c => c.values[0].name).join('/')
+                : null
         },
 
         getBase64(file) {

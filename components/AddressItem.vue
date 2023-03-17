@@ -91,13 +91,13 @@ export default {
 			this.$emit('selected', id);
 		},
 
-		deleteAddress(id) {
+		deleteAddress() {
 			this.isBusy = true;
 
 			this.$store
 				.dispatch('identity/deleteAddress', {
 					$nuxt: this.$nuxt,
-					id: id,
+					id: this.item.id,
 				})
 				.finally(() => (this.isBusy = false));
 		},

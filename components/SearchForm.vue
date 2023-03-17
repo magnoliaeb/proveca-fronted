@@ -1,11 +1,14 @@
 <template>
 	<div class="search-box px-3 py-3" elevation="0">
 		<div class="group">
-			<input
-				type="text"
-				v-model.trim="query"
-				placeholder="Busca aquí tus productos"
-			/>
+			<v-form @submit.prevent="submit">
+				<input
+					type="text"
+					v-model.trim="query"
+					placeholder="Busca aquí tus productos"
+				/>
+			</v-form>
+			
 			<div class="icon">
 				<img src="../assets/imgs/iconos/search.svg" alt="search-icon" />
 			</div>
@@ -18,7 +21,7 @@
 			>
 				<div class="search-card">
 					<v-row class="">
-						<v-col
+						<!-- <v-col
 							cols="12"
 							lg="5"
 							class="py-2 px-3 left-menu hidden-md-and-down"
@@ -36,7 +39,7 @@
 									</div>
 								</li>
 							</ul>
-						</v-col>
+						</v-col> -->
 						<v-col cols="12" lg="7" class="py-2 px-3">
 							<h3 class="py-2">Productos</h3>
 							<v-divider class="mb-4"></v-divider>
@@ -49,7 +52,7 @@
 									<nuxt-link
 										:to="{
 											name: 'productos-id-slug',
-											params: { id: 1, slug: 12 },
+											params: { id: product.id, slug: product.slug },
 										}"
 									>
 										<client-only>
@@ -57,12 +60,7 @@
 												:width="heightImg"
 												transition="scale-transition"
 												:height="heightImg"
-												:src="`https://picsum.photos/500/300?image=${
-													8 * 5 + 10
-												}`"
-												:lazy-src="`https://picsum.photos/10/6?image=${
-													8 * 5 + 10
-												}`"
+												:src="product.picture.url"
 												:alt="product.name"
 												aspect-ratio="1"
 												class="grey lighten-3 img mx-auto"
@@ -96,12 +94,12 @@
 										"
 									>
 										<h4>{{ product.name }}</h4>
-										<p class="price">
+										<!-- <p class="price">
 											{{ $util.getMoneyFormat(product.min_price) }}
 											<s v-if="product.has_discount">{{
 												$util.getMoneyFormat(product.price)
 											}}</s>
-										</p>
+										</p> -->
 									</div>
 								</v-col>
 							</v-row>
@@ -116,159 +114,89 @@
 <script>
 export default {
 	data() {
-		return {
-			query: '',
-			showDialog: false,
-			//   products: [],
-			//   categories: [],
-		};
-	},
+    	return {
+      		query: "",
+      		showDialog: false,
+      		isBusy: false,
+      		queued: false,
+      		products: []
+    	}
+  	},
 
 	watch: {
-		async query() {
-			this.showDialog = false;
-			if (this.query.length >= 3) {
-				// this.categories = this.allCategories.filter((category) => {
-				//   return (
-				//     category.name &&
-				//     category.name.toLowerCase().search(this.query.toLowerCase()) != -1
-				//   );
-				// });
-
-				// await this.$store.dispatch("products/_searchProducts", {
-				//   search: this.query,
-				// });
-				// this.products = this.$store.getters["products/getFoundProducts"];
-				// console.log(this.products);
-
-				this.showDialog = true;
-			}
-		},
-	},
+    	query() {
+      		this.search()
+    	}
+  	},
 
 	computed: {
-		categories() {
-			return [
-				{ name: 'Alimentos' },
-				{ name: 'Alimentos' },
-				{ name: 'Alimentos' },
-				{ name: 'Alimentos' },
-			];
-		},
-		products() {
-			return [
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: false,
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: true,
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: true,
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: false,
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: false,
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: false,
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: false,
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: false,
-				},
-				{
-					id: 1,
-					name: 'Nombre de producto',
-					price: 45,
-					price_without_discount: 50,
-					alias: '',
-					min_price: 10,
-					has_discount: false,
-				},
-			];
-		},
-		heightImg() {
-			switch (this.$vuetify.breakpoint.name) {
-				case 'xs':
-					return 60;
-				case 'sm':
-					return 60;
-				case 'md':
-					return 60;
-				case 'lg':
-					return 65;
-				case 'xl':
-					return 75;
-			}
-		},
-	},
+    	heightImg() {
+      		switch (this.$vuetify.breakpoint.name) {
+        		case "xs":
+          			return 70;
+        		case "sm":
+          			return 70;
+        		case "md":
+          			return 65;
+        		case "lg":
+          			return 65;
+        		case "xl":
+          			return 65;
+      		}
+    	},
+  	},
 
-	methods: {
+	  methods: {
+    	search() {
+      		if(! this.isBusy) {
+        		if (this.query.length >= 2) {
+          			this.isBusy = true
+          			this.showDialog = false
+
+          			this.$store
+            			.dispatch("products/_searchProducts", {
+              				search: this.query
+            			})
+            			.then(products => this.products = products)
+            			.finally(() => {
+              				this.isBusy = false
+
+              				if(this.queued) {
+                				this.queued = false
+                				this.search()
+              				}
+            			})
+
+          			this.showDialog = true
+        		}
+      		} else {
+        		this.queued = true
+      		}
+    	},
+
+    	submit() {
+      		this.$router.push({
+        		name: 'productos',
+        		query: {
+          			search: this.query
+        		}
+      		})
+
+      		this.clickOutside()
+    	},
+
 		clickOutside(event) {
-			this.showDialog = false;
-			this.query = '';
-			// console.log("Click externo. Evento: ", event);
-		},
-		redirecTo(name, params) {
-			this.$router.push({ name, params });
+      		this.showDialog = false
+      		this.query = ""
+    	},
 
-			this.showDialog = false;
-			this.query = '';
-		},
-	},
+    	redirecTo(name, params) {
+      		this.$router.push({ name, params });
+
+      		this.showDialog = false;
+      		this.query = ""
+    	}
+  	}
 };
 </script>
 

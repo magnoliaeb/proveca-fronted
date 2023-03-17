@@ -99,7 +99,7 @@
 						</div>
 						<p>
 							P. unit.
-							<span>{{ $util.getMoneyFormat(16.33) }}</span>
+							<span>{{ formattedUnitPrice }}</span>
 						</p>
 					</div>
 				</v-col>
@@ -107,7 +107,7 @@
 		</v-col>
 		<!-- movil -->
 		<v-col cols="3" class="d-flex d-sm-none flex-column justify-space-between">
-			<h6 class="text-right">{{ $util.getMoneyFormat(48.56) }}</h6>
+			<h6 class="text-right">{{ formattedTotal }}</h6>
 			<div class="d-flex justify-end">
 				<v-btn
 					fab
@@ -166,7 +166,7 @@
 			sm="2"
 			class="d-none d-sm-flex justify-center align-center"
 		>
-			<span>{{ $util.getMoneyFormat(16.33) }}</span>
+			<span>{{ formattedUnitPrice }}</span>
 		</v-col>
 		<!-- web -->
 
@@ -176,7 +176,7 @@
 			sm="3"
 			md="3"
 		>
-			<h6>{{ $util.getMoneyFormat(48.56) }}</h6>
+			<h6>{{ formattedTotal }}</h6>
 
 			<v-btn fab x-small depressed @click="deleteItem" :disabled="false">
 				<img

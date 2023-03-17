@@ -7,7 +7,7 @@
 				<v-col cols="12" lg="2" xl="2" class="d-none d-lg-block">
 					<FilterProducts />
 				</v-col>
-				<v-col cols="12" lg="10" xl="10" class="pa-0 pa-lg-3">
+				<v-col cols="12" lg="10" xl="10" class="pa-0">
 					<GridProducts :key="$observer.keys.GridProducts" />
 				</v-col>
 			</v-row>
@@ -36,7 +36,7 @@ export default {
 
 	components: { GridProducts, HeaderFilter, FilterProducts },
 
-	auth: false
+	auth: false,
 };
 </script>
 

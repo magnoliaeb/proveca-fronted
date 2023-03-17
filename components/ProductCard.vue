@@ -1,8 +1,5 @@
 <template>
-	<article
-		v-if="product"
-		class="py-2"
-	>
+	<article v-if="product" class="py-2">
 		<div class="img-content my-5">
 			<nuxt-link
 				:to="{
@@ -91,13 +88,15 @@ export default {
 
 	computed: {
 		picture() {
-			let picture = this.product.pictures.find(p => p.name == 'Principal')
+			let picture = this.product.pictures.find((p) => p.name == 'Principal');
 
-			return picture ? picture.url : `https://picsum.photos/500/300?image=${8 * 5 + 10}`
+			return picture
+				? picture.url
+				: `https://picsum.photos/500/300?image=${8 * 5 + 10}`;
 		},
 
 		variant() {
-			return this.product.variants[0]
+			return this.product.variants[0];
 		},
 
 		heightAndWidthImg() {
@@ -131,7 +130,7 @@ export default {
 		// },
 
 		openDialogInfo() {
-			this.$observer.openDialogInfo(this.product)
+			this.$observer.openDialogInfo(this.product);
 		},
 
 		showAlert() {

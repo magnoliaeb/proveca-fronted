@@ -1,14 +1,14 @@
 <template>
 	<div class="search-box px-3 py-3" elevation="0">
 		<div class="group">
-			<v-form @submit.prevent="submit">
+			<v-form @submit.prevent="submit" class="fill-height">
 				<input
 					type="text"
 					v-model.trim="query"
 					placeholder="Busca aquí tus productos"
 				/>
 			</v-form>
-			
+
 			<div class="icon">
 				<img src="../assets/imgs/iconos/search.svg" alt="search-icon" />
 			</div>
@@ -40,7 +40,7 @@
 								</li>
 							</ul>
 						</v-col> -->
-						<v-col cols="12" lg="7" class="py-2 px-3">
+						<v-col cols="12" lg="12" class="py-2 px-3">
 							<h3 class="py-2">Productos</h3>
 							<v-divider class="mb-4"></v-divider>
 							<v-row
@@ -114,89 +114,89 @@
 <script>
 export default {
 	data() {
-    	return {
-      		query: "",
-      		showDialog: false,
-      		isBusy: false,
-      		queued: false,
-      		products: []
-    	}
-  	},
+		return {
+			query: '',
+			showDialog: false,
+			isBusy: false,
+			queued: false,
+			products: [],
+		};
+	},
 
 	watch: {
-    	query() {
-      		this.search()
-    	}
-  	},
+		query() {
+			this.search();
+		},
+	},
 
 	computed: {
-    	heightImg() {
-      		switch (this.$vuetify.breakpoint.name) {
-        		case "xs":
-          			return 70;
-        		case "sm":
-          			return 70;
-        		case "md":
-          			return 65;
-        		case "lg":
-          			return 65;
-        		case "xl":
-          			return 65;
-      		}
-    	},
-  	},
+		heightImg() {
+			switch (this.$vuetify.breakpoint.name) {
+				case 'xs':
+					return 70;
+				case 'sm':
+					return 70;
+				case 'md':
+					return 65;
+				case 'lg':
+					return 65;
+				case 'xl':
+					return 65;
+			}
+		},
+	},
 
-	  methods: {
-    	search() {
-      		if(! this.isBusy) {
-        		if (this.query.length >= 2) {
-          			this.isBusy = true
-          			this.showDialog = false
+	methods: {
+		search() {
+			if (!this.isBusy) {
+				if (this.query.length >= 2) {
+					this.isBusy = true;
+					this.showDialog = false;
 
-          			this.$store
-            			.dispatch("products/_searchProducts", {
-              				search: this.query
-            			})
-            			.then(products => this.products = products)
-            			.finally(() => {
-              				this.isBusy = false
+					this.$store
+						.dispatch('products/_searchProducts', {
+							search: this.query,
+						})
+						.then((products) => (this.products = products))
+						.finally(() => {
+							this.isBusy = false;
 
-              				if(this.queued) {
-                				this.queued = false
-                				this.search()
-              				}
-            			})
+							if (this.queued) {
+								this.queued = false;
+								this.search();
+							}
+						});
 
-          			this.showDialog = true
-        		}
-      		} else {
-        		this.queued = true
-      		}
-    	},
+					this.showDialog = true;
+				}
+			} else {
+				this.queued = true;
+			}
+		},
 
-    	submit() {
-      		this.$router.push({
-        		name: 'productos',
-        		query: {
-          			search: this.query
-        		}
-      		})
+		submit() {
+			this.$router.push({
+				name: 'productos',
+				query: {
+					search: this.query,
+				},
+			});
 
-      		this.clickOutside()
-    	},
+			this.clickOutside();
+		},
 
 		clickOutside(event) {
-      		this.showDialog = false
-      		this.query = ""
-    	},
+			this.showDialog = false;
+			this.query = '';
+		},
 
-    	redirecTo(name, params) {
-      		this.$router.push({ name, params });
+		redirecTo(name, params) {
+			this.$router.push({ name, params });
 
-      		this.showDialog = false;
-      		this.query = ""
-    	}
-  	}
+			this.showDialog = false;
+			this.query = '';
+		},
+	},
 };
 </script>
 

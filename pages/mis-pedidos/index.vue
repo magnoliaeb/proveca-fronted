@@ -1,9 +1,7 @@
 <template>
-	<!-- <u-animate-container>
-		<div class="content py-16">
+	<!-- <div class="content py-16">
 			<OrdersHistory class="" />
-		</div>
-	</u-animate-container> -->
+		</div> -->
 
 	<div>
 		<div class="content py-16">

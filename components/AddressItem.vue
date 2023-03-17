@@ -19,7 +19,11 @@
 				</h3>
 				<p class="t0ext-text-left">{{ item.full }}</p>
 				<v-btn
-					:to="{ name: 'mi-perfil-editar-direccion-id', params: { id: item.id } }"
+					color="warning"
+					:to="{
+						name: 'mi-perfil-editar-direccion-id',
+						params: { id: item.id },
+					}"
 					class="d-md-none"
 					text
 					:loading="isBusy"
@@ -27,20 +31,40 @@
 				>
 					Editar
 				</v-btn>
+				<v-btn
+					class="d-md-none"
+					color="error"
+					@click="deleteAddress"
+					text
+					:loading="isBusy"
+				>
+					Eliminar
+				</v-btn>
+				<v-btn
+					class="d-none d-md-block"
+					:class="{ selected: item.selected }"
+					text
+				>
+					<v-icon class="" left>mdi-check</v-icon>
+					Dirección predeterminada
+				</v-btn>
 			</div>
 		</v-col>
 		<v-col cols="auto" md="auto" class="d-none d-md-block">
 			<div class="">
-				<v-btn class="" :class="{ selected: item.selected }" text>
-					<v-icon class="" left>mdi-check</v-icon>
-					Dirección predeterminada
-				</v-btn>
 				<v-btn
-					:to="{ name: 'mi-perfil-editar-direccion-id', params: { id: item.id } }"
+					color="warning"
+					:to="{
+						name: 'mi-perfil-editar-direccion-id',
+						params: { id: item.id },
+					}"
 					text
 					:loading="isBusy"
 				>
 					Editar
+				</v-btn>
+				<v-btn color="error" @click="deleteAddress" text :loading="isBusy">
+					Eliminar
 				</v-btn>
 			</div>
 		</v-col>

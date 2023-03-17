@@ -1,47 +1,44 @@
 <template>
-	<u-animate-container>
-		<div class="content py-16">
-			<div class="">
-				<v-row>
-					<v-col cols="12" class="text-center">
-						<h2>¡Tu pedido ha sido confirmado!</h2>
-						<h3>
-							Hemos enviado el resumen de tu pedido a tu correo electrónico
-						</h3>
-					</v-col>
-				</v-row>
-				<!-- <v-col
+	<div class="content py-16">
+		<div class="">
+			<v-row>
+				<v-col cols="12" class="text-center">
+					<h2>¡Tu pedido ha sido confirmado!</h2>
+					<h3>Hemos enviado el resumen de tu pedido a tu correo electrónico</h3>
+				</v-col>
+			</v-row>
+			<!-- <v-col
             v-if="gateway == 'paypal' && charge.status != 'completed'"
             cols="12"
             class="text-center text-danger font-weight-bold"
           >
             Seguimos validando su pago. Le mandaremos un correo electrónico cuando el proceso esté completo
           </v-col> -->
-				<div class="content-article">
-					<v-row class="justify-center">
-						<!-- <v-col cols="12" class="text-center">
+			<div class="content-article">
+				<v-row class="justify-center">
+					<!-- <v-col cols="12" class="text-center">
       <h2 class="mb-3">Estamos procesando su pago</h2>
       <h3>Un momento por favor.</h3>
     </v-col> -->
-						<v-col cols="12" sm="12">
-							<article class="pa-3 pa-sm-6 py-4">
-								<div class="py-2">
-									<h4 class="mb-5">Pago</h4>
+					<v-col cols="12" sm="12">
+						<article class="pa-3 pa-sm-6 py-4">
+							<div class="py-2">
+								<h4 class="mb-5">Pago</h4>
 
-									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
-										<p class="">Subtotal</p>
-										<span>{{ $util.getMoneyFormat(100) }}</span>
-									</div>
-									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
-										<p class="">Descuento</p>
-										<span>{{ $util.getMoneyFormat(20) }}</span>
-									</div>
-									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
-										<p class="">Envío</p>
-										<span>{{ $util.getMoneyFormat(0) }}</span>
-									</div>
+								<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
+									<p class="">Subtotal</p>
+									<span>{{ $util.getMoneyFormat(100) }}</span>
+								</div>
+								<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
+									<p class="">Descuento</p>
+									<span>{{ $util.getMoneyFormat(20) }}</span>
+								</div>
+								<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
+									<p class="">Envío</p>
+									<span>{{ $util.getMoneyFormat(0) }}</span>
+								</div>
 
-									<!-- <div
+								<!-- <div
                 v-for="(service, i) in order.services"
                 :key="i"
                 class="d-flex justify-space-between mb-5"
@@ -49,31 +46,93 @@
                 <p class="">{{ service.name }}</p>
                 <span>{{ $util.getMoneyFormat(35) }}</span>
               </div> -->
-									<div
-										class="d-flex justify-space-between card-total px-2 px-md-4 mb-4 py-2 py-md-4 my-3"
-									>
-										<h4>Total</h4>
-										<span>{{ $util.getMoneyFormat(2562) }}</span>
-									</div>
+								<div
+									class="d-flex justify-space-between card-total px-2 px-md-4 mb-4 py-2 py-md-4 my-3"
+								>
+									<h4>Total</h4>
+									<span>{{ $util.getMoneyFormat(2562) }}</span>
 								</div>
-								<div class="py-2">
-									<h4 class="mb-5">Resumen de compra</h4>
+							</div>
+							<div class="py-2">
+								<h4 class="mb-5">Resumen de compra</h4>
 
-									<v-row
-										class="flex justify-space-between py-3 d-md-none"
-										tag="li"
+								<v-row
+									class="flex justify-space-between py-3 d-md-none"
+									tag="li"
+								>
+									<v-col
+										cols="12"
+										md="auto"
+										class="flex-grow-0 d-flex justify-center justify-sm-start"
 									>
-										<v-col
-											cols="12"
-											md="auto"
-											class="flex-grow-0 d-flex justify-center justify-sm-start"
+										<nuxt-link
+											class="d-block"
+											:to="{ name: 'productos-id', params: { id: 1 } }"
 										>
-											<nuxt-link
-												class="d-block"
-												:to="{ name: 'productos-id', params: { id: 1 } }"
+											<v-img
+												:width="heightImg"
+												transition="scale-transition"
+												:height="heightImg"
+												:src="`https://picsum.photos/500/300?image=${
+													8 * 5 + 10
+												}`"
+												:lazy-src="`https://picsum.photos/10/6?image=${
+													8 * 5 + 10
+												}`"
+												:alt="'product.name'"
+												aspect-ratio="1"
+												class="grey lighten-3 scale"
 											>
+												<template v-slot:placeholder>
+													<v-row
+														class="fill-height ma-0"
+														align="center"
+														justify="center"
+													>
+														<v-progress-circular
+															:size="30"
+															:width="3"
+															indeterminate
+															color="primary"
+														></v-progress-circular>
+													</v-row>
+												</template>
+											</v-img>
+										</nuxt-link>
+									</v-col>
+									<v-col cols="auto" md="" class="text-left flex-grow-1">
+										<h3 class="mb-2">
+											{{ 'Coca Cola 600ml' }}
+										</h3>
+										<p class="">{{ '$ 20.00' }}</p>
+									</v-col>
+									<v-col cols="auto" md="auto" class="text-right d-md-block">
+										<span class="">
+											{{ $util.getMoneyFormat(345.0) }}
+										</span>
+										<small class="d-block my-3">{{ 3 }} pz</small>
+									</v-col>
+								</v-row>
+
+								<!-- table -->
+								<div class="d-none d-md-block">
+									<table class="">
+										<tr class="">
+											<th class="text-left">Productos</th>
+											<th>Cant</th>
+											<th class="hidden-md-and-up">Precio</th>
+											<th class="hidden-sm-and-down">P. Unitario</th>
+											<th>Total</th>
+										</tr>
+										<tr
+											class=""
+											v-for="(item, index) in [1, 2, 3, 4]"
+											:key="index"
+										>
+											<td class="d-flex align-center">
 												<v-img
 													:width="heightImg"
+													:max-width="heightImg"
 													transition="scale-transition"
 													:height="heightImg"
 													:src="`https://picsum.photos/500/300?image=${
@@ -84,7 +143,7 @@
 													}`"
 													:alt="'product.name'"
 													aspect-ratio="1"
-													class="grey lighten-3 scale"
+													class="grey lighten-3 img mr-3 scale"
 												>
 													<template v-slot:placeholder>
 														<v-row
@@ -101,130 +160,67 @@
 														</v-row>
 													</template>
 												</v-img>
-											</nuxt-link>
-										</v-col>
-										<v-col cols="auto" md="" class="text-left flex-grow-1">
-											<h3 class="mb-2">
-												{{ 'Coca Cola 600ml' }}
-											</h3>
-											<p class="">{{ '$ 20.00' }}</p>
-										</v-col>
-										<v-col cols="auto" md="auto" class="text-right d-md-block">
-											<span class="">
-												{{ $util.getMoneyFormat(345.0) }}
-											</span>
-											<small class="d-block my-3">{{ 3 }} pz</small>
-										</v-col>
-									</v-row>
-
-									<!-- table -->
-									<div class="d-none d-md-block">
-										<table class="">
-											<tr class="">
-												<th class="text-left">Productos</th>
-												<th>Cant</th>
-												<th class="hidden-md-and-up">Precio</th>
-												<th class="hidden-sm-and-down">P. Unitario</th>
-												<th>Total</th>
-											</tr>
-											<tr
-												class=""
-												v-for="(item, index) in [1, 2, 3, 4]"
-												:key="index"
-											>
-												<td class="d-flex align-center">
-													<v-img
-														:width="heightImg"
-														:max-width="heightImg"
-														transition="scale-transition"
-														:height="heightImg"
-														:src="`https://picsum.photos/500/300?image=${
-															8 * 5 + 10
-														}`"
-														:lazy-src="`https://picsum.photos/10/6?image=${
-															8 * 5 + 10
-														}`"
-														:alt="'product.name'"
-														aspect-ratio="1"
-														class="grey lighten-3 img mr-3 scale"
-													>
-														<template v-slot:placeholder>
-															<v-row
-																class="fill-height ma-0"
-																align="center"
-																justify="center"
-															>
-																<v-progress-circular
-																	:size="30"
-																	:width="3"
-																	indeterminate
-																	color="primary"
-																></v-progress-circular>
-															</v-row>
-														</template>
-													</v-img>
-													<span>{{ 'Coca Cola 600ml' }}</span>
-												</td>
-												<td class="text-center">{{ 15 }}</td>
-												<td class="text-center">
-													{{ $util.getMoneyFormat(30) }}
-												</td>
-												<td class="text-center">
-													{{ $util.getMoneyFormat(3265) }}
-												</td>
-											</tr>
-										</table>
-									</div>
+												<span>{{ 'Coca Cola 600ml' }}</span>
+											</td>
+											<td class="text-center">{{ 15 }}</td>
+											<td class="text-center">
+												{{ $util.getMoneyFormat(30) }}
+											</td>
+											<td class="text-center">
+												{{ $util.getMoneyFormat(3265) }}
+											</td>
+										</tr>
+									</table>
 								</div>
+							</div>
 
-								<div class="py-2">
-									<h4 class="mb-5">Dirección de envío</h4>
+							<div class="py-2">
+								<h4 class="mb-5">Dirección de envío</h4>
 
-									<div class="my-2 mx-1 mx-sm-3">
-										<p class="">
-											Claudia Espinosa Monrroy Correo: clau.esmo@gmail.com
-											<br />Donato Guerra #23 Colonia Centro C.P. 44210
-											Guadalajara, Jalisco, México.
-										</p>
-									</div>
+								<div class="my-2 mx-1 mx-sm-3">
+									<p class="">
+										Claudia Espinosa Monrroy Correo: clau.esmo@gmail.com
+										<br />Donato Guerra #23 Colonia Centro C.P. 44210
+										Guadalajara, Jalisco, México.
+									</p>
 								</div>
+							</div>
 
-								<div class="py-2">
-									<h4 class="mb-5">Método de Pago</h4>
+							<div class="py-2">
+								<h4 class="mb-5">Método de Pago</h4>
 
-									<div class="my-2 mx-1 mx-sm-3">
-										<p class="">Número de tarjeta: **** **** **** 2475</p>
-									</div>
+								<div class="my-2 mx-1 mx-sm-3">
+									<p class="">Número de tarjeta: **** **** **** 2475</p>
 								</div>
-							</article>
-						</v-col>
-					</v-row>
-					<v-row>
-						<v-col cols="12" md="6">
-							<v-btn
-								@click="print"
-								:loading="isLoading"
-								:disabled="isDisabled && invalid"
-								class="button-primary"
-								block
-								depressed
-								>Imprimir resumen</v-btn
-							>
-						</v-col>
-						<v-col cols="12" md="6">
-							<v-btn
-								class="button-primary"
-								block
-								:to="{ name: 'productos' }"
-								depressed
-								>Ver más productos</v-btn
-							>
-						</v-col>
-					</v-row>
-				</div>
+							</div>
+						</article>
+					</v-col>
+				</v-row>
+				<v-row>
+					<v-col cols="12" md="6">
+						<v-btn
+							@click="print"
+							:loading="isLoading"
+							:disabled="isDisabled && invalid"
+							class="button-primary"
+							block
+							depressed
+							>Imprimir resumen</v-btn
+						>
+					</v-col>
+					<v-col cols="12" md="6">
+						<v-btn
+							class="button-primary"
+							block
+							:to="{ name: 'productos' }"
+							depressed
+							>Ver más productos</v-btn
+						>
+					</v-col>
+				</v-row>
 			</div>
 		</div>
-	</u-animate-container>
+	</div>
 </template>
 
 <script>

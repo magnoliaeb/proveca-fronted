@@ -1,46 +1,23 @@
 <template>
 	<div class="nav-bottom">
 		<div class="content">
-			<ul
-				color="primary"
-				class="d-flex align-items-center"
-			>
+			<v-tabs v-model="tab" align-with-title color="primary" centered grow>
 				<!-- <v-tabs-slider color="primary"></v-tabs-slider> -->
 
-				<li
-					class="flex-grow-1 d-flex justify-center align-center"
-				>
-					<nuxt-link
-						:to="{ name: 'productos'}"
-					>
-						<img
-							class="mr-2"
-							alt="user"
-							:src="require(`../assets/imgs/iconos/user.svg`)"
-						/>
-						<span>
-							Todas
-						</span>
-					</nuxt-link>
-				</li>
-
-				<li
+				<v-tab
+					:to="{ name: 'productos', query: { category_id: item.id } }"
 					v-for="(item, index) in categories"
 					:key="index"
-					class="flex-grow-1 d-flex justify-center align-center"
+					class="d-flex align-center"
 				>
-					<nuxt-link
-						:to="{ name: 'productos', query: { category_id: item.id } }"
-					>
-						<img
-							class="mr-2"
-							alt="user"
-							:src="require(`../assets/imgs/iconos/user.svg`)"
-						/>
-						<span>
-							{{ item.name }}
-						</span>
-					</nuxt-link>
+					<img
+						class="mr-2"
+						:alt="item.name"
+						:src="require(`../assets/imgs/iconos/user.svg`)"
+					/>
+					<span>
+						{{ item.name }}
+					</span>
 					<!-- <v-menu bottom left>
 						<template v-slot:activator="{ on, attrs }">
 							<v-btn
@@ -52,21 +29,26 @@
 								{{ item.title }}
 							</v-btn>
 						</template>
-
 						<v-list class="grey lighten-3">
 							<v-list-item v-for="item in 5" :key="item" @click="addItem(item)">
 								{{ item }}
 							</v-list-item>
 						</v-list>
 					</v-menu> -->
-				</li>
-			</ul>
+				</v-tab>
+			</v-tabs>
+			<
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
+	data() {
+		return {
+			tab: null,
+		};
+	},
 	computed: {
 		categories() {
 			return this.$store.getters['products/getCategories'];

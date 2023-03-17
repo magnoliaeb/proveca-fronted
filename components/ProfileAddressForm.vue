@@ -175,47 +175,111 @@
 </template>
 
 <script>
-import { ValidationProvider, ValidationObserver } from 'vee-validate';
+import { ValidationProvider, ValidationObserver } from "vee-validate";
 
 export default {
-	components: {
-		ValidationProvider,
-		ValidationObserver,
-	},
-	data() {
-		return {
-			isDisabled: false,
-			isLoading: false,
-			states: [],
-			form: {},
-		};
-	},
+  components: {
+    ValidationProvider,
+    ValidationObserver,
+  },
+  data() {
+    return {
+      isDisabled: false,
+      isLoading: false,
+      states: [],
+      form: {}
+    }
+  },
 
-	computed: {
-		address() {
-			return [];
-		},
+  computed: {
+    address() {
+      return this.$store.state.identity.addresses.find(
+        a => a.id == this.$util.getSlug()
+      )
+    },
 
-		countries() {
-			return [];
-		},
-	},
+    countries() {
+      return this.$store.getters["identity/getCountries"];
+    }
+  },
 
-	methods: {
-		async loadStates() {},
+  methods: {
+    async loadStates() {
+      this.states = await this.$store.dispatch('identity/loadStates', this.form.country_id)
+    },
 
-		async sendForm() {},
+    async sendForm() {
+      this.isDisabled = true;
+      if (await this.$refs.observer.validate()) {
+        try {
+          this.isLoading = true
+          if (this.address) {
+            await this.$store.dispatch("identity/updateAddress", {
+              $nuxt: this.$nuxt,
+              id: this.address.id,
+              data: this.form,
+            })
+            .then(() => this.$router.back())
+            .finally(() => this.isLoading = false)
+          } else {
+            await this.create()
+          }
 
-		create() {},
+          this.isDisabled = false;
+        } catch (err) {
+          this.$nuxt.$emit("error-notify", "Error al guardar la dirección.");
+        }
+      }
+    },
 
-		clear() {
-			this.form = {};
-			this.$refs.observer.reset();
-		},
-	},
+    create() {
+      this.$store
+        .dispatch("identity/addAddress", {
+          $nuxt: this.$nuxt,
+          data: this.form,
+        })
+        .then(address => {
+          this.clear()
 
-	async mounted() {},
-};
+          this.$store.dispatch("cart/setShippingAddress", {
+            $nuxt: this.$nuxt,
+            address_id: address.id,
+            dontEmit: true
+          })
+
+          this.$router.back()
+        })
+        .finally(() => this.isLoading = false)
+    },
+
+    clear() {
+      this.form = {}
+      this.$refs.observer.reset();
+    }
+  },
+
+  async mounted() {
+    this.clear()
+    if (this.address) {
+      try {
+        this.form.type = this.address.type;
+        // this.form.vat = this.address.vat;
+        this.form.name = this.address.name;
+        this.form.street = this.address.street;
+        this.form.street2 = this.address.street2;
+        this.form.country_id = this.address.country_id[0];
+        this.states = await this.$axios.get(
+          `/catalog/country/${this.form.country_id}`
+        );
+        this.form.state_id = this.address.state_id[0];
+        this.form.city = this.address.city;
+        this.form.zip = this.address.zip;
+      } catch (e) {
+        this.goBack(-1)
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

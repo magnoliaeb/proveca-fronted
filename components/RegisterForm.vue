@@ -181,7 +181,7 @@ export default {
 			} else {
 				Object.values(this.$refs).forEach((ref) => {
 					if (ref.hasError) ref.focus();
-				});
+				})
 			}
 		},
 

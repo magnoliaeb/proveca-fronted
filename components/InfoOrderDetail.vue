@@ -27,7 +27,7 @@
 			<v-col cols="12">
 				<div class="d-flex justify-space-between align-center">
 					<h2 class="mb-0 mb-3 text-center text-md-left title-primary">
-						Pedido {{ '45265895' }}
+						Pedido {{ order.display_name }}
 					</h2>
 					<!-- <p class="hidden-sm-and-down">
               Realizado el {{ $util.getFormattedDate(order.date_order) }}
@@ -45,11 +45,10 @@
 
 		<v-row class="justify-space-between">
 			<v-col cols="12" md="12">
-				<h4 class="mb-0 mb-3">{{ 'Juan Pérez' }}</h4>
+				<h4 class="mb-0 mb-3">{{ clientName }}</h4>
 
 				<p>
-					Entrega: 15 de Julio 2021
-					{{ '15 de Julio 2021' }}
+					Entrega: {{ shippingAddress.full }} {{ computedOrder.shipping_label }}
 				</p>
 				<p>Método de Pago: MasterCard **** **** **** 2345</p>
 			</v-col>
@@ -85,30 +84,29 @@
 </template>
 
 <script>
+import OrderMixin from '~/mixins/OrderMixin'
 import BtnGoBack from './BtnGoBack.vue';
 
 export default {
-	props: ['order'],
-	data() {
-		return {
-			links: [
+	mixins: [
+    	OrderMixin
+  	],
+
+	computed: {
+		links() {
+			return [
 				{
 					text: 'Mis Pedidos  ',
 					disabled: false,
-					href: '/historial-de-pedidos',
+					href: '/mis-pedidos',
 				},
 				{
-					text: `Pedido 1526458`,
-					disabled: false,
-					href: '/historial-de-pedidos/1',
-				},
-			],
-		};
-	},
-	// created() {
-	//   console.log(this.order);
-	// },
-	computed: {
+					text: this.order ? `Pedido ${this.order.display_name}` : null,
+					disabled: true
+				}
+			]
+		},
+
 		clientName() {
 			return this._.get(this.order, 'partner_id.1');
 		},

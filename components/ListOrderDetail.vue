@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<OrderItem
-			v-for="(item, index) in [1, 2, 3, 4]"
+			v-for="(item, index) in items"
 			:key="index"
 			:item="{ ...item, index }"
 		/>
@@ -9,11 +9,23 @@
 </template>
 
 <script>
-import OrderItem from './OrderItem.vue';
-export default {
-	components: { OrderItem },
+import OrderMixin from '~/mixins/OrderMixin'
+import OrderItem from './OrderItem.vue'
 
-	props: ['order'],
+export default {
+	mixins: [
+    	OrderMixin
+  	],
+
+	components: {
+		OrderItem
+	},
+
+	computed: {
+		items() {
+			return this.order.items
+		}
+	}
 };
 </script>
 

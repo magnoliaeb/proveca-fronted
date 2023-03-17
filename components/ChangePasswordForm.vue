@@ -99,51 +99,53 @@
 </template>
 
 <script>
-import { ValidationProvider, ValidationObserver } from 'vee-validate';
+	import { ValidationProvider, ValidationObserver } from "vee-validate";
 
-export default {
-	components: {
-		ValidationProvider,
-		ValidationObserver,
-	},
-	data() {
-		return {
-			isDisabled: false,
-			isLoading: false,
-			form: {
-				currentPassword: null,
-				newPassword: null,
-				confirmNewPassword: null,
+	export default {
+  		components: {
+    		ValidationProvider,
+    		ValidationObserver
+  		},
+  
+		data() {
+			return {
+      			isDisabled: false,
+      			isLoading: false,
+      			form: {
+        			currentPassword: null,
+        			newPassword: null,
+        			confirmNewPassword: null
+      			}
+    		}
+  		},
+
+  		methods: {
+    		async senfForm() {
+      			if (await this.$refs.observer.validate()) {
+        			this.isDisabled = true
+        			this.isLoading = true
+
+        			await this.$store
+          				.dispatch("identity/changePassword", {
+            				$nuxt: this.$nuxt,
+            				data: {
+              					old_password: this.form.currentPassword,
+              					new_password: this.form.newPassword
+            				},
+          				})
+          				.finally(() => this.clear())
+
+        			this.isLoading = false
+        			this.isDisabled = false
+      			}
 			},
-		};
-	},
-	methods: {
-		async senfForm() {
-			if (await this.$refs.observer.validate()) {
-				this.isDisabled = true;
-				this.isLoading = true;
 
-				await this.$store
-					.dispatch('identity/changePassword', {
-						$nuxt: this.$nuxt,
-						data: {
-							old_password: this.form.currentPassword,
-							new_password: this.form.newPassword,
-						},
-					})
-					.finally(() => this.clear());
-
-				this.isLoading = false;
-				this.isDisabled = false;
-			}
-		},
-
-		clear() {
-			this.form = {};
-			this.$refs.observer.reset();
-		},
-	},
-};
+    		clear() {
+      			this.form = {}
+      			this.$refs.observer.reset()
+    		}
+  		}
+	}
 </script>
 
 <style lang="scss" scoped>

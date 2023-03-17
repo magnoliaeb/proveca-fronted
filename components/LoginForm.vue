@@ -141,15 +141,15 @@ export default {
 
 						if (cart != null && cart.items.length != 0) {
 							if (this.$route.name != 'carrito') {
-								this.$router.push('/carrito');
+								window.location.href = '/carrito'
 							} else {
-								this.$router.push('/');
+								window.location.href = '/'
 							}
 						} else {
 							if (this.$route.name != 'index') {
-								this.$router.push('/');
+								window.location.href = '/'
 							} else {
-								this.$router.push('/productos');
+								window.location.href = '/productos'
 							}
 						}
 					})
@@ -172,15 +172,17 @@ export default {
 				}
 			}
 		},
+
 		clear() {
 			this.form.email = '';
 			this.form.password = '';
 			this.$refs.observer.reset();
 		},
+
 		closeSiderLogin() {
 			this.$observer.showLogin = false
-		},
-	},
+		}
+	}
 };
 </script>
 

@@ -3,9 +3,9 @@
 		<v-row class="justify-space-between">
 			<v-col cols="12" md="6" class="">
 				<h2 class="mb-6 text-left title-primary">Mi perfil</h2>
-				<h3 class="mb-4 text-left">Carlos Hernández Quezada</h3>
-				<p class="mb-4">carlos.herque@gmail.com</p>
-				<p class="mb-4">Tel. (33) 2342 3790</p>
+				<h3 class="mb-4 text-left">{{ $auth.user.name }}</h3>
+				<p class="mb-4">{{ $auth.user.email }}</p>
+				<p class="mb-4">Tel. {{ $auth.user.phone }}</p>
 			</v-col>
 			<v-col cols="12" md="" class="pa-0">
 				<v-row class="">
@@ -26,7 +26,13 @@
 						>
 					</v-col>
 					<v-col cols="12" class="d-flex justify-center justify-md-end">
-						<v-btn depressed class="button-danger">Cerrar sesión</v-btn>
+						<v-btn
+							depressed
+							class="button-danger"
+							@click="logout"
+						>
+							Cerrar sesión
+						</v-btn>
 					</v-col>
 				</v-row>
 			</v-col>
@@ -36,11 +42,17 @@
 
 <script>
 export default {
-	//   computed: {
-	//     profile() {
-	//       return this.$auth.user;
-	//     },
-	//   },
+	methods: {
+	    logout() {
+			this.$auth.logout().then((res) => {
+        		this.$auth.$storage.setUniversal("token", null);
+
+        		if (process.client) {
+          			window.location.href = "/"
+        		}
+      		})
+	    }
+	}
 };
 </script>
 

@@ -34,12 +34,12 @@
 				<v-col cols="12">
 					<v-list>
 						<v-list-item
+							v-for="(item, index) in items"
+							:key="index"
 							@click.native="closeProfile"
 							class="mb-3"
 							color="primary"
 							:to="item.to"
-							v-for="(item, index) in items"
-							:key="index"
 						>
 							<v-list-item-avatar>
 								<!-- <v-avatar size="40" color="primary" tile alt="John"></v-avatar> -->
@@ -94,16 +94,24 @@ export default {
 		closeProfile() {
 			this.$observer.showProfile = false
 		},
+
 		logout() {
-			this.closeProfile();
+			this.$auth.logout().then((res) => {
+        		this.$auth.$storage.setUniversal("token", null);
+
+        		if (process.client) {
+          			window.location.href = "/"
+        		}
+      		})
 		},
+
 		clickOutside(event) {
 			if (event.target.id !== 'login') {
 				this.closeProfile();
 			}
-		},
-	},
-};
+		}
+	}
+}
 </script>
 
 <style lang="scss" scoped>

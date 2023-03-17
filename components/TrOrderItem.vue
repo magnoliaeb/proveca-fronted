@@ -3,36 +3,30 @@
 		<v-row class="align-center justify-space-between">
 			<v-col cols="auto" sm="auto" md="2" class="d-flex">
 				<p class="text-left">
-					<span> 2353685</span>
+					<span>{{ computedOrder.display_name }}</span>
 				</p>
 			</v-col>
 			<v-col cols="auto" sm="auto" md="1" class="d-flex">
 				<p class="text-left">
-					<span>{{ $util.getMoneyFormat(345.0) }}</span>
+					<span>{{ formattedTotal }}</span>
 				</p>
 			</v-col>
 
 			<v-col cols="12" md="3" class="d-flex">
-				<p>
-					Entregado al domicilio:
-					{{ 'Entregado en: Donato Guerra #23' }}
-				</p>
+				<p>{{ shippingAddress.full }}</p>
 			</v-col>
 
 			<v-col cols="12" md="2" class="d-flex">
-				<p>3 Productos</p>
-			</v-col>
-			<v-col cols="12" md="2" class="d-flex">
-				<p>{{ '15 de Enero 2021' }}</p>
+				<p>{{ $util.getFormattedDate(computedOrder.date_order, 2) }}</p>
 			</v-col>
 
 			<v-col cols="12" md="2" class="d-flex">
 				<v-btn
 					class="button-primary"
 					depressed
-					:to="{ name: 'historial-de-pedidos-id', params: { id: 1 } }"
+					:to="{ name: 'mis-pedidos-id', params: { id: this.computedOrder.id } }"
 				>
-					Pagar
+					Ver pedido
 				</v-btn>
 			</v-col>
 
@@ -44,19 +38,14 @@
 </template>
 
 <script>
+import OrderMixin from '~/mixins/OrderMixin'
+
 export default {
-	// props: {
-	// 	order: {
-	// 		type: Object,
-	// 		default: {},
-	// 	},
-	// },
+	mixins: [
+    	OrderMixin
+  	],
 
 	computed: {
-		addresses() {
-			// return this.$store.getters['identity/getAddresses'];
-		},
-
 		selectedBg() {
 			// switch (this.order.payment_status) {
 			switch (true) {
@@ -74,15 +63,8 @@ export default {
 					return 'bg-gray';
 					break;
 			}
-		},
-
-		shippingAddress() {
-			// return this.addresses.find(
-			// 	(address) =>
-			// 		address.id == this._.get(this.order, 'partner_shipping_id.0')
-			// );
-		},
-	},
+		}
+	}
 };
 </script>
 

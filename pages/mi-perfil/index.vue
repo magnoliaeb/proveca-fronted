@@ -14,7 +14,7 @@ import MyAddresses from '../../components/MyAddresses.vue';
 export default {
 	components: { InfoUser, MyAddresses },
 	head: {
-		title: 'Mis perfil',
+		title: 'Mi perfil',
 	},
 };
 </script>

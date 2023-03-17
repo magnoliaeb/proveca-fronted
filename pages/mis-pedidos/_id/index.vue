@@ -1,12 +1,13 @@
 <template>
-	<u-animate-container>
-		<div class="content py-16">
-			<InfoOrderDetail :order="order" />
-			<ListOrderDetail :order="order" class="mt-md-4" />
+	<div
+		v-if="order"
+		class="content py-16"
+	>
+		<InfoOrderDetail :order="order" />
+		<ListOrderDetail :order="order" class="mt-md-4" />
 
-			<SubtotalOrderDetail :order="order" />
-		</div>
-	</u-animate-container>
+		<SubtotalOrderDetail :order="order" />
+	</div>
 </template>
 
 <script>
@@ -19,19 +20,20 @@ export default {
 	},
 	components: { InfoOrderDetail, ListOrderDetail, SubtotalOrderDetail },
 
-	async fetch() {
-		// await this.$store.dispatch('orders/getOrder', {
-		// 	$nuxt: this.$nuxt,
-		// 	order_id: this.$route.params.id,
-		// });
-	},
-
 	computed: {
 		order() {
-			return null;
-			// return this.$store.getters['orders/getOrder'];
+			return this.$store.getters["orders/getOrder"]
 		},
 	},
+
+	created() {
+    	this.isLoading = true;
+
+    	this.$store
+      		.dispatch("orders/getOrder", {
+        		order_id: this.$route.params.id,
+      		})
+  	}
 };
 </script>
 

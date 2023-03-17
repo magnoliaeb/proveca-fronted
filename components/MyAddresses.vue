@@ -49,35 +49,18 @@ export default {
 		onSeleted(id) {
 			// dirreccin seleccionada
 			console.log(id);
-		},
+		}
 	},
+
 	computed: {
 		addresses() {
-			return [
-				{
-					id: 1,
-					name: 'Casa',
-					selected: true,
-					full: 'Donato Guerra #234 Int.22 Col. Jardines del Prado Jalisco México',
-				},
-				{
-					id: 2,
-					name: 'Casa',
-					selected: false,
-					full: 'Donato Guerra #234 Int.22 Col. Jardines del Prado Jalisco México',
-				},
-				{
-					id: 3,
-					name: 'Casa',
-					selected: false,
-					full: 'Donato Guerra #234 Int.22 Col. Jardines del Prado Jalisco México',
-				},
-			];
-		},
+      		return this.$store.getters["identity/getAddresses"];
+    	},
+    	
 		addressesEmpty() {
-			return this.addresses.length <= 0;
-		},
-	},
+      		return this.addresses.length <= 0
+    	}
+	}
 };
 </script>
 

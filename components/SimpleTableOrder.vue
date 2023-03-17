@@ -5,7 +5,6 @@
 			<v-col cols="12" md="2"> <span>No. de Pedido</span> </v-col>
 			<v-col cols="12" md="1"> <span>Cantidad</span> </v-col>
 			<v-col cols="12" md="3"> <span>Domicilio de entrega</span> </v-col>
-			<v-col cols="12" md="2"> <span>Cant. Producto</span> </v-col>
 			<v-col cols="12" md="2"> <span>Fecha de pedido</span> </v-col>
 			<v-col cols="12" md="2" class=""> </v-col>
 		</v-row>

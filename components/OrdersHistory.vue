@@ -43,19 +43,20 @@ export default {
 			text: 'Aún no haz realizado ningún pedido, aquí podrás ver el historial de tus pedidos.',
 		};
 	},
-	async fetch() {
-		// await this.$store.dispatch('orders/loadOrders');
-	},
 
 	computed: {
 		orders() {
-			// return this.$store.getters['orders/getOrders'];
-			return [1, 2, 3];
+			return this.$store.getters["orders/getOrders"]
 		},
+
 		ordersEmpty() {
 			return this.orders.length <= 0;
-		},
+		}
 	},
+
+	created() {
+		this.$store.dispatch("orders/loadOrders")
+	}
 };
 </script>
 

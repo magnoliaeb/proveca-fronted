@@ -7,7 +7,13 @@
 		>
 			<nuxt-link
 				class="d-block"
-				:to="{ name: 'productos-id', params: { id: 1 } }"
+				:to="{
+					name: 'productos-id-slug',
+					params: {
+						id: item.product.id,
+						slug: item.product.slug
+					}
+				}"
 			>
 				<v-img
 					:width="heightImg"
@@ -34,20 +40,31 @@
 		</v-col>
 		<v-col cols="auto" md="" class="text-left flex-grow-1">
 			<h3 class="mb-2">
-				{{ 'Coca Cola 600ml' }}
+				{{ item.product.name }}
 			</h3>
-			<p class="">{{ '$ 20.00' }}</p>
+			<p class="">{{ formattedSubtotal }}</p>
 			<div class="d-none d-md-block">
-				<v-btn tag="button" depressed to="/productos" class="button-primary"
-					>Comprar de nuevo</v-btn
+				<v-btn
+					tag="button"
+					depressed
+					:to="{
+						name: 'productos-id-slug',
+						params: {
+							id: item.product.id,
+							slug: item.product.slug
+						}
+					}"
+					class="button-primary"
 				>
+					Comprar de nuevo
+				</v-btn>
 			</div>
 		</v-col>
 		<v-col cols="auto" md="auto" class="text-right d-md-block">
 			<span class="">
-				{{ $util.getMoneyFormat(345.0) }}
+				{{ formattedTotal }}
 			</span>
-			<small class="d-block my-3">{{ 3 }} pz</small>
+			<small class="d-block my-3">{{ item.product_uom_qty }} pz</small>
 		</v-col>
 		<v-col cols="12" class="d-flex d-md-none">
 			<v-btn tag="button" depressed to="/productos" class="button-primary"
@@ -58,13 +75,13 @@
 </template>
 
 <script>
+import OrderItemMixin from '~/mixins/OrderItemMixin'
+
 export default {
-	props: {
-		item: {
-			type: Object,
-			default: {},
-		},
-	},
+	mixins: [
+    	OrderItemMixin
+  	],
+
 	computed: {
 		heightImg() {
 			switch (this.$vuetify.breakpoint.name) {

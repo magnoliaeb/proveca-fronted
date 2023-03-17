@@ -11,7 +11,15 @@
 					class="d-flex li justify-space-between align-center"
 				>
 					<p class="mb-0">Subtotal</p>
-					<span>{{ $util.getMoneyFormat(25.23) }}</span>
+					<span>{{ formattedSubtotal }}</span>
+				</v-col>
+				<v-col
+					tag="li"
+					cols="12"
+					class="d-flex li justify-space-between align-center"
+				>
+					<p class="mb-0">Impuestos</p>
+					<span>{{ formattedTax }}</span>
 				</v-col>
 				<v-col
 					tag="li"
@@ -19,23 +27,27 @@
 					class="d-flex li justify-space-between align-center"
 				>
 					<p class="mb-0">Descuento</p>
-					<span>{{ $util.getMoneyFormat(23) }}</span>
+					<span>{{ formattedDiscount }}</span>
 				</v-col>
+
 				<v-col
+					v-for="(service, i) in computedOrder.services"
+          			:key="i"
 					tag="li"
 					cols="12"
-					class="d-flex justify-space-between align-center"
+					class="d-flex li justify-space-between align-center"
 				>
-					<p class="mb-0">Envio</p>
-					<span>{{ $util.getMoneyFormat(0) }}</span>
+					<p class="mb-0">{{ service.name }}</p>
+					<span>{{ $util.getMoneyFormat(service.price_total) }}</span>
 				</v-col>
+				
 				<v-col cols="12" class="pt-0 px-0">
 					<v-divider style="background-color: #2cafe5"></v-divider>
 				</v-col>
 
 				<v-col cols="12" class="d-flex justify-space-between align-center">
 					<p class="total">Total</p>
-					<span class="total">{{ $util.getMoneyFormat(2345) }}</span>
+					<span class="total">{{ formattedTotal }}</span>
 				</v-col>
 				<!-- <v-col cols="12" class="d-flex justify-end mt-8 px-0">
 					<v-btn
@@ -53,54 +65,11 @@
 </template>
 
 <script>
+import OrderMixin from '~/mixins/OrderMixin'
 export default {
-	props: ['order'],
-
-	data() {
-		return {
-			isLoading: false,
-		};
-	},
-
-	computed: {
-		discount() {
-			return (
-				this.order.amount_undiscounted -
-				this.order.amount_total +
-				this.order.amount_tax
-			);
-		},
-
-		items() {
-			return this.order.items.filter((i) => i.product);
-		},
-
-		itemsToAdd() {
-			return this.$util.clone(this.items).map((item) => {
-				item.variant = {
-					id: item.product_product_id,
-					price: item.price_unit,
-				};
-
-				item.qty = 1;
-
-				return item;
-			});
-		},
-	},
-
-	methods: {
-		add() {
-			this.$store
-				.dispatch('cart/addItems', {
-					$nuxt: this.$nuxt,
-					items: this.itemsToAdd,
-				})
-				.then((response) => {
-					this.$nuxt.$emit('success-notify', 'Artículos agregados.');
-				});
-		},
-	},
+	mixins: [
+    	OrderMixin
+  	]
 };
 </script>
 

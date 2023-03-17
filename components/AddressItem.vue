@@ -19,7 +19,7 @@
 				</h3>
 				<p class="t0ext-text-left">{{ item.full }}</p>
 				<v-btn
-					:to="{ name: 'mi-perfil-editar-direccion-id', params: { id: 1 } }"
+					:to="{ name: 'mi-perfil-editar-direccion-id', params: { id: item.id } }"
 					class="d-md-none"
 					text
 					:loading="isBusy"
@@ -36,7 +36,7 @@
 					Dirección predeterminada
 				</v-btn>
 				<v-btn
-					:to="{ name: 'mi-perfil-editar-direccion-id', params: { id: 1 } }"
+					:to="{ name: 'mi-perfil-editar-direccion-id', params: { id: item.id } }"
 					text
 					:loading="isBusy"
 				>

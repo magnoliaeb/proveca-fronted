@@ -111,32 +111,66 @@
 </template>
 
 <script>
-import { ValidationProvider, ValidationObserver } from 'vee-validate';
+import { ValidationProvider, ValidationObserver } from "vee-validate";
 
 export default {
 	data() {
 		return {
 			isDisabled: false,
 			isLoading: false,
-			form: {},
-		};
+			form: this.$util.clone(this.$auth.user)
+		}
 	},
-	components: {
-		ValidationProvider,
-		ValidationObserver,
-	},
-	methods: {
-		async updateProfile() {},
 
-		clear() {
-			this.form.email = '';
-			this.form.phone = '';
-			this.form.name = '';
-			this.form.birthdate = '';
-			this.$refs.observer.reset();
-		},
-	},
-};
+  	components: {
+    	ValidationProvider,
+    	ValidationObserver
+  	},
+
+  	methods: {
+    	async updateProfile() {
+      		this.isDisabled = true
+      		if (await this.$refs.observer.validate()) {
+        		this.isLoading = true;
+
+        		this.$store
+          			.dispatch("identity/updateProfile", {
+            			$nuxt: this.$nuxt,
+            			data: {
+              				email: this.form.email,
+              				phone: this.form.phone,
+              				mobile: this.form.mobile,
+              				name: this.form.name,
+              				birthdate: this.form.birthdate,
+              				//vat: this.form.vat,
+            			},
+          			})
+          			.then(response => {
+            			// this.$auth.setUserToken(response.token);
+            			// this.$auth.setUser(response.data);
+            			// this.$auth.$storage.setUniversal("token", response.token)
+          			})
+          			.finally(() => {
+            			//this.clear();
+            			this.isDisabled = false;
+            			this.isLoading = false;
+          			})
+      		} else {
+        		Object.values(this.$refs).forEach((ref) => {
+          			if (ref.hasError) ref.focus();
+				});
+      		}
+    	},
+
+    	clear() {
+      		this.form.email = ""
+      		this.form.phone = ""
+      		this.form.name = ""
+      		this.form.birthdate = ""
+      		this.$refs.observer.reset()
+    	}
+  	}
+}
 </script>
 
 <style lang="scss" scoped>

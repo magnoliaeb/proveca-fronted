@@ -1,11 +1,9 @@
 <template>
-	<v-row
-		v-if="product"
-		class="justify-space-between py-md-6"
-	>
+	<v-row class="justify-space-between py-md-6">
 		<v-col cols="12" md="12" lg="auto" class="">
-			<SliderSingleProduct />
+			<SliderSingleProduct :product="product" />
 		</v-col>
+
 		<v-col cols="12" sm="12" md="12" lg="5" xl="6" class="pa-0">
 			<v-row class="justify-space-between align-end">
 				<v-col cols="12">
@@ -15,71 +13,46 @@
 				<v-col cols="5" class="d-flex align-center">
 					<h3 class="mr-3">Compartir:</h3>
 					<div class="d-flex">
-						<v-btn icon text color="success" class="mr-3">
-							<img
-								height="25"
-								width="25"
-								src="../assets/imgs/iconos/whatsaap.svg"
-								alt="whatsaap"
-							/>
-						</v-btn>
-						<v-btn icon text color="accent">
-							<img
-								height="25"
-								width="25"
-								src="../assets/imgs/iconos/facebook.svg"
-								alt="facebook"
-							/>
+						<v-btn
+							v-for="social, i in socials"
+							:key="i"
+							icon
+							text
+							:color="social.color"
+							class="mr-3"
+						>
+							<ShareNetwork
+								:network="social.network"
+								:title="social.title"
+								:description="social.description"
+								:url="$util.getLocation()"
+							>
+								<img
+									height="25"
+									width="25"
+									:src="require(`../assets/imgs/iconos/${social.icon}.svg`)"
+									:alt="social.network"
+								/>
+							</ShareNetwork>
 						</v-btn>
 					</div>
 				</v-col>
 			</v-row>
+
 			<v-row class="mt-4 mb-6">
 				<v-col cols="12">
 					<ul>
-						<li
-							class="d-flex flex-column flex-sm-row align-center justify-center justify-sm-space-between py-2 py-sm-4"
-							v-for="(item, index) in 4"
-							:key="index"
-						>
-							<h4>
-								Medio bulto <span class="mx-3">$21.66 por Kg </span>
-								<s>$22.80</s>
-							</h4>
-							<div class="d-flex justify-center d-sm-block mt-4 mt-sm-0">
-								<div class="group-input">
-									<button
-										v-ripple="{ class: `primary--text` }"
-										class="left"
-										_click="dec"
-										:disabled="false"
-									>
-										<span>-</span>
-									</button>
-
-									<input
-										type="number"
-										v-model="qty"
-										@change="updateQty"
-										disabled
-									/>
-
-									<button
-										v-ripple="{ class: `primary--text` }"
-										class="right"
-										_click="inc"
-										:disabled="false"
-									>
-										<span>+</span>
-									</button>
-								</div>
-							</div>
-						</li>
+						<PriceInfoItem2
+							v-for="(variant, i) in variants"
+							:key="i"
+							:product="product"
+							:variant="variant"
+						/>
 					</ul>
-					<!-- <p v-html="product.long_description"></p> -->
 				</v-col>
 			</v-row>
-			<v-row class="align-center justify-space-between">
+
+			<!-- <v-row class="align-center justify-space-between">
 				<v-col cols="12" sm="6">
 					<v-btn
 						depressed
@@ -104,20 +77,14 @@
 						Agregar al carrito
 					</v-btn>
 				</v-col>
-			</v-row>
+			</v-row> -->
+
 			<v-row class="">
 				<v-col cols="12">
 					<h5>Descripción del producto</h5>
 				</v-col>
 				<v-col cols="12">
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-						ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-						aliquip ex ea commodo consequat. Duis aute irure dolor in
-						reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-						pariatur.
-					</p>
+					<p v-html="product.description"></p>
 				</v-col>
 			</v-row>
 		</v-col>
@@ -126,15 +93,16 @@
 
 <script>
 import SliderSingleProduct from './SliderSingleProduct.vue';
-import BuyableMixin from "~/mixins/BuyableMixin";
+import PriceInfoItem2 from './PriceInfoItem2.vue';
 
 export default {
 	components: {
-		SliderSingleProduct
+		SliderSingleProduct,
+		PriceInfoItem2
 	},
 
-	mixins: [
-		BuyableMixin
+	props: [
+		'product'
 	],
 
 	data() {
@@ -143,7 +111,32 @@ export default {
 			loading: false,
 			// alert: false,
 			// duration: 3000,
-		};
+
+			socials: [
+				{
+					icon: "whatsapp",
+					network: "whatsapp",
+					title: this.product.meta_title,
+					description: this.product.meta_description,
+					color: 'success'
+				},
+				{
+					icon: "facebook",
+					network: "facebook",
+					title: this.product.meta_title,
+					description: this.product.meta_description,
+					color: 'accent'
+				}
+			]
+		}
+	},
+
+	computed: {
+		variants() {
+			return this.product.variants.filter(
+				variant => variant.stock >= 1 && variant.price > 0
+			)
+		}
 	}
 };
 </script>

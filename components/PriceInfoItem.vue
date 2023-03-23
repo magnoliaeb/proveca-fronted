@@ -50,7 +50,6 @@ import BuyableMixin from "~/mixins/BuyableMixin";
 
 export default {
 	props: [
-		'product',
 		'variant'
 	],
 

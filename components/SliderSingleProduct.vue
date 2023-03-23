@@ -42,8 +42,13 @@
 // import SliderGalleryProduct from './SliderGalleryProduct.vue';
 import SlideProductGroup from './SlideProductGroup.vue';
 export default {
-	props: ['product'],
-	components: { SlideProductGroup },
+	props: [
+		'product'
+	],
+
+	components: {
+		SlideProductGroup
+	},
 
 	computed: {
 		imagesProduct() {
@@ -73,80 +78,15 @@ export default {
 	data() {
 		return {
 			// imgSelected: this.product.images.original_profile,
-			imgSelected: null,
-			products: [
-				{
-					id: 1,
-					name: 'Soldadora inversor M 205',
-					img: 'Producto1',
-					brand: 'Xtools',
-					price: '2,345',
-					priceDesc: '2,85',
-				},
-				{
-					id: 2,
-					name: 'Soldadora inversor M 205',
-					img: 'Producto2',
-					brand: 'Xtools',
-					price: '2,345',
-					priceDesc: '2,85',
-				},
-				{
-					id: 3,
-					name: 'Soldadora inversor M 205',
-					img: 'Producto3',
-					brand: 'Xtools',
-					price: '2,345',
-					priceDesc: '2,85',
-				},
-				{
-					id: 4,
-					name: 'Soldadora inversor M 205',
-					img: 'Producto4',
-					brand: 'Xtools',
-					price: '2,345',
-					priceDesc: '2,85',
-				},
-				{
-					id: 1,
-					name: 'Soldadora inversor M 205',
-					img: 'Producto1',
-					brand: 'Xtools',
-					price: '2,345',
-					priceDesc: '2,85',
-				},
-				{
-					id: 2,
-					name: 'Soldadora inversor M 205',
-					img: 'Producto2',
-					brand: 'Xtools',
-					price: '2,345',
-					priceDesc: '2,85',
-				},
-				{
-					id: 3,
-					name: 'Soldadora inversor M 205',
-					img: 'Producto3',
-					brand: 'Xtools',
-					price: '2,345',
-					priceDesc: '2,85',
-				},
-				{
-					id: 4,
-					name: 'Soldadora inversor M 205',
-					img: 'Producto4',
-					brand: 'Xtools',
-					price: '2,345',
-					priceDesc: '2,85',
-				},
-			],
+			imgSelected: null
 		};
 	},
+	
 	methods: {
 		changeImgSelected(img) {
 			this.imgSelected = img;
-		},
-	},
+		}
+	}
 };
 </script>
 

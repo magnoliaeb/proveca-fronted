@@ -131,6 +131,7 @@ export default {
 		"@nuxtjs/auth-next",
 		'vue-sweetalert2/nuxt',
 		'cookie-universal-nuxt',
+		"vue-social-sharing/nuxt",
 	],
 	styleResources: {
 		scss: ['./assets/scss/*.scss'],
@@ -190,22 +191,14 @@ export default {
 	},
 
 	axios: {
-	  baseURL: process.env.ENDPOINT,
+	  baseURL: process.env.VUE_APP_ENDPOINT,
 	  //baseURL: 'http://ferrepacifico.local/api'
 	},
 
 	publicRuntimeConfig: {
-	  $public: {
-	    APP_NAME: process.env.APP_NAME,
-	    APP_ENV: process.env.APP_ENV,
-	    APP_URL: process.env.APP_URL,
-	    BASE_APP_URL: process.env.BASE_APP_URL,
-	    ENDPOINT: process.env.ENDPOINT,
-	    google: {
-	      key: process.env.GOOGLE_KEY,
-	    },
-	  },
-	  //
+		WEB_URL: process.env.VUE_APP_WEBURL,
+    	GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+    	GOOGLE_RECAPTCHA_KEY: process.env.GOOGLE_RECAPTCHA_KEY,
 	},
 	privateRuntimeConfig: {
 	  //

@@ -1,5 +1,5 @@
 <template>
-	<div class="">
+	<div v-if="product">
 		<!-- <template v-if="$fetchState.pending">
 			<client-only class="">
 				<SkeletonProductDetail class="pb-16" />
@@ -16,7 +16,7 @@
 						>
 					</v-col>
 					<v-col cols="auto">
-						<v-breadcrumbs :items="breadcrumbs" class="px-0">
+						<v-breadcrumbs :items="links" class="px-0">
 							<template v-slot:divider>
 								<v-icon>mdi-chevron-right</v-icon>
 							</template>
@@ -60,106 +60,51 @@ export default {
       		return this.$store.getters["products/getProduct"];
     	},
 
-    	computedTitle() {
-      		return this._.get(this.product, "meta_title");
-    	},
-
-		computedDescription() {
-      		return this._.get(this.product, "meta_description");
-    	},
-
-    	computedKeywords() {
-      		return this._.get(this.product, "meta_keywords");
-    	},
-
-		breadcrumbs() {
-			let breadcrumbs = [
+		links() {
+			let links = [
 				{
-					text: 'Productos',
-					href: '/productos',
+					text: "Productos",
 					disabled: false,
-				},
-				{
-					text: 'Alimentos',
-					href: '/productos',
+					to: {
+						name: 'productos'
+					}
+				}
+			]
+			
+			if(this.product && this.product.category) {
+				links.push({
+					text: this.product.category.name,
 					disabled: false,
-				},
-				{
-					text: 'Atún',
-					href: '/productos',
-					disabled: true,
-				},
-			];
-			// if (this.$store.state.product.show.brand) {
-			// 	breadcrumbs.push({
-			// 		text: this.$store.state.product.show.brand.name,
-			// 		href: `/productos?brand=${this.$store.state.product.show.brand.name}`,
-			// 		disabled: false,
-			// 	});
-			// }
-			// breadcrumbs.push({
-			// 	text: this.$store.state.product.show.name,
-			// 	href: 'breadcrumbs_link_1',
-			// 	disabled: true,
-			// });
-			return breadcrumbs;
-		},
+					to: {
+						name: 'productos',
+						query: {
+							category_id: this.product.category.id
+						}
+					}
+				})
+			}
+			
+			if(this.product && this.product.brand) {
+				links.push({
+					text: this.product.brand.name,
+					disabled: false,
+					to: {
+						name: 'productos',
+						query: {
+							brand_id: this.product.brand.id
+						}
+					}
+				})
+			}
+			
+			return links
+		}
   	},
 	
 
 	created() {
     	this.$store.dispatch("products/getProductById", this.$route.params.id);
-  	},
-
-	// computed: {
-	// 	computedTitle() {
-	// 		return null;
-	// 		// return this.$store.state.product.show
-	// 		// 	? this.$store.state.product.show.name
-	// 		// 	: '';
-	// 	},
-	// 	computedDescription() {
-	// 		return null;
-	// 		// return this.$store.state.product.show
-	// 		// 	? this.$store.state.product.show.short_description
-	// 		// 	: '';
-	// 	},
-	// 	breadcrumbs() {
-	// 		let breadcrumbs = [
-	// 			{
-	// 				text: 'Productos',
-	// 				href: '/productos',
-	// 				disabled: false,
-	// 			},
-	// 			{
-	// 				text: 'Alimentos',
-	// 				href: '/productos',
-	// 				disabled: false,
-	// 			},
-	// 			{
-	// 				text: 'Atún',
-	// 				href: '/productos',
-	// 				disabled: true,
-	// 			},
-	// 		];
-	// 		// if (this.$store.state.product.show.brand) {
-	// 		// 	breadcrumbs.push({
-	// 		// 		text: this.$store.state.product.show.brand.name,
-	// 		// 		href: `/productos?brand=${this.$store.state.product.show.brand.name}`,
-	// 		// 		disabled: false,
-	// 		// 	});
-	// 		// }
-	// 		// breadcrumbs.push({
-	// 		// 	text: this.$store.state.product.show.name,
-	// 		// 	href: 'breadcrumbs_link_1',
-	// 		// 	disabled: true,
-	// 		// });
-	// 		return breadcrumbs;
-	// 	},
-	// },
-
-	
-	
+  	}
 };
 </script>
 

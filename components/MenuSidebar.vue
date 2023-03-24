@@ -40,9 +40,8 @@
 				</v-col>
 			</v-row>
 			<v-row class="align-center">
-				<v-col cols="5" class="py-0">
+				<!-- <v-col cols="5" class="py-0">
 					<ModalSelectAddress />
-					<!-- <v-btn color="primary" text depressed>Ingresa tu ubicación</v-btn> -->
 				</v-col>
 				<v-col cols="1" class="py-0">
 					<v-divider
@@ -50,7 +49,7 @@
 						dark
 						style="border-color: #d9d9d9; height: 49px"
 					></v-divider>
-				</v-col>
+				</v-col> -->
 				<v-col cols="5" class="py-0">
 					<v-btn
 						@click="openLogin"

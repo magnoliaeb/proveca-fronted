@@ -35,7 +35,7 @@
 							class="pa-0 d-flex align-center justify-end"
 						>
 							<!-- codigo postal -->
-							<ModalSelectAddress class="d-none d-lg-block" />
+							<!-- <ModalSelectAddress class="d-none d-lg-block" /> -->
 
 							<div class="mx-4 d-none d-lg-block" style="position: relative">
 								<v-btn

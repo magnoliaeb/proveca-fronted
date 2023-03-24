@@ -4,7 +4,7 @@
 		<v-row class="no-gutters">
 			<v-col cols="12">
 				<v-radio-group dense v-model="radios" class="">
-					<v-row class="align-center">
+					<!-- <v-row class="align-center">
 						<v-col cols="12" sm="8" lg="8">
 							<v-radio value="tarjeta">
 								<template v-slot:label>
@@ -33,9 +33,9 @@
 								>Agregar tarjeta</v-btn
 							>
 						</v-col>
-					</v-row>
+					</v-row> -->
 
-					<v-slide-y-transition>
+					<!-- <v-slide-y-transition>
 						<v-row v-show="radios == 'tarjeta'" class="no-gutters">
 							<MethodCard
 								:addCard="addCard"
@@ -52,8 +52,9 @@
 						<v-col cols="12">
 							<v-divider></v-divider>
 						</v-col>
-					</v-row>
-					<v-row class="">
+					</v-row> -->
+
+					<!-- <v-row class="">
 						<v-col cols="12" md="6" class="d-sm-flex align-center">
 							<v-radio value="tienda" class="mr-3">
 								<template v-slot:label>
@@ -70,9 +71,9 @@
 								height="50px"
 							/>
 						</v-col>
-					</v-row>
+					</v-row> -->
 
-					<v-slide-y-transition>
+					<!-- <v-slide-y-transition>
 						<v-row class="no-gutters" v-show="radios == 'tienda'">
 							<MethodStore />
 						</v-row>
@@ -81,8 +82,9 @@
 						<v-col cols="12">
 							<v-divider></v-divider>
 						</v-col>
-					</v-row>
-					<v-row>
+					</v-row> -->
+
+					<!-- <v-row>
 						<v-col cols="12" class="d-lg-flex align-center">
 							<v-radio value="transferencia" class="mr-3">
 								<template v-slot:label>
@@ -121,17 +123,20 @@
 								</v-col>
 							</v-row>
 						</v-col>
-					</v-row>
-					<v-slide-y-transition>
+					</v-row> -->
+
+					<!-- <v-slide-y-transition>
 						<v-row class="no-gutters" v-show="radios == 'transferencia'">
 							<MethodBankTransfer />
 						</v-row>
-					</v-slide-y-transition>
-					<v-row class="">
+					</v-slide-y-transition> -->
+
+					<!-- <v-row class="">
 						<v-col cols="12">
 							<v-divider></v-divider>
 						</v-col>
-					</v-row>
+					</v-row> -->
+
 					<v-row>
 						<v-col cols="12">
 							<v-radio value="paypal" class="">
@@ -150,6 +155,7 @@
 							</v-radio>
 						</v-col>
 					</v-row>
+
 					<v-row class="mt-4">
 						<v-col cols="12">
 							<v-btn depressed class="button-primary" @click="sendPayment"
@@ -181,6 +187,11 @@ export default {
 		MethodCard,
 		StepTitle,
 	},
+
+	props: [
+		'order'
+	],
+
 	data() {
 		return {
 			showBtnAddCard: true,
@@ -197,10 +208,46 @@ export default {
 			this.addCard = true;
 			this.showListCard = false;
 		},
+
 		sendPayment() {
-			this.$router.push({ name: 'confirmar-compra' });
+			switch (this.radios) {
+				case 'paypal':
+					this.payWithPaypal()
+				break;
+			}
 		},
-	},
+
+		payWithPaypal() {
+			this.validate().then(() => {
+				this.isBusy = true;
+
+				this.$store
+					.dispatch("paypal/payWithPaypal", {
+						$nuxt: this.$nuxt,
+						order: this.order,
+					})
+					.then((response) => {
+						this.$nuxt.$emit("success-notify", "Un momento por favor");
+
+						const url = this._.get(response, "url");
+						// window.open(url, "_blank");
+						// this.$router.push({ name: "historial-de-pedidos" });
+						window.location.href = url;
+					})
+					.finally(() => (this.isBusy = false));
+			})
+		},
+
+		validate() {
+			if(this._.get(this, 'order.amount_total', 0) > 0) {
+				return Promise.resolve()    
+			}
+
+			this.$nuxt.$emit("error-notify", "Parece que no hay artículos en su carrito")
+
+			return Promise.reject()
+		}
+	}
 };
 </script>
 

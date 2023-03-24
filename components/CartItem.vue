@@ -1,6 +1,5 @@
 <template>
 	<v-row tag="li" class="py-3 py-lg-4 align-stretch" no-gutters>
-		
 		<span v-show="false">{{ item }}</span>
 
 		<v-col cols="9" sm="5" class="d-flex justify-space-between">
@@ -54,6 +53,7 @@
 						}"
 					>
 						<h4 class="mb-3">{{ item.name }}</h4>
+						<small>{{ $util.getVariantFormat(variant) }}</small>
 					</nuxt-link>
 					<!-- movil -->
 					<div class="d-flex d-sm-none flex-column">
@@ -68,6 +68,7 @@
 							}"
 						>
 							<h4 class="">{{ item.name }}</h4>
+							<small>{{ $util.getVariantFormat(variant) }}</small>
 						</nuxt-link>
 						<div class="d-flex my-4">
 							<div class="group-input">

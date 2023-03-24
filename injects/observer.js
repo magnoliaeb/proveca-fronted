@@ -60,20 +60,20 @@ export default app => ({
         openDialogInfo(product) {
             this.showDialogInfo = true
             this.productDialogInfo = product
-        }
+        },
 
-        // confirmCart() {
-        //     app.store.dispatch('cart/confirm', {
-        //         invoice_required: app.store.state.cart.requireInvoice,
-        //         cfdi_usage: 'P01',
-        //         comments: ''
-        //     })
-        //     .then(order => {
-        //         app.router.push({
-        //             name: "pagar-pedido-id",
-        //             params: { id: order.id }
-        //         })
-        //     })
-        // }
+        confirmCart() {
+            app.store.dispatch('cart/confirm', {
+                invoice_required: app.store.state.cart.requireInvoice,
+                cfdi_usage: 'P01',
+                comments: ''
+            })
+            .then(order => {
+                app.router.push({
+                    name: "pagar-pedido-id",
+                    params: { id: order.id }
+                })
+            })
+        }
     }
 })

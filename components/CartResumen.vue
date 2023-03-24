@@ -8,6 +8,12 @@
 						<p class="mb-0">Subtotal</p>
 						<span>{{ formattedSubtotal }}</span>
 					</li>
+
+					<li class="d-flex py-2 py-md-4 justify-space-between align-center">
+						<p class="mb-0">Impuestos</p>
+						<span>{{ formattedTax }}</span>
+					</li>
+
 					<li class="d-flex py-2 py-md-4 justify-space-between align-center">
 						<p class="mb-0">Descuento</p>
 						<span>{{ formattedDiscount }}</span>
@@ -28,9 +34,48 @@
 				</div>
 
 				<v-btn
+					v-if="$route.name == 'carrito-datos-del-envio'"
 					class="mt-7 button-primary"
 					depressed
 					block
+					type="submit"
+              		form="info-send-form"
+					:disabled="$store.state.cart.isBusy"
+				>
+					{{ buttonText }}
+				</v-btn>
+
+				<v-btn
+					v-else-if="$route.name == 'carrito-datos-del-cliente' && $store.state.cart.requireInvoice"
+					class="mt-7 button-primary"
+					depressed
+					block
+					type="submit"
+              		form="form-tax-data"
+					:disabled="$store.state.cart.isBusy"
+				>
+					{{ buttonText }}
+				</v-btn>
+
+				<v-btn
+					v-else-if="$route.name == 'carrito-datos-del-cliente' && ! $store.state.cart.requireInvoice"
+					class="mt-7 button-primary"
+					depressed
+					block
+					type="submit"
+					:disabled="$store.state.cart.isBusy"
+					@click="$observer.confirmCart"
+				>
+					{{ buttonText }}
+				</v-btn>
+
+				<v-btn
+					v-else
+					class="mt-7 button-primary"
+					depressed
+					block
+					@click="nextStep"
+              		:disabled="$store.state.cart.isBusy || !isEnabled"
 				>
 					{{ buttonText }}
 				</v-btn>

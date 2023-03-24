@@ -16,20 +16,17 @@
 							<v-col cols="auto">
 								<h3>Datos de cliente</h3>
 							</v-col>
-							<v-col cols="auto">
+							<!-- <v-col cols="auto">
 								<v-btn depressed text :to="{ name: 'mi-perfil-editar-perfil' }"
 									>Editar</v-btn
 								>
-							</v-col>
+							</v-col> -->
 						</v-row>
 						<v-row>
 							<v-col cols="12">
-								<p class="mb-4">
-									Donato Guerra #23 Colonia Centro C.P. 44210 Guadalajara, Jal.
-									Mx.
-								</p>
-								<p>Claudia Espinosa Monrroy</p>
-								<p>Correo: clau.esmo@gmail.com</p>
+								<p class="mb-4">{{ shippingAddress.full }}</p>
+								<p>{{ clientName }}</p>
+								<!-- <p>Correo: clau.esmo@gmail.com</p> -->
 							</v-col>
 						</v-row>
 					</v-col>
@@ -40,15 +37,18 @@
 							</v-col>
 
 							<v-col cols="auto">
-								<v-btn depressed text :to="{ name: 'index' }">Editar</v-btn>
+								<!-- <v-btn depressed text :to="{ name: 'index' }">Editar</v-btn> -->
+
+								{{ carrier }}
 							</v-col>
 						</v-row>
-						<v-row>
+
+						<!-- <v-row>
 							<v-col cols="12">
 								<CardPayment />
-								<!-- <p class="mb-4">recoger en la tienda</p> -->
+								<p class="mb-4">recoger en la tienda</p>
 							</v-col>
-						</v-row>
+						</v-row> -->
 					</v-col>
 				</v-row>
 			</v-col>
@@ -57,41 +57,45 @@
 </template>
 
 <script>
-import CardPayment from './CardPayment.vue';
+import OrderMixin from '~/mixins/OrderMixin'
+// import CardPayment from './CardPayment.vue';
 
 export default {
-	props: ['order'],
+	mixins: [
+    	OrderMixin
+  	],
+
 	computed: {
-		shippingMethod() {
-			// return this._.get(this.order, 'carrier_id.1');
-			return null;
-		},
-		addresses() {
-			// return this.$store.getters['identity/getAddresses'];
-			return [];
-		},
-		shippingAddress() {
-			// let partner_shipping_id = this._.get(
-			// 	this.order,
-			// 	'partner_shipping_id.0',
-			// 	null
-			// );
-			// return this.addresses.find(
-			// 	(address) => address.id == partner_shipping_id
-			// );
-			return null;
-		},
-		invoiceAddress() {
-			// let partner_invoice_id = this._.get(
-			// 	this.order,
-			// 	'partner_invoice_id.0',
-			// 	null
-			// );
-			// return this.addresses.find((address) => address.id == partner_invoice_id);
-			return null;
-		},
+		// shippingMethod() {
+		// 	// return this._.get(this.order, 'carrier_id.1');
+		// 	return null;
+		// },
+		// addresses() {
+		// 	// return this.$store.getters['identity/getAddresses'];
+		// 	return [];
+		// },
+		// shippingAddress() {
+		// 	// let partner_shipping_id = this._.get(
+		// 	// 	this.order,
+		// 	// 	'partner_shipping_id.0',
+		// 	// 	null
+		// 	// );
+		// 	// return this.addresses.find(
+		// 	// 	(address) => address.id == partner_shipping_id
+		// 	// );
+		// 	return null;
+		// },
+		// invoiceAddress() {
+		// 	// let partner_invoice_id = this._.get(
+		// 	// 	this.order,
+		// 	// 	'partner_invoice_id.0',
+		// 	// 	null
+		// 	// );
+		// 	// return this.addresses.find((address) => address.id == partner_invoice_id);
+		// 	return null;
+		// },
 	},
-	components: { CardPayment },
+	// components: { CardPayment },
 };
 </script>
 

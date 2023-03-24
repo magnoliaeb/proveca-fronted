@@ -18,7 +18,7 @@
 					@click="selectAddress"
 					depressed
 					text
-					:disabled="false"
+					:disabled="$store.state.cart.isBusy"
 				>
 					<span class="">Cambiar</span>
 				</v-btn>
@@ -26,16 +26,20 @@
 		</v-col>
 
 		<v-col cols="12" md="12" lg="9">
-			<p>
-				Donato Guerra #23 Colonia Centro C.P. 44210 Guadalajara, Jalisco,
-				México.
-			</p>
-			<p class="d-flex flex-column flex-sm-row">
+			<p>{{ address.full }}</p>
+
+			<!-- <p class="d-flex flex-column flex-sm-row">
 				<span class="text-break mr-sm-4">Correo: clau.esmo@gmail.com</span>
 				<span class="text-break">Teléfono: (33) 2345 6789</span>
-			</p>
+			</p> -->
 			<div class="d-block d-md-none">
-				<v-btn dense @click="selectAddress" depressed text :disabled="false">
+				<v-btn
+					dense
+					@click="selectAddress"
+					depressed
+					text
+					:disabled="$store.state.cart.isBusy"
+				>
 					<span class="">Cambiar</span>
 				</v-btn>
 			</div>
@@ -45,28 +49,28 @@
 
 <script>
 export default {
-	props: ['address'],
+    props: [
+        'address'
+    ],
 
-	computed: {
-		selected() {
-			return null;
-			// return this.$store.getters['cart/getSelectedShippingAddress'];
-		},
+    computed: {
+        selected() {
+            return this.$store.getters['cart/getSelectedShippingAddress']
+        },
 
-		isSelected() {
-			return true;
-			// return this._.get(this.selected, 'id') == this.address.id;
-		},
-	},
+        isSelected() {
+            return this._.get(this.selected, 'id') == this.address.id
+        }
+    },
 
-	methods: {
-		selectAddress() {
-			// this.$store.dispatch('cart/setShippingAddress', {
-			// 	address_id: this.address.id,
-			// });
-		},
-	},
-};
+    methods: {
+        selectAddress() {
+            this.$store.dispatch('cart/setShippingAddress', {
+                address_id: this.address.id
+            })
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -32,9 +32,8 @@ export default {
 
 	computed: {
 		addresses() {
-			return [1, 2, 3, 4];
-			// return this.$store.state.identity.addresses;
-		},
+			return this.$store.state.identity.addresses
+		}
 	},
 };
 </script>

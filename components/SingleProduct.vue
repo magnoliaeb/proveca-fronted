@@ -4,7 +4,7 @@
 			<SliderSingleProduct :product="product" />
 		</v-col>
 
-		<v-col cols="12" sm="12" md="12" lg="5" xl="6" class="pa-0">
+		<v-col cols="12" sm="12" md="12" lg="5" xl="5" class="pa-0">
 			<v-row class="justify-space-between align-end">
 				<v-col cols="12">
 					<h2>{{ product.name }}</h2>

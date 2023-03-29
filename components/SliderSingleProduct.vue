@@ -1,6 +1,6 @@
 <template>
 	<div class="">
-		<v-row class="no-gutters justify-center">
+		<v-row class="justify-center">
 			<v-col cols="12" md="auto" class="d-none d-md-flex">
 				<SlideProductGroup
 					v-if="product"
@@ -14,10 +14,9 @@
 						v-if="imgSelected"
 						tile
 						flat
-						class="ma-2 d-flex justify-center align-center grey lighten-3 img-product"
-						:min-height="heightImg"
+						class="d-flex justify-center align-center grey lighten-3 img-product"
 						:height="heightImg"
-						:width="heightImg"
+						:min-height="heightImg"
 						:max-width="heightImg"
 					>
 						<!-- <div style="width: 100%; height: 100%; position: relative"> -->
@@ -31,7 +30,7 @@
 			</v-col>
 		</v-row>
 		<v-row class="justify-center d-md-none mt-md-4">
-			<v-col cols="auto" sm="auto" class="px-0">
+			<v-col cols="auto" sm="auto" class="">
 				<SlideProductGroup
 					v-if="product"
 					:imagesProduct="product.pictures"
@@ -70,11 +69,11 @@ export default {
 				case 'sm':
 					return '400px';
 				case 'md':
-					return '500px';
+					return '450px';
 				case 'lg':
-					return '550px';
+					return '450px';
 				case 'xl':
-					return '600px';
+					return '550px';
 			}
 		},
 	},
@@ -102,7 +101,7 @@ export default {
 	// max-width: 100%;
 	// background-color: orange;
 	// object-fit: cover;
-	// border: 1px solid red;
+	// border: 1px solid red !important;
 }
 // }
 </style>

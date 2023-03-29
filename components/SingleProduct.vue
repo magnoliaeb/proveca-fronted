@@ -14,7 +14,7 @@
 					<h3 class="mr-3">Compartir:</h3>
 					<div class="d-flex">
 						<v-btn
-							v-for="social, i in socials"
+							v-for="(social, i) in socials"
 							:key="i"
 							icon
 							text
@@ -98,12 +98,10 @@ import PriceInfoItem2 from './PriceInfoItem2.vue';
 export default {
 	components: {
 		SliderSingleProduct,
-		PriceInfoItem2
+		PriceInfoItem2,
 	},
 
-	props: [
-		'product'
-	],
+	props: ['product'],
 
 	data() {
 		return {
@@ -114,30 +112,30 @@ export default {
 
 			socials: [
 				{
-					icon: "whatsapp",
-					network: "whatsapp",
+					icon: 'whatsapp',
+					network: 'whatsapp',
 					title: this.product.meta_title,
 					description: this.product.meta_description,
-					color: 'success'
+					color: 'success',
 				},
 				{
-					icon: "facebook",
-					network: "facebook",
+					icon: 'facebook',
+					network: 'facebook',
 					title: this.product.meta_title,
 					description: this.product.meta_description,
-					color: 'accent'
-				}
-			]
-		}
+					color: 'accent',
+				},
+			],
+		};
 	},
 
 	computed: {
 		variants() {
 			return this.product.variants.filter(
-				variant => variant.stock >= 1 && variant.price > 0
-			)
-		}
-	}
+				(variant) => variant.stock >= 1 && variant.price > 0
+			);
+		},
+	},
 };
 </script>
 

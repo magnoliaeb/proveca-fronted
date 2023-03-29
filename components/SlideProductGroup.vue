@@ -10,7 +10,7 @@
 			max="4"
 		>
 			<v-slide-item
-				v-for="(img, index) in 3"
+				v-for="(img, index) in imagesProduct"
 				:key="index"
 				v-slot="{ active, toggle }"
 			>
@@ -28,8 +28,7 @@
 						:width="heightAndidthImg"
 						transition="scale-transition"
 						:height="heightAndidthImg"
-						:src="`https://picsum.photos/500/300?image=${8 * 5 + 10}`"
-						:lazy-src="`https://picsum.photos/10/6?image=${8 * 5 + 10}`"
+						:src="img.url"
 						:alt="'img-product'"
 						aspect-ratio="1"
 						class="grey lighten-3 img mx-auto scale"

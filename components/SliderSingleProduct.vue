@@ -3,13 +3,15 @@
 		<v-row class="no-gutters justify-center">
 			<v-col cols="12" md="auto" class="d-none d-md-flex">
 				<SlideProductGroup
+					v-if="product"
+					:imagesProduct="product.pictures"
 					@changeImg="changeImgSelected"
-					:imagesProduct="imagesProduct"
 				/>
 			</v-col>
 			<v-col cols="auto" md="auto">
 				<client-only>
 					<v-card
+						v-if="imgSelected"
 						tile
 						flat
 						class="ma-2 d-flex justify-center align-center grey lighten-3 img-product"
@@ -19,7 +21,10 @@
 						:max-width="heightImg"
 					>
 						<!-- <div style="width: 100%; height: 100%; position: relative"> -->
-						<zoom-on-hover :img-normal="imgSelected" :scale="1"></zoom-on-hover>
+						<zoom-on-hover
+							:img-normal="imgSelected.url"
+							:scale="1"
+						></zoom-on-hover>
 						<!-- </div> -->
 					</v-card>
 				</client-only>
@@ -28,8 +33,9 @@
 		<v-row class="justify-center d-md-none mt-md-4">
 			<v-col cols="auto" sm="auto" class="px-0">
 				<SlideProductGroup
+					v-if="product"
+					:imagesProduct="product.pictures"
 					@changeImg="changeImgSelected"
-					:imagesProduct="imagesProduct"
 				/>
 			</v-col>
 		</v-row>
@@ -42,12 +48,10 @@
 // import SliderGalleryProduct from './SliderGalleryProduct.vue';
 import SlideProductGroup from './SlideProductGroup.vue';
 export default {
-	props: [
-		'product'
-	],
+	props: ['product'],
 
 	components: {
-		SlideProductGroup
+		SlideProductGroup,
 	},
 
 	computed: {
@@ -77,16 +81,15 @@ export default {
 
 	data() {
 		return {
-			// imgSelected: this.product.images.original_profile,
-			imgSelected: null
+			imgSelected: this.product?.pictures[0],
 		};
 	},
-	
+
 	methods: {
 		changeImgSelected(img) {
 			this.imgSelected = img;
-		}
-	}
+		},
+	},
 };
 </script>
 

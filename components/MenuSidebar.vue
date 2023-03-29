@@ -189,17 +189,17 @@ export default {
 
 	methods: {
 		closeMenu() {
-			this.$observer.showMenu = false
+			this.$observer.showMenu = false;
 		},
 
 		clickOutside(event) {
 			if (event.target.id !== 'menu') {
-				console.log('afuerra');
+				// console.log('afuerra');
 				this.closeMenu();
 			}
 		},
 		openLogin() {
-			this.$observer.showLogin = true
+			this.$observer.showLogin = true;
 			this.closeMenu();
 		},
 	},

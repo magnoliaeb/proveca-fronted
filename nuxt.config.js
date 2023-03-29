@@ -4,7 +4,7 @@ import colors from 'vuetify/es5/util/colors';
 export default {
 	// Global page headers: https://go.nuxtjs.dev/config-head
 	server: {
-		port: 3003,
+		port: 3025,
 	},
 	head: {
 		titleTemplate: '%s | Proveeca',

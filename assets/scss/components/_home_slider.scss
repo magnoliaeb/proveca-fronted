@@ -1,116 +1,119 @@
 // Styling the default Slick dots
 .home-slider {
-  .slick-slider {
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    position: static;
-    height: 100%;
-    align-items: center;
-    position: relative;
-  }
+	.slick-slider {
+		width: 90%;
+		display: flex;
+		justify-content: center;
+		margin: 0 auto;
+		position: static;
+		height: 100%;
+		align-items: center;
+		position: relative;
+	}
+	.slick-list {
+		width: 100%;
+	}
 
-  .slick-dots {
-    display: flex !important;
-    margin: 0;
-    padding: 2rem 0;
-    list-style-type: none;
-    width: 100%;
-    // height: 100%;
-    position: absolute;
-    justify-content: center;
-    align-items: flex-end;
-    // top: 0;
-    left: 0;
-    right: 0;
-    bottom: -30px;
-    li {
-      margin: 10px;
-    }
+	.slick-dots {
+		display: flex !important;
+		margin: 0;
+		padding: 2rem 0;
+		list-style-type: none;
+		width: 100%;
+		// height: 100%;
+		position: absolute;
+		justify-content: center;
+		align-items: flex-end;
+		// top: 0;
+		left: 0;
+		right: 0;
+		bottom: -30px;
+		li {
+			margin: 10px;
+		}
 
-    button {
-      display: block;
-      width: 6px;
-      height: 6px;
-      padding: 0;
-      background: #c4c4c4 !important;
-      border-radius: 100%;
-      background-color: transparent;
-      text-indent: -9999px;
-    }
+		button {
+			display: block;
+			width: 6px;
+			height: 6px;
+			padding: 0;
+			background: #c4c4c4 !important;
+			border-radius: 100%;
+			background-color: transparent;
+			text-indent: -9999px;
+		}
 
-    li.slick-active button {
-      background-color: $primary !important;
-    }
-  }
+		li.slick-active button {
+			background-color: $primary !important;
+		}
+	}
 
-  .custom-arrow {
-    height: 30px !important;
-    width: 30px !important;
-    position: absolute !important;
-    position: absolute !important;
-    top: auto !important;
-    bottom: -30px !important;
+	.custom-arrow {
+		height: 30px !important;
+		width: 30px !important;
+		position: absolute !important;
+		position: absolute !important;
+		top: auto !important;
+		bottom: -30px !important;
 
-    svg {
-      height: 12px !important;
-      width: 12px !important;
-    }
-  }
+		svg {
+			height: 12px !important;
+			width: 12px !important;
+		}
+	}
 
-  .custom-arrow.slick-arrow.slick-next {
-    height: 30px !important;
-    width: 30px;
-    right: 15% !important;
-  }
-  .custom-arrow.slick-arrow.slick-prev {
-    height: 30px !important;
-    width: 30px;
-    left: 15% !important;
-  }
+	.custom-arrow.slick-arrow.slick-next {
+		height: 30px !important;
+		width: 30px;
+		right: 15% !important;
+	}
+	.custom-arrow.slick-arrow.slick-prev {
+		height: 30px !important;
+		width: 30px;
+		left: 15% !important;
+	}
 }
 
 @media screen and (min-width: $sm) {
-  .home-slider {
-    .slick-slider {
-      width: 100%;
-    }
-    .custom-arrow {
-      svg {
-        height: 15px !important;
-        width: 15px !important;
-      }
-    }
-    button {
-      width: 8px !important;
-      height: 8px !important;
-    }
-    .custom-arrow.slick-arrow.slick-next {
-      right: 30% !important;
-    }
-    .custom-arrow.slick-arrow.slick-prev {
-      left: 30% !important;
-    }
-  }
+	.home-slider {
+		.slick-slider {
+			width: 100%;
+		}
+		.custom-arrow {
+			svg {
+				height: 15px !important;
+				width: 15px !important;
+			}
+		}
+		button {
+			width: 8px !important;
+			height: 8px !important;
+		}
+		.custom-arrow.slick-arrow.slick-next {
+			right: 30% !important;
+		}
+		.custom-arrow.slick-arrow.slick-prev {
+			left: 30% !important;
+		}
+	}
 }
 @media screen and (min-width: $md) {
-  .home-slider {
-    .custom-arrow.slick-arrow.slick-next {
-      right: 35% !important;
-    }
-    .custom-arrow.slick-arrow.slick-prev {
-      left: 35% !important;
-    }
-  }
+	.home-slider {
+		.custom-arrow.slick-arrow.slick-next {
+			right: 35% !important;
+		}
+		.custom-arrow.slick-arrow.slick-prev {
+			left: 35% !important;
+		}
+	}
 }
 @media screen and (min-width: $lg) {
-  .home-slider {
-    .custom-arrow.slick-arrow.slick-next {
-      right: 40% !important;
-    }
-    .custom-arrow.slick-arrow.slick-prev {
-      left: 40% !important;
-    }
-  }
+	.home-slider {
+		.custom-arrow.slick-arrow.slick-next {
+			right: 40% !important;
+		}
+		.custom-arrow.slick-arrow.slick-prev {
+			left: 40% !important;
+		}
+	}
 }

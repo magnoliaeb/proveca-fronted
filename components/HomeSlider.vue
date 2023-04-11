@@ -3,30 +3,35 @@
 		<div class="">
 			<client-only v-if="slides.length != 0">
 				<VueSlickCarousel v-bind="slickOptions">
-					<div v-for="(item, index) in slides" :key="index" class="px-2 mb-8">
+					<div v-for="(item, index) in slides" :key="index" class="px-2">
 						<client-only>
-							<v-img
-								transition="scale-transition"
-								:src="item.desktop_picture"
-								:lazy-src="item.desktop_picture"
-								aspect-ratio="1"
-								class="grey lighten-3 img"
-							>
-								<template v-slot:placeholder>
-									<v-row
-										class="fill-height ma-0"
-										align="center"
-										justify="center"
-									>
-										<v-progress-circular
-											:size="30"
-											:width="3"
-											indeterminate
-											color="primary"
-										></v-progress-circular>
-									</v-row>
-								</template>
-							</v-img>
+							<div class="img-box">
+								<v-img
+									transition="scale-transition"
+									:src="item.desktop_picture"
+									:lazy-src="item.desktop_picture"
+									aspect-ratio="1"
+									class=""
+									width="100%"
+									height="100%"
+									contain
+								>
+									<template v-slot:placeholder>
+										<v-row
+											class="fill-height ma-0"
+											align="center"
+											justify="center"
+										>
+											<v-progress-circular
+												:size="30"
+												:width="3"
+												indeterminate
+												color="primary"
+											></v-progress-circular>
+										</v-row>
+									</template>
+								</v-img>
+							</div>
 						</client-only>
 					</div>
 
@@ -118,24 +123,25 @@ export default {
 
 	computed: {
 		slides() {
-			return [...this.$store.getters['identity/getBanners']];
+			return this.$store.getters['identity/getBanners'];
 		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-.img {
-	width: 338.61px;
+.img-box {
+	width: 100%;
+	max-width: 338.61px;
 	height: 150.02px;
 	border-radius: 6.43px;
-	filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.25));
+	box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 9px;
 }
 
 @media screen and (min-width: $md) {
-	.img {
-		width: 474px;
+	.img-box {
+		max-width: 474px;
 		height: 210px;
 		border-radius: 9px;
 	}

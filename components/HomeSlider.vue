@@ -1,20 +1,16 @@
 <template>
 	<div class="pt-16 pb-md-6 home-slider">
 		<div class="">
-			<client-only>
+			<client-only v-if="slides.length != 0">
 				<VueSlickCarousel v-bind="slickOptions">
-					<div
-						v-for="(item, index) in slides"
-						:key="index"
-						class="px-2 mb-8"
-					>
+					<div v-for="(item, index) in slides" :key="index" class="px-2 mb-8">
 						<client-only>
 							<v-img
 								transition="scale-transition"
 								:src="item.desktop_picture"
 								:lazy-src="item.desktop_picture"
 								aspect-ratio="1"
-								class="grey lighten-3 img mx-auto"
+								class="grey lighten-3 img"
 							>
 								<template v-slot:placeholder>
 									<v-row
@@ -86,7 +82,6 @@ export default {
 				infinite: true,
 				slidesToShow: 1,
 				slidesToScroll: 1,
-				initialSlide: 1,
 				pauseOnDotsHover: true,
 				pauseOnFocus: true,
 				pauseOnHover: true,
@@ -123,9 +118,9 @@ export default {
 
 	computed: {
 		slides() {
-			return this.$store.getters["identity/getBanners"];
-		}
-  	},
+			return [...this.$store.getters['identity/getBanners']];
+		},
+	},
 };
 </script>
 
@@ -134,6 +129,8 @@ export default {
 	width: 338.61px;
 	height: 150.02px;
 	border-radius: 6.43px;
+	filter: drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.25));
+	border-radius: 9px;
 }
 
 @media screen and (min-width: $md) {

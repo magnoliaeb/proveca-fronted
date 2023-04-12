@@ -13,6 +13,11 @@
 	.slick-list {
 		width: 100%;
 	}
+	.slick-track {
+		>div {
+			width: 100% !important;
+		}
+	}
 
 	.slick-dots {
 		display: flex !important;

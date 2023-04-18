@@ -10,7 +10,11 @@
 					lg="3"
 				>
 					<nuxt-link to="/" class="d-flex justify-center justify-lg-start">
-						<img class="logo" src="../assets/imgs/logo.svg" alt="logo" />
+						<img
+							class="logo"
+							src="../assets/imgs/logo-proveca.svg"
+							alt="logo-proveca"
+						/>
 					</nuxt-link>
 					<p class="mt-4 text-center text-md-left">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

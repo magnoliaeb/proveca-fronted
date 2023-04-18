@@ -22,8 +22,8 @@
 							</v-btn>
 						</v-col>
 						<v-col cols="auto" md="auto" class="pa-0">
-							<nuxt-link :to="{ name: 'index' }" class="d-block">
-								<img class="logo" src="../assets/imgs/logo.svg" alt="" />
+							<nuxt-link :to="{ name: 'index' }" class="d-block logo">
+								<img src="../assets/imgs/logo-proveca.svg" alt="logo-proveca" />
 							</nuxt-link>
 						</v-col>
 						<v-col cols="12" md="4" lg="4" xl="5" class="d-none d-lg-block">
@@ -56,7 +56,9 @@
 											v-if="isAuthenticate"
 											class="text-capitalize text-left hidden-xs-only my-0"
 										>
-											<span class="font-weight-black">{{ $auth.user.name }}</span>
+											<span class="font-weight-black">{{
+												$auth.user.name
+											}}</span>
 										</p>
 										<p
 											v-else
@@ -86,7 +88,9 @@
 									src="../assets/imgs/iconos/shopping-cart.svg"
 									alt="shopping-cart"
 								/>
-								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0">({{ itemCount }})</p>
+								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0">
+									({{ itemCount }})
+								</p>
 							</v-btn>
 						</v-col>
 					</v-row>
@@ -136,28 +140,28 @@ export default {
 
 	computed: {
 		isAuthenticate() {
-			return this.$auth.user
+			return this.$auth.user;
 		},
 		itemCount() {
-			return this.$store.getters["cart/getItemCount"];
-		}
+			return this.$store.getters['cart/getItemCount'];
+		},
 	},
 	methods: {
 		openMenu() {
-			this.$observer.showMenu = true
+			this.$observer.showMenu = true;
 		},
 		openProfile() {
-			this.$observer.showProfile = true
+			this.$observer.showProfile = true;
 		},
 		openCart() {
-			this.$observer.showCart = true
+			this.$observer.showCart = true;
 		},
 
 		goToLogin() {
 			if (this.isAuthenticate) {
 				this.openProfile();
 			} else {
-				this.$observer.showLogin = true
+				this.$observer.showLogin = true;
 
 				// this.$router.push({ name: "login" });
 			}
@@ -181,9 +185,13 @@ nav {
 }
 
 .logo {
-	width: 93px;
-	height: 51px;
+	width: 130px;
+	height: 75px;
 	object-fit: contain;
+	img {
+		height: 100%;
+		width: 100%;
+	}
 }
 
 p,
@@ -195,8 +203,8 @@ span {
 
 @media screen and (min-width: $md) {
 	.logo {
-		width: 119px;
-		height: 65px;
+		width: 180px;
+		height: 80px;
 	}
 }
 @media screen and (min-width: $lg) {

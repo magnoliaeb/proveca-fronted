@@ -5,33 +5,35 @@
 				<VueSlickCarousel v-bind="slickOptions">
 					<div v-for="(item, index) in slides" :key="index" class="px-2">
 						<client-only>
-							<div class="img-box">
-								<v-img
-									transition="scale-transition"
-									:src="item.desktop_picture"
-									:lazy-src="item.desktop_picture"
-									aspect-ratio="1"
-									class=""
-									width="100%"
-									height="100%"
-									contain
-								>
-									<template v-slot:placeholder>
-										<v-row
-											class="fill-height ma-0"
-											align="center"
-											justify="center"
-										>
-											<v-progress-circular
-												:size="30"
-												:width="3"
-												indeterminate
-												color="primary"
-											></v-progress-circular>
-										</v-row>
-									</template>
-								</v-img>
-							</div>
+							<a :href="item.button_link">
+								<div class="img-box">
+									<v-img
+										transition="scale-transition"
+										:src="item.desktop_picture"
+										:lazy-src="item.desktop_picture"
+										aspect-ratio="1"
+										class=""
+										width="100%"
+										height="100%"
+										contain
+									>
+										<template v-slot:placeholder>
+											<v-row
+												class="fill-height ma-0"
+												align="center"
+												justify="center"
+											>
+												<v-progress-circular
+													:size="30"
+													:width="3"
+													indeterminate
+													color="primary"
+												></v-progress-circular>
+											</v-row>
+										</template>
+									</v-img>
+								</div>
+							</a>
 						</client-only>
 					</div>
 

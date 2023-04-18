@@ -226,17 +226,17 @@ export default {
 						$nuxt: this.$nuxt,
 						order: this.order,
 					})
-					.then((response) => {
-						console.log('response', response)
+					.then(response => {
+						this.$nuxt.$emit("success-notify", "Un momento por favor")
 
-						// this.$nuxt.$emit("success-notify", "Un momento por favor");
+						const url = this._.get(response, "url")
 
-						// const url = this._.get(response, "url");
 						// // window.open(url, "_blank");
 						// // this.$router.push({ name: "historial-de-pedidos" });
-						// window.location.href = url;
+						
+						window.location.href = url
 					})
-					.finally(() => (this.isBusy = false));
+					.finally(() => this.isBusy = false);
 			})
 		},
 

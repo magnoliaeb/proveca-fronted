@@ -197,7 +197,7 @@
 					</v-col>
 				</v-row>
 				<v-row>
-					<v-col cols="12" md="6">
+					<!-- <v-col cols="12" md="6">
 						<v-btn
 							@click="print"
 							:loading="isLoading"
@@ -207,7 +207,7 @@
 							depressed
 							>Imprimir resumen</v-btn
 						>
-					</v-col>
+					</v-col> -->
 					<v-col cols="12" md="6">
 						<v-btn
 							class="button-primary"
@@ -270,11 +270,11 @@ export default {
 			}
 		},
 		gateway() {
-			// return this.$route.query.id ? 'openpay' : 'paypal';
+			return 'paypal'
 		},
 
 		order() {
-			// return this.$store.getters['orders/getOrder'];
+			return this.$store.getters['orders/getOrder'];
 		},
 
 		charge() {
@@ -334,27 +334,27 @@ export default {
 	// 	},
 	// },
 
-	// created() {
-	// 	this.$store.dispatch('orders/getOrder', {
-	// 		$nuxt: this.$nuxt,
-	// 		order_id: this.$route.params.id,
-	// 	});
+	created() {
+		this.$store.dispatch('orders/getOrder', {
+			$nuxt: this.$nuxt,
+			order_id: this.$route.params.id,
+		});
 
-	// 	if (this.$route.query.id) {
-	// 		this.$store.dispatch('openpay/getCharge', {
-	// 			$nuxt: this.$nuxt,
-	// 			id: this.$route.query.id,
-	// 		});
-	// 	}
+		// if (this.$route.query.id) {
+		// 	this.$store.dispatch('openpay/getCharge', {
+		// 		$nuxt: this.$nuxt,
+		// 		id: this.$route.query.id,
+		// 	});
+		// }
 
-	// 	if (this.$route.query.paymentId) {
-	// 		this.$store.dispatch('paypal/getCharge', {
-	// 			$nuxt: this.$nuxt,
-	// 			id: this.$route.query.paymentId,
-	// 			token: this.$route.query.token,
-	// 		});
-	// 	}
-	// },
+		// if (this.$route.query.paymentId) {
+		// 	this.$store.dispatch('paypal/getCharge', {
+		// 		$nuxt: this.$nuxt,
+		// 		id: this.$route.query.paymentId,
+		// 		token: this.$route.query.token,
+		// 	});
+		// }
+	},
 };
 </script>
 

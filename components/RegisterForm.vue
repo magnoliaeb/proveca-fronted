@@ -50,6 +50,30 @@
 								/>
 							</validation-provider>
 						</v-col>
+
+						<v-col cols="12" class="py-0">
+							<validation-provider
+								v-slot="{ errors }"
+								name="El celular"
+								autocomplete="phone"
+								rules="required"
+							>
+								<label v-if="hasLabel" for="">Celular* </label>
+
+								<v-text-field
+									color="blue-ligth"
+									id="phone"
+									ref="phone"
+									v-model.trim="form.phone"
+									solo
+									flat
+									outlined
+									:error-messages="errors"
+									:placeholder="!hasLabel ? 'Celular*' : null"
+								/>
+							</validation-provider>
+						</v-col>
+
 						<v-col cols="12" class="py-0">
 							<validation-provider
 								autocomplete="new-password"

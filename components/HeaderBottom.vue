@@ -2,42 +2,38 @@
 	<div class="nav-bottom">
 		<div class="content">
 			<v-tabs v-model="tab" align-with-title color="primary" centered grow>
-				<!-- <v-tabs-slider color="primary"></v-tabs-slider> -->
+				<v-tab
+					:to="{ name: 'productos'}"
+					class="d-flex align-center"
+				>
+					<img
+						class="mr-2"
+						alt="..."
+						:src="require(`../assets/imgs/iconos/todo.svg`)"
+						width="20px"
+					/>
+					<span>
+						Todas
+					</span>
+				</v-tab>
 
 				<v-tab
-					:to="{ name: 'productos', query: { category_id: item.id } }"
 					v-for="(item, index) in categories"
 					:key="index"
+					:to="{ name: 'productos', query: { category_id: item.id } }"
 					class="d-flex align-center"
 				>
 					<img
 						class="mr-2"
 						:alt="item.name"
-						:src="require(`../assets/imgs/iconos/user.svg`)"
+						:src="item.picture"
+						width="20px"
 					/>
 					<span>
 						{{ item.name }}
 					</span>
-					<!-- <v-menu bottom left>
-						<template v-slot:activator="{ on, attrs }">
-							<v-btn
-								text
-								class="align-self-center mr-4"
-								v-bind="attrs"
-								v-on="on"
-							>
-								{{ item.title }}
-							</v-btn>
-						</template>
-						<v-list class="grey lighten-3">
-							<v-list-item v-for="item in 5" :key="item" @click="addItem(item)">
-								{{ item }}
-							</v-list-item>
-						</v-list>
-					</v-menu> -->
 				</v-tab>
 			</v-tabs>
-			<
 		</div>
 	</div>
 </template>

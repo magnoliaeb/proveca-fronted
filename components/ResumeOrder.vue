@@ -14,6 +14,13 @@
 							<p class="mb-0">Subtotal</p>
 							<span>{{ formattedSubtotal }}</span>
 						</v-col>
+
+						<v-col cols="12" class="d-flex justify-space-between" tag="li">
+							<p class="mb-0">Impuestos</p>
+							<span>{{ formattedTax }}</span>
+						</v-col>
+
+
 						<v-col cols="12" class="d-flex justify-space-between" tag="li">
 							<p class="mb-0">Descuento</p>
 							<span>{{ formattedDiscount }}</span>

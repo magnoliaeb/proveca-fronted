@@ -32,6 +32,13 @@ export default {
             })
         },
 
+        updateItemQty(qty, item) {
+            return this.$store.dispatch('cart/addItem', {
+                qty: qty,
+                item: item
+            })
+        },
+
         buyNow(variant = null) {
             this.addToCart(1, variant)
                 .then(response => this.$router.push({

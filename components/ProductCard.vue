@@ -88,11 +88,13 @@ export default {
 
 	computed: {
 		picture() {
-			let picture = this.product.pictures.find((p) => p.name == 'Principal');
+			return _.get(this.product, 'picture.url', `https://picsum.photos/500/300?image=${8 * 5 + 10}`)
 
-			return picture
-				? picture.url
-				: `https://picsum.photos/500/300?image=${8 * 5 + 10}`;
+			// let picture = this.product.pictures.find((p) => p.name == 'Principal');
+
+			// return picture
+			// 	? picture.url
+			// 	: `https://picsum.photos/500/300?image=${8 * 5 + 10}`;
 		},
 
 		variant() {

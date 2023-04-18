@@ -379,7 +379,7 @@ export const actions = {
     async getSingleProductById({ commit }, id) {
         try {
             // Get main data
-            let data = await this.$axios.get(`/catalog/products/${id}`);
+            let data = await this.$axios.post(`/catalog/products/${id}`);
             const min = data.variants.reduce((prev, curr) => prev.price < curr.price ? prev : curr);
             const max = data.variants.reduce((prev, curr) => prev.price > curr.price ? prev : curr);
             const price = parseFloat(data.price);
@@ -402,7 +402,7 @@ export const actions = {
     async getProductById({ commit }, id) {
         try {
             // Get main data
-            let data = await this.$axios.get(`/catalog/products/${id}`);
+            let data = await this.$axios.post(`/catalog/products/${id}`);
             const min = data.variants.reduce((prev, curr) => prev.price < curr.price ? prev : curr);
             const max = data.variants.reduce((prev, curr) => prev.price > curr.price ? prev : curr);
             const price = parseFloat(data.price);

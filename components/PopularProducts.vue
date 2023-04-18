@@ -1,5 +1,5 @@
 <template>
-	<section class="py-10">
+	<section class="pt-6 pb-10">
 		<div class="content">
 			<v-row class="">
 				<v-col cols="12">
@@ -27,10 +27,7 @@ import HeadingTitle from './HeadingTitle.vue';
 import ProductCard from './ProductCard.vue';
 export default {
 	components: { ProductCard, HeadingTitle },
-	props: [
-		'title',
-		'products'
-	]
+	props: ['title', 'products'],
 };
 </script>
 

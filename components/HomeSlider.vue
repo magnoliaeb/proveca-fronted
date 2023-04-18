@@ -1,40 +1,37 @@
 <template>
-	<div class="pt-16 pb-md-6 home-slider">
+	<div class="pt-16 home-slider">
 		<div class="">
-			<client-only v-if="slides.length != 0">
+			<!-- <pre>{{ slides }}</pre> -->
+			<client-only v-if="this.slides.length != 0">
 				<VueSlickCarousel v-bind="slickOptions">
 					<div v-for="(item, index) in slides" :key="index" class="px-2">
-						<client-only>
-							<a :href="item.button_link">
-								<div class="img-box">
-									<v-img
-										transition="scale-transition"
-										:src="item.desktop_picture"
-										:lazy-src="item.desktop_picture"
-										aspect-ratio="1"
-										class=""
-										width="100%"
-										height="100%"
-										contain
+						<a :href="item.button_link" class="d-block img-box">
+							<v-img
+								transition="scale-transition"
+								:src="item.desktop_picture"
+								:lazy-src="item.desktop_picture"
+								aspect-ratio="1"
+								class=""
+								width="100%"
+								height="100%"
+								contain
+							>
+								<template v-slot:placeholder>
+									<v-row
+										class="fill-height ma-0"
+										align="center"
+										justify="center"
 									>
-										<template v-slot:placeholder>
-											<v-row
-												class="fill-height ma-0"
-												align="center"
-												justify="center"
-											>
-												<v-progress-circular
-													:size="30"
-													:width="3"
-													indeterminate
-													color="primary"
-												></v-progress-circular>
-											</v-row>
-										</template>
-									</v-img>
-								</div>
-							</a>
-						</client-only>
+										<v-progress-circular
+											:size="30"
+											:width="3"
+											indeterminate
+											color="primary"
+										></v-progress-circular>
+									</v-row>
+								</template>
+							</v-img>
+						</a>
 					</div>
 
 					<template #prevArrow>
@@ -87,27 +84,25 @@ export default {
 				dots: true,
 				arrows: false,
 				infinite: true,
-				slidesToShow: 1,
-				slidesToScroll: 1,
-				pauseOnDotsHover: true,
-				pauseOnFocus: true,
-				pauseOnHover: true,
 				autoplay: true,
+				infinite: true,
+				centerMode: true,
+				centerPadding: '20px',
+				slidesToShow: 1,
 				autoplaySpeed: 3000,
-				speed: 1000,
+				// slidesToScroll: 1,
 				variableWidth: true,
-				adaptiveHeight: true,
 
 				responsive: [
-					{
-						breakpoint: 1263,
-						settings: {
-							slidesToShow: 1,
-							slidesToScroll: 1,
-							centerMode: true,
-							centerPadding: '10px',
-						},
-					},
+					// {
+					// 	breakpoint: 1263,
+					// 	settings: {
+					// 		slidesToShow: 1,
+					// 		slidesToScroll: 1,
+					// 		centerMode: true,
+					// 		centerPadding: '10px',
+					// 	},
+					// },
 					// {
 					//   breakpoint: 606,
 					//   settings: {
@@ -133,17 +128,22 @@ export default {
 
 <style lang="scss" scoped>
 .img-box {
-	width: 100%;
-	max-width: 338.61px;
+	width: 300px;
 	height: 150.02px;
 	border-radius: 6.43px;
 	box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius: 9px;
+	overflow: hidden !important;
 }
 
+@media screen and (min-width: $sm) {
+	.img-box {
+		width: 338.61px;
+	}
+}
 @media screen and (min-width: $md) {
 	.img-box {
-		max-width: 474px;
+		width: 474px;
 		height: 210px;
 		border-radius: 9px;
 	}

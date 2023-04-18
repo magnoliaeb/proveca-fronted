@@ -88,8 +88,8 @@
 										class="text-left"
 										@click="
 											redirecTo('productos-id-slug', {
-												id: 12,
-												slug: 12,
+												id: product.id,
+												slug: product.slug,
 											})
 										"
 									>

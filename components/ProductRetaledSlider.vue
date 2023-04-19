@@ -4,7 +4,7 @@
 			<client-only>
 				<VueSlickCarousel v-bind="slickOptions">
 					<div
-						class="product-content"
+						class="product-content px-2"
 						v-for="(product, index) in products"
 						:key="index"
 					>
@@ -56,9 +56,7 @@
 <script>
 import ProductCard from './ProductCard.vue';
 export default {
-	props: [
-		'products'
-	],
+	props: ['products'],
 
 	data() {
 		return {
@@ -69,21 +67,22 @@ export default {
 				slidesToShow: 1,
 				slidesToScroll: 1,
 				initialSlide: 1,
-				// pauseOnDotsHover: true,
-				// pauseOnFocus: true,
 				pauseOnHover: true,
 				autoplay: true,
 				autoplaySpeed: 3000,
-				speed: 1000,
 				variableWidth: true,
-				adaptiveHeight: true,
-				centerMode: true,
-				centerPadding: '10px',
+				// adaptiveHeight: true,
+				pauseOnDotsHover: true,
+				// pauseOnFocus: true,
+				// speed: 1000,
 
 				responsive: [
 					{
 						breakpoint: 1263,
-						settings: {},
+						settings: {
+							centerMode: true,
+							centerPadding: '10px',
+						},
 					},
 					// {
 					//   breakpoint: 606,
@@ -99,13 +98,24 @@ export default {
 			},
 		};
 	},
-	
+
 	components: { ProductCard },
 };
 </script>
 
 <style lang="scss" scoped>
 .product-content {
-	max-width: 280px;
+	width: 240px !important;
+}
+
+@media screen and (min-width: $md) {
+	.product-content {
+		width: 250px !important;
+	}
+}
+@media screen and (min-width: $md) {
+	.product-content {
+		width: 270px !important;
+	}
 }
 </style>

@@ -9,9 +9,8 @@
 				/>
 			</v-col>
 			<v-col cols="auto" md="auto">
-				<client-only>
+				<client-only v-if="imagesProduct != null">
 					<v-card
-						v-if="imgSelected"
 						tile
 						flat
 						class="d-flex justify-center align-center grey lighten-3 img-product"
@@ -21,7 +20,7 @@
 					>
 						<!-- <div style="width: 100%; height: 100%; position: relative"> -->
 						<zoom-on-hover
-							:img-normal="imgSelected.url"
+							:img-normal="imagesProduct.url"
 							:scale="1"
 						></zoom-on-hover>
 						<!-- </div> -->
@@ -52,6 +51,9 @@ export default {
 	components: {
 		SlideProductGroup,
 	},
+	created() {
+		// this.imgSelected = this.product?.pictures[0];
+	},
 
 	computed: {
 		imagesProduct() {
@@ -59,8 +61,11 @@ export default {
 
 			// imagesProduct.unshift(this.product.images.original_profile);
 
-			// return imagesProduct;
-			return null;
+			if (this.imgSelected != null) {
+				return this.imgSelected;
+			} else if (this.product?.pictures[0]) {
+				return this.product?.pictures[0];
+			}
 		},
 		heightImg() {
 			switch (this.$vuetify.breakpoint.name) {
@@ -80,7 +85,7 @@ export default {
 
 	data() {
 		return {
-			imgSelected: this.product?.pictures[0],
+			imgSelected: null,
 		};
 	},
 

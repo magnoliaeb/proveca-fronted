@@ -49,62 +49,69 @@ export default {
 			ready: false,
 		};
 	},
-	
+
 	components: {
 		ProductsRelated,
 		SingleProduct,
 	},
 
 	computed: {
-    	product() {
-      		return this.$store.getters["products/getProduct"];
-    	},
+		product() {
+			return this.$store.getters['products/getProduct'];
+		},
 
 		links() {
 			let links = [
 				{
-					text: "Productos",
+					text: 'Productos',
 					disabled: false,
 					to: {
-						name: 'productos'
-					}
-				}
-			]
-			
-			if(this.product && this.product.category) {
+						name: 'productos',
+					},
+				},
+			];
+
+			if (this.product && this.product.category) {
 				links.push({
 					text: this.product.category.name,
 					disabled: false,
 					to: {
 						name: 'productos',
 						query: {
-							category_id: this.product.category.id
-						}
-					}
-				})
+							category_id: this.product.category.id,
+						},
+					},
+				});
 			}
-			
-			if(this.product && this.product.brand) {
+
+			if (this.product && this.product.brand) {
 				links.push({
 					text: this.product.brand.name,
 					disabled: false,
 					to: {
 						name: 'productos',
 						query: {
-							brand_id: this.product.brand.id
-						}
-					}
-				})
+							brand_id: this.product.brand.id,
+						},
+					},
+				});
 			}
-			
-			return links
-		}
-  	},
-	
+
+			return links;
+		},
+	},
+
+	watch: {
+		$route(to, from) {
+			console.log('route change to', to);
+			console.log('route change from', from);
+			this.$store.dispatch('products/getProductById', this.$route.params.id);
+		},
+	},
 
 	created() {
-    	this.$store.dispatch("products/getProductById", this.$route.params.id);
-  	}
+		this.$store.dispatch('products/getProductById', this.$route.params.id);
+	},
 };
 </script>
 

@@ -149,7 +149,7 @@ export const actions = {
                 await ctx.dispatch('quoteShipping')
                 await ctx.dispatch('getPaymentMethods')
             } catch (error) {
-                console.log('nuxtServerInit ERROR: ', e)
+                console.log('nuxtServerInit ERROR: ', error)
             }
         } else {
             await ctx.dispatch('localcart/loadCartProducts', null, {root: true})

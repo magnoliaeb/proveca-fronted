@@ -1,11 +1,16 @@
 <template>
 	<div class="pt-16 home-slider">
-		<div class="">
+		<div class="pt-2 pt-md-4 pt-lg-0">
 			<!-- <pre>{{ slides }}</pre> -->
 			<client-only v-if="this.slides.length != 0">
 				<VueSlickCarousel v-bind="slickOptions">
 					<div v-for="(item, index) in slides" :key="index" class="px-2">
-						<a :href="item.button_link" class="d-block img-box">
+						<!-- <a :href="item.button_link" class="d-block img-box"> -->
+						<v-card
+							class="d-block img-box"
+							:href="item.button_link"
+							elevation="0"
+						>
 							<v-img
 								transition="scale-transition"
 								:src="item.desktop_picture"
@@ -31,7 +36,8 @@
 									</v-row>
 								</template>
 							</v-img>
-						</a>
+						</v-card>
+						<!-- </a> -->
 					</div>
 
 					<template #prevArrow>
@@ -128,24 +134,24 @@ export default {
 
 <style lang="scss" scoped>
 .img-box {
-	width: 300px;
-	height: 150.02px;
-	border-radius: 6.43px;
-	box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-	border-radius: 9px;
+	width: 300px !important;
+	height: 150.02px !important;
+	border-radius: 6.43px !important;
+	box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25) !important;
+	border-radius: 9px !important;
 	overflow: hidden !important;
 }
 
 @media screen and (min-width: $sm) {
 	.img-box {
-		width: 338.61px;
+		width: 338.61px !important;
 	}
 }
 @media screen and (min-width: $md) {
 	.img-box {
-		width: 474px;
-		height: 210px;
-		border-radius: 9px;
+		width: 474px !important;
+		height: 210px !important;
+		border-radius: 9px !important;
 	}
 }
 // @media screen and (min-width: $md) {

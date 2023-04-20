@@ -132,6 +132,14 @@ export default {
 };
 </script>
 
+<style lang="scss">
+	.home-slider {
+		.v-image__image {
+			background-size: cover !important;
+		}
+	}
+</style>
+
 <style lang="scss" scoped>
 .img-box {
 	width: 300px !important;

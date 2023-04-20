@@ -112,22 +112,22 @@ export default {
 	data() {
 		return {
 			items: [
+				// {
+				// 	name: 'Av. Juan Palomar y Arias #2381, Colonia Monrraz Zapopan Jalisco México',
+				// 	icon: 'pin',
+				// 	email: false,
+				// 	phone: false,
+				// 	address: true,
+				// },
 				{
-					name: 'Av. Juan Palomar y Arias #2381, Colonia Monrraz Zapopan Jalisco México',
-					icon: 'pin',
-					email: false,
-					phone: false,
-					address: true,
-				},
-				{
-					name: '(33) 3453 7890 ',
+					name: '502 3173 2325',
 					icon: 'tel',
 					email: false,
 					phone: true,
 					address: false,
 				},
 				{
-					name: 'contacto@capitalextra.com',
+					name: 'info@proveeca.com',
 					icon: 'email',
 					email: true,
 					phone: false,
@@ -137,7 +137,7 @@ export default {
 
 			links: [
 				{ name: 'Categorías', to: '/productos' },
-				{ name: 'Nosotros', to: '/nosotros' },
+				// { name: 'Nosotros', to: '/nosotros' },
 				{ name: 'Contacto', to: '/contacto' },
 			],
 		};

@@ -17,10 +17,7 @@
 						/>
 					</nuxt-link>
 					<p class="mt-4 text-center text-md-left">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-						eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-						ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-						aliquip ex ea commodo consequat.
+						Bienvenidos a tu tienda de abarrotes de confianza, donde encontrarás todo lo que necesitas para tu hogar. En nuestro establecimiento encontrarás una amplia variedad de productos de alta calidad.
 					</p>
 				</v-col>
 				<v-col class="mb-4 mb-md-0 text-left" cols="12" sm="8" md="4" lg="3">

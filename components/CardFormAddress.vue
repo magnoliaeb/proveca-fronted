@@ -53,7 +53,7 @@
 							:disabled="isDisabled && invalid"
 							depressed
 							block
-							>Buscar dirección en el mapa</v-btn
+							>Buscar</v-btn
 						>
 					</v-col>
 				</v-row>
@@ -85,7 +85,7 @@ export default {
 		async sendForm() {
 			this.isDisabled = true;
 			if (await this.$refs.observer.validate()) {
-				this.isLoading = true;
+				// this.isLoading = true;
 				// this.$nuxt.$emit("success-notify", "Pago realizado");
 
 				// setTimeout(() => {
@@ -94,7 +94,19 @@ export default {
 				// this.clear();
 				// this.isDisabled = false;
 
-				this.close();
+				// this.isLoading = true
+				// this.isDisabled = true
+
+				let street = `${this.form.number}, cp ${this.form.code}`
+
+				this.$google.geocodeByAddress(street, {first: true, customObject: true})
+					.then(() => {
+						this.isLoading = false
+						this.isDisabled = false
+						this.$nuxt.$emit('success-notify', '¡Listo!')
+
+						this.$emit('closeModel')
+					})
 			}
 		},
 

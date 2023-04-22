@@ -138,6 +138,8 @@ export default app => ({
                         ? results[0]
                         : results
 
+                    app.$cookies.set('google.last_geocode', results)
+
                     this.lastGeocode = results
 
                     return results
@@ -164,5 +166,9 @@ export default app => ({
                 break
             }
         }
+    },
+
+    created() {
+        this.lastGeocode = app.$cookies.get('google.last_geocode') ?? null
     }
 })

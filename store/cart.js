@@ -12,8 +12,7 @@ export const state = ($app) => ({
     paymentUrl: null,
     cfdiUsageOptions: [],
     requireInvoice: false,
-    isBusy: false,
-    zip: null
+    isBusy: false
 })
 
 export const mutations = {
@@ -121,11 +120,6 @@ export const mutations = {
 
     SET_IS_AVAILABLE(state) {
         state.isBusy = false
-    },
-
-    SET_ZIP(state, zip) {
-        state.zip = zip
-        this.$cookies.set('cart.zip', zip)
     }
 }
 
@@ -140,8 +134,6 @@ export const actions = {
     },
 
     async init(ctx) {
-        ctx.commit('SET_ZIP', this.$cookies.get('cart.zip') ?? null)
-
         if(ctx.rootState.auth.user) {
             try {
                 await ctx.dispatch('loadShoppingCart')
@@ -699,33 +691,27 @@ export const actions = {
         ctx.commit('SET_REQUIRE_INVOICE', requireInvoice)
     },
 
-    setZip(ctx, zip) {
-        ctx.commit('SET_ZIP', zip)
-
-        return Promise.resolve(zip)
-    },
-
-    loadShippingCostsByAddress(ctx, config) {
-        return this.$axios.post('/store/load-shipping-costs-by-address', config.data)
-            .then(response => {
-                ctx.commit('SET_ZIP', config.data.zip)
+    // loadShippingCostsByAddress(ctx, config) {
+    //     return this.$axios.post('/store/load-shipping-costs-by-address', config.data)
+    //         .then(response => {
+    //             ctx.commit('SET_ZIP', config.data.zip)
                 
-                config.$store.dispatch('localcart/addService', {
-                    service: {
-                        id: 'Envío',
-                        name: 'Envío',
-                        product_uom_qty: 1,
-                        price_unit: response.data,
-                        price_subtotal: response.data,
-                        price_total: response.data,
-                        product_product_id: 'Envío',
-                        product: null
-                    }
-                })
+    //             config.$store.dispatch('localcart/addService', {
+    //                 service: {
+    //                     id: 'Envío',
+    //                     name: 'Envío',
+    //                     product_uom_qty: 1,
+    //                     price_unit: response.data,
+    //                     price_subtotal: response.data,
+    //                     price_total: response.data,
+    //                     product_product_id: 'Envío',
+    //                     product: null
+    //                 }
+    //             })
 
-                return response.data
-            })
-    },
+    //             return response.data
+    //         })
+    // },
 
     // loadShippingCostsByZip(ctx, config) {
     //     //  $store

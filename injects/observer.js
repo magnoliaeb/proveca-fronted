@@ -12,6 +12,7 @@ export default app => ({
             showDialogInfo: false,
             productDialogInfo: null,
             showDialogSuscribe: false,
+            showDialogAddress: false,
 
             keys: {
                 GridProducts: 1

@@ -7,7 +7,7 @@
 				block
 				depressed
 				text
-				@click.stop="dialog = true"
+				@click.stop="$observer.showDialogAddress = true"
 				large
 			>
 				<img
@@ -22,12 +22,12 @@
 				<p v-else class="text-capitalize text-left my-0">C.P. 44210</p>
 			</v-btn>
 			<v-dialog
-				v-model="dialog"
+				v-model="$observer.showDialogAddress"
 				transition="dialog-bottom-transition"
 				max-width="560px"
 				content-class="dialog-address-box"
 			>
-				<v-card v-model="dialog" class="py-2 px-md-6 py-md-8">
+				<v-card v-model="$observer.showDialogAddress" class="py-2 px-md-6 py-md-8">
 					<v-btn
 						absolute
 						right
@@ -68,7 +68,7 @@
 								<v-btn
 									class="current mt-8 justify-space-between"
 									depressed
-									@click="dialog.value = false"
+									@click="useCurrentAdresss"
 									block
 									large
 									tile
@@ -92,12 +92,17 @@
 									/>
 									<!-- <v-icon icon="mdi-chevron-right"></v-icon> -->
 								</v-btn>
+								
+								<div v-if="$google.lastGeocode && $google.lastGeocode.formatted_address">
+									<br>
+									Dirección: {{ $google.lastGeocode.formatted_address }}
+								</div>
 							</v-card-text>
 						</v-window-item>
 
 						<v-window-item :value="2">
 							<v-card-text>
-								<CardFormAddress />
+								<CardFormAddress @closeModel="closeModel" />
 							</v-card-text>
 						</v-window-item>
 					</v-window>
@@ -116,7 +121,6 @@ export default {
 	data() {
 		return {
 			code: '',
-			dialog: false,
 			hasCode: false,
 			isDisabled: false,
 			isLoading: false,
@@ -125,22 +129,21 @@ export default {
 	},
 	methods: {
 		closeModel() {
-			this.dialog = false;
+			this.$observer.showDialogAddress = false
+			this.step = 1
 		},
-		sendForm() {
-			if (this.code.length > 0) {
-				this.isLoading = true;
-				this.dialog = false;
-				this.$nuxt.$emit('success-notify', '¡Código correcto!');
+		
+		useCurrentAdresss() {
+			this.isLoading = true
+			this.isDisabled = true
 
-				setTimeout(() => {
-					this.isLoading = false;
-					this.hasCode = true;
-				}, 2000);
-				this.code = '';
-				this.isDisabled = false;
-			}
-		},
+			this.$google.geocodeByCurrentDevicePosition()
+				.then(() => {
+					this.isLoading = false
+					this.isDisabled = false
+					this.$nuxt.$emit('success-notify', '¡Listo!')
+				})
+		}
 	},
 };
 </script>

@@ -85,18 +85,6 @@ export default {
 		async sendForm() {
 			this.isDisabled = true;
 			if (await this.$refs.observer.validate()) {
-				// this.isLoading = true;
-				// this.$nuxt.$emit("success-notify", "Pago realizado");
-
-				// setTimeout(() => {
-				//   this.isLoading = false;
-				// }, 2000);
-				// this.clear();
-				// this.isDisabled = false;
-
-				// this.isLoading = true
-				// this.isDisabled = true
-
 				let street = `${this.form.number}, cp ${this.form.code}`
 
 				this.$google.geocodeByAddress(street, {first: true, customObject: true})

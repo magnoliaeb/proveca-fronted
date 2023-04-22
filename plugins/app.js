@@ -15,10 +15,10 @@ export default async ({ app }, inject) => {
     if(process.client) {
         await app.$google.setup()
 
-        let lastGeocode = app.$google.lastGeocode
+        // let lastGeocode = app.$google.lastGeocode
 
-        if(! lastGeocode) {
-            await app.$google.geocodeByCurrentDevicePosition()
-        }
+        // if(! lastGeocode) {
+        //     await app.$google.geocodeByCurrentDevicePosition()
+        // }
     }
 }

@@ -45,15 +45,15 @@
 						<PriceInfoItem2
 							v-for="(variant, i) in variants"
 							:key="i"
-							:product="product"
 							:variant="variant"
+							ref="price_info_item"
 						/>
 					</ul>
 				</v-col>
 			</v-row>
 
-			<!-- <v-row class="align-center justify-space-between">
-				<v-col cols="12" sm="6">
+			<v-row class="align-center justify-space-between">
+				<!-- <v-col cols="12" sm="6">
 					<v-btn
 						depressed
 						block
@@ -64,8 +64,12 @@
 					>
 						Comprar
 					</v-btn>
-				</v-col>
-				<v-col cols="12" sm="6">
+				</v-col> -->
+				<v-col
+					v-if="sum > 0"
+					cols="12"
+					sm="6"
+				>
 					<v-btn
 						depressed
 						block
@@ -77,7 +81,7 @@
 						Agregar al carrito
 					</v-btn>
 				</v-col>
-			</v-row> -->
+			</v-row>
 
 			<v-row class="">
 				<v-col cols="12">
@@ -105,10 +109,12 @@ export default {
 
 	data() {
 		return {
-			qty: 10,
 			loading: false,
+			ready: false,
 			// alert: false,
 			// duration: 3000,
+
+			variants: [],
 
 			socials: [
 				{
@@ -130,12 +136,52 @@ export default {
 	},
 
 	computed: {
-		variants() {
-			return this.product.variants.filter(
-				(variant) => variant.stock >= 1 && variant.price > 0
-			);
-		},
+		sum() {
+			if(! this.ready) {
+				return 0
+			}
+
+			return _.sumBy(this.variants, 'qty')
+		}
 	},
+
+	methods: {
+		add() {
+			this.variants.forEach((v, i) => {
+				if(v.qty > 0) {
+					let item = {
+						product: this.product,
+						variant: v,
+						qty: v.qty
+					}
+				
+					this.$store.dispatch('cart/addItem', {
+						item: item
+					})
+				}
+			})
+
+			this.variants.forEach((v, i) => {
+				this.$set(this.variants[i], 'qty', 0)
+			})
+
+			this.$refs.price_info_item.forEach(r => {
+				r.qty = 0
+			})
+		}
+	},
+
+	created() {
+		this.$set(this, 'variants', this.$util.clone(this.product).variants.filter(
+			variant => variant.stock >= 1 && variant.price > 0
+		))
+
+		this.variants.forEach((v, i) => {
+			this.$set(this.variants[i], 'qty', 0)
+		})
+
+		this.ready = true
+	}
 };
 </script>
 

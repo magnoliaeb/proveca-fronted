@@ -36,15 +36,11 @@
 </template>
 
 <script>
-import BuyableMixin from "~/mixins/BuyableMixin";
 
 export default {
 	props: [
-		'variant'
-	],
-
-	mixins: [
-		BuyableMixin
+		'variant',
+		'i'
 	],
 
 	data() {
@@ -58,19 +54,15 @@ export default {
 			if (this.qty > 1) {
 				this.qty = this.qty - 1
 
-				this.addToCart(this.qty)
+				this.$set(this.variant, 'qty', this.qty)
 			}
 		},
 
 		inc() {
 			this.qty = this.qty + 1
 
-			this.addToCart(this.qty)
+			this.$set(this.variant, 'qty', this.qty)
 		}
-	},
-
-	created() {
-		this.selectedVariant = this.variant
 	}
 };
 </script>

@@ -20,7 +20,7 @@
 
 					<v-col cols="12">
 						<h2 class="mb-4 text-center">
-							Gracias por suscribirte a nuestronewsletter
+							Gracias por suscribirte a nuestro newsletter
 						</h2>
 
 						<p>
@@ -29,9 +29,14 @@
 						</p>
 					</v-col>
 					<v-col cols="12" md="auto" class="d-flex justify-center">
-						<v-btn to="/productos" class="button-primary" depressed
-							>Buscar dirección en el mapa</v-btn
+						<v-btn
+							to="/productos"
+							class="button-primary"
+							depressed
+							@click="closeAlert"
 						>
+							Visitar nuestra tienda
+						</v-btn>
 					</v-col>
 				</v-row>
 			</v-card-text>

@@ -75,6 +75,15 @@ export default app => ({
                     params: { id: order.id }
                 })
             })
+        },
+
+        openLogin() {
+            this.showRegister = false
+
+            setTimeout(
+                () => this.showLogin = true,
+                500
+            )
         }
     }
 })

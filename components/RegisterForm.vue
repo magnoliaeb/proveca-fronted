@@ -123,10 +123,11 @@
 			<v-col cols="12" md="auto" class="text-center">
 				<nuxt-link
 					class="fs-base"
-					to="/login"
-					@click.native="openLogin"
-					>¿Ya tienes cuenta? <span>Inicia Sesión</span></nuxt-link
+					@click.native="$observer.openLogin"
+					to=""
 				>
+					¿Ya tienes cuenta? <span>Inicia Sesión</span>
+				</nuxt-link>
 			</v-col>
 		</v-row>
 	</section>
@@ -216,11 +217,7 @@ export default {
 			this.form.password = '';
 			this.form.password_confirmation = '';
 			this.$refs.observer.reset();
-		},
-		openLogin() {
-			this.$observer.showLogin = true
-			this.$observer.showRegister = false
-		},
+		}
 	},
 };
 </script>

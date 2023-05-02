@@ -100,7 +100,7 @@
 								placeholder="País"
 								item-text="name"
 								item-value="id"
-								v-on:change="loadStates()"
+								v-on:change="loadStates"
 							>
 								<template v-slot:append>
 									<v-icon class="icon"> mdi-chevron-down </v-icon>
@@ -154,6 +154,21 @@
 								placeholder="Código postal"
 							/>
 						</validation-provider>
+					</v-col>
+
+					<v-col
+						v-if="$google.lastGeocode && $google.lastGeocode.postal_code"
+						cols="12"
+						class="text-right"
+					>
+						<v-btn
+							@click="useSavedAddress"
+							class="button-primary"
+							depressed
+							style="height: 40px !important; width: auto !important;"
+						>
+							Usar C.P. {{ $google.lastGeocode.postal_code }}
+						</v-btn>
 					</v-col>
 				</v-row>
 
@@ -231,6 +246,28 @@ export default {
         }
       }
     },
+
+	async useSavedAddress() {
+		this.$set(this.form, 'street', `${this.$google.lastGeocode.route} ${this.$google.lastGeocode.street_number}`)
+		this.$set(this.form, 'city', this.$google.lastGeocode.locality)
+		this.$set(this.form, 'zip', this.$google.lastGeocode.postal_code)
+
+		if(Boolean(this.countries.length)) {
+			let country = this.countries.find(c => c.name == 'Mexico')
+
+			if(country) {
+				this.$set(this.form, 'country_id', country.id)
+
+				await this.loadStates()
+
+				let state = this.states.find(s => s.name == this.$google.lastGeocode.administrative_area_level_1)
+
+				if(state) {
+					this.$set(this.form, 'state_id', state.id)
+				}
+			}
+		}
+	},
 
     create() {
       this.$store

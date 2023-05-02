@@ -40,9 +40,10 @@
 						id="register"
 						@click.native="openRegister"
 						class=""
-						:to="{ name: 'registro' }"
-						>Regístrate</nuxt-link
+						to=""
 					>
+						Regístrate
+					</nuxt-link>
 				</p>
 			</v-col>
 		</v-row>

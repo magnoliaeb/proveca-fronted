@@ -133,6 +133,7 @@
               					new_password: this.form.newPassword
             				},
           				})
+						.then(() => this.$router.back())
           				.finally(() => this.clear())
 
         			this.isLoading = false

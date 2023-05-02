@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       selectedMethod: null,
+	  saved: false
     };
   },
 
@@ -63,6 +64,24 @@ export default {
 
       return id;
     },
+  },
+
+  watch: {
+	items: {
+		immediate: true,
+		handler(items) {
+			if(! this.saved && Boolean(items.length)) {
+				let item = items[0]
+				
+				this.$store.dispatch("cart/setShippingMethod", {
+					carrier_id: item.carrier.id,
+					dontEmit: true
+				});
+
+				this.saved = true
+			}
+		}
+	}
   },
 
   methods: {

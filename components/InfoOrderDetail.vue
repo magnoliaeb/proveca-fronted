@@ -50,7 +50,7 @@
 				<p>
 					Entrega: {{ shippingAddress.full }} {{ computedOrder.shipping_label }}
 				</p>
-				<p>Método de Pago: MasterCard **** **** **** 2345</p>
+				<p>Método de Pago: PayPal</p>
 			</v-col>
 		</v-row>
 		<!-- <v-row>

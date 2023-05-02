@@ -149,6 +149,8 @@ export default {
             			// this.$auth.setUserToken(response.token);
             			// this.$auth.setUser(response.data);
             			// this.$auth.$storage.setUniversal("token", response.token)
+
+						this.$router.back()
           			})
           			.finally(() => {
             			//this.clear();

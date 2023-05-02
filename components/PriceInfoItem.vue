@@ -27,10 +27,12 @@
 						text
 						v-bind="attrs"
 						v-on="on"
+						class="cart"
 					>
 						<img
 							class=""
-							:src="require(`../assets/imgs/iconos/box-empty.svg`)"
+							__src="require(`../assets/imgs/iconos/box-empty.svg`)"
+							:src="require(`../assets/imgs/iconos/cart-plus.svg`)"
 							alt="box-blue"
 						/>
 					</v-btn>
@@ -82,6 +84,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+button.cart {
+	background-color: $primary !important;
+}
 .price-info-item {
 	.group-input {
 		position: relative;

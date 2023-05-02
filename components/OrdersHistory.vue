@@ -5,7 +5,7 @@
 				<v-col cols="12" sm="auto" class="">
 					<h1 class="text-center text-sm-left title-primary">mis pedidos</h1>
 				</v-col>
-				<v-col cols="12" sm="auto">
+				<!-- <v-col cols="12" sm="auto">
 					<div class="d-flex align-baseline">
 						<h4 class="mr-3">Ordenar por mes</h4>
 						<v-select
@@ -23,7 +23,7 @@
 							</template>
 						</v-select>
 					</div>
-				</v-col>
+				</v-col> -->
 			</v-row>
 
 			<SimpleTableOrder class="mt-3 mt-md-6" :orders="orders" />

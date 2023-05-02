@@ -6,6 +6,7 @@
 				<h3 class="mb-4 text-left">{{ $auth.user.name }}</h3>
 				<p class="mb-4">{{ $auth.user.email }}</p>
 				<p class="mb-4">Tel. {{ $auth.user.phone }}</p>
+				<p class="mb-4">Fecha de nacimiento {{ $auth.user.birthdate }}</p>
 			</v-col>
 			<v-col cols="12" md="" class="pa-0">
 				<v-row class="">

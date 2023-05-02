@@ -126,7 +126,7 @@ export default {
 
 	computed: {
 		slides() {
-			return this.$store.getters['identity/getBanners'];
+			return this.$store.getters['identity/getBanners'].filter(b => b.location == 'MAIN')
 		},
 	},
 };

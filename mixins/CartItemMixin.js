@@ -40,7 +40,7 @@ export default {
         image() {
 			return this.product && this.product.picture.url
                 ? this.product.picture.url
-                : `https://picsum.photos/500/300?image=${8 * 5 + 10}`
+                : '/loading.png'
 		}
     },
 

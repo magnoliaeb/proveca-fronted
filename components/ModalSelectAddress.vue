@@ -15,11 +15,16 @@
 					src="../assets/imgs/iconos/map-ping.svg"
 					alt="perfil"
 				/>
-				<p v-if="!hasCode" class="text-capitalize text-left my-0">
+				<p v-if="! hasCode" class="text-capitalize text-left my-0">
 					<span>ingresa tu </span> <br />
 					ubicación
 				</p>
-				<p v-else class="text-capitalize text-left my-0">C.P. 44210</p>
+				<p
+					v-else
+					class="text-capitalize text-left my-0"
+				>
+					C.P. {{ $google.lastGeocode.postal_code }}
+				</p>
 			</v-btn>
 			<v-dialog
 				v-model="$observer.showDialogAddress"
@@ -121,12 +126,18 @@ export default {
 	data() {
 		return {
 			code: '',
-			hasCode: false,
 			isDisabled: false,
 			isLoading: false,
 			step: 1,
 		};
 	},
+
+	computed: {
+		hasCode() {
+			return this.$google.lastGeocode && this.$google.lastGeocode.postal_code
+		}
+	},
+
 	methods: {
 		closeModel() {
 			this.$observer.showDialogAddress = false

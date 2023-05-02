@@ -88,7 +88,7 @@ export default {
 
 	computed: {
 		picture() {
-			return _.get(this.product, 'picture.url', `https://picsum.photos/500/300?image=${8 * 5 + 10}`)
+			return _.get(this.product, 'picture.url', '/loading.png')
 
 			// let picture = this.product.pictures.find((p) => p.name == 'Principal');
 

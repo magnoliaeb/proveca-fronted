@@ -39,7 +39,13 @@
 							<v-col cols="auto">
 								<!-- <v-btn depressed text :to="{ name: 'index' }">Editar</v-btn> -->
 
-								{{ carrier }}
+								<span>
+									Local
+								</span>
+
+								<!-- <span>
+									{{ carrier }}
+								</span> -->
 							</v-col>
 						</v-row>
 

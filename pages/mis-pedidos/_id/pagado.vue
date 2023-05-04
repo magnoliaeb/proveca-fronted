@@ -196,7 +196,7 @@
 								<h4 class="mb-5">Método de Pago</h4>
 
 								<div class="my-2 mx-1 mx-sm-3">
-									<p class="">Número de tarjeta: **** **** **** 2475</p>
+									<p class="">PayPal</p>
 								</div>
 							</div>
 						</article>

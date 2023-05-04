@@ -20,14 +20,30 @@
 				<p>{{ $util.getFormattedDate(computedOrder.date_order, 2) }}</p>
 			</v-col>
 
-			<v-col cols="12" md="2" class="d-flex">
+			<v-col cols="12" md="4" class="d-flex align-center">
 				<v-btn
-					class="button-primary"
+					class="button-primary mr-3"
 					depressed
 					:to="{ name: 'mis-pedidos-id', params: { id: this.computedOrder.id } }"
+					style="width: auto !important;"
 				>
 					Ver pedido
 				</v-btn>
+
+				<nuxt-link
+					v-if="order.payment_status == 'unpaid' && order.state != 'cancel'"
+					:to="{ name: 'pagar-pedido-id', params: { id: order.id } }"
+				>
+					Pagar
+				</nuxt-link>
+				<span
+					v-else-if="order.state == 'cancel'"
+				>
+					Cancelado
+				</span>
+				<span v-else>
+					{{ order.payment_label }}
+				</span>
 			</v-col>
 
 			<!-- <v-col cols="12" md="2" class="my-4">

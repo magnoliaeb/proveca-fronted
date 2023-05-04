@@ -6,7 +6,7 @@
 			<v-col cols="12" md="1"> <span>Cantidad</span> </v-col>
 			<v-col cols="12" md="3"> <span>Domicilio de entrega</span> </v-col>
 			<v-col cols="12" md="2"> <span>Fecha de pedido</span> </v-col>
-			<v-col cols="12" md="2" class=""> </v-col>
+			<v-col cols="12" md="4" class=""> </v-col>
 		</v-row>
 		<ul class="">
 			<v-row tag="li" v-for="(order, index) in orders" :key="index">

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-show="false">
 		<v-row class="mt-4">
 			<v-col cols="12" class="">
 				<h3>Métodos de Envío</h3>

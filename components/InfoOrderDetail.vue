@@ -50,10 +50,10 @@
 				<p>
 					Entrega: {{ shippingAddress.full }} {{ computedOrder.shipping_label }}
 				</p>
-				<p>Método de Pago: PayPal</p>
 			</v-col>
 		</v-row>
-		<!-- <v-row>
+
+		<v-row>
 			<v-col cols="12">
 				<div v-if="order.payment_status == 'unpaid' && order.state != 'cancel'">
 					<p>Pedido no pagado</p>
@@ -75,11 +75,22 @@
 				>
 					Cancelado
 				</v-btn>
-				<v-btn v-else class="mr-3" depressed :class="selectedBg">
-					{{ order.payment_label }}
-				</v-btn>
+
+				<div
+					v-else
+					class="mr-3"
+				>
+					<v-btn
+						depressed
+						:class="selectedBg"
+					>
+						{{ order.payment_label }}
+					</v-btn>
+
+					<p>Método de Pago: PayPal</p>
+				</div>
 			</v-col>
-		</v-row> -->
+		</v-row>
 	</div>
 </template>
 

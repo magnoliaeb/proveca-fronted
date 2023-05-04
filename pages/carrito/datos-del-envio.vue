@@ -14,10 +14,29 @@
 							block
 							depressed
 							height="46px"
-							>Iniciar sesión</v-btn
 						>
+							Iniciar sesión
+						</v-btn>
 					</v-col>
 				</v-row>
+
+				<v-row class="align-center">
+					<v-col cols="12" md="auto">
+						<h3 class="text-center text-md-left">¿Deseas registrarte?</h3>
+					</v-col>
+					<v-col cols="12" md="auto">
+						<v-btn
+							:to="{ name: 'registro' }"
+							class="button-primary"
+							block
+							depressed
+							height="46px"
+						>
+							Registrarme
+						</v-btn>
+					</v-col>
+				</v-row>
+
 				<v-row>
 					<v-col cols="12">
 						<v-divider></v-divider>

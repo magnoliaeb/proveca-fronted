@@ -41,7 +41,11 @@ export default {
 			return this.product && this.product.picture.url
                 ? this.product.picture.url
                 : '/loading.png'
-		}
+		},
+
+        getQty() {
+            return this.item.product_uom_qty ?? this.item.qty
+        }
     },
 
     watch: {

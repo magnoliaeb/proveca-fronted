@@ -20,7 +20,7 @@
 			<v-tooltip color="primary" bottom>
 				<template v-slot:activator="{ on, attrs }">
 					<v-btn
-						@click="addToCart(qty)"
+						@click="add"
 						depressed
 						outlined
 						id="add-product-dialog"
@@ -74,6 +74,14 @@ export default {
 
 		inc() {
 			this.qty = this.qty + 1
+		},
+
+		add() {
+			this.addToCart(this.qty, this.variant)
+				.then(() => {
+					this.qty = 1
+					this.$observer.showDialogInfo = false
+				})
 		}
 	},
 

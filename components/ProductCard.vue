@@ -41,7 +41,6 @@
 							params: { id: product.id, slug: product.slug },
 						}"
 					>
-						{{ product.name }}
 					</nuxt-link>
 				</h4>
 			</div>

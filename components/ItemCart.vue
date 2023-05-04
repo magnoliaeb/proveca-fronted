@@ -52,7 +52,7 @@
 				>
 					<p class="mb-0">{{ item.name }}</p>
 					<p class="mb-0">{{ $util.getVariantFormat(variant) }}</p>
-					<p>{{ item.qty }} pieza(s)</p>
+					<p>{{ getQty }} pieza(s)</p>
 				</nuxt-link>
 
 				<h4>{{ formattedTotal }}</h4>

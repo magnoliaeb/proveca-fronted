@@ -1,6 +1,6 @@
 <template>
 	<v-dialog
-		v-if="product"
+		v-if="$observer.productDialogInfo"
 		v-model="$observer.showDialogInfo"
 		content-class="product-dialog-info"
 		persistent
@@ -21,7 +21,7 @@
 				</v-btn>
 				<v-row class="pt-5">
 					<v-col cols="12">
-						<h3 class="text-center">{{ product.name }}</h3>
+						<h3 class="text-center">{{ $observer.productDialogInfo.name }}</h3>
 					</v-col>
 				</v-row>
 
@@ -29,7 +29,7 @@
 					<PriceInfoItem
 						v-for="(variant, i) in variants"
 						:key="i"
-						:product="product"
+						:product="$observer.productDialogInfo"
 						:variant="variant"
 					/>
 				</div>
@@ -46,12 +46,8 @@ export default {
 	},
 
 	computed: {
-		product() {
-			return this.$observer.productDialogInfo
-		},
-
 		variants() {
-			return this.product.variants.filter(
+			return this.$observer.productDialogInfo.variants.filter(
 				variant => variant.stock >= 1 && variant.price > 0
 			)
 		}
@@ -61,17 +57,7 @@ export default {
 		closeDialog() {
 			this.$observer.showDialogInfo = false
 		}
-	},
-
-	created() {
-    	// this.items = this.product.variants.map(variant => {
-      	// 	return {
-        // 		product: this.product,
-        // 		variant: variant,
-        // 		qty: 0,
-      	// 	}
-    	// })
-  	}
+	}
 };
 </script>
 

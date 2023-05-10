@@ -34,6 +34,19 @@
 				</div>
 
 				<v-btn
+					v-if="$route.name == 'carrito-elegir-direccion'"
+					class="mt-7 button-primary"
+					depressed
+					block
+					type="submit"
+					:disabled="$store.state.cart.isBusy"
+					@click="$observer.confirmCart"
+				>
+					{{ buttonText }}
+				</v-btn>
+
+				<!--
+				<v-btn
 					v-if="$route.name == 'carrito-datos-del-envio'"
 					class="mt-7 button-primary"
 					depressed
@@ -44,7 +57,7 @@
 				>
 					{{ buttonText }}
 				</v-btn>
-
+				
 				<v-btn
 					v-else-if="$route.name == 'carrito-datos-del-cliente' && $store.state.cart.requireInvoice"
 					class="mt-7 button-primary"
@@ -67,7 +80,7 @@
 					@click="$observer.confirmCart"
 				>
 					{{ buttonText }}
-				</v-btn>
+				</v-btn> -->
 
 				<v-btn
 					v-else
@@ -110,7 +123,8 @@
 					break
 
 					case "carrito-elegir-direccion":
-						buttonText = "Continuar a facturación"
+						// buttonText = "Continuar a facturación"
+						buttonText = "Continuar con el pago"
 					break
 
 					case "carrito-datos-del-cliente":
@@ -130,7 +144,8 @@
 					break
 
 					case "carrito-elegir-direccion":
-						isEnabled = this.$store.getters["cart/getSelectedShippingMethod"]
+						// isEnabled = this.$store.getters["cart/getSelectedShippingMethod"]
+						isEnabled = this.$auth.user && this.$store.getters["cart/getSelectedShippingMethod"]
 					break;
 
 					case "carrito-datos-del-cliente":
@@ -153,9 +168,9 @@
 						}
 					break;
 
-					case "carrito-elegir-direccion":
-						this.$router.push({ name: "carrito-datos-del-cliente" })
-					break;
+					// case "carrito-elegir-direccion":
+					// 	this.$router.push({ name: "carrito-datos-del-cliente" })
+					// break;
 				}
 			},
 		}

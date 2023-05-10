@@ -65,7 +65,8 @@ export default app => ({
 
         confirmCart() {
             app.store.dispatch('cart/confirm', {
-                invoice_required: app.store.state.cart.requireInvoice,
+                // invoice_required: app.store.state.cart.requireInvoice,
+                invoice_required: false,
                 cfdi_usage: 'P01',
                 comments: ''
             })

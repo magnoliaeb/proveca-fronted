@@ -42,7 +42,7 @@ export default {
 					disabled: true,
 				},
 				{
-					text: '2.Pagos',
+					text: '2.Pago',
 					href: '/productos',
 					disabled: true,
 				},

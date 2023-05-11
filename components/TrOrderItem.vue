@@ -32,7 +32,7 @@
 
 				<nuxt-link
 					v-if="order.payment_status == 'unpaid' && order.state != 'cancel'"
-					:to="{ name: 'pagar-pedido-id', params: { id: order.id } }"
+					:to="{ name: 'mis-pedidos-id-pagar', params: { id: order.id } }"
 				>
 					Pagar
 				</nuxt-link>

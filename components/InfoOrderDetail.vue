@@ -60,7 +60,7 @@
 
 					<v-btn
 						class="primary mt-3"
-						:to="{ name: 'pagar-pedido-id', params: { id: order.id } }"
+						:to="{ name: 'mis-pedidos-id-pagar', params: { id: order.id } }"
 						depressed
 						style="width: auto !important"
 					>

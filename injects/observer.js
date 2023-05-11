@@ -72,7 +72,7 @@ export default app => ({
             })
             .then(order => {
                 app.router.push({
-                    name: "pagar-pedido-id",
+                    name: "mis-pedidos-id-pagar",
                     params: { id: order.id }
                 })
             })

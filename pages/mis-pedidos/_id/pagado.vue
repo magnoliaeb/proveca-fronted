@@ -226,6 +226,26 @@
 				</v-row>
 			</div>
 		</div>
+
+		<v-dialog
+			:value="dialog"
+			class="elevation-0"
+			content-class="dialog-product"
+			scrollable
+		>
+			<v-card class="pa-4">
+				<h3>
+					Gracias por su compra
+				</h3>
+
+				<br>
+
+				<p>
+					Es posible que su pago se siga procesando. <br>
+					Usted recibirá una notificación en cuanto termine de ser verificado.
+				</p>
+			</v-card>
+		</v-dialog>
 	</div>
 </template>
 
@@ -240,25 +260,9 @@ export default {
 		return {
 			isDisabled: false,
 			isLoading: false,
-			dialog: false,
-		};
+			dialog: false
+		}
 	},
-
-	// watch: {
-	// 	order: {
-	// 		immediate: true,
-	// 		handler() {
-	// 			this.dialog = this.order && this.charge;
-	// 		},
-	// 	},
-
-	// 	charge: {
-	// 		immediate: true,
-	// 		handler() {
-	// 			this.dialog = this.order && this.charge;
-	// 		},
-	// 	},
-	// },
 
 	computed: {
 		heightImg() {
@@ -324,6 +328,10 @@ export default {
 	// },
 
 	created() {
+		if(this.$route.query['waiting-for-payment-confirmation']) {
+			this.dialog = true
+		}
+
 		this.$store.dispatch('orders/getOrder', {
 			$nuxt: this.$nuxt,
 			order_id: this.$route.params.id,

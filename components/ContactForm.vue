@@ -90,11 +90,11 @@
 								rules="required"
 							>
 								<v-textarea
-									ref="message"
+									ref="body"
 									outlined
 									autocomplete="off"
-									v-model.trim="form.message"
-									id="message"
+									v-model.trim="form.body"
+									id="body"
 									auto-grow
 									flat
 									solo
@@ -144,7 +144,7 @@ export default {
 				name: '',
 				email: '',
 				phone: '',
-				message: '',
+				body: '',
 			},
 			showAlert: false,
 			titleAlert: '¡Gracias por tu mensaje!',
@@ -157,20 +157,19 @@ export default {
 		async sendForm() {
 			this.isDisabled = true;
 			if (await this.$refs.observer.validate()) {
-				this.isLoading = true;
-				this.showAlert = true;
+				this.isLoading = true
+				this.isDisabled = true
 
-				// this.$api.$contact
-				//   .simple(this.form)
-				//   .then(() => {
-				//     this.$refs.modal.open();
-				//     this.clear();
-				//   })
-				//   .catch((e) => this.$swal("Error", e, "error"))
-				//   .finally(() => {
-				//     this.isLoading = false;
-				//     this.isDisabled = false;
-				//   });
+				this.$store.dispatch('contact/contact', this.form)
+				  .then(() => {
+				    this.clear()
+					this.showAlert = true
+				  })
+				  .catch(e => this.$swal("Error", e, "error"))
+				  .finally(() => {
+				    this.isLoading = false
+				    this.isDisabled = false
+				  });
 			} else {
 				const inputForm = Object.keys(this.form);
 				for (let i = 0; i < inputForm.length; i++) {
@@ -186,7 +185,7 @@ export default {
 			this.form.name = '';
 			this.form.email = '';
 			this.form.phone = '';
-			this.form.message = '';
+			this.form.body = '';
 			this.$refs.observer.reset();
 		},
 	},

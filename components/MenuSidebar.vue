@@ -72,44 +72,17 @@
 			<v-row>
 				<v-col cols="12">
 					<v-list>
-						<div v-for="(item, index) in categories" :key="index">
-							<v-list-group
-								v-if="item.subcategories.length > 0"
-								color="primary"
-								:value="false"
-								no-action
+						<div v-for="(item, index) in categories" :key="index.id">
+							<v-list-item
+								@click.native="closeMenu"
+								exact
+								:to="{ name: 'productos', query: { category_id: item.id } }"
 							>
-								<template v-slot:activator>
-									<v-list-item-avatar>
-										<img
-											:alt="item.icon"
-											:src="require(`../assets/imgs/iconos/${item.icon}.svg`)"
-										/>
-									</v-list-item-avatar>
-									<v-list-item-content>
-										<v-list-item-title>{{ item.title }}</v-list-item-title>
-									</v-list-item-content>
-								</template>
-
-								<v-list-item
-									@click.native="closeMenu"
-									to="/"
-									v-for="(subcategory, i) in item.subcategories"
-									:key="i"
-									link
-								>
-									<v-list-item-title>{{ subcategory.title }}</v-list-item-title>
-								</v-list-item>
-							</v-list-group>
-							<v-list-item v-else @click.native="closeMenu" exact to="/">
 								<v-list-item-avatar>
-									<img
-										:alt="item.icon"
-										:src="require(`../assets/imgs/iconos/${item.icon}.svg`)"
-									/>
+									<img :alt="item.name" :src="item.picture" />
 								</v-list-item-avatar>
 								<v-list-item-content>
-									<v-list-item-title>{{ item.title }}</v-list-item-title>
+									<v-list-item-title>{{ item.name }}</v-list-item-title>
 								</v-list-item-content>
 							</v-list-item>
 						</div>
@@ -132,59 +105,64 @@ export default {
 
 	data() {
 		return {
-			categories: [
-				{
-					icon: 'user',
-					title: 'Todo',
-					to: '/mi-perfil',
-					subcategories: [
-						{
-							icon: 'user',
-							title: 'Todo',
-							to: '/mi-perfil',
-						},
-						{
-							icon: 'user',
-							title: 'Todo',
-							to: '/mi-perfil',
-						},
-						{
-							icon: 'user',
-							title: 'Todo',
-							to: '/mi-perfil',
-						},
-					],
-				},
-				{
-					icon: 'package',
-					title: 'Fruta y Verdura',
-					to: '/mis-pedidos',
-					subcategories: [],
-				},
-				{
-					icon: 'user',
-					title: 'Carnes',
-					to: '/mi-perfil',
-					subcategories: [
-						{
-							icon: 'user',
-							title: 'Todo',
-							to: '/mi-perfil',
-						},
-						{
-							icon: 'user',
-							title: 'Todo',
-							to: '/mi-perfil',
-						},
-						{
-							icon: 'user',
-							title: 'Todo',
-							to: '/mi-perfil',
-						},
-					],
-				},
-			],
+			// categories: [
+			// 	{
+			// 		icon: 'user',
+			// 		title: 'Todo',
+			// 		to: '/mi-perfil',
+			// 		subcategories: [
+			// 			{
+			// 				icon: 'user',
+			// 				title: 'Todo',
+			// 				to: '/mi-perfil',
+			// 			},
+			// 			{
+			// 				icon: 'user',
+			// 				title: 'Todo',
+			// 				to: '/mi-perfil',
+			// 			},
+			// 			{
+			// 				icon: 'user',
+			// 				title: 'Todo',
+			// 				to: '/mi-perfil',
+			// 			},
+			// 		],
+			// 	},
+			// 	{
+			// 		icon: 'package',
+			// 		title: 'Fruta y Verdura',
+			// 		to: '/mis-pedidos',
+			// 		subcategories: [],
+			// 	},
+			// 	{
+			// 		icon: 'user',
+			// 		title: 'Carnes',
+			// 		to: '/mi-perfil',
+			// 		subcategories: [
+			// 			{
+			// 				icon: 'user',
+			// 				title: 'Todo',
+			// 				to: '/mi-perfil',
+			// 			},
+			// 			{
+			// 				icon: 'user',
+			// 				title: 'Todo',
+			// 				to: '/mi-perfil',
+			// 			},
+			// 			{
+			// 				icon: 'user',
+			// 				title: 'Todo',
+			// 				to: '/mi-perfil',
+			// 			},
+			// 		],
+			// 	},
+			// ],
 		};
+	},
+	computed: {
+		categories() {
+			return this.$store.getters['products/getCategories'];
+		},
 	},
 
 	methods: {

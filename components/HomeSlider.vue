@@ -126,18 +126,20 @@ export default {
 
 	computed: {
 		slides() {
-			return this.$store.getters['identity/getBanners'].filter(b => b.location == 'MAIN')
+			return this.$store.getters['identity/getBanners'].filter(
+				(b) => b.location == 'MAIN'
+			);
 		},
 	},
 };
 </script>
 
 <style lang="scss">
-	.home-slider {
-		.v-image__image {
-			background-size: cover !important;
-		}
+.home-slider {
+	.v-image__image {
+		background-size: cover !important;
 	}
+}
 </style>
 
 <style lang="scss" scoped>
@@ -159,6 +161,13 @@ export default {
 	.img-box {
 		width: 474px !important;
 		height: 210px !important;
+		border-radius: 9px !important;
+	}
+}
+@media screen and (min-width: $lg) {
+	.img-box {
+		width: 474px !important;
+		height: 250px !important;
 		border-radius: 9px !important;
 	}
 }

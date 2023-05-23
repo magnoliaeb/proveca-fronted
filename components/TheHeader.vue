@@ -26,7 +26,7 @@
 								<img src="../assets/imgs/logo-proveca.svg" alt="logo-proveca" />
 							</nuxt-link>
 						</v-col>
-						<v-col cols="12" md="4" lg="4" xl="5" class="d-none d-lg-block">
+						<v-col cols="12" md="auto" class="d-none d-lg-block">
 							<SearchForm />
 						</v-col>
 						<v-col
@@ -34,11 +34,13 @@
 							lg="auto"
 							class="pa-0 d-flex align-center justify-end"
 						>
+							<ShippingSelector class="mr-2" />
 							<!-- codigo postal -->
 							<ModalSelectAddress class="d-none d-lg-block" />
 
 							<div class="mx-4 d-none d-lg-block" style="position: relative">
 								<v-btn
+									class="px-2"
 									color="primary"
 									id="login"
 									depressed
@@ -64,13 +66,14 @@
 											v-else
 											class="text-capitalize text-left hidden-xs-only my-0"
 										>
-											<span>Iniciar sesión/</span> <br />
-											<span class="">Regístrate</span>
+											<span>Iniciar sesión</span>
+											<!-- <span class="">Regístrate</span> -->
 										</p>
 									</div>
 								</v-btn>
 							</div>
 							<v-btn
+								class="px-2"
 								color="primary"
 								id="cart"
 								@click="openCart"
@@ -79,7 +82,6 @@
 								:large="!$vuetify.breakpoint.xsOnly"
 								:small="$vuetify.breakpoint.xsOnly"
 								:fab="$vuetify.breakpoint.xsOnly"
-								class=""
 							>
 								<img
 									height="35px"
@@ -125,6 +127,7 @@ import MenuSidebar from './MenuSidebar.vue';
 import SearchForm from './SearchForm.vue';
 import HeaderBottom from './HeaderBottom.vue';
 import DialogProductInfo from './DialogProductInfo.vue';
+import ShippingSelector from './ShippingSelector.vue';
 export default {
 	components: {
 		LoginSiderbar,
@@ -136,6 +139,7 @@ export default {
 		SearchForm,
 		HeaderBottom,
 		DialogProductInfo,
+		ShippingSelector,
 	},
 
 	computed: {

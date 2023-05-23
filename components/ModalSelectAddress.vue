@@ -3,7 +3,7 @@
 		<client-only>
 			<v-btn
 				color="primary"
-				class=""
+				class="px-2"
 				block
 				depressed
 				text
@@ -15,14 +15,11 @@
 					src="../assets/imgs/iconos/map-ping.svg"
 					alt="perfil"
 				/>
-				<p v-if="! hasCode" class="text-capitalize text-left my-0">
+				<p v-if="!hasCode" class="text-capitalize text-left my-0">
 					<span>ingresa tu </span> <br />
 					ubicación
 				</p>
-				<p
-					v-else
-					class="text-capitalize text-left my-0"
-				>
+				<p v-else class="text-capitalize text-left my-0">
 					C.P. {{ $google.lastGeocode.postal_code }}
 				</p>
 			</v-btn>
@@ -32,7 +29,10 @@
 				max-width="560px"
 				content-class="dialog-address-box"
 			>
-				<v-card v-model="$observer.showDialogAddress" class="py-2 px-md-6 py-md-8">
+				<v-card
+					v-model="$observer.showDialogAddress"
+					class="py-2 px-md-6 py-md-8"
+				>
 					<v-btn
 						absolute
 						right
@@ -97,9 +97,13 @@
 									/>
 									<!-- <v-icon icon="mdi-chevron-right"></v-icon> -->
 								</v-btn>
-								
-								<div v-if="$google.lastGeocode && $google.lastGeocode.formatted_address">
-									<br>
+
+								<div
+									v-if="
+										$google.lastGeocode && $google.lastGeocode.formatted_address
+									"
+								>
+									<br />
 									Dirección: {{ $google.lastGeocode.formatted_address }}
 								</div>
 							</v-card-text>
@@ -134,27 +138,26 @@ export default {
 
 	computed: {
 		hasCode() {
-			return this.$google.lastGeocode && this.$google.lastGeocode.postal_code
-		}
+			return this.$google.lastGeocode && this.$google.lastGeocode.postal_code;
+		},
 	},
 
 	methods: {
 		closeModel() {
-			this.$observer.showDialogAddress = false
-			this.step = 1
+			this.$observer.showDialogAddress = false;
+			this.step = 1;
 		},
-		
-		useCurrentAdresss() {
-			this.isLoading = true
-			this.isDisabled = true
 
-			this.$google.geocodeByCurrentDevicePosition()
-				.then(() => {
-					this.isLoading = false
-					this.isDisabled = false
-					this.$nuxt.$emit('success-notify', '¡Listo!')
-				})
-		}
+		useCurrentAdresss() {
+			this.isLoading = true;
+			this.isDisabled = true;
+
+			this.$google.geocodeByCurrentDevicePosition().then(() => {
+				this.isLoading = false;
+				this.isDisabled = false;
+				this.$nuxt.$emit('success-notify', '¡Listo!');
+			});
+		},
 	},
 };
 </script>

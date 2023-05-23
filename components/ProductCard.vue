@@ -54,16 +54,20 @@
 					}}</span> -->
 				</div>
 				<v-btn
-					class="cart px-1"
+					class="cart px-1 px-sm-3"
 					depressed
+					:class="$vuetify.breakpoint.smAndUp ? 'rounded-pill' : 'rounded-sm'"
 					:disabled="false"
 					@click="openDialogInfo"
 				>
 					<img
+						class="d-block d-sm-none"
 						src="../assets/imgs/iconos/cart-plus.svg"
-						height="20"
+						height="15"
 						alt="carreta-icon"
 					/>
+					<v-icon class="d-none d-sm-block" left>mdi-plus</v-icon>
+					<span class="d-none d-sm-block">Añadir</span>
 				</v-btn>
 			</div>
 		</div>
@@ -87,7 +91,7 @@ export default {
 
 	computed: {
 		picture() {
-			return _.get(this.product, 'picture.url', '/loading.png')
+			return _.get(this.product, 'picture.url', '/loading.png');
 
 			// let picture = this.product.pictures.find((p) => p.name == 'Principal');
 
@@ -197,16 +201,17 @@ span {
 	text-decoration-line: line-through !important;
 }
 button.cart {
-	height: 34px !important;
-	min-width: 34px !important;
+	height: 30px !important;
+	min-width: 40px !important;
 	background-color: $primary !important;
-	border-radius: 4px !important;
-	display: flex !important;
-	justify-content: center !important;
-	align-items: center !important;
+	// border-radius: 4px !important;
+	color: #fff !important;
 	img {
-		height: 28px;
-		width: 28px;
+		height: 25px;
+		width: 25px;
+	}
+	span {
+		text-decoration: none !important;
 	}
 }
 
@@ -214,6 +219,10 @@ button.cart {
 	.product-title {
 		min-height: 55px;
 		height: 55px;
+	}
+	button.cart {
+		height: 32px !important;
+		min-width: 40px !important;
 	}
 }
 @media screen and (min-width: $lg) {

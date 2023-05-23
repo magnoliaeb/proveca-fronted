@@ -1,13 +1,13 @@
 <template>
 	<section class="py-16">
 		<div class="content">
-			<HeaderFilter />
+			<!-- <HeaderFilter /> -->
 
 			<v-row class="mt-3 mt-md-6">
-				<v-col cols="12" lg="2" xl="2" class="d-none d-lg-block">
+				<!-- <v-col cols="12" lg="2" xl="2" class="d-none d-lg-block">
 					<FilterProducts />
-				</v-col>
-				<v-col cols="12" lg="10" xl="10" class="pa-0">
+				</v-col> -->
+				<v-col cols="12" lg="12" xl="12" class="pa-0">
 					<GridProducts :key="$observer.keys.GridProducts" />
 				</v-col>
 			</v-row>

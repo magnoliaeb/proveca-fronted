@@ -2,19 +2,14 @@
 	<div class="nav-bottom">
 		<div class="content">
 			<v-tabs v-model="tab" align-with-title color="primary" centered grow>
-				<v-tab
-					:to="{ name: 'productos'}"
-					class="d-flex align-center"
-				>
+				<v-tab :to="{ name: 'productos' }" class="d-flex align-center">
 					<img
 						class="mr-2"
 						alt="..."
 						:src="require(`../assets/imgs/iconos/todo.svg`)"
 						width="20px"
 					/>
-					<span>
-						Todas
-					</span>
+					<span> Todas </span>
 				</v-tab>
 
 				<v-tab
@@ -23,12 +18,7 @@
 					:to="{ name: 'productos', query: { category_id: item.id } }"
 					class="d-flex align-center"
 				>
-					<img
-						class="mr-2"
-						:alt="item.name"
-						:src="item.picture"
-						width="20px"
-					/>
+					<img class="mr-2" :alt="item.name" :src="item.picture" width="20px" />
 					<span>
 						{{ item.name }}
 					</span>
@@ -82,8 +72,8 @@ export default {
 
 span {
 	font-family: 'Inter';
-	font-weight: 300;
-	font-size: $fs-xs;
+	font-weight: 400;
+	font-size: $fs-sm;
 	line-height: 17px;
 	color: #000000;
 	text-transform: initial !important;

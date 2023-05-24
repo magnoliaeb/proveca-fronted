@@ -1,8 +1,8 @@
 <template>
-	<v-row tag="li" class="align-start mb-2 justify-space-between">
+	<v-row tag="li" class="align-center py-2 my-1 justify-space-between">
 		<span v-show="false">{{ item }}</span>
 
-		<v-col cols="5" class="py-0">
+		<v-col cols="4" md="5" class="py-0">
 			<div class="d-flex">
 				<nuxt-link
 					class="d-block"
@@ -51,7 +51,8 @@
 					>
 						<p class="mb-0">{{ item.name }}</p>
 						<p class="mb-0">{{ $util.getVariantFormat(variant) }}</p>
-						<p>{{ getQty }} pieza(s)</p>
+						<!-- <p class="mb-0">{{ getQty }} pieza(s)</p> -->
+						<p class="mb-0"><span>23</span> La Libra</p>
 						<!-- <h4>{{ formattedTotal }}</h4> -->
 					</nuxt-link>
 				</div>
@@ -59,25 +60,35 @@
 		</v-col>
 		<v-col cols="auto" class="d-flex justify-center py-0 align-center">
 			<v-btn
-				small
+				:x-small="$vuetify.breakpoint.xsOnly"
+				:small="$vuetify.breakpoint.smAndUp"
 				@click="deleteItem"
 				icon
 				color="black"
 				class=""
 				:loading="isBusy"
 			>
-				<v-icon small>mdi-delete</v-icon>
+				<v-icon
+					:x-small="$vuetify.breakpoint.xsOnly"
+					:small="$vuetify.breakpoint.smAndUp"
+					>mdi-delete</v-icon
+				>
 			</v-btn>
 			<span class="mx-2">50 Lbs</span>
 			<v-btn
-				small
-				@click="deleteItem"
+				:x-small="$vuetify.breakpoint.xsOnly"
+				:small="$vuetify.breakpoint.smAndUp"
+				@click="addItem"
 				icon
 				color="primary"
 				class=""
 				:loading="isBusy"
 			>
-				<v-icon small>mdi-plus</v-icon>
+				<v-icon
+					:x-small="$vuetify.breakpoint.xsOnly"
+					:small="$vuetify.breakpoint.smAndUp"
+					>mdi-plus</v-icon
+				>
 			</v-btn>
 		</v-col>
 		<v-col cols="auto" class="py-0">
@@ -103,15 +114,15 @@ export default {
 		heightImg() {
 			switch (this.$vuetify.breakpoint.name) {
 				case 'xs':
-					return 80;
+					return 50;
 				case 'sm':
-					return 80;
+					return 70;
 				case 'md':
-					return 60;
+					return 70;
 				case 'lg':
-					return 60;
+					return 70;
 				case 'xl':
-					return 60;
+					return 70;
 			}
 		},
 	},
@@ -119,6 +130,9 @@ export default {
 	methods: {
 		closeCart() {
 			this.$observer.showCart = false;
+		},
+		addItem() {
+			console.log('addItem');
 		},
 	},
 };
@@ -135,6 +149,11 @@ p {
 	font-weight: 700;
 	font-size: $fs-xs;
 	color: #000000;
+	span {
+		font-size: $fs-caption;
+		font-weight: 700;
+		color: $primary;
+	}
 }
 span {
 	font-weight: 500;
@@ -147,6 +166,7 @@ h4 {
 	font-size: $fs-xs;
 	color: #00bedc;
 }
+
 // h4 {
 // 	font-weight: 600;
 // 	font-size: $fs-xs;

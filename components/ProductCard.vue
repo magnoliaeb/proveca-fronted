@@ -34,7 +34,7 @@
 		</div>
 		<div class="px-3 mt-4">
 			<div
-				class="d-flex flex-column flex-sm-row align-center align-sm-end justify-space-between mb-4 mb-md-6 text-center text-sm-left"
+				class="d-flex flex-column flex-md-row align-center align-md-end justify-space-between mb-4 mb-md-6 text-center text-md-left"
 			>
 				<div class="">
 					<h4 class="mb-0 mr-2">
@@ -53,7 +53,7 @@
 					<h6>Opciones: <span>3 sizes</span></h6>
 				</div>
 				<v-btn
-					class="cart px-3 rounded-pill mt-3 mt-sm-0"
+					class="cart px-3 rounded-pill mt-3 mt-md-0"
 					depressed
 					:disabled="false"
 					@click="openDialogInfo"

@@ -15,92 +15,76 @@
 		</div>
 		<v-slide-y-transition>
 			<div
-				class="dialog-box elevation-2"
+				class="dialog-box elevation-0"
 				v-click-outside="clickOutside"
 				v-show="showDialog"
 			>
 				<div class="search-card">
 					<v-row class="">
-						<!-- <v-col
-							cols="12"
-							lg="5"
-							class="py-2 px-3 left-menu hidden-md-and-down"
-						>
-							<h3 class="py-2">Categorias</h3>
-							<v-divider class="mb-4"></v-divider>
-							<ul>
-								<li
-									class="pb-1"
-									v-for="(category, index) in categories"
+						<v-col cols="12" lg="12" class="py-2 px-3">
+							<h3 class="py-2">Productos recomendados</h3>
+							<v-row>
+								<v-col
+									cols="6"
+									v-for="(product, index) in products"
 									:key="index"
 								>
-									<div @click="redirecTo('productos')">
-										<p class="mb-0">{{ category.name }}</p>
-									</div>
-								</li>
-							</ul>
-						</v-col> -->
-						<v-col cols="12" lg="12" class="py-2 px-3">
-							<h3 class="py-2">Productos</h3>
-							<v-divider class="mb-4"></v-divider>
-							<v-row
-								class="align-start"
-								v-for="(product, index) in products"
-								:key="index"
-							>
-								<v-col cols="auto" class="px-0">
-									<nuxt-link
-										:to="{
-											name: 'productos-id-slug',
-											params: { id: product.id, slug: product.slug },
-										}"
-									>
-										<client-only>
-											<v-img
-												:width="heightImg"
-												transition="scale-transition"
-												:height="heightImg"
-												:src="product.picture.url"
-												:alt="product.name"
-												aspect-ratio="1"
-												class="grey lighten-3 img mx-auto"
+									<v-row class="align-center card-product rounded-lg">
+										<v-col cols="auto" class="py-2">
+											<nuxt-link
+												:to="{
+													name: 'productos-id-slug',
+													params: { id: product.id, slug: product.slug },
+												}"
 											>
-												<template v-slot:placeholder>
-													<v-row
-														class="fill-height ma-0"
-														align="center"
-														justify="center"
+												<client-only>
+													<v-img
+														:width="heightImg"
+														transition="scale-transition"
+														:height="heightImg"
+														:src="product.picture.url"
+														:alt="product.name"
+														aspect-ratio="1"
+														class="grey lighten-3 img mx-auto"
 													>
-														<v-progress-circular
-															:size="30"
-															:width="3"
-															indeterminate
-															color="primary"
-														></v-progress-circular>
-													</v-row>
-												</template>
-											</v-img>
-										</client-only>
-									</nuxt-link>
-								</v-col>
-								<v-col cols="" class="flex-grow-1">
-									<div
-										class="text-left"
-										@click="
-											redirecTo('productos-id-slug', {
-												id: product.id,
-												slug: product.slug,
-											})
-										"
-									>
-										<h4>{{ product.name }}</h4>
-										<!-- <p class="price">
-											{{ $util.getMoneyFormat(product.min_price) }}
-											<s v-if="product.has_discount">{{
-												$util.getMoneyFormat(product.price)
-											}}</s>
-										</p> -->
-									</div>
+														<template v-slot:placeholder>
+															<v-row
+																class="fill-height ma-0"
+																align="center"
+																justify="center"
+															>
+																<v-progress-circular
+																	:size="30"
+																	:width="3"
+																	indeterminate
+																	color="primary"
+																></v-progress-circular>
+															</v-row>
+														</template>
+													</v-img>
+												</client-only>
+											</nuxt-link>
+										</v-col>
+										<v-col cols="auto" class="py-2">
+											<div
+												class="text-left"
+												@click="
+													redirecTo('productos-id-slug', {
+														id: product.id,
+														slug: product.slug,
+													})
+												"
+											>
+												<h4>{{ product.name }}</h4>
+												<!-- <p>
+													{{ $util.getMoneyFormat(product.min_price) }}
+													<s v-if="product.has_discount">{{
+														$util.getMoneyFormat(product.price)
+													}}</s>
+												</p> -->
+											</div>
+										</v-col>
+									</v-row>
 								</v-col>
 							</v-row>
 						</v-col>
@@ -133,15 +117,15 @@ export default {
 		heightImg() {
 			switch (this.$vuetify.breakpoint.name) {
 				case 'xs':
-					return 70;
+					return 30;
 				case 'sm':
-					return 70;
+					return 60;
 				case 'md':
-					return 65;
+					return 60;
 				case 'lg':
-					return 65;
+					return 60;
 				case 'xl':
-					return 65;
+					return 60;
 			}
 		},
 	},
@@ -213,7 +197,7 @@ export default {
 	border-radius: 7px;
 	.icon {
 		position: absolute;
-		left: 0;
+		right: 0;
 		top: 0;
 		height: 100%;
 		display: flex;
@@ -224,15 +208,6 @@ export default {
 			width: 20px;
 			height: 20px;
 		}
-		&::after {
-			// position: absolute;
-			content: '';
-			margin: 0 10px;
-			// border: 1px solid black;
-			background: #d9d9d9;
-			width: 1px;
-			height: 32px;
-		}
 	}
 }
 input {
@@ -240,18 +215,15 @@ input {
 	height: 100%;
 	background-color: white;
 	padding: 0 10px;
-	border-radius: 3px;
+	// border-radius: 3px;
 	border: 0;
-	padding-left: 52px;
+	// padding-left: 2px;
 	border: 0.829305px solid rgba(0, 0, 0, 0.11);
 
 	&::placeholder {
 		font-style: italic;
 		font-weight: 300;
 		font-size: $fs-base;
-		line-height: 20px;
-		/* identical to box height */
-
 		color: #aeaeae;
 	}
 	&:focus {
@@ -264,16 +236,15 @@ input {
 	// border: 1px solid red;
 	top: 85px;
 	width: 100%;
-	// background-color: orange;
-	background-color: #fff;
+	background-color: white;
 	border-bottom: 1px solid #2caee4;
 }
 
 .dialog-box {
 	position: absolute;
 	top: 55px;
-	width: auto;
-	max-width: 450px;
+	width: 100%;
+	max-width: 600px;
 	// left: 0;
 	left: 0;
 	right: 0;
@@ -305,11 +276,11 @@ input {
 	}
 	h3 {
 		color: black;
-		font-size: $fs-sm;
-		font-weight: 600;
+		font-size: $fs-md;
+		font-weight: 700;
 	}
 	h4 {
-		text-transform: uppercase;
+		text-transform: initial;
 		color: #565a5e;
 		font-size: $fs-sm;
 		font-weight: 500;
@@ -319,25 +290,52 @@ input {
 		font-size: $fs-xs;
 		font-weight: 700;
 	}
+	.card-product {
+		background-color: #fafafa;
+		transition: 0.5s ease-out all;
+		&:hover {
+			background-color: rgba(44, 175, 229, 0.7);
+			h4 {
+				color: white;
+			}
+		}
+	}
 }
 
 @media screen and (min-width: $lg) {
-	.search-box {
-		position: relative !important;
-		top: 0;
-		width: auto;
-		background-color: transparent;
-		border: none !important;
-
-		// background-color: orange;
+	.group {
+		width: 300px;
+		max-width: 662px;
+		height: 40px;
 	}
 	input {
 		border: none !important;
 	}
-
+	.search-box {
+		position: relative !important;
+		// width: 600px;
+		width: auto;
+		top: auto;
+		background-color: transparent;
+		border: none !important;
+	}
+	.dialog-box {
+		position: absolute;
+		top: 55px;
+		width: 600px;
+		max-width: 600px;
+		// left: 0;
+		left: 0;
+		right: 0;
+		max-height: 400px;
+		overflow: auto;
+		margin: 0 auto;
+		//   overflow: hidden;
+	}
+}
+@media screen and (min-width: $xl) {
 	.group {
-		max-width: 662px;
-		height: 40px;
+		width: 400px;
 	}
 }
 </style>

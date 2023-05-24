@@ -80,15 +80,13 @@
 								id="cart"
 								@click="openCart"
 								depressed
-								:small="$vuetify.breakpoint.xsOnly"
-								:fab="$vuetify.breakpoint.xsOnly"
 							>
 								<img
 									class="mr-sm-3 pa-1 pa-sm-0"
 									src="../assets/imgs/iconos/shopping-cart-white.svg"
 									alt="shopping-cart"
 								/>
-								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0 white--text">
+								<p class="mb-0 white--text">
 									{{ itemCount }}
 								</p>
 							</v-btn>

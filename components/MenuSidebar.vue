@@ -50,18 +50,18 @@
 						style="border-color: #d9d9d9; height: 49px"
 					></v-divider>
 				</v-col> -->
-				<v-col cols="5" class="py-0">
+				<v-col cols="12" class="py-0 d-flex justify-space-between">
 					<v-btn
 						@click="openLogin"
 						color="primary"
 						large
 						class="login"
 						text
-						block
 						depressed
 						>Iniciar sesión/ <br />
 						Registrarte</v-btn
 					>
+					<ShippingSelector class="d-block d-lg-none" />
 				</v-col>
 			</v-row>
 			<v-row class="">
@@ -96,11 +96,13 @@
 <script>
 import HeadingTitle from './HeadingTitle.vue';
 import ModalSelectAddress from './ModalSelectAddress.vue';
+import ShippingSelector from './ShippingSelector.vue';
 
 export default {
 	components: {
 		ModalSelectAddress,
 		HeadingTitle,
+		ShippingSelector,
 	},
 
 	data() {

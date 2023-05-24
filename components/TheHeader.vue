@@ -34,7 +34,7 @@
 							lg="auto"
 							class="pa-0 d-flex align-center justify-end"
 						>
-							<ShippingSelector class="mr-2" />
+							<ShippingSelector class="mr-2 d-none d-lg-block" />
 							<!-- codigo postal -->
 							<ModalSelectAddress class="d-none d-lg-block" />
 
@@ -50,6 +50,8 @@
 								>
 									<div class="d-flex align-center">
 										<img
+											height="25px"
+											width="25px"
 											class="mr-sm-3"
 											src="../assets/imgs/iconos/user.svg"
 											alt="perfil"
@@ -73,25 +75,21 @@
 								</v-btn>
 							</div>
 							<v-btn
-								class="px-2"
-								color="primary"
+								class="rounded-pill px-3"
+								color="#2cafe5"
 								id="cart"
 								@click="openCart"
 								depressed
-								text
-								:large="!$vuetify.breakpoint.xsOnly"
 								:small="$vuetify.breakpoint.xsOnly"
 								:fab="$vuetify.breakpoint.xsOnly"
 							>
 								<img
-									height="35px"
-									width="35px"
-									class="mr-sm-3 pa-1 psm-0"
-									src="../assets/imgs/iconos/shopping-cart.svg"
+									class="mr-sm-3 pa-1 pa-sm-0"
+									src="../assets/imgs/iconos/shopping-cart-white.svg"
 									alt="shopping-cart"
 								/>
-								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0">
-									({{ itemCount }})
+								<p v-if="!$vuetify.breakpoint.xsOnly" class="mb-0 white--text">
+									{{ itemCount }}
 								</p>
 							</v-btn>
 						</v-col>

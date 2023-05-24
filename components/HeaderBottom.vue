@@ -18,7 +18,13 @@
 					:to="{ name: 'productos', query: { category_id: item.id } }"
 					class="d-flex align-center"
 				>
-					<img class="mr-2" :alt="item.name" :src="item.picture" width="20px" />
+					<img
+						class="mr-2"
+						:alt="item.name"
+						:src="item.picture"
+						width="25px"
+						height="25px"
+					/>
 					<span>
 						{{ item.name }}
 					</span>

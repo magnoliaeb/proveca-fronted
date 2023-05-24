@@ -1,9 +1,9 @@
 <template>
 	<v-navigation-drawer
-		style="background-color: #f2f2f2"
+		style="background-color: #fff"
 		v-click-outside="clickOutside"
 		:value="$observer.showCart"
-		width="373px"
+		width="473px"
 		right
 		fixed
 	>
@@ -84,32 +84,30 @@
 						depressed
 					>
 						Hacer mi pedido
-					</v-btn
-				></v-col>
+					</v-btn></v-col
+				>
 			</v-row>
 		</div>
 	</v-navigation-drawer>
 </template>
 
 <script>
-import CartMixin from '~/mixins/CartMixin'
+import CartMixin from '~/mixins/CartMixin';
 
 export default {
-	mixins: [
-    	CartMixin
-  	],
+	mixins: [CartMixin],
 
 	computed: {
-    	items() {
-      		return this.$store.getters["cart/getItems"]
-    	}
-  	},
+		items() {
+			return this.$store.getters['cart/getItems'];
+		},
+	},
 
 	methods: {
 		closeCart() {
-			this.$observer.showCart = false
+			this.$observer.showCart = false;
 		},
-		
+
 		clickOutside(event) {
 			if (event.target.id !== 'cart') {
 				this.closeCart();

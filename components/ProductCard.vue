@@ -33,41 +33,39 @@
 			</nuxt-link>
 		</div>
 		<div class="px-3 mt-4">
-			<div class="product-title mb-4 mb-md-6">
-				<h4>
-					<nuxt-link
-						:to="{
-							name: 'productos-id-slug',
-							params: { id: product.id, slug: product.slug },
-						}"
-					>
-					</nuxt-link>
-				</h4>
-			</div>
-			<div class="d-flex align-end justify-space-between">
-				<div class="d-flex flex-wrap align-center">
-					<p class="mb-0 mr-2">
-						{{ $util.getMoneyFormat(product.price) }}
-					</p>
-					<!-- <span>{{
-						$util.getMoneyFormat(product.price_without_discount)
-					}}</span> -->
+			<div
+				class="d-flex flex-column flex-sm-row align-center align-sm-end justify-space-between mb-4 mb-md-6 text-center text-sm-left"
+			>
+				<div class="">
+					<h4 class="mb-0 mr-2">
+						{{ $util.getMoneyFormat(product.price) }} x Kg
+					</h4>
+					<h5>
+						<nuxt-link
+							:to="{
+								name: 'productos-id-slug',
+								params: { id: product.id, slug: product.slug },
+							}"
+						>
+							{{ product.name }}
+						</nuxt-link>
+					</h5>
+					<h6>Opciones: <span>3 sizes</span></h6>
 				</div>
 				<v-btn
-					class="cart px-1 px-sm-3"
+					class="cart px-3 rounded-pill mt-3 mt-sm-0"
 					depressed
-					:class="$vuetify.breakpoint.smAndUp ? 'rounded-pill' : 'rounded-sm'"
 					:disabled="false"
 					@click="openDialogInfo"
 				>
-					<img
+					<!-- <img
 						class="d-block d-sm-none"
 						src="../assets/imgs/iconos/cart-plus.svg"
 						height="15"
 						alt="carreta-icon"
-					/>
-					<v-icon class="d-none d-sm-block" left>mdi-plus</v-icon>
-					<span class="d-none d-sm-block">Añadir</span>
+					/> -->
+					<v-icon class="" left>mdi-plus</v-icon>
+					<span class="">Añadir</span>
 				</v-btn>
 			</div>
 		</div>
@@ -174,16 +172,29 @@ article {
 }
 
 h4,
+h5,
 a {
 	font-style: normal;
 	font-weight: 500;
-	font-size: $fs-md;
+	font-size: $fs-base;
 	// line-height: 25px;
 	/* identical to box height */
 
 	color: #aeaeae;
+	// color: #000;
+}
+
+a {
 	&:hover {
 		color: $primary;
+	}
+}
+
+h6 {
+	font-size: $fs-xs;
+	span {
+		color: $primary;
+		text-decoration: none !important;
 	}
 }
 

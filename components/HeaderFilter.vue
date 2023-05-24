@@ -1,6 +1,22 @@
 <template>
 	<div class="filter">
-		<v-row class="justify-space-between align-center">
+		<v-row align="center" justify="start">
+			<v-col
+				v-for="selection in ['Verduras', 'Frutas']"
+				:key="selection"
+				class="shrink"
+			>
+				<v-chip
+					color="#fafafa"
+					class="subcategory rounded-lg"
+					:disabled="loading"
+					to="/"
+				>
+					{{ selection }}
+				</v-chip>
+			</v-col>
+		</v-row>
+		<!-- <v-row class="justify-space-between align-center">
 			<v-col cols="auto" lg="2" xl="2" class="d-none d-lg-block">
 				<h2 class="text-left fs-lg">Filtros</h2>
 			</v-col>
@@ -30,7 +46,7 @@
 					</v-btn>
 				</div>
 			</v-col>
-		</v-row>
+		</v-row> -->
 	</div>
 </template>
 
@@ -65,7 +81,7 @@ export default {
 	},
 	methods: {
 		openFilters() {
-			this.$observer.showFilters = true
+			this.$observer.showFilters = true;
 		},
 	},
 };
@@ -82,9 +98,11 @@ h2 {
 	height: 24px;
 }
 
-span {
-	font-weight: 500;
-	color: #2cafe5;
+.subcategory {
+	font-weight: 400 !important;
+	color: #000;
+	font-size: $fs-base !important;
+	// color: #2cafe5;
 }
 
 @media screen and (min-width: $md) {

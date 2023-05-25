@@ -2,34 +2,42 @@
 	<div>
 		<v-btn
 			depressed
-			@click="selectedDellivery"
-			outlined
 			class="px-2 rounded-pill"
-			color="black"
-			style="border-width: 2px"
-			>Delivery</v-btn
+			v-bind="bind('delivery')"
+			@click="$observer.setShippingTypeDelivery"
 		>
+			Delivery
+		</v-btn>
+
 		<v-btn
 			depressed
-			@click="selectedPickUp"
 			class="px-2 rounded-pill"
-			light
-			color="rgb(230, 230, 230)"
-			>Pickup</v-btn
+			v-bind="bind('pickup')"
+			@click="$observer.setShippingTypePickup"
 		>
+			Pickup
+		</v-btn>
 	</div>
 </template>
 
 <script>
 export default {
 	methods: {
-		selectedDellivery() {
-			console.log('selectedDellivery');
-		},
-		selectedPickUp() {
-			console.log('selectedPickUp');
-		},
-	},
+		// '#2cafe5'
+
+		bind(type) {
+			return this.$observer.shippingType == type
+				? {
+					style: 'border-width: 2px; background-color: #2cafe5;',
+					color: 'white',
+					outlined: true
+				}
+				: {
+					light: true,
+					color: 'rgb(230, 230, 230)'
+				}
+		}
+	}
 };
 </script>
 

@@ -21,7 +21,9 @@ export default app => ({
             postcode: null,
             handlerPostcode: null,
 
-            shippingType: null //   delivery | pickup
+            showShippingTypeDialog: false,
+            shippingType: null, //   delivery | pickup
+            handlerShippingType: null
         }
     },
 
@@ -59,13 +61,26 @@ export default app => ({
             )
         },
 
+
+
+
+
         openPostcodesDialog(handlerPostcode = null) {
+            this.hideShippingTypeDialog()
+
             this.handlerPostcode = handlerPostcode
+
             this.showPostcodesDialog = true
         },
 
         hidePostcodesDialog() {
             this.showPostcodesDialog = false
+        },
+
+        setPostcodeValue(postcode) {
+            app.$cookies.set('postcode', postcode)
+        
+            this.postcode = postcode
         },
 
         setPostcode(postcode) {
@@ -77,9 +92,9 @@ export default app => ({
                 }
             })
             .then(() => {
-                app.$cookies.set('postcode', postcode)
-    
-                this.postcode = postcode
+                this.setPostcodeValue(postcode)
+
+                this.setShippingTypeDelivery()
 
                 this.hidePostcodesDialog()
 
@@ -88,16 +103,57 @@ export default app => ({
                 }
             })
             .catch(error => {
-                app.$cookies.set('postcode', null)
-        
-                this.postcode = null
+                this.setPostcodeValue(null)
 
                 app.router.app.$root.$emit('error-notify', error.response.data.msg)
             })
+        },
+
+
+
+
+        openShippingTypeDialog(handlerShippingType = null) {
+            this.handlerShippingType = handlerShippingType
+
+            this.showShippingTypeDialog = true
+        },
+
+        hideShippingTypeDialog() {
+            this.showShippingTypeDialog = false
+        },
+
+        setShippingTypeDelivery() {
+            if(this.postcode) {
+                this.setShippingTypeValue('delivery')
+            } else {
+                this.openPostcodesDialog(
+                    this.setShippingTypeDelivery
+                )
+            }
+        },
+
+        setShippingTypePickup() {
+            this.setPostcodeValue(null)
+
+            this.setShippingTypeValue('pickup')
+        },
+
+        setShippingTypeValue(value) {
+            this.hideShippingTypeDialog()
+
+            app.$cookies.set('shipping_type', value)
+        
+            this.shippingType = value
+
+            if(typeof this.handlerShippingType == 'function') {
+                this.handlerShippingType()
+            }
         }
     },
 
     created() {
         this.postcode = app.$cookies.get('postcode') ?? null
+
+        this.shippingType = app.$cookies.get('shipping_type') ?? null
     }
 })

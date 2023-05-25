@@ -119,21 +119,16 @@ export default {
 	},
 
 	methods: {
-		// add() {
-		// 	this.loading = true;
-
-		// 	this.$app.$cart
-		// 		.addItem({
-		// 			buyable_type: this.buyable.buyable_type,
-		// 			buyable_id: this.buyable.buyable_id,
-		// 			quantity: 1,
-		// 		})
-		// 		.then(() => this.showAlert())
-		// 		.finally(() => (this.loading = false));
-		// },
-
 		openDialogInfo() {
-			this.$observer.openDialogInfo(this.product);
+			if(this.$observer.shippingType) {
+				this.makeOpenDialogInfo()
+			} else {
+				this.$observer.openShippingTypeDialog(this.makeOpenDialogInfo)
+			}
+		},
+
+		makeOpenDialogInfo() {
+			this.$observer.openDialogInfo(this.product)
 		},
 
 		showAlert() {

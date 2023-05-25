@@ -7,7 +7,7 @@
 				block
 				depressed
 				text
-				@click.stop="openPostcodesDialog"
+				@click.stop="$observer.openPostcodesDialog"
 				large
 			>
 				<img
@@ -30,10 +30,7 @@
 				max-width="560px"
 				content-class="dialog-address-box"
 			>
-				<v-card
-					v-model="$observer.showPostcodesDialog"
-					class="py-2 px-md-6 py-md-8"
-				>
+				<v-card class="py-2 px-md-6 py-md-8">
 					<v-btn
 						absolute
 						right
@@ -136,12 +133,6 @@ export default {
 	},
 
 	methods: {
-		openPostcodesDialog() {
-			this.$observer.openPostcodesDialog(
-				() => this.$nuxt.$emit('success-notify', 'Código postal almacenado')
-			)
-		},
-
 		sendForm() {
 			this.isDisabled = true
 

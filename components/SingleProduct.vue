@@ -147,6 +147,14 @@ export default {
 
 	methods: {
 		add() {
+			if(this.$observer.shippingType) {
+				this.makeAdd()
+			} else {
+				this.$observer.openShippingTypeDialog(this.makeAdd)
+			}
+		},
+
+		makeAdd() {
 			this.variants.forEach((v, i) => {
 				if(v.qty > 0) {
 					let item = {

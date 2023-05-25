@@ -109,6 +109,38 @@
 			<CartSidebar />
 			<MenuSidebar />
 			<DialogProductInfo />
+
+
+			<v-dialog
+				v-model="$observer.showShippingTypeDialog"
+				transition="dialog-bottom-transition"
+				max-width="560px"
+				content-class="dialog-address-box"
+			>
+				<v-card class="py-2 px-md-6 py-md-8">
+					<v-btn
+						absolute
+						right
+						top
+						color="#000"
+						@click="$observer.hideShippingTypeDialog"
+						text
+						icon
+						depressed
+						small
+					>
+						<v-icon>mdi-close</v-icon>
+					</v-btn>
+
+					<v-card-title class="d-flex justify-center">
+						<h4 class="text-center mb-4">
+							Seleccione una opción para continuar
+						</h4>
+					</v-card-title>
+
+					<ShippingSelector></ShippingSelector>
+				</v-card>
+			</v-dialog>
 		</div>
 	</nav>
 </template>

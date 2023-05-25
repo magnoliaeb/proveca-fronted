@@ -632,7 +632,7 @@ export const actions = {
 
             ctx.dispatch('emit', {
                 type: 'error-notify',
-                value: 'No se pudo confirmar el pedido',
+                value: error.response.data.msg ?? 'No se pudo confirmar el pedido',
                 dontEmit: config.dontEmit
             })
             

@@ -52,6 +52,12 @@
 
 <script>
 export default {
+	data() {
+		return {
+			loading: false
+		}
+	},
+	
 	computed: {
 		items() {
 			let items = [

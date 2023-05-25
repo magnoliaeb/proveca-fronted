@@ -48,7 +48,7 @@
 					</v-btn>
 					<v-card-title class="d-flex justify-center">
 						<h2 class="text-center mb-4">
-							Selecciona una dirección de entrega
+							Introduce tu código pos
 						</h2>
 					</v-card-title>
 					<v-window v-model="step">

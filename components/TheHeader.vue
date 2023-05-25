@@ -36,7 +36,7 @@
 						>
 							<ShippingSelector class="mr-2 d-none d-lg-block" />
 							<!-- codigo postal -->
-							<ModalSelectAddress class="d-none d-lg-block" />
+							<PostcodeForm class="d-none d-lg-block" />
 
 							<div class="mx-4 d-none d-lg-block" style="position: relative">
 								<v-btn

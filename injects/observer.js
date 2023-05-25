@@ -12,44 +12,16 @@ export default app => ({
             showDialogInfo: false,
             productDialogInfo: null,
             showDialogSuscribe: false,
-            showDialogAddress: false,
 
             keys: {
                 GridProducts: 1
             },
 
-            // socials: [
-            //     {
-            //         network: 'pinterest',
-            //         name: "NailsFactory",
-            //         to: "https://www.pinterest.com.mx/Nailfactoryofficial/_created/",
-            //         icon: "redes-pinterest",
-            //     },
-            //     {
-            //         network: 'youtube',
-            //         name: "NailsFactory",
-            //         to: "https://www.youtube.com/user/nailfactoryoficial",
-            //         icon: "redes-youtube",
-            //     },
-            //     {
-            //         network: 'facebook',
-            //         name: "NailsFactory",
-            //         to: "https://www.facebook.com/NailFactoryOficial",
-            //         icon: "redes-facebook",
-            //     },
-            //     {
-            //         network: 'instagram',
-            //         name: "NailsFactory",
-            //         to: "https://www.instagram.com/NAILFACTORYOFICIAL/",
-            //         icon: "redes-instagram",
-            //     },
-            //     {
-            //         network: 'tiktok',
-            //         name: "NailsFactory",
-            //         to: "https://www.tiktok.com/es",
-            //         icon: "redes-tiktok",
-            //     }
-            // ]
+            showPostcodesDialog: false,
+            postcode: null,
+            handlerPostcode: null,
+
+            shippingType: null //   delivery | pickup
         }
     },
 
@@ -85,6 +57,47 @@ export default app => ({
                 () => this.showLogin = true,
                 500
             )
+        },
+
+        openPostcodesDialog(handlerPostcode = null) {
+            this.handlerPostcode = handlerPostcode
+            this.showPostcodesDialog = true
+        },
+
+        hidePostcodesDialog() {
+            this.showPostcodesDialog = false
+        },
+
+        setPostcode(postcode) {
+            return app.$axios({
+                method: 'post',
+                url: '/helper/validate-coverage',
+                data: {
+                    postcode: postcode
+                }
+            })
+            .then(() => {
+                app.$cookies.set('postcode', postcode)
+    
+                this.postcode = postcode
+
+                this.hidePostcodesDialog()
+
+                if(typeof this.handlerPostcode == 'function') {
+                    this.handlerPostcode()
+                }
+            })
+            .catch(error => {
+                app.$cookies.set('postcode', null)
+        
+                this.postcode = null
+
+                app.router.app.$root.$emit('error-notify', error.response.data.msg)
+            })
         }
+    },
+
+    created() {
+        this.postcode = app.$cookies.get('postcode') ?? null
     }
 })

@@ -156,7 +156,7 @@
 						</validation-provider>
 					</v-col>
 
-					<v-col
+					<!-- <v-col
 						v-if="$google.lastGeocode && $google.lastGeocode.postal_code"
 						cols="12"
 						class="text-right"
@@ -169,7 +169,7 @@
 						>
 							Usar C.P. {{ $google.lastGeocode.postal_code }}
 						</v-btn>
-					</v-col>
+					</v-col> -->
 				</v-row>
 
 				<v-row class="mt-2 mt-md-4">
@@ -248,7 +248,8 @@ export default {
     },
 
 	async useSavedAddress() {
-		this.$set(this.form, 'street', `${this.$google.lastGeocode.route} ${this.$google.lastGeocode.street_number}`)
+		this.$set(this.form, 'street', this.$google.lastGeocode.route)
+		this.$set(this.form, 'street2', this.$google.lastGeocode.street_number)
 		this.$set(this.form, 'city', this.$google.lastGeocode.locality)
 		this.$set(this.form, 'zip', this.$google.lastGeocode.postal_code)
 

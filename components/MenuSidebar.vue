@@ -40,16 +40,6 @@
 				</v-col>
 			</v-row>
 			<v-row class="align-center">
-				<!-- <v-col cols="5" class="py-0">
-					<ModalSelectAddress />
-				</v-col>
-				<v-col cols="1" class="py-0">
-					<v-divider
-						vertical
-						dark
-						style="border-color: #d9d9d9; height: 49px"
-					></v-divider>
-				</v-col> -->
 				<v-col cols="12" class="py-0 d-flex justify-space-between">
 					<v-btn
 						@click="openLogin"
@@ -95,12 +85,10 @@
 
 <script>
 import HeadingTitle from './HeadingTitle.vue';
-import ModalSelectAddress from './ModalSelectAddress.vue';
 import ShippingSelector from './ShippingSelector.vue';
 
 export default {
 	components: {
-		ModalSelectAddress,
 		HeadingTitle,
 		ShippingSelector,
 	},

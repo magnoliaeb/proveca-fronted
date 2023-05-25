@@ -43,7 +43,7 @@ export default {
 	},
 	computed: {
 		categories() {
-			return this.$store.getters['products/getCategories'];
+			return this.$store.getters['products/getCategoriesMenu']
 		},
 	},
 	methods: {

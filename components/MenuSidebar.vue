@@ -93,65 +93,9 @@ export default {
 		ShippingSelector,
 	},
 
-	data() {
-		return {
-			// categories: [
-			// 	{
-			// 		icon: 'user',
-			// 		title: 'Todo',
-			// 		to: '/mi-perfil',
-			// 		subcategories: [
-			// 			{
-			// 				icon: 'user',
-			// 				title: 'Todo',
-			// 				to: '/mi-perfil',
-			// 			},
-			// 			{
-			// 				icon: 'user',
-			// 				title: 'Todo',
-			// 				to: '/mi-perfil',
-			// 			},
-			// 			{
-			// 				icon: 'user',
-			// 				title: 'Todo',
-			// 				to: '/mi-perfil',
-			// 			},
-			// 		],
-			// 	},
-			// 	{
-			// 		icon: 'package',
-			// 		title: 'Fruta y Verdura',
-			// 		to: '/mis-pedidos',
-			// 		subcategories: [],
-			// 	},
-			// 	{
-			// 		icon: 'user',
-			// 		title: 'Carnes',
-			// 		to: '/mi-perfil',
-			// 		subcategories: [
-			// 			{
-			// 				icon: 'user',
-			// 				title: 'Todo',
-			// 				to: '/mi-perfil',
-			// 			},
-			// 			{
-			// 				icon: 'user',
-			// 				title: 'Todo',
-			// 				to: '/mi-perfil',
-			// 			},
-			// 			{
-			// 				icon: 'user',
-			// 				title: 'Todo',
-			// 				to: '/mi-perfil',
-			// 			},
-			// 		],
-			// 	},
-			// ],
-		};
-	},
 	computed: {
 		categories() {
-			return this.$store.getters['products/getCategories'];
+			return this.$store.getters['products/getCategoriesMenu']
 		},
 	},
 

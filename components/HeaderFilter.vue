@@ -16,6 +16,7 @@
 					color="#fafafa"
 					class="subcategory rounded-lg"
 					:to="{ name: 'productos', query: { category_id: category.id } }"
+					v-bind="bind(category)"
 				>
 					{{ category.name }}
 				</v-chip>
@@ -63,7 +64,19 @@ export default {
 	},
 
 	methods: {
-		//
+		bind(category) {
+			if(this.category && this.category.id == category.id) {
+				return {
+					class: {
+
+					},
+
+					style: {
+						'background-color': 'red'
+					}
+				}
+			}
+		}
 	}
 }
 </script>

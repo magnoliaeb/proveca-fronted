@@ -19,7 +19,6 @@ export default app => ({
 
             showPostcodesDialog: false,
             postcode: null,
-            handlerPostcode: null,
 
             showShippingTypeDialog: false,
             shippingType: null, //   delivery | pickup
@@ -65,10 +64,8 @@ export default app => ({
 
 
 
-        openPostcodesDialog(handlerPostcode = null) {
+        openPostcodesDialog() {
             this.hideShippingTypeDialog()
-
-            this.handlerPostcode = handlerPostcode
 
             this.showPostcodesDialog = true
         },
@@ -97,10 +94,6 @@ export default app => ({
                 this.setShippingTypeDelivery()
 
                 this.hidePostcodesDialog()
-
-                if(typeof this.handlerPostcode == 'function') {
-                    this.handlerPostcode()
-                }
             })
             .catch(error => {
                 this.setPostcodeValue(null)
@@ -146,7 +139,11 @@ export default app => ({
             this.shippingType = value
 
             if(typeof this.handlerShippingType == 'function') {
-                this.handlerShippingType()
+                let handlerShippingType = this.handlerShippingType
+                
+                this.handlerShippingType = null
+
+                handlerShippingType()
             }
         }
     },

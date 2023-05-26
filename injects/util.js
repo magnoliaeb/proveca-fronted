@@ -1,10 +1,4 @@
 export default app => ({
-    data() {
-        return {
-            app: app
-        }
-    },
-
     methods: {
         getSlug() {
             return app.context.route.path.split('/').pop()
@@ -111,8 +105,6 @@ export default app => ({
     },
 
     created() {
-        this.app = app
-
         this.urlAlert()
     }
 })

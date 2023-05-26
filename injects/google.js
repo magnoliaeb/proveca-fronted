@@ -15,7 +15,7 @@ export default app => ({
     methods: {
         setup() {
             this.loader = new Loader({
-                apiKey: app.$config.GOOGLE_MAPS_API_KEY,
+                apiKey: process.env.VUE_APP_GOOGLE_KEY,
                 version: "weekly"
             })
 
@@ -169,6 +169,10 @@ export default app => ({
     },
 
     created() {
-        this.lastGeocode = app.$cookies.get('google.last_geocode') ?? null
+        if(process.client) {
+            this.setup().then(() => {
+                this.lastGeocode = app.$cookies.get('google.last_geocode') ?? null
+            })
+        }
     }
 })

@@ -1,7 +1,11 @@
-import Vue from 'vue'
+export default app => ({
+    data() {
+        return {
+            app: app
+        }
+    },
 
-export default ({app}, inject) => {
-    Vue.prototype.$util = {
+    methods: {
         getSlug() {
             return app.context.route.path.split('/').pop()
         },
@@ -38,7 +42,7 @@ export default ({app}, inject) => {
         },
 
         getLocation() {
-            return `${app.$config.WEB_URL}${app.context.route.fullPath}`
+            return `${process.env.VUE_APP_WEBURL}${app.context.route.fullPath}`
         },
 
 
@@ -85,6 +89,30 @@ export default ({app}, inject) => {
             }
 
             return formatted
+        },
+
+        urlAlert() {
+            if(process.client && app.context.route.query.alert_body) {
+                let title = app.context.route.query.alert_title
+                    ? app.context.route.query.alert_title
+                    : ''
+
+                let type = app.context.route.query.alert_type
+                    ? app.context.route.query.alert_type
+                    : 'success'
+
+                this.$swal(
+                    title,
+                    app.context.route.query.alert_body,
+                    type
+                )
+            }
         }
+    },
+
+    created() {
+        this.app = app
+
+        this.urlAlert()
     }
-}
+})

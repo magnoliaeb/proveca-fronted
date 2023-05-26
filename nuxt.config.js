@@ -99,7 +99,8 @@ export default {
 		'@mdi/font/css/materialdesignicons.css',
 	],
 	env: {
-		//
+		VUE_APP_WEBURL: process.env.VUE_APP_WEBURL,
+		VUE_APP_GOOGLE_KEY: process.env.VUE_APP_GOOGLE_KEY
 	},
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -110,7 +111,7 @@ export default {
 		{ src: '~/plugins/sweet-modal', mode: 'client' },
 		{ src: '~/plugins/infinite-loading', ssr: false },
 		{ src: "@plugins/axios.js" },
-		{ src: '~/plugins/util' },
+		// { src: '~/plugins/util' },
 		// { src: "~/plugins/image-zoomer", ssr: false },
 		{ src: '@/plugins/zoom-on-hover', ssr: false, mode: 'client' },
 	],
@@ -196,9 +197,7 @@ export default {
 	},
 
 	publicRuntimeConfig: {
-		WEB_URL: process.env.VUE_APP_WEBURL,
-    	GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
-    	GOOGLE_RECAPTCHA_KEY: process.env.GOOGLE_RECAPTCHA_KEY,
+		//
 	},
 	privateRuntimeConfig: {
 	  //

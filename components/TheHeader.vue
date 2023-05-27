@@ -4,7 +4,11 @@
 			<v-app-bar color="#F5F5F5" absolute flat class="nav">
 				<div class="content">
 					<v-row class="align-center justify-space-between">
-						<v-col cols="auto" md="auto" class="pa-0 d-lg-none">
+						<v-col
+							cols="auto"
+							md="auto"
+							class="pa-0 d-flex align-center d-lg-none"
+						>
 							<v-btn
 								@click="openMenu"
 								id="menu"
@@ -20,6 +24,7 @@
 									alt="menu"
 								/>
 							</v-btn>
+							<ShippingSelector class="ml-1 d-none d-sm-block" />
 						</v-col>
 						<v-col cols="auto" md="auto" class="pa-0">
 							<nuxt-link :to="{ name: 'index' }" class="d-block logo">
@@ -34,9 +39,9 @@
 							lg="auto"
 							class="pa-0 d-flex align-center justify-end"
 						>
-							<ShippingSelector class="mr-2 d-none d-lg-block" />
+							<ShippingSelector class="d-none d-lg-block" />
 							<!-- codigo postal -->
-							<PostcodeForm class="d-none d-lg-block" />
+							<PostcodeForm class="d-none d-sm-block mr-2 mr-lg-0" />
 
 							<div class="mx-4 d-none d-lg-block" style="position: relative">
 								<v-btn
@@ -109,7 +114,6 @@
 			<CartSidebar />
 			<MenuSidebar />
 			<DialogProductInfo />
-
 
 			<v-dialog
 				v-model="$observer.showShippingTypeDialog"

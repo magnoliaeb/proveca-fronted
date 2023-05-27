@@ -1,5 +1,5 @@
 <template>
-	<div class="search-box px-3 py-3" elevation="0">
+	<div class="search-box px-1 px-sm-3 py-2" elevation="0">
 		<div class="group">
 			<v-form @submit.prevent="submit" class="fill-height">
 				<input
@@ -92,6 +92,13 @@
 				</div>
 			</div>
 		</v-slide-y-transition>
+		<div
+			class="d-flex justify-space-between align-center mt-1 d-block d-sm-none"
+		>
+			<ShippingSelector class="" />
+			<!-- codigo postal -->
+			<PostcodeForm class="" />
+		</div>
 	</div>
 </template>
 

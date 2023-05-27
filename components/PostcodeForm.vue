@@ -3,20 +3,20 @@
 		<client-only>
 			<v-btn
 				color="primary"
-				class="px-2"
+				class="px-1 px-sm-2"
 				block
 				depressed
 				text
 				@click.stop="$observer.openPostcodesDialog"
-				large
+				:large="$vuetify.breakpoint.smAndUp"
 			>
 				<img
-					class="mr-3"
+					class="mr-1 mr-sm-3"
 					src="../assets/imgs/iconos/map-ping.svg"
 					alt="perfil"
 				/>
-				<p v-if="! hasCode" class="text-capitalize text-left my-0">
-					<span>ingresa tu </span> <br />
+				<p v-if="!hasCode" class="text-capitalize text-left my-0">
+					<span>ingresa tu </span> <br class="d-none d-sm-block" />
 					código postal
 				</p>
 				<p v-else class="text-capitalize text-left my-0">
@@ -54,10 +54,7 @@
 					<v-card-text>
 						<v-form @submit.prevent="sendForm">
 							<v-row>
-								<v-col
-									class="py-0"
-									cols="12"
-								>
+								<v-col class="py-0" cols="12">
 									<v-text-field
 										solo
 										flat
@@ -93,9 +90,7 @@
 									src="../assets/imgs/iconos/focus.svg"
 									alt="focus"
 								/>
-								<span>
-									Utilizar mi ubicacion
-								</span>
+								<span> Utilizar mi ubicacion </span>
 							</div>
 							<img
 								class=""
@@ -122,42 +117,41 @@ export default {
 	data() {
 		return {
 			postcode: null,
-			isDisabled: false
-		}
+			isDisabled: false,
+		};
 	},
 
 	computed: {
 		hasCode() {
-			return Boolean(this.$observer.postcode)
-		}
+			return Boolean(this.$observer.postcode);
+		},
 	},
 
 	methods: {
 		sendForm() {
-			this.isDisabled = true
+			this.isDisabled = true;
 
-			this.setPostcode(this.postcode)
+			this.setPostcode(this.postcode);
 		},
 
 		useCurrentAdresss() {
-			this.isDisabled = true
+			this.isDisabled = true;
 
 			this.$google.geocodeByCurrentDevicePosition().then(() => {
-				if(this.$google.lastGeocode?.postal_code) {
-					this.setPostcode(this.$google.lastGeocode.postal_code)
+				if (this.$google.lastGeocode?.postal_code) {
+					this.setPostcode(this.$google.lastGeocode.postal_code);
 				} else {
-					this.isDisabled = false
-					this.$nuxt.$emit('error-notify', 'No podemos obtener su C.P')
+					this.isDisabled = false;
+					this.$nuxt.$emit('error-notify', 'No podemos obtener su C.P');
 				}
-			})
+			});
 		},
 
 		setPostcode(postcode) {
-			this.$observer.setPostcode(postcode)
-				.finally(() => {
-					this.isDisabled = false
-				})
-		}
+			this.$observer.setPostcode(postcode).finally(() => {
+				this.isDisabled = false;
+			});
+		},
 	},
 };
 </script>

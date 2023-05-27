@@ -48,8 +48,8 @@
 			>
 				<div class="">
 					<h5 class="mb-0 mr-2 d-flex align-baseline">
-						<span class="mr-1">{{ $util.getMoneyFormat(product.price) }}</span>
-						<s>{{ $util.getMoneyFormat(product.price) }}</s>
+						<span class="mr-1">{{ $util.getMoneyFormat(100000) }}</span>
+						<!-- <s>{{ $util.getMoneyFormat(product.price) }}</s> -->
 					</h5>
 				</div>
 				<v-btn

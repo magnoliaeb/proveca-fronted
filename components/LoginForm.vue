@@ -12,8 +12,8 @@
 								email: true,
 							}"
 						>
-							<label :class="{ sider: loginSider }" for="email">Correo*</label>
 							<v-text-field
+								label="Correo electrónico"
 								required
 								ref="email"
 								id="email"
@@ -35,43 +35,46 @@
 								requiredF: true,
 							}"
 						>
-							<label :class="{ sider: loginSider }" for="password"
-								>Contraseña*</label
-							>
 							<v-text-field
+								label="Contraseña"
 								required
 								ref="password"
 								id="password"
-								type="password"
+								:type="showIconEye ? 'text' : 'password'"
 								class=""
 								v-model.trim="form.password"
 								solo
 								flat
 								height="37px"
 								outlined
+								:append-icon="
+									!showIconEye ? 'mdi-eye-outline' : 'mdi-eye-off-outline'
+								"
+								@click:append="showPassword"
 								:error-messages="errors"
 							/>
 						</validation-provider>
 					</v-col>
-					<v-col cols="12" class="pt-0">
-						<nuxt-link
-							@click.native="closeSiderLogin"
-							:to="{ name: 'solicitar-contrasena' }"
-							:class="'text-decoration-underline black--text'"
-							>¿Olvidaste tu contraseña?</nuxt-link
-						>
+					<v-col cols="12" class="py-0">
+						<p>
+							¿Olvidaste tu contraseña?
+							<nuxt-link
+								@click.native="closeSiderLogin"
+								:to="{ name: 'solicitar-contrasena' }"
+								>Restablecerlo</nuxt-link
+							>
+						</p>
 					</v-col>
 
 					<v-col class="" cols="12">
 						<v-btn
-							class="button-primary"
 							:loading="isLoading"
 							:disabled="isDisabled && invalid"
 							type="submit"
 							block
 							depressed
 						>
-							Procesar
+							Iniciar Sesión
 						</v-btn>
 					</v-col>
 				</v-row>
@@ -99,6 +102,7 @@ export default {
 		return {
 			isDisabled: false,
 			isLoading: false,
+			showIconEye: false,
 			form: {
 				email: '',
 				password: '',
@@ -136,20 +140,20 @@ export default {
 					.then(() => {
 						let cart = this.$store.state.cart.cart;
 
-						this.$observer.showLogin = false
+						this.$observer.showLogin = false;
 						this.clear();
 
 						if (cart != null && cart.items.length != 0) {
 							if (this.$route.name != 'carrito') {
-								window.location.href = '/carrito'
+								window.location.href = '/carrito';
 							} else {
-								window.location.href = '/'
+								window.location.href = '/';
 							}
 						} else {
 							if (this.$route.name != 'index') {
-								window.location.href = '/'
+								window.location.href = '/';
 							} else {
-								window.location.href = '/productos'
+								window.location.href = '/productos';
 							}
 						}
 					})
@@ -180,9 +184,12 @@ export default {
 		},
 
 		closeSiderLogin() {
-			this.$observer.showLogin = false
-		}
-	}
+			this.$observer.showLogin = false;
+		},
+		showPassword() {
+			this.showIconEye = !this.showIconEye;
+		},
+	},
 };
 </script>
 
@@ -199,5 +206,22 @@ a.link {
 	text-decoration-line: underline;
 
 	color: #3e3e3e;
+}
+
+p {
+	a {
+		font-weight: 500;
+		font-size: $fs-sm;
+		color: $primary;
+	}
+}
+button {
+	background: $primary !important;
+	border-radius: 12px !important;
+	font-weight: 800 !important;
+	font-size: $fs-base !important;
+	height: 50px !important;
+	color: white !important;
+	text-transform: inherit !important;
 }
 </style>

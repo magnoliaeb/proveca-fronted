@@ -88,7 +88,9 @@
 								<label v-if="hasLabel" for="">Contraseña* </label>
 
 								<v-text-field
-									:append-icon="showPassword ? 'mdi-eye-off-outline' : 'mdi-eye'"
+									:append-icon="
+										showPassword ? 'mdi-eye-off-outline' : 'mdi-eye'
+									"
 									@click:append="showPassword = !showPassword"
 									color="blue-ligth"
 									id="password"
@@ -111,7 +113,6 @@
 								type="submit"
 								depressed
 								block
-								class="button-primary"
 								>Continuar</v-btn
 							>
 						</v-col>
@@ -121,11 +122,7 @@
 		</div>
 		<v-row class="justify-center my-6">
 			<v-col cols="12" md="auto" class="text-center">
-				<nuxt-link
-					class="fs-base"
-					@click.native="$observer.openLogin"
-					to=""
-				>
+				<nuxt-link class="fs-base" @click.native="$observer.openLogin" to="">
 					¿Ya tienes cuenta? <span>Inicia Sesión</span>
 				</nuxt-link>
 			</v-col>
@@ -165,13 +162,13 @@ export default {
 	methods: {
 		async registerUser() {
 			this.isDisabled = true;
-			
+
 			if (await this.$refs.observer.validate()) {
 				this.isLoading = true;
 				this.isDisabled = true;
-				
+
 				this.$store
-					.dispatch("identity/signup", {
+					.dispatch('identity/signup', {
 						data: {
 							name: this.form.name,
 							email: this.form.email,
@@ -179,20 +176,20 @@ export default {
 							password: this.form.password,
 							confirm_password: this.form.password,
 						},
-						
+
 						$nuxt: this.$nuxt,
 					})
 					.then((identity) => {
-						let items = this.$store.getters["cart/getItems"];
-						
+						let items = this.$store.getters['cart/getItems'];
+
 						this.$auth.setUserToken(identity.token);
 						this.$auth.setUser(identity);
-						this.$auth.$storage.setUniversal("token", identity.token);
-						
-						this.$nuxt.$emit("success-notify", "¡Bienvenido a Proveeca!");
-						
-						window.location.href = "/";
-						
+						this.$auth.$storage.setUniversal('token', identity.token);
+
+						this.$nuxt.$emit('success-notify', '¡Bienvenido a Proveeca!');
+
+						window.location.href = '/';
+
 						if (items.length >= 1) {
 							window.location.href = `/carrito`;
 						} else {
@@ -206,7 +203,7 @@ export default {
 			} else {
 				Object.values(this.$refs).forEach((ref) => {
 					if (ref.hasError) ref.focus();
-				})
+				});
 			}
 		},
 
@@ -217,7 +214,7 @@ export default {
 			this.form.password = '';
 			this.form.password_confirmation = '';
 			this.$refs.observer.reset();
-		}
+		},
 	},
 };
 </script>
@@ -233,7 +230,16 @@ a {
 	font-size: $fs-sm;
 	span {
 		color: #2cafe5;
-		text-decoration: underline;
+		// text-decoration: underline;
 	}
+}
+button {
+	background: $primary !important;
+	border-radius: 12px !important;
+	font-weight: 800 !important;
+	font-size: $fs-base !important;
+	height: 50px !important;
+	color: white !important;
+	text-transform: inherit !important;
 }
 </style>

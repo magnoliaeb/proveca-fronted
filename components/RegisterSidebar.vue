@@ -1,6 +1,6 @@
 <template>
 	<v-navigation-drawer
-		style="background-color: #f2f2f2"
+		style="background-color: #ffffff"
 		v-click-outside="clickOutside"
 		:value="$observer.showRegister"
 		width="373px"
@@ -26,7 +26,13 @@
 		</v-row>
 		<v-row class="mb-2">
 			<v-col cols="12">
-				<v-divider dark style="border-color: #2cafe5"></v-divider>
+				<BtnGoogleLogin />
+			</v-col>
+			<v-col cols="12">
+				<BtnFacebookLogin />
+			</v-col>
+			<v-col cols="12">
+				<DividerLine />
 			</v-col>
 		</v-row>
 
@@ -49,7 +55,7 @@ export default {
 	},
 	methods: {
 		closeRegister() {
-			this.$observer.showRegister = false
+			this.$observer.showRegister = false;
 		},
 		clickOutside(event) {
 			if (event.target.id !== 'register') {

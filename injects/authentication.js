@@ -18,10 +18,15 @@ export default app => ({
                 response => this.completeAuth(response)
             )
             .catch(error => {
-                return window.location.href = app.$util.generateUrl(process.env.VUE_APP_WEBURL, {
-                    alert_title: 'Ups !',
-                    alert_body: 'Algo salio mal en el proceso de autenticación',
-                    alert_type: 'error'
+                console.log('aaaaaaadskjhjkdshfdjkdfnjndf')
+
+                return window.location.href = app.$util.generateUrl({
+                    base_url: process.env.VUE_APP_WEBURL,
+                    params: {
+                        alert_title: 'Ups !',
+                        alert_body: 'Algo salio mal en el proceso de autenticación',
+                        alert_type: 'error'
+                    }
                 })
             })
         },
@@ -70,6 +75,13 @@ export default app => ({
             .catch(
                 error => console.log(error.message, error.msg)
             )
+        },
+
+        redirectToSocialLogin(provider) {
+            window.location.href = app.$util.generateUrl({
+                base_url: process.env.VUE_APP_ENDPOINT,
+                subfolders: `auth/redirect/${provider}`
+            })
         },
 
         logout() {

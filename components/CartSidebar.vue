@@ -75,6 +75,7 @@
 			</v-row> -->
 		</div>
 		<template v-slot:append>
+			<SuggestedArticles />
 			<v-row class="">
 				<v-col cols="12" class="">
 					<v-btn
@@ -96,8 +97,10 @@
 
 <script>
 import CartMixin from '~/mixins/CartMixin';
+import SuggestedArticles from './SuggestedArticles.vue';
 
 export default {
+	components: { SuggestedArticles },
 	mixins: [CartMixin],
 
 	computed: {

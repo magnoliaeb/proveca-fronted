@@ -1,17 +1,7 @@
 <template>
-	<div
-		v-if="category"
-		class="filter"
-	>
-		<v-row
-			align="center"
-			justify="start"
-		>
-			<v-col
-				v-for="category, i in list"
-				:key="i"
-				class="shrink"
-			>
+	<div v-if="category" class="filter">
+		<v-row align="center" justify="start">
+			<v-col v-for="(category, i) in list" :key="i" class="shrink">
 				<v-chip
 					color="#fafafa"
 					class="subcategory rounded-lg"
@@ -29,56 +19,51 @@
 export default {
 	computed: {
 		categories() {
-			return this.$store.getters['products/getCategories']
+			return this.$store.getters['products/getCategories'];
 		},
 
 		category() {
 			return this.$route.query.category_id
-				? this.categories.find(c => c.id == this.$route.query.category_id)
-				: null
+				? this.categories.find((c) => c.id == this.$route.query.category_id)
+				: null;
 		},
 
 		children() {
-			return this.category
-				? this.category.children
-				: []
+			return this.category ? this.category.children : [];
 		},
 
 		parent() {
 			return this.category
-				? this.categories.find(c => c.id == this.category.parent_id)
-				: null
+				? this.categories.find((c) => c.id == this.category.parent_id)
+				: null;
 		},
 
 		brothersAndSelf() {
-			return this.parent
-				? this.parent.children
-				: []
+			return this.parent ? this.parent.children : [];
 		},
 
 		list() {
 			return Boolean(this.children.length)
 				? this.children
-				: this.brothersAndSelf
-		}
+				: this.brothersAndSelf;
+		},
 	},
 
 	methods: {
 		bind(category) {
-			if(this.category && this.category.id == category.id) {
+			if (this.category && this.category.id == category.id) {
 				return {
-					class: {
-
-					},
+					class: {},
 
 					style: {
-						'background-color': 'red'
-					}
-				}
+						'background-color': '#2cafe5 !important',
+						color: 'white',
+					},
+				};
 			}
-		}
-	}
-}
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>

@@ -10,18 +10,18 @@
 			<div class="content">
 				<v-row class="align-center">
 					<v-col cols="auto">
-						<v-btn depressed dark @click="$router.back()">
-							<v-icon dark>mdi-chevron-left </v-icon>
-							<span class="d-none d-md-block">Regresar</span></v-btn
+						<v-btn depressed text @click="$router.back()">
+							<v-icon dark left>mdi-arrow-left </v-icon>
+							<span class="">Back</span></v-btn
 						>
 					</v-col>
-					<v-col cols="auto">
+					<!-- <v-col cols="auto">
 						<v-breadcrumbs :items="links" class="px-0">
 							<template v-slot:divider>
 								<v-icon>mdi-chevron-right</v-icon>
 							</template>
 						</v-breadcrumbs>
-					</v-col>
+					</v-col> -->
 				</v-row>
 				<SingleProduct :product="product" />
 			</div>
@@ -117,22 +117,11 @@ export default {
 
 <style lang="scss" scoped>
 button {
-	background: #2cafe5 !important;
-	border-radius: 3px !important;
-	min-width: 20px !important;
-	width: 20px !important;
-	height: 30px !important;
-	font-weight: 300 !important;
+	font-weight: 600 !important;
 	font-size: $fs-sm !important;
-	line-height: 20px !important;
-	color: #ffffff !important;
 	text-transform: initial !important;
 }
 
 @media screen and (min-width: $md) {
-	button {
-		min-width: 116px !important;
-		width: 116px !important;
-	}
 }
 </style>

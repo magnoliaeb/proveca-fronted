@@ -101,17 +101,18 @@ export default {
 	env: {
 		VUE_APP_NAME: process.env.VUE_APP_NAME,
 		VUE_APP_WEBURL: process.env.VUE_APP_WEBURL,
-		VUE_APP_GOOGLE_KEY: process.env.VUE_APP_GOOGLE_KEY
+		VUE_APP_ENDPOINT: process.env.VUE_APP_ENDPOINT,
+		VUE_APP_GOOGLE_KEY: process.env.VUE_APP_GOOGLE_KEY,
 	},
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
 	plugins: [
-		{ src: "~/plugins/app" },
+		{ src: '~/plugins/app' },
 		{ src: '@plugins/slick-slide.js', mode: 'client' },
 		{ src: '~/plugins/vee-validate' },
 		{ src: '~/plugins/sweet-modal', mode: 'client' },
 		{ src: '~/plugins/infinite-loading', ssr: false },
-		{ src: "@plugins/axios.js" },
+		{ src: '@plugins/axios.js' },
 		// { src: '~/plugins/util' },
 		// { src: "~/plugins/image-zoomer", ssr: false },
 		{ src: '@/plugins/zoom-on-hover', ssr: false, mode: 'client' },
@@ -130,10 +131,10 @@ export default {
 	modules: [
 		'@nuxtjs/style-resources',
 		'@nuxtjs/axios',
-		"@nuxtjs/auth-next",
+		'@nuxtjs/auth-next',
 		'vue-sweetalert2/nuxt',
 		'cookie-universal-nuxt',
-		"vue-social-sharing/nuxt",
+		'vue-social-sharing/nuxt',
 	],
 	styleResources: {
 		scss: ['./assets/scss/*.scss'],
@@ -160,23 +161,13 @@ export default {
 			dark: false,
 			themes: {
 				dark: {
-					'blue-dark': '#002a49',
-					'blue-ligth': '#00a0df',
-					'gray-ligth': '#cacaca',
-					'blue-primary': '#003a70',
-					primary: colors.amber.darken3,
+					primary: '#2cafe5',
 					accent: colors.grey.darken3,
 					secondary: colors.amber.darken3,
 					info: colors.teal.lighten1,
 					warning: colors.amber.base,
 					error: colors.deepOrange.accent4,
 					success: colors.green.accent3,
-				},
-				light: {
-					'blue-dark': '#002a49',
-					'blue-ligth': '#00a0df',
-					'gray-ligth': '#cacaca',
-					'blue-primary': '#003a70',
 				},
 			},
 		},
@@ -193,15 +184,15 @@ export default {
 	},
 
 	axios: {
-	  baseURL: process.env.VUE_APP_ENDPOINT,
-	  //baseURL: 'http://ferrepacifico.local/api'
+		baseURL: process.env.VUE_APP_ENDPOINT,
+		//baseURL: 'http://ferrepacifico.local/api'
 	},
 
 	publicRuntimeConfig: {
 		//
 	},
 	privateRuntimeConfig: {
-	  //
+		//
 	},
 
 	auth: {

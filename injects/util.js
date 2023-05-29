@@ -103,8 +103,27 @@ export default app => ({
             }
         },
 
-        generateUrl(base_url, params = {}) {
-            const url = new URL(base_url)
+        //  base_url
+        //  subfolders
+        //  params
+        generateUrl(data) {
+            let base_url = data.base_url.endsWith('/')
+                ? data.base_url.slice(0, -1)
+                : data.base_url
+
+            let subfolders = data.subfolders
+                ? (
+                    data.subfolders.startsWith('/')
+                        ? data.subfolders.slice(1)
+                        : data.subfolders
+                )
+                : ''
+            
+            let params = data.params
+                    ? data.params
+                    : {}
+
+            const url = new URL(`${base_url}/${subfolders}`)
             
             for (const key in params) {
                 url.searchParams.append(key, params[key])

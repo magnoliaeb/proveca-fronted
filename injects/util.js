@@ -101,6 +101,16 @@ export default app => ({
                     type
                 )
             }
+        },
+
+        generateUrl(base_url, params = {}) {
+            const url = new URL(base_url)
+            
+            for (const key in params) {
+                url.searchParams.append(key, params[key])
+            }
+        
+            return url.toString()
         }
     },
 

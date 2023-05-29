@@ -62,9 +62,15 @@
 		<template v-slot:append>
 			<v-row>
 				<v-col cols="12">
-					<v-btn class="btn-logout" @click="logout" text depressed block
-						>Cerrar sesión</v-btn
+					<v-btn
+						class="btn-logout"
+						text
+						depressed
+						block
+						@click="$authentication.logout"
 					>
+						Cerrar sesión
+					</v-btn>
 				</v-col>
 			</v-row>
 		</template>
@@ -95,19 +101,9 @@ export default {
 			this.$observer.showProfile = false
 		},
 
-		logout() {
-			this.$auth.logout().then((res) => {
-        		this.$auth.$storage.setUniversal("token", null);
-
-        		if (process.client) {
-          			window.location.href = "/"
-        		}
-      		})
-		},
-
 		clickOutside(event) {
 			if (event.target.id !== 'login') {
-				this.closeProfile();
+				this.closeProfile()
 			}
 		}
 	}

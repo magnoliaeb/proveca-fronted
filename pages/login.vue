@@ -32,11 +32,13 @@
 <script>
 import LoginForm from '../components/LoginForm.vue';
 export default {
-	auth: false,
+	auth: 'guest',
+
 	components: { LoginForm },
+
 	head: {
 		title: 'Login',
-	},
+	}
 };
 </script>
 

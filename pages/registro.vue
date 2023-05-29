@@ -23,7 +23,7 @@ export default {
 	},
 	components: { RegisterForm },
 
-	auth: false,
+	auth: 'guest'
 };
 </script>
 

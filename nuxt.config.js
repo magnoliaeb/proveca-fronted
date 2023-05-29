@@ -99,6 +99,7 @@ export default {
 		'@mdi/font/css/materialdesignicons.css',
 	],
 	env: {
+		VUE_APP_NAME: process.env.VUE_APP_NAME,
 		VUE_APP_WEBURL: process.env.VUE_APP_WEBURL,
 		VUE_APP_GOOGLE_KEY: process.env.VUE_APP_GOOGLE_KEY
 	},
@@ -205,27 +206,29 @@ export default {
 
 	auth: {
 		strategies: {
-		  local: {
-			token: {
-			  property: "token",
-			  global: true,
-			  name: "token",
-			  type: "",
-			},
-			user: {
-			  property: "",
-			  autoFetch: false,
-			},
-			endpoints: {
-			  login: { url: "/auth/login", method: "post" },
-			  logout: false, //{ url: '/api/auth/logout', method: 'post' },
-			  user: { url: "/auth/profile", method: "get" },
-			},
-		  },
+		  	local: {
+				token: {
+			  		property: "token",
+			  		global: true,
+			  		name: "token",
+			  		type: "",
+				},
+				user: {
+			  		property: "",
+			  		autoFetch: false,
+				},
+				endpoints: {
+			  		login: { url: "/auth/login", method: "post" },
+			  		logout: false, //{ url: '/api/auth/logout', method: 'post' },
+			  		user: { url: "/auth/profile", method: "get" },
+				},
+		  	},
 		},
-	  },
+	},
 
 	router: {
-	  middleware: ["auth", "guest"],
-	},
+	  	middleware: [
+			'auth'
+		]
+	}
 };

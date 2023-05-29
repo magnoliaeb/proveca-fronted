@@ -108,59 +108,21 @@ export default {
 	methods: {
 		async loginUser() {
 			if (await this.$refs.observer.validate()) {
-				this.isDisabled = true;
-				this.isLoading = true;
+				this.isDisabled = true
+				this.isLoading = true
 
-				this.$auth
-					.loginWith('local', {
-						data: this.form,
-					})
-					.then((response) => {
-						this.$nuxt.$emit('success-notify', '¡Bienvenido a Proveeca!');
+				this.$authentication.loginWithCredentials(
+					this.form
+				)
+				.catch(error => {
+					this.isLoading = false
+					this.isDisabled = false
 
-						this.$auth.setUserToken(response.token);
-						this.$auth.setUser(response.data);
-						this.$auth.$storage.setUniversal('token', response.token);
-
-						return this.$store.dispatch('identity/loadAddresses');
-					})
-					.then((addresses) => this.$store.dispatch('cart/loadShoppingCart'))
-					.then((cart) => {
-						let items = this.$store.getters['localcart/getItems'];
-
-						return this.$store.dispatch('cart/addItems', {
-							$nuxt: this.$nuxt,
-							items: items,
-						});
-					})
-					.then(() => {
-						let cart = this.$store.state.cart.cart;
-
-						this.$observer.showLogin = false
-						this.clear();
-
-						if (cart != null && cart.items.length != 0) {
-							if (this.$route.name != 'carrito') {
-								window.location.href = '/carrito'
-							} else {
-								window.location.href = '/'
-							}
-						} else {
-							if (this.$route.name != 'index') {
-								window.location.href = '/'
-							} else {
-								window.location.href = '/productos'
-							}
-						}
-					})
-					.catch((error) => {
-						this.isLoading = false;
-						this.isDisabled = false;
-						this.$nuxt.$emit(
-							'error-notify',
-							'Usuario o contraseña incorrectos.'
-						);
-					});
+					this.$root.$emit(
+						'error-notify',
+						'Usuario o contraseña incorrectos'
+					)
+				})
 			} else {
 				const inputForm = Object.keys(this.form);
 				for (let i = 0; i < inputForm.length; i++) {

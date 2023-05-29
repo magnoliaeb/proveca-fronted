@@ -30,7 +30,7 @@
 						<v-btn
 							depressed
 							class="button-danger"
-							@click="logout"
+							@click="$authentication.logout"
 						>
 							Cerrar sesión
 						</v-btn>
@@ -40,22 +40,6 @@
 		</v-row>
 	</div>
 </template>
-
-<script>
-export default {
-	methods: {
-	    logout() {
-			this.$auth.logout().then((res) => {
-        		this.$auth.$storage.setUniversal("token", null);
-
-        		if (process.client) {
-          			window.location.href = "/"
-        		}
-      		})
-	    }
-	}
-};
-</script>
 
 <style lang="scss" scoped>
 h3 {

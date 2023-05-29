@@ -10,11 +10,13 @@
 import ResetPassword from "../../../components/ResetPassword.vue";
 
 export default {
-  auth: false,
+  auth: 'guest',
+
   components: { ResetPassword },
+
   head: {
     title: "Restablecer contraseña",
-  },
+  }
 };
 </script>
 

@@ -49,10 +49,19 @@
 							},
 						}"
 					>
-						<p class="mb-0">{{ item.name }}</p>
-						<p class="mb-0">{{ $util.getVariantFormat(variant) }}</p>
+						<p class="mb-0">
+							{{ item.name }}
+						</p>
+						<p
+							class="mb-0"
+							v-html="$util.getVariantFormat(variant)"
+						>
+						</p>
+						<p class="mb-0">
+							{{ formattedUnitPrice }}
+						</p>
 						<!-- <p class="mb-0">{{ getQty }} pieza(s)</p> -->
-						<p class="mb-0"><span>23</span> La Libra</p>
+						<!-- <p class="mb-0"><span>23</span> La Libra</p> -->
 						<!-- <h4>{{ formattedTotal }}</h4> -->
 					</nuxt-link>
 				</div>
@@ -71,14 +80,19 @@
 				<v-icon
 					:x-small="$vuetify.breakpoint.xsOnly"
 					:small="$vuetify.breakpoint.smAndUp"
-					>mdi-delete</v-icon
 				>
+					mdi-delete
+				</v-icon>
 			</v-btn>
-			<span class="mx-2">50 Lbs</span>
+
+			<span class="mx-2">
+				{{ getQty }}
+			</span>
+
 			<v-btn
 				:x-small="$vuetify.breakpoint.xsOnly"
 				:small="$vuetify.breakpoint.smAndUp"
-				@click="addItem"
+				@click="inc"
 				icon
 				color="primary"
 				class=""
@@ -87,8 +101,9 @@
 				<v-icon
 					:x-small="$vuetify.breakpoint.xsOnly"
 					:small="$vuetify.breakpoint.smAndUp"
-					>mdi-plus</v-icon
 				>
+					mdi-plus
+				</v-icon>
 			</v-btn>
 		</v-col>
 		<v-col cols="auto" class="py-0">
@@ -101,13 +116,14 @@
 import CartItemMixin from '~/mixins/CartItemMixin';
 
 export default {
-	mixins: [CartItemMixin],
+	mixins: [
+		CartItemMixin
+	],
 
 	data() {
 		return {
-			isBusy: false,
-			positionItem: null,
-		};
+			isBusy: false
+		}
 	},
 
 	computed: {
@@ -124,17 +140,14 @@ export default {
 				case 'xl':
 					return 70;
 			}
-		},
+		}
 	},
 
 	methods: {
 		closeCart() {
-			this.$observer.showCart = false;
-		},
-		addItem() {
-			console.log('addItem');
-		},
-	},
+			this.$observer.showCart = false
+		}
+	}
 };
 </script>
 

@@ -53,7 +53,7 @@
 						}"
 					>
 						<h4 class="mb-3">{{ item.name }}</h4>
-						<small>{{ $util.getVariantFormat(variant) }}</small>
+						<small v-html="$util.getVariantFormat2(variant)"></small>
 					</nuxt-link>
 					<!-- movil -->
 					<div class="d-flex d-sm-none flex-column">

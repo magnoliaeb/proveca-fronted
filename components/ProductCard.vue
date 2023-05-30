@@ -1,5 +1,8 @@
 <template>
-	<article v-if="product" class="py-2">
+	<article
+		v-if="product"
+		class="py-2"
+	>
 		<div class="img-content my-5">
 			<nuxt-link
 				:to="{
@@ -38,7 +41,7 @@
 			>
 				<div class="">
 					<h4 class="mb-0 mr-2">
-						{{ $util.getMoneyFormat(product.price) }} x Kg
+						{{ $util.getMoneyFormat(product.price) }} <!--x (Unidad de medida)-->
 					</h4>
 					<h5>
 						<nuxt-link
@@ -50,7 +53,9 @@
 							{{ product.name }}
 						</nuxt-link>
 					</h5>
-					<h6>Opciones: <span>3 sizes</span></h6>
+					<h6 v-if="countVariants > 1">
+						Opciones: <span>{{ countVariants }} variantes</span>
+					</h6>
 				</div>
 				<v-btn
 					class="cart px-3 rounded-pill mt-3 mt-md-0"
@@ -74,11 +79,9 @@
 
 <script>
 export default {
-	props: {
-		product: {
-			type: Object,
-		},
-	},
+	props: [
+		'product'
+	],
 
 	data() {
 		return {
@@ -89,17 +92,7 @@ export default {
 
 	computed: {
 		picture() {
-			return _.get(this.product, 'picture.url', '/loading.png');
-
-			// let picture = this.product.pictures.find((p) => p.name == 'Principal');
-
-			// return picture
-			// 	? picture.url
-			// 	: `https://picsum.photos/500/300?image=${8 * 5 + 10}`;
-		},
-
-		variant() {
-			return this.product.variants[0];
+			return _.get(this.product, 'picture.url', '/loading.png')
 		},
 
 		heightAndWidthImg() {
@@ -116,6 +109,10 @@ export default {
 					return 150;
 			}
 		},
+
+		countVariants() {
+			return this.product.variants.length
+		}
 	},
 
 	methods: {

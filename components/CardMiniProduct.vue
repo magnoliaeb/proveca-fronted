@@ -12,8 +12,8 @@
 						:width="heightAndWidthImg"
 						transition="scale-transition"
 						:height="heightAndWidthImg"
-						:src="product.picture"
-						:lazy-src="product.picture"
+						:src="picture"
+						:lazy-src="picture"
 						:alt="product.name"
 						aspect-ratio="1"
 						class="grey lighten-3 img mx-auto"
@@ -48,8 +48,7 @@
 			>
 				<div class="">
 					<h5 class="mb-0 mr-2 d-flex align-baseline">
-						<span class="mr-1">{{ $util.getMoneyFormat(100000) }}</span>
-						<!-- <s>{{ $util.getMoneyFormat(product.price) }}</s> -->
+						<span class="mr-1">{{ $util.getMoneyFormat(product.price) }}</span>
 					</h5>
 				</div>
 				<v-btn
@@ -69,34 +68,19 @@
 
 <script>
 export default {
-	props: {
-		product: {
-			type: Object,
-		},
-	},
-
-	data() {
-		return {
-			alert: false,
-			duration: 3000,
-		};
-	},
+	props: [
+		'product'
+	],
 
 	computed: {
-		// picture() {
-		// 	return _.get(this.product, 'picture.url', '/loading.png');
-
-		// 	// let picture = this.product.pictures.find((p) => p.name == 'Principal');
-
-		// 	// return picture
-		// 	// 	? picture.url
-		// 	// 	: `https://picsum.photos/500/300?image=${8 * 5 + 10}`;
-		// },
+		picture() {
+			return _.get(this.product, 'picture.url', '/loading.png')
+		},
 
 		heightAndWidthImg() {
 			switch (this.$vuetify.breakpoint.name) {
 				case 'xs':
-					return 90;
+					return 30;
 				case 'sm':
 					return 100;
 				case 'md':
@@ -126,9 +110,9 @@ export default {
 			this.alert = true;
 
 			setTimeout(() => (this.alert = false), this.duration);
-		},
-	},
-};
+		}
+	}
+}
 </script>
 
 <style lang="scss" scoped>

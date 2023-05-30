@@ -6,7 +6,6 @@
 				<!-- direccion -->
 				<AddressList />
 				<!-- metodos -->
-				<!-- <InvoiceForm /> -->
 				<ShippingMethods />
 			</v-col>
 			<v-col

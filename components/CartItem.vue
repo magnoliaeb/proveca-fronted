@@ -52,7 +52,7 @@
 							}
 						}"
 					>
-						<h4 class="mb-3">{{ item.name }}</h4>
+						<h4 class="mb-3">{{ item.product.name }}</h4>
 						<small v-html="$util.getVariantFormat2(variant)"></small>
 					</nuxt-link>
 					<!-- movil -->
@@ -67,7 +67,7 @@
 								}
 							}"
 						>
-							<h4 class="">{{ item.name }}</h4>
+							<h4 class="">{{ item.product.name }}</h4>
 							<small>{{ $util.getVariantFormat(variant) }}</small>
 						</nuxt-link>
 						<div class="d-flex my-4">

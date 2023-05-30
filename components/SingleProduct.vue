@@ -42,11 +42,16 @@
 			<v-row class="mt-4 mb-6">
 				<v-col cols="12">
 					<ul>
-						<PriceInfoItem2
+						<!-- <PriceInfoItem2
 							v-for="(variant, i) in variants"
 							:key="i"
 							:variant="variant"
 							ref="price_info_item"
+						/> -->
+
+						<VariantSelector
+							:product="product"
+							:key="product.id"
 						/>
 					</ul>
 				</v-col>
@@ -65,7 +70,7 @@
 						Comprar
 					</v-btn>
 				</v-col> -->
-				<v-col
+				<!-- <v-col
 					v-if="sum > 0"
 					cols="12"
 					sm="6"
@@ -80,7 +85,7 @@
 					>
 						Agregar al carrito
 					</v-btn>
-				</v-col>
+				</v-col> -->
 			</v-row>
 
 			<v-row class="">
@@ -97,12 +102,14 @@
 
 <script>
 import SliderSingleProduct from './SliderSingleProduct.vue';
-import PriceInfoItem2 from './PriceInfoItem2.vue';
+// import PriceInfoItem2 from './PriceInfoItem2.vue';
+import VariantSelector from './VariantSelector.vue';
 
 export default {
 	components: {
 		SliderSingleProduct,
-		PriceInfoItem2,
+		// PriceInfoItem2,
+		VariantSelector
 	},
 
 	props: ['product'],
@@ -110,11 +117,11 @@ export default {
 	data() {
 		return {
 			loading: false,
-			ready: false,
+			// ready: false,
 			// alert: false,
 			// duration: 3000,
 
-			variants: [],
+			// variants: [],
 
 			socials: [
 				{
@@ -136,60 +143,60 @@ export default {
 	},
 
 	computed: {
-		sum() {
-			if(! this.ready) {
-				return 0
-			}
+		// sum() {
+		// 	if(! this.ready) {
+		// 		return 0
+		// 	}
 
-			return _.sumBy(this.variants, 'qty')
-		}
+		// 	return _.sumBy(this.variants, 'qty')
+		// }
 	},
 
 	methods: {
-		add() {
-			if(this.$observer.shippingType) {
-				this.makeAdd()
-			} else {
-				this.$observer.openShippingTypeDialog(this.makeAdd)
-			}
-		},
+		// add() {
+		// 	if(this.$observer.shippingType) {
+		// 		this.makeAdd()
+		// 	} else {
+		// 		this.$observer.openShippingTypeDialog(this.makeAdd)
+		// 	}
+		// },
 
-		makeAdd() {
-			this.variants.forEach((v, i) => {
-				if(v.qty > 0) {
-					let item = {
-						product: this.product,
-						variant: v,
-						qty: v.qty
-					}
+		// makeAdd() {
+		// 	this.variants.forEach((v, i) => {
+		// 		if(v.qty > 0) {
+		// 			let item = {
+		// 				product: this.product,
+		// 				variant: v,
+		// 				qty: v.qty
+		// 			}
 				
-					this.$store.dispatch('cart/addItem', {
-						item: item
-					})
-				}
-			})
+		// 			this.$store.dispatch('cart/addItem', {
+		// 				item: item
+		// 			})
+		// 		}
+		// 	})
 
-			this.variants.forEach((v, i) => {
-				this.$set(this.variants[i], 'qty', 0)
-			})
+		// 	this.variants.forEach((v, i) => {
+		// 		this.$set(this.variants[i], 'qty', 0)
+		// 	})
 
-			this.$refs.price_info_item.forEach(r => {
-				r.qty = 0
-			})
-		}
+		// 	this.$refs.price_info_item.forEach(r => {
+		// 		r.qty = 0
+		// 	})
+		// }
 	},
 
-	created() {
-		this.$set(this, 'variants', this.$util.clone(this.product).variants.filter(
-			variant => variant.stock >= 1 && variant.price > 0
-		))
+	// created() {
+	// 	this.$set(this, 'variants', this.$util.clone(this.product).variants.filter(
+	// 		variant => variant.stock >= 1 && variant.price > 0
+	// 	))
 
-		this.variants.forEach((v, i) => {
-			this.$set(this.variants[i], 'qty', 0)
-		})
+	// 	this.variants.forEach((v, i) => {
+	// 		this.$set(this.variants[i], 'qty', 0)
+	// 	})
 
-		this.ready = true
-	}
+	// 	this.ready = true
+	// }
 };
 </script>
 

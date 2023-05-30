@@ -5,45 +5,68 @@ export default {
 
     data() {
         return {
-            selectedVariant: null
+            variant: null,
+            qty: 1
         }
     },
 
     computed: {
-        price() {
-            return this._.get(this, 'selectedVariant.price')
+        variants() {
+            return this.product.variants
         },
 
-        formattedPrice() {
-            return this.$util.getMoneyFormat(this.price)
+        unitPrice() {
+            return this._.get(this, 'variant.price', 0)
+        },
+
+        formattedUnitPrice() {
+            return this.$util.getMoneyFormat(this.unitPrice)
+        },
+
+        totalPrice() {
+            return this.unitPrice * this.qty
+        },
+
+        formattedTotalPrice() {
+            return this.$util.getMoneyFormat(this.totalPrice)
         }
     },
 
     methods: {
-        addToCart(qty, variant = null) {
+        setVariant(variant) {
+            this.variant = variant
+        },
+
+        dec() {
+			if (this.qty > 1) {
+				this.qty = this.qty - 1
+			}
+		},
+
+		inc() {
+			this.qty = this.qty + 1
+		},
+
+        add() {
             let item = {
                 product: this.product,
-                variant: variant ?? this.selectedVariant,
-                qty: qty
+                variant: this.variant,
+                qty: this.qty
             }
         
             return this.$store.dispatch('cart/addItem', {
                 item: item
             })
-        },
-
-        updateItemQty(qty, item) {
-            return this.$store.dispatch('cart/addItem', {
-                qty: qty,
-                item: item
+            .then(() => {
+                this.qty = 1
+                this.$observer.showDialogInfo = false
             })
-        },
+        }
+    },
 
-        buyNow(variant = null) {
-            this.addToCart(1, variant)
-                .then(response => this.$router.push({
-                    name: 'carrito'
-                }))
+    created() {
+        if(this.variants.length == 1) {
+            this.setVariant(this.variants[0])
         }
     }
 }

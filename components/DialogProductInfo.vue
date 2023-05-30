@@ -28,12 +28,14 @@
 				</v-row>
 
 				<div>
-					<PriceInfoItem
+					<!-- <PriceInfoItem
 						v-for="(variant, i) in variants"
 						:key="i"
 						:product="product"
 						:variant="variant"
-					/>
+					/> -->
+
+					<VariantSelector :product="product"/>
 				</div>
 			</div>
 		</v-card>
@@ -41,10 +43,12 @@
 </template>
 
 <script>
-import PriceInfoItem from './PriceInfoItem.vue';
+// import PriceInfoItem from './PriceInfoItem.vue';
+import VariantSelector from './VariantSelector.vue';
 export default {
 	components: {
-		PriceInfoItem
+		// PriceInfoItem
+		VariantSelector
 	},
 
 	computed: {
@@ -52,11 +56,11 @@ export default {
 			return this.$observer.productDialogInfo
 		},
 
-		variants() {
-			return this.product.variants.filter(
-				variant => variant.stock >= 1 && variant.price > 0
-			)
-		}
+		// variants() {
+		// 	return this.product.variants.filter(
+		// 		variant => variant.stock >= 1 && variant.price > 0
+		// 	)
+		// }
 	},
 
 	methods: {

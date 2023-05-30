@@ -115,7 +115,7 @@
 			<ProfileSidebar />
 			<CartSidebar />
 			<MenuSidebar />
-			<DialogProductInfo />
+			<DialogProductInfo :key="$observer.productDialogInfo ? $observer.productDialogInfo.id : 0" />
 
 			<v-dialog
 				v-model="$observer.showShippingTypeDialog"

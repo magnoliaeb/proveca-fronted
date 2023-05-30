@@ -5,11 +5,7 @@
 	>
 		<v-col cols="12" sm="auto" class="">
 			<h5 class="d-flex justify-between align-center">
-				<span
-					class=""
-					v-html="$util.getVariantFormat2(variant)"
-				>
-				</span>
+				<span v-html="$util.getVariantFormat2(variant)"></span>
 				<span>
 					{{ $util.getMoneyFormat(variant.price) }}
 				</span>

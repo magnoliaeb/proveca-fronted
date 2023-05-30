@@ -50,7 +50,7 @@
 						}"
 					>
 						<p class="mb-0">
-							{{ item.name }}
+							{{ item.product.name }}
 						</p>
 						<p
 							class="mb-0"

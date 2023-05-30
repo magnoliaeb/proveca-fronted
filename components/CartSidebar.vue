@@ -30,10 +30,10 @@
 
 		<ul>
 			<ItemCart
-				v-for="(item, index) in items"
+				v-for="item in items"
 				:item="item"
 				class="list-complete-item"
-				:key="`key-${index}`"
+				:key="item.id"
 			/>
 		</ul>
 		<!-- <v-row class="mb-2">

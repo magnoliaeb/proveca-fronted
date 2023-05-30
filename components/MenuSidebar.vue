@@ -40,7 +40,7 @@
 				</v-col>
 			</v-row>
 			<v-row class="align-center">
-				<v-col cols="12" class="py-0 d-flex justify-space-between">
+				<v-col cols="12" class="py-0 d-flex justify-space-between align-center">
 					<v-btn
 						@click="openLogin"
 						color="primary"
@@ -48,9 +48,9 @@
 						class="login"
 						text
 						depressed
-						>Iniciar sesión/ <br />
-						Registrarte</v-btn
 					>
+						Iniciar sesión
+					</v-btn>
 					<ShippingSelector class="d-block d-lg-none" />
 				</v-col>
 			</v-row>

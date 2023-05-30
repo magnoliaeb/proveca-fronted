@@ -243,6 +243,8 @@ export const actions = {
                 value: 'Error al enviar la solicitud.',
                 dontEmit: config.dontEmit
             })
+
+            return Promise.reject(e)
         }
     },
     async sendResetPasswordConfirm(ctx, config) {
@@ -267,6 +269,8 @@ export const actions = {
                 value: 'Error al enviar la solicitud.',
                 dontEmit: config.dontEmit
             })
+
+            return Promise.reject(e)
         }
     }, 
     async changePassword(ctx, config) {
@@ -284,6 +288,8 @@ export const actions = {
                 value: 'Error al actualizar la contraseña.',
                 dontEmit: config.dontEmit
             })
+
+            return Promise.reject(e)
         }
     },
 
@@ -296,7 +302,7 @@ export const actions = {
                     dontEmit: config.dontEmit
                 })
 
-                return response.data
+                return response
             })
             .catch(error => {
                 ctx.dispatch('emit', {

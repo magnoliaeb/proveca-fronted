@@ -27,10 +27,10 @@
 									solo
 									flat
 									label="Contraseña actual"
-									id="currentPassword"
-									ref="currentPassword"
+									id="old_password"
+									ref="old_password"
 									type="password"
-									v-model.trim="form.currentPassword"
+									v-model.trim="form.old_password"
 									:error-messages="errors"
 								/>
 							</validation-provider>
@@ -52,10 +52,10 @@
 									solo
 									flat
 									label="Nueva contraseña"
-									id="newPassword"
-									ref="newPassword"
+									id="new_password"
+									ref="new_password"
 									type="password"
-									v-model.trim="form.newPassword"
+									v-model.trim="form.new_password"
 									:error-messages="errors"
 								/>
 							</validation-provider>
@@ -71,11 +71,11 @@
 									outlined
 									solo
 									flat
-									ref="confirmNewPassword"
+									ref="confirm_new_password"
 									label="Repetir contraseña"
-									id="confirmNewPassword"
+									id="confirm_new_password"
 									type="password"
-									v-model.trim="form.confirmNewPassword"
+									v-model.trim="form.confirm_new_password"
 									:error-messages="errors"
 								/>
 							</validation-provider>
@@ -112,9 +112,9 @@
       			isDisabled: false,
       			isLoading: false,
       			form: {
-        			currentPassword: null,
-        			newPassword: null,
-        			confirmNewPassword: null
+        			old_password: null,
+        			new_password: null,
+        			confirm_new_password: null
       			}
     		}
   		},
@@ -125,19 +125,17 @@
         			this.isDisabled = true
         			this.isLoading = true
 
-        			await this.$store
-          				.dispatch("identity/changePassword", {
-            				$nuxt: this.$nuxt,
-            				data: {
-              					old_password: this.form.currentPassword,
-              					new_password: this.form.newPassword
-            				},
-          				})
-						.then(() => this.$router.back())
-          				.finally(() => this.clear())
-
-        			this.isLoading = false
-        			this.isDisabled = false
+					this.$authentication.changePassword(
+						this.form
+					)
+					.then(
+						() => this.$router.back()
+					)
+					.finally(() => {
+						this.isLoading = false
+						this.isDisabled = false
+						this.clear()
+					})
       			}
 			},
 

@@ -155,7 +155,7 @@ export default {
 				phone: '',
 				email: '',
 				password: '',
-				password_confirmation: '',
+				confirm_password: '',
 			},
 		};
 	},
@@ -164,42 +164,18 @@ export default {
 			this.isDisabled = true;
 
 			if (await this.$refs.observer.validate()) {
-				this.isLoading = true;
-				this.isDisabled = true;
+				this.isLoading = true
+				this.isDisabled = true
 
-				this.$store
-					.dispatch('identity/signup', {
-						data: {
-							name: this.form.name,
-							email: this.form.email,
-							phone: this.form.phone,
-							password: this.form.password,
-							confirm_password: this.form.password,
-						},
+				this.form.confirm_password = this.form.password
 
-						$nuxt: this.$nuxt,
-					})
-					.then((identity) => {
-						let items = this.$store.getters['cart/getItems'];
-
-						this.$auth.setUserToken(identity.token);
-						this.$auth.setUser(identity);
-						this.$auth.$storage.setUniversal('token', identity.token);
-
-						this.$nuxt.$emit('success-notify', '¡Bienvenido a Proveeca!');
-
-						window.location.href = '/';
-
-						if (items.length >= 1) {
-							window.location.href = `/carrito`;
-						} else {
-							window.location.href = `/productos`;
-						}
-					})
-					.catch((error) => {
-						this.isLoading = false;
-						this.isDisabled = false;
-					});
+				this.$authentication.register(
+					this.form
+				)
+				.catch(error => {
+					this.isLoading = false
+					this.isDisabled = false
+				})
 			} else {
 				Object.values(this.$refs).forEach((ref) => {
 					if (ref.hasError) ref.focus();
@@ -212,7 +188,7 @@ export default {
 			this.form.phone = '';
 			this.form.email = '';
 			this.form.password = '';
-			this.form.password_confirmation = '';
+			this.form.confirm_password = '';
 			this.$refs.observer.reset();
 		},
 	},

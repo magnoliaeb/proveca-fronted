@@ -121,11 +121,6 @@ export default {
 				.catch(error => {
 					this.isLoading = false
 					this.isDisabled = false
-					
-					this.$nuxt.$emit(
-						'error-notify',
-						'Usuario o contraseña incorrectos'
-					)
 				})
 			} else {
 				const inputForm = Object.keys(this.form);

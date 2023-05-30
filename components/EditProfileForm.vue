@@ -131,32 +131,19 @@ export default {
     	async updateProfile() {
       		this.isDisabled = true
       		if (await this.$refs.observer.validate()) {
-        		this.isLoading = true;
+        		this.isDisabled = true
+            	this.isLoading = true
 
-        		this.$store
-          			.dispatch("identity/updateProfile", {
-            			$nuxt: this.$nuxt,
-            			data: {
-              				email: this.form.email,
-              				phone: this.form.phone,
-              				mobile: this.form.mobile,
-              				name: this.form.name,
-              				birthdate: this.form.birthdate,
-              				//vat: this.form.vat,
-            			},
-          			})
-          			.then(response => {
-            			// this.$auth.setUserToken(response.token);
-            			this.$auth.setUser(response);
-            			// this.$auth.$storage.setUniversal("token", response.token)
-
-						this.$router.back()
-          			})
-          			.finally(() => {
-            			//this.clear();
-            			this.isDisabled = false;
-            			this.isLoading = false;
-          			})
+				this.$authentication.updateProfile(
+					this.form
+				)
+				.then(
+					() => this.$router.back()
+				)
+				.finally(() => {
+					this.isDisabled = false
+            		this.isLoading = false
+				})
       		} else {
         		Object.values(this.$refs).forEach((ref) => {
           			if (ref.hasError) ref.focus();

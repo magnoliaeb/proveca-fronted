@@ -4,9 +4,15 @@
 		tag="li"
 	>
 		<v-col cols="12" sm="auto" class="">
-			<h5>
-				<span class="">{{ $util.getVariantFormat(variant) }}</span>
-				<span>{{ $util.getMoneyFormat(variant.price) }}</span>
+			<h5 class="d-flex justify-between align-center">
+				<span
+					class=""
+					v-html="$util.getVariantFormat2(variant)"
+				>
+				</span>
+				<span>
+					{{ $util.getMoneyFormat(variant.price) }}
+				</span>
 			</h5>
 		</v-col>
 		<v-col cols="auto" class="">
@@ -20,7 +26,7 @@
 			<v-tooltip color="primary" bottom>
 				<template v-slot:activator="{ on, attrs }">
 					<v-btn
-						@click="add"
+						@click="addToCart"
 						depressed
 						outlined
 						id="add-product-dialog"
@@ -40,53 +46,24 @@
 				<span>Agregar al carrito</span>
 			</v-tooltip>
 		</v-col>
-
-		<!-- <v-col cols="auto" class="pa-0">
-			<v-row> </v-row>
-		</v-col> -->
 	</v-row>
 </template>
 
 <script>
-import BuyableMixin from "~/mixins/BuyableMixin";
+import VariantMixin from "~/mixins/VariantMixin";
 
 export default {
-	props: [
-		'variant'
-	],
-
 	mixins: [
-		BuyableMixin
+		VariantMixin
 	],
-
-	data() {
-		return {
-			qty: 1
-		}
-	},
 
 	methods: {
-		dec() {
-			if (this.qty > 1) {
-				this.qty = this.qty - 1
-			}
-		},
-
-		inc() {
-			this.qty = this.qty + 1
-		},
-
-		add() {
-			this.addToCart(this.qty, this.variant)
-				.then(() => {
-					this.qty = 1
-					this.$observer.showDialogInfo = false
-				})
+		addToCart() {
+			this.add()
+				.then(
+					() => this.$observer.showDialogInfo = false
+				)
 		}
-	},
-
-	created() {
-		this.selectedVariant = this.variant
 	}
 };
 </script>

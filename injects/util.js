@@ -45,7 +45,7 @@ export default app => ({
 
 
 
-        getVariantFormat(variant) {
+        getVariantFormat(variant, defaultVariantFormat = null) {
             if(variant && Boolean(variant.config)) {
                 return variant.config
                     .map(c => c.values[0].name)
@@ -55,7 +55,7 @@ export default app => ({
             return null
         },
 
-        getVariantFormat2(variant) {
+        getVariantFormat2(variant, defaultVariantFormat = null) {
             if(variant && Boolean(variant.config)) {
                 return variant.config
 					.map(c => `${c.name}<br>${c.values[0].name}<br>`)

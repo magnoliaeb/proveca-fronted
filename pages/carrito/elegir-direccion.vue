@@ -4,7 +4,8 @@
 		<v-row class="align-start mb-6">
 			<v-col cols="12" sm="12" md="10" lg="7" class="">
 				<!-- direccion -->
-				<AddressList />
+				<!-- <AddressList /> -->
+				<DeliveryInformationForOrder />
 				<!-- metodos -->
 				<ShippingMethods />
 			</v-col>
@@ -26,12 +27,14 @@ import AddressList from '../../components/AddressList.vue';
 import CartResumen from '../../components/CartResumen.vue';
 import ShippingMethods from '../../components/ShippingMethods.vue';
 import HeadingTop from '../../components/HeadingTop.vue';
+import DeliveryInformationForOrder from '../../components/DeliveryInformationForOrder.vue';
 export default {
 	components: {
 		AddressList,
 		ShippingMethods,
 		CartResumen,
 		HeadingTop,
+		DeliveryInformationForOrder,
 	},
 
 	head: {

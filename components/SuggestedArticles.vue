@@ -46,6 +46,12 @@ export default {
 				.sort(() => Math.random() - 0.5)
 				.slice(0, this.maxProducts)
 		}
+	},
+
+	created() {
+		if(process.client) {
+			this.$store.dispatch("products/loadTopProducts")
+		}
 	}
 };
 </script>

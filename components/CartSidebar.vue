@@ -23,7 +23,7 @@
 			>
 				<v-icon>mdi-close</v-icon>
 			</v-btn>
-			<v-col cols="12" class="text-center">
+			<v-col cols="12" class="text-center py-0 py-md-2">
 				<h2>Carrito del mercado de Proveeca</h2>
 			</v-col>
 		</v-row>
@@ -77,7 +77,7 @@
 		<template v-slot:append>
 			<SuggestedArticles />
 			<v-row class="">
-				<v-col cols="12" class="">
+				<v-col cols="12" class="pt-0">
 					<v-btn
 						style="position: relative"
 						class="d-flex cart align-center"
@@ -86,7 +86,7 @@
 						block
 						depressed
 					>
-						<span>Hacer mi pedido </span>
+						<span class="mr-2">Hacer mi pedido </span>
 						<h5 class="d-flex pa-2 rounded-lg">{{ formattedTotal }}</h5>
 					</v-btn></v-col
 				>
@@ -149,7 +149,7 @@ button.cart {
 	border-radius: 12px !important;
 	font-weight: 800 !important;
 	font-size: $fs-base !important;
-	height: 50px !important;
+	height: 40px !important;
 	color: white !important;
 	text-transform: inherit !important;
 }
@@ -163,6 +163,10 @@ h5 {
 	background-color: rgb(30, 158, 212);
 }
 
-@media screen and (min-width: $sm) {
+@media screen and (min-width: $md) {
+	a.cart,
+	button.cart {
+		height: 50px !important;
+	}
 }
 </style>

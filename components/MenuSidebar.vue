@@ -51,7 +51,7 @@
 					>
 						Iniciar sesión
 					</v-btn>
-					<ShippingSelector class="d-block d-lg-none" />
+					<!-- <ShippingSelector class="d-block d-lg-none" /> -->
 				</v-col>
 			</v-row>
 			<v-row class="">
@@ -95,7 +95,7 @@ export default {
 
 	computed: {
 		categories() {
-			return this.$store.getters['products/getCategoriesMenu']
+			return this.$store.getters['products/getCategoriesMenu'];
 		},
 	},
 
@@ -112,7 +112,7 @@ export default {
 		},
 		openLogin() {
 			this.closeMenu();
-			this.$observer.openLogin()
+			this.$observer.openLogin();
 		},
 	},
 };

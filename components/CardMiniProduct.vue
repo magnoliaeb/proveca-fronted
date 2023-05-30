@@ -1,22 +1,38 @@
 <template>
-	<article v-if="product" class="py-1">
-		<div class="img-content py-3">
+	<article v-if="product" class="">
+		<div
+			class="img-content"
+			:style="`width: ${heightAndWidthImg}px; height: ${heightAndWidthImg}px`"
+		>
+			<v-btn
+				absolute
+				class="d-md-none btn-float"
+				depressed
+				fab
+				dark
+				color="#2cafe5"
+				:disabled="false"
+				@click="openDialogInfo"
+			>
+				<v-icon small class="">mdi-plus</v-icon>
+			</v-btn>
 			<nuxt-link
 				:to="{
-					name: 'productos-id-slug',
+					name: 'productos-id-slug d-flex',
 					params: { id: product.id, slug: product.slug },
 				}"
 			>
 				<client-only>
 					<v-img
-						:width="heightAndWidthImg"
+						:width="'80%'"
 						transition="scale-transition"
-						:height="heightAndWidthImg"
+						:height="'80%'"
 						:src="picture"
 						:lazy-src="picture"
 						:alt="product.name"
 						aspect-ratio="1"
-						class="grey lighten-3 img mx-auto"
+						contain
+						class="img mx-auto"
 					>
 						<template v-slot:placeholder>
 							<v-row class="fill-height ma-0" align="center" justify="center">
@@ -32,8 +48,8 @@
 				</client-only>
 			</nuxt-link>
 		</div>
-		<div class="px-3 mt-4">
-			<h4 class="mb-3 text-center">
+		<div class="px-3 mt-2 mt-md-4">
+			<h4 class="mb0 md-md-3 text-center">
 				<nuxt-link
 					:to="{
 						name: 'productos-id-slug',
@@ -47,13 +63,13 @@
 				class="d-flex flex-column flex-md-row align-center justify-space-between mb-4 mb-md-6 text-center text-md-left"
 			>
 				<div class="">
-					<h5 class="mb-0 mr-2 d-flex align-baseline">
+					<h5 class="mb-0 d-flex align-baseline">
 						<span class="mr-1">{{ $util.getMoneyFormat(product.price) }}</span>
 					</h5>
 				</div>
 				<v-btn
 					small
-					class="cart px-3 rounded-pill mt-3 mt-md-0"
+					class="cart px-3 rounded-pill mt-3 mt-md-0 d-none d-md-block"
 					depressed
 					:disabled="false"
 					@click="openDialogInfo"
@@ -68,27 +84,25 @@
 
 <script>
 export default {
-	props: [
-		'product'
-	],
+	props: ['product'],
 
 	computed: {
 		picture() {
-			return _.get(this.product, 'picture.url', '/loading.png')
+			return _.get(this.product, 'picture.url', '/loading.png');
 		},
 
 		heightAndWidthImg() {
 			switch (this.$vuetify.breakpoint.name) {
 				case 'xs':
-					return 30;
+					return 50;
 				case 'sm':
-					return 100;
+					return 80;
 				case 'md':
-					return 110;
+					return 100;
 				case 'lg':
-					return 110;
+					return 100;
 				case 'xl':
-					return 110;
+					return 100;
 			}
 		},
 	},
@@ -110,9 +124,9 @@ export default {
 			this.alert = true;
 
 			setTimeout(() => (this.alert = false), this.duration);
-		}
-	}
-}
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -122,12 +136,25 @@ article {
 }
 
 .img-content {
+	position: relative;
 	background-color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin: 0 auto;
 	border-radius: 9.1894px;
+	a {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		align-items: center;
+	}
+}
+button.btn-float {
+	width: 20px !important;
+	height: 20px !important;
+	bottom: -4px;
+	right: -4px;
 }
 
 h4,
@@ -165,6 +192,14 @@ button.cart {
 	color: #fff !important;
 }
 
+@media screen and (min-width: $sm) {
+	button.btn-float {
+		width: 25px !important;
+		height: 25px !important;
+		bottom: -4px;
+		right: -4px;
+	}
+}
 @media screen and (min-width: $md) {
 	button.cart {
 		height: 30px !important;

@@ -55,7 +55,7 @@ export default {
 	},
 	methods: {
 		closeRegister() {
-			this.$observer.showRegister = false;
+			// this.$observer.showRegister = false;
 		},
 		clickOutside(event) {
 			if (event.target.id !== 'register') {

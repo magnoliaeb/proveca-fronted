@@ -107,8 +107,10 @@
 			<SearchForm class="d-block d-lg-none" />
 			<HeaderBottom class="d-none d-lg-block" />
 
-			<LoginSiderbar />
-			<RegisterSidebar />
+			<!-- <LoginSiderbar /> -->
+			<LoginDialog />
+			<!-- <RegisterSidebar /> -->
+			<RegisterDialog />
 			<FilterSidebar />
 			<ProfileSidebar />
 			<CartSidebar />
@@ -150,8 +152,10 @@
 </template>
 
 <script>
-import LoginSiderbar from './LoginSidebar.vue';
-import RegisterSidebar from './RegisterSidebar.vue';
+// import LoginSiderbar from './LoginSidebar.vue';
+import LoginDialog from './LoginDialog.vue';
+// import RegisterSidebar from './RegisterSidebar.vue';
+import RegisterDialog from './RegisterDialog.vue';
 import FilterSidebar from './FilterSidebar.vue';
 import ProfileSidebar from './ProfileSidebar.vue';
 import CartSidebar from './CartSidebar.vue';
@@ -162,8 +166,10 @@ import DialogProductInfo from './DialogProductInfo.vue';
 import ShippingSelector from './ShippingSelector.vue';
 export default {
 	components: {
-		LoginSiderbar,
-		RegisterSidebar,
+		// LoginSiderbar,
+		LoginDialog,
+		// RegisterSidebar,
+		RegisterDialog,
 		FilterSidebar,
 		ProfileSidebar,
 		MenuSidebar,
@@ -197,7 +203,7 @@ export default {
 			if (this.isAuthenticate) {
 				this.openProfile();
 			} else {
-				this.$observer.showLogin = true;
+				this.$observer.openLogin()
 
 				// this.$router.push({ name: "login" });
 			}

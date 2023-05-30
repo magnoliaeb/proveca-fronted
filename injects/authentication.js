@@ -75,12 +75,10 @@ export default app => ({
 
             app.router.app.$root.$emit(
                 'success-notify',
-                `¡Bienvenido a ${process.env.VUE_APP_NAME}!`
+                `¡Hola ${authData.data.name}, Bienvenido a ${process.env.VUE_APP_NAME}!`
             )
 
             let cart = app.router.app.$store.state.cart.cart
-
-            app.$observer.showLogin = false
 
             if (cart != null && cart.items.length != 0) {
                 if (app.context.route.name != 'carrito') {

@@ -111,8 +111,8 @@ export default {
 			}
 		},
 		openLogin() {
-			this.$observer.showLogin = true;
 			this.closeMenu();
+			this.$observer.openLogin()
 		},
 	},
 };

@@ -59,7 +59,7 @@
 						<p>
 							¿Olvidaste tu contraseña?
 							<nuxt-link
-								@click.native="closeSiderLogin"
+								@click.native="$observer.showLogin = false"
 								:to="{ name: 'solicitar-contrasena' }"
 								>Restablecerlo</nuxt-link
 							>
@@ -140,9 +140,6 @@ export default {
 			this.$refs.observer.reset();
 		},
 
-		closeSiderLogin() {
-			this.$observer.showLogin = false;
-		},
 		showPassword() {
 			this.showIconEye = !this.showIconEye;
 		},

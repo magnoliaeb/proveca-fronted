@@ -67,7 +67,7 @@ export default {
 
 	methods: {
 		closeLogin() {
-			this.$observer.showLogin = false;
+			// this.$observer.showLogin = false;
 		},
 		clickOutside(event) {
 			if (event.target.id !== 'popover' && event.target.id != 'login') {
@@ -75,8 +75,8 @@ export default {
 			}
 		},
 		openRegister() {
-			this.$observer.showLogin = false;
-			this.$observer.showRegister = true;
+			// this.$observer.showLogin = false;
+			// this.$observer.showRegister = true;
 		},
 	},
 };

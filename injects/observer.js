@@ -54,10 +54,13 @@ export default app => ({
         openLogin() {
             this.showRegister = false
 
-            setTimeout(
-                () => this.showLogin = true,
-                500
-            )
+            this.showLogin = true
+        },
+
+        openRegister() {
+            this.showLogin = false
+
+            this.showRegister = true
         },
 
 

@@ -7,7 +7,6 @@
 				<!-- <AddressList /> -->
 				<DeliveryInformationForOrder />
 				<!-- metodos -->
-				<!-- <InvoiceForm /> -->
 				<ShippingMethods />
 			</v-col>
 			<v-col

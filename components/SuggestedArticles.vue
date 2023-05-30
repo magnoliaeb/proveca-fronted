@@ -2,11 +2,21 @@
 	<div class="">
 		<v-row class="card-title">
 			<v-col cols="12">
-				<h2>Articulos sugeridos</h2>
+				<h2>
+					Artículos sugeridos
+				</h2>
 			</v-col>
 		</v-row>
-		<v-row dense class="mt-2">
-			<v-col cols="4" v-for="product in products" :key="product.id">
+
+		<v-row
+			dense
+			class="mt-2"
+		>
+			<v-col
+				v-for="product in products"
+				:key="product.id"
+				cols="4"
+			>
 				<CardMiniProduct :product="product" />
 			</v-col>
 		</v-row>
@@ -16,61 +26,27 @@
 <script>
 import CardMiniProduct from './CardMiniProduct.vue';
 export default {
-	components: { CardMiniProduct },
+	components: {
+		CardMiniProduct
+	},
+
 	data() {
 		return {
-			products: [
-				{
-					id: '1',
-					slug: '1',
-					picture:
-						'https://proveeca.s3.amazonaws.com/odoo/3325c134a6d72993c7af585433fa101f53202ea1',
-					name: 'Product name',
-					price: '1',
-				},
-				{
-					id: '1',
-					slug: '1',
-					picture:
-						'https://proveeca.s3.amazonaws.com/odoo/3325c134a6d72993c7af585433fa101f53202ea1',
-					name: 'Product name',
-					price: '1',
-				},
-				{
-					id: '1',
-					slug: '1',
-					picture:
-						'https://proveeca.s3.amazonaws.com/odoo/3325c134a6d72993c7af585433fa101f53202ea1',
-					name: 'Product name',
-					price: '1',
-				},
-				{
-					id: '1',
-					slug: '1',
-					picture:
-						'https://proveeca.s3.amazonaws.com/odoo/3325c134a6d72993c7af585433fa101f53202ea1',
-					name: 'Product name',
-					price: '1',
-				},
-				{
-					id: '1',
-					slug: '1',
-					picture:
-						'https://proveeca.s3.amazonaws.com/odoo/3325c134a6d72993c7af585433fa101f53202ea1',
-					name: 'Product name',
-					price: '1',
-				},
-				{
-					id: '1',
-					slug: '1',
-					picture:
-						'https://proveeca.s3.amazonaws.com/odoo/3325c134a6d72993c7af585433fa101f53202ea1',
-					name: 'Product name',
-					price: '1',
-				},
-			],
+			maxProducts: 3
 		};
 	},
+
+	computed: {
+		topProducts() {
+			return this.$store.getters["products/getTopProducts"]
+		},
+
+		products() {
+			return this.$util.clone(this.topProducts)
+				.sort(() => Math.random() - 0.5)
+				.slice(0, this.maxProducts)
+		}
+	}
 };
 </script>
 

@@ -46,10 +46,20 @@ export default app => ({
 
 
         getVariantFormat(variant) {
-            if(variant) {
-                return Boolean(variant.config)
-                    ? variant.config.map(c => c.values[0].name).join('/')
-                    : 'Original'
+            if(variant && Boolean(variant.config)) {
+                return variant.config
+                    .map(c => c.values[0].name)
+                    .join('<br>')
+            }
+
+            return null
+        },
+
+        getVariantFormat2(variant) {
+            if(variant && Boolean(variant.config)) {
+                return variant.config
+					.map(c => `${c.name}<br>${c.values[0].name}<br>`)
+					.join('<br>')
             }
 
             return null

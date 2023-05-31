@@ -20,13 +20,13 @@
 					text
 					:disabled="$store.state.cart.isBusy"
 				>
-					<span class="">Cambiar</span>
+					<span class="">Seleccionar</span>
 				</v-btn>
 			</div>
 		</v-col>
 
 		<v-col cols="12" md="12" lg="9">
-			<p>{{ address.full }}</p>
+			<p>{{ `${address.full} ${address.zip}` }}</p>
 
 			<!-- <p class="d-flex flex-column flex-sm-row">
 				<span class="text-break mr-sm-4">Correo: clau.esmo@gmail.com</span>
@@ -40,7 +40,7 @@
 					text
 					:disabled="$store.state.cart.isBusy"
 				>
-					<span class="">Cambiar</span>
+					<span class="">Seleccionar</span>
 				</v-btn>
 			</div>
 		</v-col>

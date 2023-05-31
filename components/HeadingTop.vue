@@ -32,12 +32,12 @@ export default {
 		items() {
 			let items = [
 				{
-					text: 'Mi Carrito',
+					text: '1.Mi Carrito',
 					href: '/mi-carrito',
 					disabled: false,
 				},
 				{
-					text: '1.Datos de envío',
+					text: '2.Configuración',
 					href: '/productos',
 					disabled: true,
 				},

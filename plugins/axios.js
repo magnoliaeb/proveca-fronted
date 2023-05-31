@@ -1,4 +1,4 @@
-export default function ({ $axios, redirect }) {
+export default function ({ app, $axios, redirect }) {
     $axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 
     $axios.onRequest(config => {
@@ -10,6 +10,13 @@ export default function ({ $axios, redirect }) {
         // if(['/auth/profile'].indexOf(response.config.url) != -1) {
         //     return response;
         // }
+
+        if(
+            process.client
+            && app.$auth.check().valid
+        ) {
+            app.$auth.refreshTokens()
+        }
 
         return response.data;
     })

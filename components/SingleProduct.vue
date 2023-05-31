@@ -1,5 +1,5 @@
 <template>
-	<v-row class="justify-space-between py-md-6">
+	<v-row class="justify-space-between py-md-3">
 		<v-col cols="12" md="12" lg="auto" class="">
 			<SliderSingleProduct :product="product" />
 		</v-col>
@@ -39,7 +39,7 @@
 				</v-col>
 			</v-row>
 
-			<v-row class="mt-4 mb-6">
+			<v-row class="my-3">
 				<v-col cols="12">
 					<ul>
 						<!-- <PriceInfoItem2
@@ -49,10 +49,7 @@
 							ref="price_info_item"
 						/> -->
 
-						<VariantSelector
-							:product="product"
-							:key="product.id"
-						/>
+						<VariantSelector :product="product" :key="product.id" />
 					</ul>
 				</v-col>
 			</v-row>
@@ -90,6 +87,9 @@
 
 			<v-row class="">
 				<v-col cols="12">
+					<v-divider class=""></v-divider>
+				</v-col>
+				<v-col cols="12">
 					<h5>Descripción del producto</h5>
 				</v-col>
 				<v-col cols="12">
@@ -109,7 +109,7 @@ export default {
 	components: {
 		SliderSingleProduct,
 		// PriceInfoItem2,
-		VariantSelector
+		VariantSelector,
 	},
 
 	props: ['product'],
@@ -147,7 +147,6 @@ export default {
 		// 	if(! this.ready) {
 		// 		return 0
 		// 	}
-
 		// 	return _.sumBy(this.variants, 'qty')
 		// }
 	},
@@ -160,7 +159,6 @@ export default {
 		// 		this.$observer.openShippingTypeDialog(this.makeAdd)
 		// 	}
 		// },
-
 		// makeAdd() {
 		// 	this.variants.forEach((v, i) => {
 		// 		if(v.qty > 0) {
@@ -169,17 +167,14 @@ export default {
 		// 				variant: v,
 		// 				qty: v.qty
 		// 			}
-				
 		// 			this.$store.dispatch('cart/addItem', {
 		// 				item: item
 		// 			})
 		// 		}
 		// 	})
-
 		// 	this.variants.forEach((v, i) => {
 		// 		this.$set(this.variants[i], 'qty', 0)
 		// 	})
-
 		// 	this.$refs.price_info_item.forEach(r => {
 		// 		r.qty = 0
 		// 	})

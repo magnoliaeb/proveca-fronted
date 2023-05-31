@@ -4,14 +4,13 @@
 		v-model="$observer.showDialogInfo"
 		content-class="product-dialog-info"
 		persistent
-		max-width="380"
+		max-width="480"
 	>
 		<v-card class="py-4" style="position: relative">
 			<div class="">
 				<v-btn
-					style="top: 6px; right: 4px"
+					style="top: 10px; right: 10px"
 					color="#000"
-					small
 					text
 					@click="closeDialog"
 					icon
@@ -19,24 +18,27 @@
 				>
 					<v-icon>mdi-close</v-icon>
 				</v-btn>
-				<v-row class="pt-5">
-					<v-col cols="12">
-						<h3 class="text-center">
-							{{ product.name }}
-						</h3>
-					</v-col>
-				</v-row>
-
-				<div>
-					<!-- <PriceInfoItem
+				<v-card-title>
+					<v-row class="">
+						<v-col cols="12">
+							<h3 class="text-center">
+								{{ product.name }}
+							</h3>
+						</v-col>
+					</v-row>
+				</v-card-title>
+				<v-card-text>
+					<div>
+						<!-- <PriceInfoItem
 						v-for="(variant, i) in variants"
 						:key="i"
 						:product="product"
 						:variant="variant"
 					/> -->
 
-					<VariantSelector :product="product"/>
-				</div>
+						<VariantSelector :product="product" />
+					</div>
+				</v-card-text>
 			</div>
 		</v-card>
 	</v-dialog>
@@ -48,12 +50,12 @@ import VariantSelector from './VariantSelector.vue';
 export default {
 	components: {
 		// PriceInfoItem
-		VariantSelector
+		VariantSelector,
 	},
 
 	computed: {
 		product() {
-			return this.$observer.productDialogInfo
+			return this.$observer.productDialogInfo;
 		},
 
 		// variants() {
@@ -65,9 +67,9 @@ export default {
 
 	methods: {
 		closeDialog() {
-			this.$observer.showDialogInfo = false
-		}
-	}
+			this.$observer.showDialogInfo = false;
+		},
+	},
 };
 </script>
 

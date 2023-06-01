@@ -6,7 +6,9 @@
 		<v-col cols="12" class="">
 			<div class="d-flex justify-space-between align-center flex-wrap">
 				<div class="d-flex align-center flex-wrap">
-					<h3 class="mr-3">Casa</h3>
+					<h3 class="mr-3">
+						{{ address.name }}
+					</h3>
 
 					<span class="selected" v-if="isSelected"
 						>Dirección predeterminada</span

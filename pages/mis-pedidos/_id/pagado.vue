@@ -187,7 +187,7 @@
 
 								<div class="my-2 mx-1 mx-sm-3">
 									<p class="">
-										{{ shippingAddress.street }}
+										{{ shippingAddress.full }}
 									</p>
 								</div>
 							</div>

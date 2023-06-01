@@ -8,7 +8,9 @@
 import LoginContainer from '../components/LoginContainer'
 
 export default {
-	auth: 'guest',
+	middleware: [
+		'guest'
+	],
 
 	components: {
 		LoginContainer

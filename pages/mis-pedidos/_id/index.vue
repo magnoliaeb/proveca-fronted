@@ -15,9 +15,14 @@ import InfoOrderDetail from '../../../components/InfoOrderDetail.vue';
 import ListOrderDetail from '../../../components/ListOrderDetail.vue';
 import SubtotalOrderDetail from '../../../components/SubtotalOrderDetail.vue';
 export default {
+	middleware: [
+		'auth'
+	],
+
 	head: {
 		title: 'Detalle del pedido',
 	},
+	
 	components: { InfoOrderDetail, ListOrderDetail, SubtotalOrderDetail },
 
 	computed: {

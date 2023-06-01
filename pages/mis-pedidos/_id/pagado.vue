@@ -10,19 +10,9 @@
 					<h3>Hemos enviado el resumen de tu pedido a tu correo electrónico</h3>
 				</v-col>
 			</v-row>
-			<!-- <v-col
-            v-if="gateway == 'paypal' && charge.status != 'completed'"
-            cols="12"
-            class="text-center text-danger font-weight-bold"
-          >
-            Seguimos validando su pago. Le mandaremos un correo electrónico cuando el proceso esté completo
-          </v-col> -->
+
 			<div class="content-article">
 				<v-row class="justify-center">
-					<!-- <v-col cols="12" class="text-center">
-      <h2 class="mb-3">Estamos procesando su pago</h2>
-      <h3>Un momento por favor.</h3>
-    </v-col> -->
 					<v-col cols="12" sm="12">
 						<article class="pa-3 pa-sm-6 py-4">
 							<div class="py-2">
@@ -52,14 +42,6 @@
 									<span>{{ $util.getMoneyFormat(service.price_total) }}</span>
 								</div>
 
-								<!-- <div
-                v-for="(service, i) in order.services"
-                :key="i"
-                class="d-flex justify-space-between mb-5"
-              >
-                <p class="">{{ service.name }}</p>
-                <span>{{ $util.getMoneyFormat(35) }}</span>
-              </div> -->
 								<div
 									class="d-flex justify-space-between card-total px-2 px-md-4 mb-4 py-2 py-md-4 my-3"
 								>
@@ -196,24 +178,13 @@
 								<h4 class="mb-5">Método de Pago</h4>
 
 								<div class="my-2 mx-1 mx-sm-3">
-									<p class="">PayPal</p>
+									<p class="">{{ order.payment_method }}</p>
 								</div>
 							</div>
 						</article>
 					</v-col>
 				</v-row>
 				<v-row>
-					<!-- <v-col cols="12" md="6">
-						<v-btn
-							@click="print"
-							:loading="isLoading"
-							:disabled="isDisabled && invalid"
-							class="button-primary"
-							block
-							depressed
-							>Imprimir resumen</v-btn
-						>
-					</v-col> -->
 					<v-col cols="12" md="6">
 						<v-btn
 							class="button-primary"
@@ -232,6 +203,10 @@
 <script>
 import HeadingTop from '../../../components/HeadingTop.vue';
 export default {
+	middleware: [
+		'auth'
+	],
+
 	components: { HeadingTop },
 	head: {
 		title: 'Confirmar envio',
@@ -270,13 +245,6 @@ export default {
             return this.order.amount_undiscounted - this.order.amount_total + this.order.amount_tax
         },
 
-		charge() {
-			// return this.gateway == 'openpay'
-			// 	? this.$store.state.openpay.charge
-			// 	: this.$store.state.paypal.charge;
-			return null;
-		},
-
 		addresses() {
             return this.$store.getters['identity/getAddresses']
         },
@@ -293,40 +261,12 @@ export default {
 		}
 	},
 
-	// methods: {
-	// 	print() {
-	// 		this.isLoading = true;
-	// 		this.$nuxt.$emit('success-notify', 'Resumen impreso');
-
-	// 		setTimeout(() => {
-	// 			this.isLoading = false;
-	// 		}, 2000);
-	// 		this.code = '';
-	// 		this.isDisabled = false;
-	// 	},
-	// },
-
 	created() {
 		this.$store.dispatch('orders/getOrder', {
 			$nuxt: this.$nuxt,
 			order_id: this.$route.params.id,
-		});
-
-		// if (this.$route.query.id) {
-		// 	this.$store.dispatch('openpay/getCharge', {
-		// 		$nuxt: this.$nuxt,
-		// 		id: this.$route.query.id,
-		// 	});
-		// }
-
-		// if (this.$route.query.paymentId) {
-		// 	this.$store.dispatch('paypal/getCharge', {
-		// 		$nuxt: this.$nuxt,
-		// 		id: this.$route.query.paymentId,
-		// 		token: this.$route.query.token,
-		// 	});
-		// }
-	},
+		})
+	}
 };
 </script>
 

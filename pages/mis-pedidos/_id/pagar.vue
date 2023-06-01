@@ -29,6 +29,10 @@ import PaymentShipping from '../../../components/PaymentShipping.vue';
 import ResumeOrder from '../../../components/ResumeOrder.vue';
 import DataClient from '../../../components/DataClient.vue';
 export default {
+	middleware: [
+		'auth'
+	],
+	
 	components: { ResumeOrder, HeadingTop, PaymentShipping, DataClient },
 	head: {
 		title: 'Métodos de pago',

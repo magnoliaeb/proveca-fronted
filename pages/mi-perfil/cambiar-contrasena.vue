@@ -10,6 +10,10 @@
 import ChangePasswordForm from "../../components/ChangePasswordForm.vue";
 
 export default {
+  middleware: [
+		'auth'
+	],
+  
   head: {
     title: "Cambiar contraseñ",
   },

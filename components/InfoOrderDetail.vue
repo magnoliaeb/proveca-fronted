@@ -87,7 +87,7 @@
 						{{ order.payment_label }}
 					</v-btn>
 
-					<p>Método de Pago: PayPal</p>
+					<p>Método de Pago: {{ order.payment_method }}</p>
 				</div>
 			</v-col>
 		</v-row>

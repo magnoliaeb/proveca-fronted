@@ -42,8 +42,6 @@
 import ProductsRelated from '../../../components/ProductsRelated.vue';
 import SingleProduct from '../../../components/SingleProduct.vue';
 export default {
-	auth: false,
-
 	data() {
 		return {
 			ready: false,

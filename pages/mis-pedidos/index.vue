@@ -1,8 +1,4 @@
 <template>
-	<!-- <div class="content py-16">
-			<OrdersHistory class="" />
-		</div> -->
-
 	<div>
 		<div class="content py-16">
 			<OrdersHistory class="" />
@@ -14,6 +10,9 @@
 import OrdersHistory from '../../components/OrdersHistory.vue';
 
 export default {
+	middleware: [
+		'auth'
+	],
 	components: { OrdersHistory },
 	head: {
 		title: 'Historial de pededios',

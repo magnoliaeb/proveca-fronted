@@ -62,7 +62,7 @@
 						¿Olvidaste tu contraseña?
 						<nuxt-link
 							@click.native="$observer.showLogin = false"
-							:to="{ name: 'solicitar-contrasena' }"
+							:to="{ name: 'recuperar-contrasena' }"
 							>Restablecerlo</nuxt-link
 						>
 					</p>

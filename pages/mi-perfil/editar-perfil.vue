@@ -11,6 +11,10 @@
 <script>
 import EditProfileForm from '../../components/EditProfileForm';
 export default {
+	middleware: [
+		'auth'
+	],
+	
 	head: {
 		title: 'Editar mi perfil',
 	},

@@ -18,6 +18,9 @@
 <script>
 import ProfileAddressForm from '../../components/ProfileAddressForm.vue';
 export default {
+	middleware: [
+		'auth'
+	],
 	components: { ProfileAddressForm },
 	head: {
 		title: 'Agregar dirección',

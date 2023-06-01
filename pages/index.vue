@@ -18,7 +18,6 @@ import HomeSlider from '../components/HomeSlider.vue';
 import PopularProducts from '../components/PopularProducts.vue';
 import PublicityCard from '../components/PublicityCard.vue';
 export default {
-	auth: false,
 	head: {
 		title: 'Inicio',
 	},

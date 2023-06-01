@@ -34,9 +34,7 @@ export default {
 		};
 	},
 
-	components: { GridProducts, HeaderFilter, FilterProducts },
-
-	auth: false,
+	components: { GridProducts, HeaderFilter, FilterProducts }
 };
 </script>
 

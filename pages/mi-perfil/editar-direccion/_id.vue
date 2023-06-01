@@ -19,6 +19,10 @@
 import BtnGoBack from '../../../components/BtnGoBack.vue';
 import ProfileAddressForm from '../../../components/ProfileAddressForm.vue';
 export default {
+	middleware: [
+		'auth'
+	],
+	
 	components: { ProfileAddressForm, BtnGoBack },
 	head: {
 		title: 'Editar dirección',

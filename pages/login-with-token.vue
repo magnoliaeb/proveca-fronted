@@ -6,7 +6,9 @@
 
 <script>
 export default {
-	auth: false,
+	middleware: [
+    	'guest'
+  	],
 
 	mounted() {
 		this.$authentication.loginWithToken(

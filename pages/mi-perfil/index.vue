@@ -12,6 +12,10 @@
 import InfoUser from '../../components/InfoUser.vue';
 import MyAddresses from '../../components/MyAddresses.vue';
 export default {
+	middleware: [
+		'auth'
+	],
+	
 	components: { InfoUser, MyAddresses },
 	head: {
 		title: 'Mi perfil',

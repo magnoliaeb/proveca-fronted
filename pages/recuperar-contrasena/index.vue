@@ -7,16 +7,20 @@
 </template>
 
 <script>
-import RecoverPassword from "../components/RecoverPassword.vue";
+import RecoverPassword from "../../components/RecoverPassword.vue";
 
 export default {
-  //   auth: false,
-  components: { RecoverPassword },
-  head: {
-    title: "Recuperar contraseña",
+  middleware: [
+    'guest'
+  ],
+
+  components: {
+    RecoverPassword
   },
 
-  auth: false,
+  head: {
+    title: "Recuperar contraseña"
+  }
 };
 </script>
 

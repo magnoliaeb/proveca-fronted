@@ -10,7 +10,9 @@
 import ResetPassword from "../../../components/ResetPassword.vue";
 
 export default {
-  auth: 'guest',
+  middleware: [
+    'guest'
+  ],
 
   components: { ResetPassword },
 

@@ -8,15 +8,17 @@
 import RegisterContainer from '../components/RegisterContainer'
 
 export default {
-	head: {
-		title: 'Registro',
-	},
+	middleware: [
+		'guest'
+	],
 
 	components: {
 		RegisterContainer
 	},
-
-	auth: 'guest'
+	
+	head: {
+		title: 'Registro'
+	}
 }
 </script>
 

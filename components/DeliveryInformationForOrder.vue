@@ -27,7 +27,7 @@
 			
 			<v-expansion-panel-content>
 				<v-radio-group
-              		v-model="shippingType"
+              		v-model="$observer.confirmation.shipping_type"
               		column
             	>
               		<v-radio
@@ -41,7 +41,7 @@
               		></v-radio>
             	</v-radio-group>
 
-				<AddressList v-if="shippingType == 'delivery'" />
+				<AddressList v-if="$observer.confirmation.shipping_type == 'delivery'" />
 			</v-expansion-panel-content>
 		</v-expansion-panel>
 
@@ -67,7 +67,7 @@
 
 						<p>
 							<small>
-								{{ form.instructions.slice(0, 20) }}
+								{{ $observer.confirmation.comments.slice(0, 20) }}
 							</small>
 						</p>
 					</div>
@@ -78,7 +78,7 @@
 				<v-textarea
 					outlined
 					autocomplete="off"
-					v-model.trim="form.instructions"
+					v-model.trim="$observer.confirmation.comments"
 					auto-grow
 					flat
 					solo
@@ -86,7 +86,7 @@
 			</v-expansion-panel-content>
 		</v-expansion-panel>
 
-		<v-expansion-panel :disabled="shippingType == 'pickup'">
+		<v-expansion-panel :disabled="$observer.confirmation.shipping_type == 'pickup'">
 			<v-expansion-panel-header class="px-0">
 				<div class="d-flex align-center">
 					<v-icon
@@ -111,14 +111,14 @@
 
 			<v-expansion-panel-content>
 				<v-date-picker
-					v-model="form.date"
+					v-model="$observer.confirmation.date"
 					__allowed-dates="allowedDates"
 					__min="2016-06-15"
 					__max="2018-03-20"
 				></v-date-picker>
 
 				<v-time-picker
-					v-model="form.time"
+					v-model="$observer.confirmation.time"
 					format="ampm"
 				></v-time-picker>
 			</v-expansion-panel-content>
@@ -140,7 +140,7 @@
 						</h3>
 
 						<p>
-							{{ form.phone }}
+							{{ $observer.confirmation.phone }}
 						</p>
 					</div>
 				</div>
@@ -150,7 +150,7 @@
 				<v-text-field
 					height="64px"
 					color="blue-ligth"
-					v-model.trim="form.phone"
+					v-model.trim="$observer.confirmation.phone"
 					solo
 					flat
 					outlined
@@ -163,18 +163,6 @@
 
 <script>
 export default {
-	data() {
-		return {
-			shippingType: null,
-			form: {
-				instructions: '',
-				phone: '',
-				date: '',
-				time: ''
-			}
-		}
-	},
-
 	computed: {
 		selectedAddress() {
             return this.$store.getters['cart/getSelectedShippingAddress']
@@ -183,9 +171,9 @@ export default {
 		shippingTypeText() {
 			let selectAddress = this.selectedAddress
 
-			if(this.shippingType == 'delivery' && selectAddress) {
+			if(this.$observer.confirmation.shipping_type == 'delivery' && selectAddress) {
 				return selectAddress.full
-			} else if(this.shippingType == 'pickup') {
+			} else if(this.$observer.confirmation.shipping_type == 'pickup') {
 				return 'Recogeré mi paquete en la tienda'
 			}
 
@@ -193,14 +181,14 @@ export default {
 		},
 
 		dateText() {
-			return this.shippingType == 'pickup'
+			return this.$observer.confirmation.shipping_type == 'pickup'
 				? 'N\\A'
-				: `${this.form.date} ${this.form.time}`
+				: `${this.$observer.confirmation.date} ${this.$observer.confirmation.time}`
 		}
 	},
 
 	created() {
-		this.shippingType = this.$observer.shippingType
+		this.$observer.confirmation.shipping_type = this.$observer.shippingType
 	}
 };
 </script>

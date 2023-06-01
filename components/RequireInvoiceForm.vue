@@ -15,7 +15,7 @@ h3 {
 			</v-col>
 
 			<v-col cols="12" class="py-0 px-0">
-				<v-radio-group v-model="requireInvoice" dense row @change="submit">
+				<v-radio-group v-model="$observer.confirmation.invoice_required" dense row @change="submit">
 					<v-radio :value="true">
 						<template #label>
 							<span class="text">Si</span>
@@ -35,20 +35,10 @@ h3 {
 
 <script>
 export default {
-	data() {
-		return {
-			requireInvoice: null,
-		};
-	},
-
 	methods: {
 		submit() {
-			this.$store.dispatch('cart/setRequireInvoice', this.requireInvoice);
-		},
-	},
-
-	created() {
-		this.requireInvoice = this.$store.state.cart.requireInvoice;
-	},
+			//	almacenar en cookie
+		}
+	}
 };
 </script>

@@ -23,7 +23,7 @@ export const mutations = {
         addresses = addresses.map((address) => {
             return {
                 ...address,
-                full: `${address.street} ${address.street2}, ${address.city}. ${address.state_id[1]}`
+                full: `${address.street} ${address.street2}, ${address.city}. ${address.state_id[1]} ${address.zip}`
             }
         })
         state.addresses = addresses

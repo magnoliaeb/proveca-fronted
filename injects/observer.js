@@ -22,7 +22,17 @@ export default app => ({
 
             showShippingTypeDialog: false,
             shippingType: null, //   delivery | pickup
-            handlerShippingType: null
+            handlerShippingType: null,
+
+            confirmation: {
+                shipping_type: null,
+                invoice_required: false,
+                cfdi_usage: 'P01',
+                comments: '',
+				phone: '',
+				date: '',
+				time: ''
+            }
         }
     },
 
@@ -37,12 +47,9 @@ export default app => ({
         },
 
         confirmCart() {
-            app.store.dispatch('cart/confirm', {
-                // invoice_required: app.store.state.cart.requireInvoice,
-                invoice_required: false,
-                cfdi_usage: 'P01',
-                comments: ''
-            })
+            app.store.dispatch(
+                'cart/confirm', this.confirmation
+            )
             .then(order => {
                 app.router.push({
                     name: "mis-pedidos-id-pagar",

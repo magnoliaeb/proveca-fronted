@@ -59,7 +59,7 @@
 				</v-btn>
 				
 				<v-btn
-					v-else-if="$route.name == 'carrito-datos-del-cliente' && $store.state.cart.requireInvoice"
+					v-else-if="$route.name == 'carrito-datos-del-cliente' && $observer.confirmation.invoice_required"
 					class="mt-7 button-primary"
 					depressed
 					block
@@ -71,7 +71,7 @@
 				</v-btn>
 
 				<v-btn
-					v-else-if="$route.name == 'carrito-datos-del-cliente' && ! $store.state.cart.requireInvoice"
+					v-else-if="$route.name == 'carrito-datos-del-cliente' && ! $observer.confirmation.invoice_required"
 					class="mt-7 button-primary"
 					depressed
 					block

@@ -5,7 +5,7 @@
         <h3>¿Requiere factura?</h3>
       </v-col>
       <v-col cols="12" class="py-0 px-0">
-        <v-radio-group v-model="requireInvoice" row="" dense>
+        <v-radio-group v-model="$observer.confirmation.invoice_required" row="" dense>
           <v-radio :value="true">
             <template #label>
               <span class="text">Si</span>
@@ -19,7 +19,7 @@
         </v-radio-group>
       </v-col>
     </v-row>
-    <div v-if="requireInvoice">
+    <div v-if="$observer.confirmation.invoice_required">
       <v-row>
         <v-col cols="12" class="px-0">
           <AddressList />
@@ -243,7 +243,6 @@ export default {
       isLoading: false,
       isDisabled: false,
       items: ["Foo", "Bar", "Fizz", "Buzz"],
-      requireInvoice: false,
       form: {
         socialName: "",
         rfc: "",

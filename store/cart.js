@@ -11,7 +11,6 @@ export const state = ($app) => ({
     qtyFormItems: [],
     paymentUrl: null,
     cfdiUsageOptions: [],
-    requireInvoice: false,
     isBusy: false
 })
 
@@ -57,14 +56,6 @@ export const mutations = {
             cart.hasCoupon = keys.indexOf('promo_code') != !-1;
     
             cart.isEmpty = cart.amount_total == 0;
-
-            let requireInvoice = this.$cookies.get('cart.requireInvoice')
-            if(requireInvoice == 'true') {
-                requireInvoice = true
-            } else if(requireInvoice == 'false') {
-                requireInvoice = false
-            }
-            state.requireInvoice = Boolean(requireInvoice)
         }
         state.cart = cart;
     },
@@ -103,11 +94,6 @@ export const mutations = {
 
     SET_PAYMENT_URL(state, url) {
         state.paymentUrl = url
-    },
-
-    SET_REQUIRE_INVOICE(state, requireInvoice) {
-        state.requireInvoice = requireInvoice
-        this.$cookies.set('cart.requireInvoice', requireInvoice)
     },
 
     SET_CFDI_USAGE_OPTIONS(state, options) {
@@ -608,10 +594,8 @@ export const actions = {
         ctx.commit('SET_IS_BUSY')
 
         return this.$axios.put('/store/shopping-cart/confirm', {
-            order_id: ctx.state.cart.id,
-            invoice_required: config.invoice_required,
-            cfdi_usage: config.cfdi_usage,
-            comments: config.comments
+            ...config,
+            order_id: ctx.state.cart.id
         })
         .then(response => {
             ctx.commit('SET_CART', null)
@@ -685,65 +669,7 @@ export const actions = {
     },
     updateQtyFormItem(ctx, config) {
         ctx.commit('UPDATE_QTY_FORM_ITEM', config)
-    },
-
-    setRequireInvoice(ctx, requireInvoice) {
-        ctx.commit('SET_REQUIRE_INVOICE', requireInvoice)
-    },
-
-    // loadShippingCostsByAddress(ctx, config) {
-    //     return this.$axios.post('/store/load-shipping-costs-by-address', config.data)
-    //         .then(response => {
-    //             ctx.commit('SET_ZIP', config.data.zip)
-                
-    //             config.$store.dispatch('localcart/addService', {
-    //                 service: {
-    //                     id: 'Envío',
-    //                     name: 'Envío',
-    //                     product_uom_qty: 1,
-    //                     price_unit: response.data,
-    //                     price_subtotal: response.data,
-    //                     price_total: response.data,
-    //                     product_product_id: 'Envío',
-    //                     product: null
-    //                 }
-    //             })
-
-    //             return response.data
-    //         })
-    // },
-
-    // loadShippingCostsByZip(ctx, config) {
-    //     //  $store
-    //     //  zip
-
-    //     const loader = new Loader({
-    //         apiKey: 'AIzaSyBCAGvkeSDDeHvwNjNjJ-jCuwLbba2WtMs',
-    //         version: "weekly"
-    //     })
-
-    //     return loader.load()
-    //         .then(google => {
-    //             let geocoder = new google.maps.Geocoder()
-
-    //             return geocoder.geocode({'address': `${config.zip}`})
-    //                 .then(results => {
-    //                     if(results = _.get(results, 'results.0')) {
-    //                         config.data = {
-    //                             zip: results.address_components.find(c => c.types.includes('postal_code')).long_name,
-    //                             country: results.address_components.find(c => c.types.includes('country')).short_name,
-    //                             state: results.address_components.find(c => c.types.includes('administrative_area_level_1')).long_name,
-    //                             city: results.address_components.find(c => c.types.includes('locality')).long_name
-    //                         }
-
-    //                         return ctx.dispatch('loadShippingCostsByAddress', config)
-    //                     }
-
-    //                     return Promise.reject('Domicilio no localizado')
-    //                 })
-    //                 .catch(error => Promise.reject('Domicilio no localizado'))
-    //         })
-    // }
+    }
 }
 
 

@@ -11,7 +11,7 @@
 		<v-row class="align-start justify-space-between">
 			<v-col cols="12" sm="12" md="7" lg="8" class="pa-0">
 				<FormTaxData
-					v-if="$store.state.cart.requireInvoice"
+					v-if="$observer.confirmation.invoice_required"
 					hideSubmitButton
 					@success="$observer.confirmCart"
 				/>

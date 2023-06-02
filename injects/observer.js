@@ -1,5 +1,5 @@
 export default app => ({
-    data() {
+    data: function() {
         return {
             routeQuery: app.context.route.query,
 
@@ -25,14 +25,31 @@ export default app => ({
             handlerShippingType: null,
 
             confirmation: {
-                shipping_type: null,
+                to_picking: null,
                 invoice_required: false,
                 cfdi_usage: 'P01',
-                comments: '',
+                note: '',
 				phone: '',
 				date: '',
-				time: ''
+				time: '',
+                commitment_date: null
             }
+        }
+    },
+
+    computed: {
+        commitmentDate() {
+            return `${this.confirmation.date} ${this.confirmation.time}`
+        }
+    },
+
+    watch: {
+        'confirmation.date'() {
+            this.confirmation.commitment_date = this.commitmentDate
+        },
+
+        'confirmation.time'() {
+            this.confirmation.commitment_date = this.commitmentDate
         }
     },
 

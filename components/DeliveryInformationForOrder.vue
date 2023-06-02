@@ -27,21 +27,21 @@
 			
 			<v-expansion-panel-content>
 				<v-radio-group
-              		v-model="$observer.confirmation.shipping_type"
+              		v-model="$observer.confirmation.to_picking"
               		column
             	>
               		<v-radio
                 		label="Quiero recibir el pedido en mi casa"
-                		value="delivery"
+                		:value="false"
               		></v-radio>
               		
 					<v-radio
                 		label="Quiero recoger mi pedido en la tienda"
-                		value="pickup"
+                		:value="true"
               		></v-radio>
             	</v-radio-group>
 
-				<AddressList v-if="$observer.confirmation.shipping_type == 'delivery'" />
+				<AddressList v-if="! $observer.confirmation.to_picking" />
 			</v-expansion-panel-content>
 		</v-expansion-panel>
 
@@ -67,7 +67,7 @@
 
 						<p>
 							<small>
-								{{ $observer.confirmation.comments.slice(0, 20) }}
+								{{ $observer.confirmation.note.slice(0, 20) }}
 							</small>
 						</p>
 					</div>
@@ -78,7 +78,7 @@
 				<v-textarea
 					outlined
 					autocomplete="off"
-					v-model.trim="$observer.confirmation.comments"
+					v-model.trim="$observer.confirmation.note"
 					auto-grow
 					flat
 					solo
@@ -86,7 +86,7 @@
 			</v-expansion-panel-content>
 		</v-expansion-panel>
 
-		<v-expansion-panel :disabled="$observer.confirmation.shipping_type == 'pickup'">
+		<v-expansion-panel :disabled="$observer.confirmation.to_picking">
 			<v-expansion-panel-header class="px-0">
 				<div class="d-flex align-center">
 					<v-icon
@@ -171,9 +171,9 @@ export default {
 		shippingTypeText() {
 			let selectAddress = this.selectedAddress
 
-			if(this.$observer.confirmation.shipping_type == 'delivery' && selectAddress) {
+			if(! this.$observer.confirmation.to_picking && selectAddress) {
 				return selectAddress.full
-			} else if(this.$observer.confirmation.shipping_type == 'pickup') {
+			} else if(this.$observer.confirmation.to_picking) {
 				return 'Recogeré mi paquete en la tienda'
 			}
 
@@ -181,14 +181,14 @@ export default {
 		},
 
 		dateText() {
-			return this.$observer.confirmation.shipping_type == 'pickup'
+			return this.$observer.confirmation.to_picking
 				? 'N\\A'
 				: `${this.$observer.confirmation.date} ${this.$observer.confirmation.time}`
 		}
 	},
 
 	created() {
-		this.$observer.confirmation.shipping_type = this.$observer.shippingType
+		this.$observer.confirmation.to_picking = this.$observer.shippingType == 'pickup'
 	}
 };
 </script>

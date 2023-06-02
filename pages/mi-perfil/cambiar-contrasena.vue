@@ -11,7 +11,7 @@ import ChangePasswordForm from "../../components/ChangePasswordForm.vue";
 
 export default {
   middleware: [
-		'auth'
+		'intended'
 	],
   
   head: {

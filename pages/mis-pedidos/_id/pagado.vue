@@ -204,7 +204,7 @@
 import HeadingTop from '../../../components/HeadingTop.vue';
 export default {
 	middleware: [
-		'auth'
+		'intended'
 	],
 
 	components: { HeadingTop },

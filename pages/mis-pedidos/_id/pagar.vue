@@ -30,7 +30,7 @@ import ResumeOrder from '../../../components/ResumeOrder.vue';
 import DataClient from '../../../components/DataClient.vue';
 export default {
 	middleware: [
-		'auth'
+		'intended'
 	],
 	
 	components: { ResumeOrder, HeadingTop, PaymentShipping, DataClient },

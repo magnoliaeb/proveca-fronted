@@ -58,9 +58,11 @@ import HeadingTop from '../../components/HeadingTop.vue';
 import InfoSendForm from '../../components/InfoSendForm.vue';
 import CartResumen from '../../components/CartResumen.vue';
 export default {
-	components: { InfoSendForm, CartResumen, HeadingTop },
+	middleware: [
+		'guest'
+	],
 
-	auth: false,
+	components: { InfoSendForm, CartResumen, HeadingTop },
 
 	head: {
 		title: 'Datos del envio',

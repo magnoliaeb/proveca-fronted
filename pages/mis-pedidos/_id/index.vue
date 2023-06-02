@@ -16,7 +16,7 @@ import ListOrderDetail from '../../../components/ListOrderDetail.vue';
 import SubtotalOrderDetail from '../../../components/SubtotalOrderDetail.vue';
 export default {
 	middleware: [
-		'auth'
+		'intended'
 	],
 
 	head: {

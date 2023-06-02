@@ -29,6 +29,10 @@ import ShippingMethods from '../../components/ShippingMethods.vue';
 import HeadingTop from '../../components/HeadingTop.vue';
 import DeliveryInformationForOrder from '../../components/DeliveryInformationForOrder.vue';
 export default {
+	middleware: [
+		'intended'
+	],
+	
 	components: {
 		AddressList,
 		ShippingMethods,

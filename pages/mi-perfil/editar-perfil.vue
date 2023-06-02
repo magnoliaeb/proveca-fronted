@@ -12,7 +12,7 @@
 import EditProfileForm from '../../components/EditProfileForm';
 export default {
 	middleware: [
-		'auth'
+		'intended'
 	],
 	
 	head: {

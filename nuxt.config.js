@@ -214,7 +214,7 @@ export default {
 			  		user: { url: "/auth/profile", method: "get" },
 				},
 		  	},
-		},
+		}
 	},
 
 	router: {

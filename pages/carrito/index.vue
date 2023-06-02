@@ -26,7 +26,6 @@ import CartResumen from '../../components/CartResumen.vue';
 import TableCart from '../../components/TableCart.vue';
 import HeadingTop from '../../components/HeadingTop.vue';
 export default {
-	auth: false,
 	components: {
 		CartResumen,
 		TableCart,

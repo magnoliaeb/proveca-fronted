@@ -71,6 +71,10 @@ export default app => ({
         },
 
         completeAuth(authData) {
+            let cart = app.router.app.$store.state.cart.cart
+
+            let intended = app.$cookies.get('intended')
+
             this.setAuthData(authData)
 
             app.router.app.$root.$emit(
@@ -78,19 +82,24 @@ export default app => ({
                 `¡Hola ${authData.data.name}, Bienvenido a ${process.env.VUE_APP_NAME}!`
             )
 
-            let cart = app.router.app.$store.state.cart.cart
+            if(intended) {
+                app.$cookies.set('intended', null)
 
-            if (cart != null && cart.items.length != 0) {
+                return window.location.href = app.$util.generateUrl({
+                    base_url: intended,
+                    params: app.context.route.query
+                })
+            } else if (cart != null && cart.items.length != 0) {
                 if (app.context.route.name != 'carrito') {
-                    window.location.href = '/carrito'
+                    return window.location.href = '/carrito'
                 } else {
-                    window.location.href = '/'
+                    return window.location.href = '/'
                 }
             } else {
                 if (app.context.route.name != 'index') {
-                    window.location.href = '/'
+                    return window.location.href = '/'
                 } else {
-                    window.location.href = '/productos'
+                    return window.location.href = '/productos'
                 }
             }
         },

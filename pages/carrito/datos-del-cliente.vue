@@ -33,7 +33,9 @@ import RequireInvoiceForm from '~/components/RequireInvoiceForm.vue';
 import FormTaxData from '~/components/FormTaxData.vue';
 
 export default {
-	auth: true,
+	middleware: [
+		'intended'
+	],
 
 	components: { CartResumen, HeadingTop, RequireInvoiceForm, FormTaxData },
 

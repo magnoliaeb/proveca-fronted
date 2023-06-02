@@ -11,7 +11,7 @@ import OrdersHistory from '../../components/OrdersHistory.vue';
 
 export default {
 	middleware: [
-		'auth'
+		'intended'
 	],
 	components: { OrdersHistory },
 	head: {

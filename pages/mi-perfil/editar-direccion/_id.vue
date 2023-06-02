@@ -20,7 +20,7 @@ import BtnGoBack from '../../../components/BtnGoBack.vue';
 import ProfileAddressForm from '../../../components/ProfileAddressForm.vue';
 export default {
 	middleware: [
-		'auth'
+		'intended'
 	],
 	
 	components: { ProfileAddressForm, BtnGoBack },

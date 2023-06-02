@@ -19,7 +19,7 @@
 import ProfileAddressForm from '../../components/ProfileAddressForm.vue';
 export default {
 	middleware: [
-		'auth'
+		'intended'
 	],
 	components: { ProfileAddressForm },
 	head: {

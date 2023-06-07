@@ -13,7 +13,15 @@
 			</v-col>
 
 			<v-col cols="12" md="3" class="d-flex">
-				<p>{{ shippingAddress.full }}</p>
+				<p>
+					<span v-if="order.to_picking">
+						Recoger el paquete en la tienda
+					</span>
+
+					<span v-else>
+						{{ shippingAddress.full }}
+					</span>
+				</p>
 			</v-col>
 
 			<v-col cols="12" md="2" class="d-flex">

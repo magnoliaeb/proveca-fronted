@@ -32,7 +32,7 @@ export default app => ({
 				phone: '',
 				date: '',
 				time: '',
-                commitment_date: null
+                delivery_date: null
             }
         }
     },
@@ -45,11 +45,11 @@ export default app => ({
 
     watch: {
         'confirmation.date'() {
-            this.confirmation.commitment_date = this.commitmentDate
+            this.confirmation.delivery_date = this.commitmentDate
         },
 
         'confirmation.time'() {
-            this.confirmation.commitment_date = this.commitmentDate
+            this.confirmation.delivery_date = this.commitmentDate
         }
     },
 

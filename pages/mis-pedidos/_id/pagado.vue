@@ -168,8 +168,14 @@
 								<h4 class="mb-5">Dirección de envío</h4>
 
 								<div class="my-2 mx-1 mx-sm-3">
-									<p class="">
-										{{ shippingAddress.full }}
+									<p>
+										<span v-if="order.to_picking">
+											Recoger el paquete en la tienda
+										</span>
+
+										<span v-else>
+											{{ shippingAddress.full }}
+										</span>
 									</p>
 								</div>
 							</div>

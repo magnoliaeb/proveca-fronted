@@ -24,7 +24,13 @@
 						</v-row>
 						<v-row>
 							<v-col cols="12">
-								<p class="mb-4">{{ shippingAddress.full }}</p>
+								<p
+									v-if="! order.to_picking"
+									class="mb-4"
+								>
+									{{ shippingAddress.full }}	
+								</p>
+
 								<p>{{ clientName }}</p>
 								<!-- <p>Correo: clau.esmo@gmail.com</p> -->
 							</v-col>

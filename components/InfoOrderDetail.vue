@@ -47,9 +47,27 @@
 			<v-col cols="12" md="12">
 				<h4 class="mb-0 mb-3">{{ clientName }}</h4>
 
-				<p>
-					Entrega: {{ shippingAddress.full }} {{ computedOrder.shipping_label }}
-				</p>
+				<div v-if="order.to_picking">
+					Entrega: Se recogerá en la tienda
+				</div>
+
+				<div v-else>
+					<p>
+						Entrega: {{ shippingAddress.full }} {{ computedOrder.shipping_label }}
+					</p>
+
+					<p>
+						Fecha deseada: {{ order.delivery_date }}
+					</p>
+				</div>
+
+				<div>
+					<p>
+						Teléfono adicional de contacto: {{ order.phone }}
+					</p>
+
+					<p v-html="order.note"></p>
+				</div>
 			</v-col>
 		</v-row>
 

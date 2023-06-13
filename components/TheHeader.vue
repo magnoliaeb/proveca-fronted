@@ -14,7 +14,7 @@
 								id="menu"
 								fab
 								text
-								:small="$vuetify.breakpoint.xsOnly"
+								:small="$vuetify.breakpoint.smAndDown"
 							>
 								<img
 									class="pa-1"
@@ -115,7 +115,9 @@
 			<ProfileSidebar />
 			<CartSidebar />
 			<MenuSidebar />
-			<DialogProductInfo :key="$observer.productDialogInfo ? $observer.productDialogInfo.id : 0" />
+			<DialogProductInfo
+				:key="$observer.productDialogInfo ? $observer.productDialogInfo.id : 0"
+			/>
 
 			<v-dialog
 				v-model="$observer.showShippingTypeDialog"
@@ -203,7 +205,7 @@ export default {
 			if (this.isAuthenticate) {
 				this.openProfile();
 			} else {
-				this.$observer.openLogin()
+				this.$observer.openLogin();
 
 				// this.$router.push({ name: "login" });
 			}

@@ -52,11 +52,7 @@
 						<p class="mb-0">
 							{{ item.product.name }}
 						</p>
-						<p
-							class="mb-0"
-							v-html="$util.getVariantFormat(variant)"
-						>
-						</p>
+						<p class="mb-0" v-html="$util.getVariantFormat(variant)"></p>
 						<p class="mb-0">
 							{{ formattedUnitPrice }}
 						</p>
@@ -116,14 +112,12 @@
 import CartItemMixin from '~/mixins/CartItemMixin';
 
 export default {
-	mixins: [
-		CartItemMixin
-	],
+	mixins: [CartItemMixin],
 
 	data() {
 		return {
-			isBusy: false
-		}
+			isBusy: false,
+		};
 	},
 
 	computed: {
@@ -140,14 +134,14 @@ export default {
 				case 'xl':
 					return 70;
 			}
-		}
+		},
 	},
 
 	methods: {
 		closeCart() {
-			this.$observer.showCart = false
-		}
-	}
+			this.$observer.showCart = false;
+		},
+	},
 };
 </script>
 

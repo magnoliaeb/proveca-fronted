@@ -3,9 +3,9 @@
 		<v-row align="center" justify="start">
 			<v-col v-for="(category, i) in list" :key="i" class="shrink">
 				<v-chip
-					color="#fafafa"
+					link
 					class="subcategory rounded-lg"
-					:to="{ name: 'productos', query: { category_id: category.id } }"
+					@click="selectedCategory(category)"
 					v-bind="bind(category)"
 				>
 					{{ category.name }}
@@ -62,6 +62,12 @@ export default {
 				};
 			}
 		},
+		selectedCategory(category) {
+			this.$router.push({
+				name: 'productos',
+				query: { category_id: category.id },
+			});
+		},
 	},
 };
 </script>
@@ -72,6 +78,11 @@ h2 {
 	text-transform: uppercase;
 	color: #2cafe5;
 }
+.caja {
+	height: 100px;
+	width: 100px;
+	background-color: #f5f5f5 !important;
+}
 .icon {
 	height: 24px;
 	height: 24px;
@@ -81,6 +92,7 @@ h2 {
 	font-weight: 400 !important;
 	color: #000;
 	font-size: $fs-base !important;
+	background-color: #f5f5f5 !important;
 	// color: #2cafe5;
 }
 

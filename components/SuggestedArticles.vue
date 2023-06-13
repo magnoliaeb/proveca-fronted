@@ -7,7 +7,12 @@
 		</v-row>
 
 		<v-row dense class="mt-1 mt-md-2">
-			<v-col v-for="product in products" :key="product.id" cols="4">
+			<v-col
+				class="mb-2"
+				v-for="product in products"
+				:key="product.id"
+				cols="4"
+			>
 				<CardMiniProduct :product="product" />
 			</v-col>
 		</v-row>

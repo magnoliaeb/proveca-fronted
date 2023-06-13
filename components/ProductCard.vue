@@ -1,8 +1,5 @@
 <template>
-	<article
-		v-if="product"
-		class="py-2"
-	>
+	<article v-if="product" class="py-2">
 		<div class="img-content my-5">
 			<nuxt-link
 				:to="{
@@ -36,12 +33,11 @@
 			</nuxt-link>
 		</div>
 		<div class="px-3 mt-4">
-			<div
-				class="d-flex flex-column flex-md-row align-center align-md-end justify-space-between mb-4 mb-md-6 text-center text-md-left"
-			>
+			<div class="mb-4 mb-md-6 text-center text-md-left">
 				<div class="">
 					<h4 class="mb-0 mr-2">
-						{{ $util.getMoneyFormat(product.price) }} <!--x (Unidad de medida)-->
+						{{ $util.getMoneyFormat(product.price) }}
+						<!--x (Unidad de medida)-->
 					</h4>
 					<h5>
 						<nuxt-link
@@ -53,25 +49,29 @@
 							{{ product.name }}
 						</nuxt-link>
 					</h5>
-					<h6 v-if="countVariants > 1">
-						Opciones: <span>{{ countVariants }} variantes</span>
-					</h6>
 				</div>
-				<v-btn
-					class="cart px-3 rounded-pill mt-3 mt-md-0"
-					depressed
-					:disabled="false"
-					@click="openDialogInfo"
-				>
-					<!-- <img
+				<div class="d-flex justify-space-between align-center">
+					<div>
+						<h6 v-if="countVariants > 1">
+							Opciones: <span>{{ countVariants }} variantes</span>
+						</h6>
+					</div>
+					<v-btn
+						class="cart px-3 rounded-pill mt-3 mt-md-0"
+						depressed
+						:disabled="false"
+						@click="openDialogInfo"
+					>
+						<!-- <img
 						class="d-block d-sm-none"
 						src="../assets/imgs/iconos/cart-plus.svg"
 						height="15"
 						alt="carreta-icon"
 					/> -->
-					<v-icon class="" left>mdi-plus</v-icon>
-					<span class="">Añadir</span>
-				</v-btn>
+						<v-icon class="" left>mdi-plus</v-icon>
+						<span class="">Añadir</span>
+					</v-btn>
+				</div>
 			</div>
 		</div>
 	</article>
@@ -79,9 +79,7 @@
 
 <script>
 export default {
-	props: [
-		'product'
-	],
+	props: ['product'],
 
 	data() {
 		return {
@@ -92,7 +90,7 @@ export default {
 
 	computed: {
 		picture() {
-			return _.get(this.product, 'picture.url', '/loading.png')
+			return _.get(this.product, 'picture.url', '/loading.png');
 		},
 
 		heightAndWidthImg() {
@@ -111,21 +109,21 @@ export default {
 		},
 
 		countVariants() {
-			return this.product.variants.length
-		}
+			return this.product.variants.length;
+		},
 	},
 
 	methods: {
 		openDialogInfo() {
-			if(this.$observer.shippingType) {
-				this.makeOpenDialogInfo()
+			if (this.$observer.shippingType) {
+				this.makeOpenDialogInfo();
 			} else {
-				this.$observer.openShippingTypeDialog(this.makeOpenDialogInfo)
+				this.$observer.openShippingTypeDialog(this.makeOpenDialogInfo);
 			}
 		},
 
 		makeOpenDialogInfo() {
-			this.$observer.openDialogInfo(this.product)
+			this.$observer.openDialogInfo(this.product);
 		},
 
 		showAlert() {
@@ -163,7 +161,12 @@ article {
 	-webkit-box-orient: vertical;
 }
 
-h4,
+h4 {
+	font-style: normal;
+	font-weight: 800;
+	font-size: $fs-base;
+	color: #000;
+}
 h5,
 a {
 	font-style: normal;

@@ -8,12 +8,11 @@
 			</v-row>
 			<v-row class="justify-center justify-md-start">
 				<v-col
-					class=""
 					v-for="(product, index) in products"
 					:key="index"
 					cols="6"
-					md="4"
-					lg="3"
+					md="3"
+					class="lg5-custom"
 				>
 					<ProductCard :product="product" />
 				</v-col>

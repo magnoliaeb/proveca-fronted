@@ -75,8 +75,13 @@
 }
 @media screen and (min-width: $lg) {
 	.content {
-		width: 90%;
-		max-width: 1400px;
+		width: 95%;
+		max-width: 1500px;
+	}
+	.lg5-custom {
+		width: 20%;
+		max-width: 20%;
+		flex-basis: 20%;
 	}
 }
 @media screen and (min-width: $xl) {

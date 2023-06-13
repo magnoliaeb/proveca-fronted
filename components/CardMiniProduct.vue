@@ -49,7 +49,7 @@
 			</nuxt-link>
 		</div>
 		<div class="px-3 mt-2 mt-md-4">
-			<h4 class="mb0 md-md-3 text-center">
+			<h4 class="mb-0 md-md-3 text-center">
 				<nuxt-link
 					:to="{
 						name: 'productos-id-slug',
@@ -60,7 +60,7 @@
 				</nuxt-link>
 			</h4>
 			<div
-				class="d-flex flex-column flex-md-row align-center justify-space-between mb-4 mb-md-6 text-center text-md-left"
+				class="d-flex flex-column flex-md-row align-center justify-space-between mt-2 text-center text-md-left"
 			>
 				<div class="">
 					<h5 class="mb-0 d-flex align-baseline">
@@ -94,15 +94,15 @@ export default {
 		heightAndWidthImg() {
 			switch (this.$vuetify.breakpoint.name) {
 				case 'xs':
-					return 50;
+					return 70;
 				case 'sm':
-					return 80;
+					return 100;
 				case 'md':
-					return 100;
+					return 140;
 				case 'lg':
-					return 100;
+					return 140;
 				case 'xl':
-					return 100;
+					return 140;
 			}
 		},
 	},
@@ -157,8 +157,12 @@ button.btn-float {
 	right: -4px;
 }
 
-h4,
-h5,
+h5 {
+	font-style: normal;
+	font-weight: 800;
+	font-size: $fs-sm;
+	color: #000;
+}
 a {
 	font-style: normal;
 	font-weight: 500;

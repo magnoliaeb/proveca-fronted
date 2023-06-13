@@ -1,9 +1,9 @@
 <template>
 	<v-navigation-drawer
-		style="background-color: #f5f5f5"
+		style="background-color: #f5f5f5; z-index: 10"
 		v-click-outside="clickOutside"
 		:value="$observer.showCart"
-		width="473px"
+		width="520px"
 		right
 		fixed
 	>
@@ -73,11 +73,11 @@
 					<h5>{{ formattedTotal }}</h5>
 				</v-col>
 			</v-row> -->
+			<SuggestedArticles />
 		</div>
 		<template v-slot:append>
-			<SuggestedArticles />
-			<v-row class="">
-				<v-col cols="12" class="pt-0">
+			<v-row class="white py-2">
+				<v-col cols="12" class="py-0">
 					<v-btn
 						style="position: relative"
 						class="d-flex cart align-center"
@@ -85,6 +85,7 @@
 						:to="'/carrito'"
 						block
 						depressed
+						:disabled="showBtn"
 					>
 						<span class="mr-2">Hacer mi pedido </span>
 						<h5 class="d-flex pa-2 rounded-lg">{{ formattedTotal }}</h5>
@@ -106,6 +107,9 @@ export default {
 	computed: {
 		items() {
 			return this.$store.getters['cart/getItems'];
+		},
+		showBtn() {
+			return this.items.length <= 0;
 		},
 	},
 
@@ -161,6 +165,12 @@ h5 {
 	position: absolute;
 	right: 0px;
 	background-color: rgb(30, 158, 212);
+}
+a.cart.v-btn--disabled {
+	h5 {
+		background-color: #e5e5e5;
+		color: rgba(0, 0, 0, 0.26);
+	}
 }
 
 @media screen and (min-width: $md) {

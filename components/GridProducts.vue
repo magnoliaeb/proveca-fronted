@@ -49,11 +49,10 @@
 			<v-col
 				v-for="(product, index) in products"
 				:key="`product-${index}`"
-				class="mb-lg-4"
+				class="mb-lg-4 lg5-custom"
 				cols="6"
 				sm="4"
-				md="4"
-				lg="3"
+				md="3"
 			>
 				<ProductCard :product="product" class="fill-height" />
 			</v-col>
@@ -68,11 +67,10 @@
 						<v-col
 							v-for="(product, index) in numSkeleton"
 							:key="index"
-							class="mb-3"
+							class="mb-3 lg5-custom"
 							cols="6"
-							sm="6"
-							md="4"
-							lg="3"
+							sm="4"
+							md="3"
 						>
 							<SkeletonProduct />
 						</v-col>

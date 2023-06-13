@@ -43,7 +43,7 @@ export default {
 	},
 	computed: {
 		categories() {
-			return this.$store.getters['products/getCategoriesMenu']
+			return this.$store.getters['products/getCategoriesMenu'];
 		},
 	},
 	methods: {
@@ -78,7 +78,7 @@ export default {
 
 span {
 	font-family: 'Inter';
-	font-weight: 400;
+	font-weight: 600;
 	font-size: $fs-sm;
 	line-height: 17px;
 	color: #000000;

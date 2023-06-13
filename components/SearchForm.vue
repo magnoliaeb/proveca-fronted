@@ -1,5 +1,5 @@
 <template>
-	<div class="search-box px-1 px-sm-3 pt-2 pb-1" elevation="0">
+	<div class="search-box px-1 px-sm-3 py-2 pb-1" elevation="0">
 		<div class="group">
 			<v-form @submit.prevent="submit" class="fill-height">
 				<input
@@ -25,7 +25,10 @@
 							<h3 class="py-2">Productos recomendados</h3>
 							<v-row>
 								<v-col
-									cols="6"
+									class="px-0 pb-0"
+									cols="12"
+									sm="6"
+									lg="12"
 									v-for="(product, index) in products"
 									:key="index"
 								>
@@ -240,25 +243,27 @@ input {
 
 .search-box {
 	position: absolute !important;
-	// border: 1px solid red;
+	background-color: white;
+
 	top: 85px;
 	width: 100%;
-	background-color: white;
+	// background-color: white;
 	border-bottom: 1px solid #2caee4;
 }
 
 .dialog-box {
 	position: absolute;
-	top: 55px;
+	top: 45px;
 	width: 100%;
 	max-width: 600px;
 	// left: 0;
 	left: 0;
 	right: 0;
 	max-height: 400px;
-	//   border: 2px solid red;
 	overflow: auto;
 	margin: 0 auto;
+	z-index: 20;
+
 	//   overflow: hidden;
 }
 
@@ -311,8 +316,8 @@ input {
 
 @media screen and (min-width: $lg) {
 	.group {
-		width: 300px;
-		max-width: 662px;
+		width: 340px;
+		// max-width: 662px;
 		height: 40px;
 	}
 	input {
@@ -321,6 +326,7 @@ input {
 	.search-box {
 		position: relative !important;
 		// width: 600px;
+		border: 1px solid red !important;
 		width: auto;
 		top: auto;
 		background-color: transparent;
@@ -329,12 +335,14 @@ input {
 	.dialog-box {
 		position: absolute;
 		top: 55px;
-		width: 600px;
-		max-width: 600px;
+		width: 340px;
+		max-width: 340px;
+		// width: 600px;
+		// max-width: 600px;
 		// left: 0;
-		left: 0;
+		left: 0px;
 		right: 0;
-		max-height: 400px;
+		// max-height: 400px;
 		overflow: auto;
 		margin: 0 auto;
 		//   overflow: hidden;
@@ -342,7 +350,11 @@ input {
 }
 @media screen and (min-width: $xl) {
 	.group {
-		width: 400px;
+		width: 450px;
+	}
+	.dialog-box {
+		width: 450px;
+		max-width: 450px;
 	}
 }
 </style>

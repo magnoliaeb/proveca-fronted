@@ -316,7 +316,7 @@ input {
 
 @media screen and (min-width: $lg) {
 	.group {
-		width: 340px;
+		width: 330px;
 		// max-width: 662px;
 		height: 40px;
 	}

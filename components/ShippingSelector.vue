@@ -1,5 +1,5 @@
 <template>
-	<div class="ml-sm-2">
+	<div class="ml-sm-2 mr-lg-2">
 		<div class="btn-group rounded-pill d-flex align-center">
 			<v-btn
 				:small="$vuetify.breakpoint.xsOnly"

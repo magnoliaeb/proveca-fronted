@@ -324,7 +324,6 @@ input {
 	.search-box {
 		position: relative !important;
 		// width: 600px;
-		border: 1px solid red !important;
 		width: auto;
 		top: auto;
 		background-color: transparent;

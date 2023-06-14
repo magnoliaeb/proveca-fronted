@@ -9,7 +9,7 @@
 				:rounded="this.$observer.shippingType == 'delivery'"
 				@click="$observer.setShippingTypeDelivery"
 			>
-				Delivery
+				Envío
 			</v-btn>
 
 			<v-btn

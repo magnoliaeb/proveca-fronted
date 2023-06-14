@@ -2,8 +2,8 @@
 	<div class="order">
 		<template v-if="!ordersEmpty">
 			<v-row class="justify-space-between align-center">
-				<v-col cols="12" sm="auto" class="">
-					<h1 class="text-center text-sm-left title-primary">mis pedidos</h1>
+				<v-col cols="12">
+					<h2 class="text-left">Historial de pedidos</h2>
 				</v-col>
 				<!-- <v-col cols="12" sm="auto">
 					<div class="d-flex align-baseline">
@@ -46,17 +46,17 @@ export default {
 
 	computed: {
 		orders() {
-			return this.$store.getters["orders/getOrders"]
+			return this.$store.getters['orders/getOrders'];
 		},
 
 		ordersEmpty() {
 			return this.orders.length <= 0;
-		}
+		},
 	},
 
 	created() {
-		this.$store.dispatch("orders/loadOrders")
-	}
+		this.$store.dispatch('orders/loadOrders');
+	},
 };
 </script>
 

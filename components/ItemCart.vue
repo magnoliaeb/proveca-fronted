@@ -56,15 +56,31 @@
 						<p class="mb-0">
 							{{ formattedUnitPrice }}
 						</p>
-						<!-- <p class="mb-0">{{ getQty }} pieza(s)</p> -->
-						<!-- <p class="mb-0"><span>23</span> La Libra</p> -->
-						<!-- <h4>{{ formattedTotal }}</h4> -->
 					</nuxt-link>
 				</div>
 			</div>
 		</v-col>
 		<v-col cols="auto" class="d-flex justify-center py-0 align-center">
 			<v-btn
+				v-if="getQty > 1"
+				:x-small="$vuetify.breakpoint.xsOnly"
+				:small="$vuetify.breakpoint.smAndUp"
+				@click="dec"
+				icon
+				color="primary"
+				class=""
+				:loading="isBusy"
+			>
+				<v-icon
+					:x-small="$vuetify.breakpoint.xsOnly"
+					:small="$vuetify.breakpoint.smAndUp"
+				>
+					mdi-minus
+				</v-icon>
+			</v-btn>
+			
+			<v-btn
+				v-else
 				:x-small="$vuetify.breakpoint.xsOnly"
 				:small="$vuetify.breakpoint.smAndUp"
 				@click="deleteItem"

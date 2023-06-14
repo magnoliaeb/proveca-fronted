@@ -51,7 +51,6 @@
 					>
 						Iniciar sesión
 					</v-btn>
-					<!-- <ShippingSelector class="d-block d-lg-none" /> -->
 				</v-col>
 			</v-row>
 			<v-row class="">
@@ -62,6 +61,24 @@
 			<v-row>
 				<v-col cols="12">
 					<v-list>
+						<div>
+							<v-list-item
+								@click.native="closeMenu"
+								exact
+								:to="{ name: 'productos' }"
+							>
+								<v-list-item-avatar>
+									<img
+										alt="todas"
+										:src="require(`../assets/imgs/iconos/todo.svg`)"
+									/>
+								</v-list-item-avatar>
+								<v-list-item-content>
+									<v-list-item-title>Todas</v-list-item-title>
+								</v-list-item-content>
+							</v-list-item>
+						</div>
+
 						<div v-for="(item, index) in categories" :key="index.id">
 							<v-list-item
 								@click.native="closeMenu"
@@ -85,12 +102,10 @@
 
 <script>
 import HeadingTitle from './HeadingTitle.vue';
-import ShippingSelector from './ShippingSelector.vue';
 
 export default {
 	components: {
-		HeadingTitle,
-		ShippingSelector,
+		HeadingTitle
 	},
 
 	computed: {

@@ -1,12 +1,12 @@
 <template>
-	<div v-if="product">
+	<div v-if="product" class="mt-16 pt-4 pt-sm-0">
 		<!-- <template v-if="$fetchState.pending">
 			<client-only class="">
 				<SkeletonProductDetail class="pb-16" />
 			</client-only>
 		</template> -->
 		<!-- <p v-else-if="$fetchState.error">An error occurred :(</p> -->
-		<section class="py-16">
+		<section class="pb-16">
 			<div class="content">
 				<v-row class="align-center">
 					<v-col cols="auto">

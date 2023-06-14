@@ -22,9 +22,4 @@ export default {
 .content {
 	max-width: 1000px;
 }
-h2 {
-	font-weight: 800;
-	font-size: $fs-xl;
-	color: #000000;
-}
 </style>

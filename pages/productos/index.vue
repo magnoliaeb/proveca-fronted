@@ -1,18 +1,20 @@
 <template>
-	<section class="py-16">
-		<div class="content">
-			<HeaderFilter />
+	<div class="mt-16 pt-4 pt-sm-0">
+		<section class="pb-16">
+			<div class="content">
+				<HeaderFilter />
 
-			<v-row class="mt-3 mt-md-6">
-				<!-- <v-col cols="12" lg="2" xl="2" class="d-none d-lg-block">
+				<v-row class="mt-3 mt-md-6">
+					<!-- <v-col cols="12" lg="2" xl="2" class="d-none d-lg-block">
 					<FilterProducts />
 				</v-col> -->
-				<v-col cols="12" lg="12" xl="12" class="pa-0">
-					<GridProducts :key="$observer.keys.GridProducts" />
-				</v-col>
-			</v-row>
-		</div>
-	</section>
+					<v-col cols="12" lg="12" xl="12" class="pa-0">
+						<GridProducts :key="$observer.keys.GridProducts" />
+					</v-col>
+				</v-row>
+			</div>
+		</section>
+	</div>
 </template>
 
 <script>
@@ -34,7 +36,7 @@ export default {
 		};
 	},
 
-	components: { GridProducts, HeaderFilter, FilterProducts }
+	components: { GridProducts, HeaderFilter, FilterProducts },
 };
 </script>
 

@@ -181,11 +181,6 @@ h3 {
 	color: #000000;
 }
 
-// p {
-// 	font-weight: 400;
-// 	font-size: $fs-base;
-// 	color: #464646;
-// }
 p {
 	font-weight: 400;
 	font-size: $fs-base;

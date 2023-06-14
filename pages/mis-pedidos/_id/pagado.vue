@@ -1,139 +1,89 @@
 <template>
-	<div
-		v-if="order"
-		class="content py-16"
-	>
-		<div class="">
-			<v-row>
-				<v-col cols="12" class="text-center">
-					<h2>¡Tu pedido ha sido confirmado!</h2>
-					<h3>Hemos enviado el resumen de tu pedido a tu correo electrónico</h3>
-				</v-col>
-			</v-row>
+	<div class="mt-16 pt-4 pt-sm-0">
+		<div v-if="order" class="content pb-16">
+			<div class="">
+				<v-row>
+					<v-col cols="12" class="text-center">
+						<h2>¡Tu pedido ha sido confirmado!</h2>
+						<h3>
+							Hemos enviado el resumen de tu pedido a tu correo electrónico
+						</h3>
+					</v-col>
+				</v-row>
 
-			<div class="content-article">
-				<v-row class="justify-center">
-					<v-col cols="12" sm="12">
-						<article class="pa-3 pa-sm-6 py-4">
-							<div class="py-2">
-								<h4 class="mb-5">Pago</h4>
+				<div class="content-article">
+					<v-row class="justify-center">
+						<v-col cols="12" sm="12">
+							<article class="pa-3 pa-sm-6 py-4">
+								<div class="py-2">
+									<h4 class="mb-5">Pago</h4>
 
-								<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
-									<p class="">Subtotal</p>
-									<span>{{ $util.getMoneyFormat(order.items_subtotal) }}</span>
-								</div>
+									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
+										<p class="">Subtotal</p>
+										<span>{{
+											$util.getMoneyFormat(order.items_subtotal)
+										}}</span>
+									</div>
 
-								<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
-									<p class="">Impuestos</p>
-									<span>{{ $util.getMoneyFormat(order.amount_tax) }}</span>
-								</div>
-								
-								<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
-									<p class="">Descuento</p>
-									<span>{{ $util.getMoneyFormat(discount) }}</span>
-								</div>
+									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
+										<p class="">Impuestos</p>
+										<span>{{ $util.getMoneyFormat(order.amount_tax) }}</span>
+									</div>
 
-								<div
-									v-for="(service, i) in order.services"
-									:key="i"
-									class="d-flex justify-space-between my-2 mx-1 mx-sm-3"
-								>
-									<p class="">{{ service.name }}</p>
-									<span>{{ $util.getMoneyFormat(service.price_total) }}</span>
-								</div>
+									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
+										<p class="">Descuento</p>
+										<span>{{ $util.getMoneyFormat(discount) }}</span>
+									</div>
 
-								<div
-									class="d-flex justify-space-between card-total px-2 px-md-4 mb-4 py-2 py-md-4 my-3"
-								>
-									<h4>Total</h4>
-									<span>{{ $util.getMoneyFormat(order.amount_total) }}</span>
-								</div>
-							</div>
-							<div class="py-2">
-								<h4 class="mb-5">Resumen de compra</h4>
-
-								<v-row
-									v-for="item, i in order.items"
-									:key="i"
-									class="flex justify-space-between py-3 d-md-none"
-									tag="li"
-								>
-									<v-col
-										cols="12"
-										md="auto"
-										class="flex-grow-0 d-flex justify-center justify-sm-start"
+									<div
+										v-for="(service, i) in order.services"
+										:key="i"
+										class="d-flex justify-space-between my-2 mx-1 mx-sm-3"
 									>
-										<nuxt-link
-											class="d-block"
-											:to="{ name: 'productos-id-slug', params: { id: item.product.id, slug: item.product.slug } }"
-										>
-											<v-img
-												:width="heightImg"
-												transition="scale-transition"
-												:height="heightImg"
-												:src="item.picture.url"
-												:lazy-src="item.picture.url"
-												:alt="item.name"
-												aspect-ratio="1"
-												class="grey lighten-3 scale"
-											>
-												<template v-slot:placeholder>
-													<v-row
-														class="fill-height ma-0"
-														align="center"
-														justify="center"
-													>
-														<v-progress-circular
-															:size="30"
-															:width="3"
-															indeterminate
-															color="primary"
-														></v-progress-circular>
-													</v-row>
-												</template>
-											</v-img>
-										</nuxt-link>
-									</v-col>
-									<v-col cols="auto" md="" class="text-left flex-grow-1">
-										<h3 class="mb-2">
-											{{ item.name }}
-										</h3>
-										<p class="">{{ $util.getMoneyFormat(item.price_unit) }}</p>
-									</v-col>
-									<v-col cols="auto" md="auto" class="text-right d-md-block">
-										<span class="">
-											{{ $util.getMoneyFormat(item.price_total) }}
-										</span>
-										<small class="d-block my-3">{{ item.product_uom_qty }} pz</small>
-									</v-col>
-								</v-row>
+										<p class="">{{ service.name }}</p>
+										<span>{{ $util.getMoneyFormat(service.price_total) }}</span>
+									</div>
 
-								<!-- table -->
-								<div class="d-none d-md-block">
-									<table class="">
-										<tr class="">
-											<th class="text-left">Productos</th>
-											<th>Cant</th>
-											<th class="hidden-md-and-up">Precio</th>
-											<th class="hidden-sm-and-down">P. Unitario</th>
-											<th>Total</th>
-										</tr>
-										<tr
-											v-for="item, i in order.items"
-											:key="i"
-											class=""
+									<div
+										class="d-flex justify-space-between card-total px-2 px-md-4 mb-4 py-2 py-md-4 my-3"
+									>
+										<h4>Total</h4>
+										<span>{{ $util.getMoneyFormat(order.amount_total) }}</span>
+									</div>
+								</div>
+								<div class="py-2">
+									<h4 class="mb-5">Resumen de compra</h4>
+
+									<v-row
+										v-for="(item, i) in order.items"
+										:key="i"
+										class="flex justify-space-between py-3 d-md-none"
+										tag="li"
+									>
+										<v-col
+											cols="12"
+											md="auto"
+											class="flex-grow-0 d-flex justify-center justify-sm-start"
 										>
-											<td class="d-flex align-center">
+											<nuxt-link
+												class="d-block"
+												:to="{
+													name: 'productos-id-slug',
+													params: {
+														id: item.product.id,
+														slug: item.product.slug,
+													},
+												}"
+											>
 												<v-img
 													:width="heightImg"
-													:max-width="heightImg"
 													transition="scale-transition"
 													:height="heightImg"
 													:src="item.picture.url"
 													:lazy-src="item.picture.url"
 													:alt="item.name"
 													aspect-ratio="1"
-													class="grey lighten-3 img mr-3 scale"
+													class="grey lighten-3 scale"
 												>
 													<template v-slot:placeholder>
 														<v-row
@@ -150,57 +100,116 @@
 														</v-row>
 													</template>
 												</v-img>
-												<span>{{ item.name }}</span>
-											</td>
-											<td class="text-center">{{ item.product_uom_qty }}</td>
-											<td class="text-center">
+											</nuxt-link>
+										</v-col>
+										<v-col cols="auto" md="" class="text-left flex-grow-1">
+											<h3 class="mb-2">
+												{{ item.name }}
+											</h3>
+											<p class="">
 												{{ $util.getMoneyFormat(item.price_unit) }}
-											</td>
-											<td class="text-center">
+											</p>
+										</v-col>
+										<v-col cols="auto" md="auto" class="text-right d-md-block">
+											<span class="">
 												{{ $util.getMoneyFormat(item.price_total) }}
-											</td>
-										</tr>
-									</table>
+											</span>
+											<small class="d-block my-3"
+												>{{ item.product_uom_qty }} pz</small
+											>
+										</v-col>
+									</v-row>
+
+									<!-- table -->
+									<div class="d-none d-md-block">
+										<table class="">
+											<tr class="">
+												<th class="text-left">Productos</th>
+												<th>Cant</th>
+												<th class="hidden-md-and-up">Precio</th>
+												<th class="hidden-sm-and-down">P. Unitario</th>
+												<th>Total</th>
+											</tr>
+											<tr v-for="(item, i) in order.items" :key="i" class="">
+												<td class="d-flex align-center">
+													<v-img
+														:width="heightImg"
+														:max-width="heightImg"
+														transition="scale-transition"
+														:height="heightImg"
+														:src="item.picture.url"
+														:lazy-src="item.picture.url"
+														:alt="item.name"
+														aspect-ratio="1"
+														class="grey lighten-3 img mr-3 scale"
+													>
+														<template v-slot:placeholder>
+															<v-row
+																class="fill-height ma-0"
+																align="center"
+																justify="center"
+															>
+																<v-progress-circular
+																	:size="30"
+																	:width="3"
+																	indeterminate
+																	color="primary"
+																></v-progress-circular>
+															</v-row>
+														</template>
+													</v-img>
+													<span>{{ item.name }}</span>
+												</td>
+												<td class="text-center">{{ item.product_uom_qty }}</td>
+												<td class="text-center">
+													{{ $util.getMoneyFormat(item.price_unit) }}
+												</td>
+												<td class="text-center">
+													{{ $util.getMoneyFormat(item.price_total) }}
+												</td>
+											</tr>
+										</table>
+									</div>
 								</div>
-							</div>
 
-							<div class="py-2">
-								<h4 class="mb-5">Dirección de envío</h4>
+								<div class="py-2">
+									<h4 class="mb-5">Dirección de envío</h4>
 
-								<div class="my-2 mx-1 mx-sm-3">
-									<p>
-										<span v-if="order.to_picking">
-											Recoger el paquete en la tienda
-										</span>
+									<div class="my-2 mx-1 mx-sm-3">
+										<p>
+											<span v-if="order.to_picking">
+												Recoger el paquete en la tienda
+											</span>
 
-										<span v-else>
-											{{ shippingAddress.full }}
-										</span>
-									</p>
+											<span v-else>
+												{{ shippingAddress.full }}
+											</span>
+										</p>
+									</div>
 								</div>
-							</div>
 
-							<div class="py-2">
-								<h4 class="mb-5">Método de Pago</h4>
+								<div class="py-2">
+									<h4 class="mb-5">Método de Pago</h4>
 
-								<div class="my-2 mx-1 mx-sm-3">
-									<p class="">{{ order.payment_method }}</p>
+									<div class="my-2 mx-1 mx-sm-3">
+										<p class="">{{ order.payment_method }}</p>
+									</div>
 								</div>
-							</div>
-						</article>
-					</v-col>
-				</v-row>
-				<v-row>
-					<v-col cols="12" md="6">
-						<v-btn
-							class="button-primary"
-							block
-							:to="{ name: 'productos' }"
-							depressed
-							>Ver más productos</v-btn
-						>
-					</v-col>
-				</v-row>
+							</article>
+						</v-col>
+					</v-row>
+					<v-row>
+						<v-col cols="12" md="6">
+							<v-btn
+								class="button-primary"
+								block
+								:to="{ name: 'productos' }"
+								depressed
+								>Ver más productos</v-btn
+							>
+						</v-col>
+					</v-row>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -209,9 +218,7 @@
 <script>
 import HeadingTop from '../../../components/HeadingTop.vue';
 export default {
-	middleware: [
-		'intended'
-	],
+	middleware: ['intended'],
 
 	components: { HeadingTop },
 	head: {
@@ -220,8 +227,8 @@ export default {
 	data() {
 		return {
 			isDisabled: false,
-			isLoading: false
-		}
+			isLoading: false,
+		};
 	},
 
 	computed: {
@@ -240,7 +247,7 @@ export default {
 			}
 		},
 		gateway() {
-			return 'paypal'
+			return 'paypal';
 		},
 
 		order() {
@@ -248,12 +255,16 @@ export default {
 		},
 
 		discount() {
-            return this.order.amount_undiscounted - this.order.amount_total + this.order.amount_tax
-        },
+			return (
+				this.order.amount_undiscounted -
+				this.order.amount_total +
+				this.order.amount_tax
+			);
+		},
 
 		addresses() {
-            return this.$store.getters['identity/getAddresses']
-        },
+			return this.$store.getters['identity/getAddresses'];
+		},
 
 		shippingAddress() {
 			let partner_shipping_id = this._.get(
@@ -264,15 +275,15 @@ export default {
 			return this.addresses.find(
 				(address) => address.id == partner_shipping_id
 			);
-		}
+		},
 	},
 
 	created() {
 		this.$store.dispatch('orders/getOrder', {
 			$nuxt: this.$nuxt,
 			order_id: this.$route.params.id,
-		})
-	}
+		});
+	},
 };
 </script>
 

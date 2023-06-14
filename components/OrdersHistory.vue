@@ -70,4 +70,9 @@ h4 {
 	font-weight: 700;
 	font-size: $fs-base;
 }
+h2 {
+	font-weight: 800;
+	font-size: $fs-xl;
+	color: #000000;
+}
 </style>

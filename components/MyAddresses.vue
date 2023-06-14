@@ -1,6 +1,54 @@
 <template>
 	<section>
-		<v-row class="justify-space-between align-center">
+		<v-row>
+			<v-col cols="12">
+				<v-expansion-panels flat v-model="panel" class="rounded-md">
+					<v-expansion-panel>
+						<v-expansion-panel-header color="#f5f5f5" hide-actions
+							><h3>Direcciones</h3></v-expansion-panel-header
+						>
+						<v-expansion-panel-content class="py-4">
+							<NotData
+								v-if="addressesEmpty"
+								:text="text"
+								:title="title"
+								:icon="icon"
+							/>
+							<template v-else>
+								<v-row class="justify-end">
+									<v-col cols="auto">
+										<v-btn color="#2cafe5" text
+											>Añadir una nueva dirección</v-btn
+										>
+									</v-col>
+								</v-row>
+								<AddressItem
+									@selected="onSeleted"
+									v-for="(item, index) in addresses"
+									:key="`address-${index}`"
+									:item="item"
+								/>
+								<div class="">
+									<!-- <v-btn depressed height="60px" text class="">
+										<div class="d-flex align-start fill-height">
+											<v-icon small class="mr-3">mdi-email</v-icon>
+											<div class="text-left">
+												<h class="text-break" 4>Usar la dirección actual</h>
+												<p class="mb-0 text-break">
+													1012 Los angeles, Ca.90874
+												</p>
+											</div>
+										</div>
+									</v-btn> -->
+								</div>
+							</template>
+						</v-expansion-panel-content>
+					</v-expansion-panel>
+				</v-expansion-panels>
+			</v-col>
+		</v-row>
+
+		<!-- <v-row class="justify-space-between align-center">
 			<v-col cols="12" sm="auto">
 				<h2 class="text-left title-primary">Mis direcciones</h2>
 			</v-col>
@@ -20,17 +68,7 @@
 			<v-col cols="12" class="">
 				<v-divider style="background: #000000"></v-divider>
 			</v-col>
-		</v-row>
-		<NotData v-if="addressesEmpty" :text="text" :title="title" :icon="icon" />
-
-		<template v-else>
-			<AddressItem
-				@selected="onSeleted"
-				v-for="(item, index) in addresses"
-				:key="`address-${index}`"
-				:item="item"
-			/>
-		</template>
+		</v-row> -->
 	</section>
 </template>
 
@@ -43,35 +81,56 @@ export default {
 			icon: 'home',
 			title: 'No se encontró ninguna dirección',
 			text: 'Aún no das de alta ninguna dirección',
+			panel: 0,
 		};
 	},
 	methods: {
 		onSeleted(id) {
 			// dirreccin seleccionada
 			console.log(id);
-		}
+		},
 	},
 
 	computed: {
 		addresses() {
-      		return this.$store.getters["identity/getAddresses"];
-    	},
-    	
+			return this.$store.getters['identity/getAddresses'];
+		},
+
 		addressesEmpty() {
-      		return this.addresses.length <= 0
-    	}
-	}
+			return this.addresses.length <= 0;
+		},
+	},
 };
 </script>
 
 <style lang="scss" scoped>
-button {
-	background-color: #1a1a1a !important;
+h3 {
+	font-weight: 800;
+	font-size: $fs-lg;
+	color: #000000;
 }
 
-a,
-button {
-	width: 100% !important;
-	max-width: 350px !important;
+p {
+	font-weight: 400;
+	font-size: $fs-base;
+	color: #464646;
+}
+.v-item-group.v-expansion-panels {
+	border: 1px solid #f5f5f5;
+}
+h4 {
+	font-weight: 800;
+	font-size: $fs-base;
+	color: #000000;
+}
+
+// button,
+// a {
+// 	max-width: 350px !important;
+// 	width: 100% !important;
+// 	// width: 350px;
+// }
+
+@media screen and (min-width: $sm) {
 }
 </style>

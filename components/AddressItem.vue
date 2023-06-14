@@ -1,71 +1,22 @@
 <template>
-	<v-row
-		style="border-bottom: 1px solid #d2d2d2"
-		class="justify-space-between my-4 align-start"
-	>
+	<v-row class="justify-space-between align-start">
 		<v-col cols="12" md="8">
-			<v-btn
-				class="float-right d-md-none"
-				:class="{ selected: item.selected }"
-				text
-				small
-			>
-				<v-icon class="" left>mdi-check</v-icon>
-				Dirección predeterminada
-			</v-btn>
 			<div class="">
-				<h3 class="text-left mb-3">
+				<h4 class="text-left">
 					{{ item.name }}
-				</h3>
-				<p class="t0ext-text-left">{{ item.full }}</p>
-				<v-btn
-					color="warning"
-					:to="{
-						name: 'mi-perfil-editar-direccion-id',
-						params: { id: item.id },
-					}"
-					class="d-md-none"
-					text
-					:loading="isBusy"
-					small
-				>
+				</h4>
+				<p class="t0ext-text-left mb-0">{{ item.full }}</p>
+				<!-- <v-btn color="#2cafe5" class="d-md-none" text :loading="isBusy" small>
 					Editar
-				</v-btn>
-				<v-btn
-					class="d-md-none"
-					color="error"
-					@click="deleteAddress"
-					text
-					:loading="isBusy"
-				>
-					Eliminar
-				</v-btn>
-				<v-btn
-					class="d-none d-md-block"
-					:class="{ selected: item.selected }"
-					text
-				>
-					<v-icon class="" left>mdi-check</v-icon>
-					Dirección predeterminada
-				</v-btn>
+				</v-btn> -->
 			</div>
 		</v-col>
-		<v-col cols="auto" md="auto" class="d-none d-md-block">
+		<v-col cols="auto" md="auto" class="">
 			<div class="">
-				<v-btn
-					color="warning"
-					:to="{
-						name: 'mi-perfil-editar-direccion-id',
-						params: { id: item.id },
-					}"
-					text
-					:loading="isBusy"
-				>
-					Editar
-				</v-btn>
-				<v-btn color="error" @click="deleteAddress" text :loading="isBusy">
+				<v-btn color="#2cafe5" small text :loading="isBusy"> Editar </v-btn>
+				<!-- <v-btn color="error" @click="deleteAddress" text :loading="isBusy">
 					Eliminar
-				</v-btn>
+				</v-btn> -->
 			</div>
 		</v-col>
 	</v-row>
@@ -108,33 +59,33 @@ export default {
 <style lang="scss" scoped>
 * {
 }
-h3 {
-	font-weight: 700;
-	font-size: $fs-xl;
-
+h4 {
+	font-weight: 800;
+	font-size: $fs-base;
 	color: #000000;
 }
+
 p {
 	font-weight: 400;
-	font-size: $fs-md;
-	color: #000000;
+	font-size: $fs-base;
+	color: #464646;
 }
 
-button,
-a {
-	text-transform: inherit !important;
-	font-weight: 700 !important;
-	font-size: $fs-sm !important;
-	text-decoration-line: underline !important;
-	color: #aeaeae !important;
-}
-.selected {
-	color: #001f3f !important;
-}
+// button,
+// a {
+// 	text-transform: inherit !important;
+// 	font-weight: 700 !important;
+// 	font-size: $fs-sm !important;
+// 	text-decoration-line: underline !important;
+// 	color: #aeaeae !important;
+// }
+// .selected {
+// 	color: #001f3f !important;
+// }
 
-.icon {
-	height: 100%;
-	width: 20px;
-	object-fit: contain;
-}
+// .icon {
+// 	height: 100%;
+// 	width: 20px;
+// 	object-fit: contain;
+// }
 </style>

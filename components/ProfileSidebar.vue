@@ -1,36 +1,26 @@
 <template>
-	<v-navigation-drawer
-		style="background-color: #f2f2f2"
-		v-click-outside="clickOutside"
-		:value="$observer.showProfile"
-		width="373px"
-		right
-		fixed
-	>
-		<div>
-			<v-row class="d-flex align-center mt-10" style="position: relative">
-				<v-btn
-					absolute
-					left
-					color="#000"
-					@click="closeProfile"
-					text
-					icon
-					depressed
-					small
-				>
-					<v-icon>mdi-close</v-icon>
-				</v-btn>
-				<v-col cols="12" class="text-center">
-					<h2>Menú</h2>
-				</v-col>
-			</v-row>
-			<v-row class="mb-2">
-				<v-col cols="12">
+	<v-dialog v-model="$observer.showProfile" max-width="360">
+		<v-card class="">
+			<v-btn
+				class="btn-close"
+				absolute
+				left
+				color="#000"
+				@click="closeProfile"
+				text
+				icon
+				small
+				depressed
+			>
+				<v-icon>mdi-close</v-icon>
+			</v-btn>
+			<v-row class="d-flex align-center">
+				<v-col cols="12" class="">
+					<h2 class="text-center mb-3">Menú</h2>
 					<v-divider dark style="border-color: #2cafe5"></v-divider>
 				</v-col>
 			</v-row>
-			<v-row>
+			<v-row class="py-2 py-md-4">
 				<v-col cols="12">
 					<v-list>
 						<v-list-item
@@ -58,8 +48,7 @@
 					</v-list>
 				</v-col>
 			</v-row>
-		</div>
-		<template v-slot:append>
+
 			<v-row>
 				<v-col cols="12">
 					<v-btn
@@ -73,14 +62,15 @@
 					</v-btn>
 				</v-col>
 			</v-row>
-		</template>
-	</v-navigation-drawer>
+		</v-card>
+	</v-dialog>
 </template>
 
 <script>
 export default {
 	data() {
 		return {
+			dialog: true,
 			items: [
 				{
 					icon: 'user',
@@ -98,16 +88,16 @@ export default {
 
 	methods: {
 		closeProfile() {
-			this.$observer.showProfile = false
+			this.$observer.showProfile = false;
 		},
 
 		clickOutside(event) {
 			if (event.target.id !== 'login') {
-				this.closeProfile()
+				this.closeProfile();
 			}
-		}
-	}
-}
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>
@@ -126,6 +116,10 @@ h3 {
 	font-weight: 400;
 	font-size: $fs-base;
 	color: #000000;
+}
+.btn-close {
+	left: 20px !important;
+	top: 10px !important;
 }
 
 button.btn-logout {

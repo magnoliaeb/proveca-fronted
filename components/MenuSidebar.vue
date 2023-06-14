@@ -105,7 +105,7 @@ import HeadingTitle from './HeadingTitle.vue';
 
 export default {
 	components: {
-		HeadingTitle
+		HeadingTitle,
 	},
 
 	computed: {

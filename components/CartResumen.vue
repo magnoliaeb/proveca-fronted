@@ -88,7 +88,7 @@
 					depressed
 					block
 					@click="nextStep"
-              		:disabled="$store.state.cart.isBusy || !isEnabled"
+					:disabled="$store.state.cart.isBusy || !isEnabled"
 				>
 					{{ buttonText }}
 				</v-btn>
@@ -98,85 +98,84 @@
 </template>
 
 <script>
-	import CartMixin from '~/mixins/CartMixin'
+import CartMixin from '~/mixins/CartMixin';
 
-	export default {
-		mixins: [
-			CartMixin
-		],
+export default {
+	mixins: [CartMixin],
 
-		computed: {
-			page() {
-				return this.$route.name
-			},
-
-			buttonText() {
-				let buttonText = "";
-
-				switch (this.page) {
-					case "carrito":
-						buttonText = "Continuar";
-					break
-
-					case "carrito-datos-del-envio":
-						buttonText = "Continuar"
-					break
-
-					case "carrito-elegir-direccion":
-						// buttonText = "Continuar a facturación"
-						buttonText = "Continuar con el pago"
-					break
-
-					case "carrito-datos-del-cliente":
-						buttonText = "Continuar con el pago"
-					break
-				}
-
-				return buttonText;
-			},
-
-			isEnabled() {
-				let isEnabled = false;
-
-				switch (this.page) {
-					case "carrito":
-						isEnabled = true
-					break
-
-					case "carrito-elegir-direccion":
-						// isEnabled = this.$store.getters["cart/getSelectedShippingMethod"]
-						isEnabled = this.$auth.user && this.$store.getters["cart/getSelectedShippingMethod"]
-					break;
-
-					case "carrito-datos-del-cliente":
-						isEnabled = this.$auth.user
-					break
-				}
-
-				return isEnabled;
-			}
+	computed: {
+		page() {
+			return this.$route.name;
 		},
 
-		methods: {
-			nextStep() {
-				switch (this.$route.name) {
-					case "carrito":
-						if (this.$auth.user) {
-							this.$router.push({ name: "carrito-elegir-direccion" })
-						} else {
-							this.$router.push({ name: "carrito-datos-del-envio" })
-						}
+		buttonText() {
+			let buttonText = '';
+
+			switch (this.page) {
+				case 'carrito':
+					buttonText = 'Continuar';
 					break;
 
-					// case "carrito-elegir-direccion":
-					// 	this.$router.push({ name: "carrito-datos-del-cliente" })
-					// break;
-				}
-			},
-		}
-	}
-</script>
+				case 'carrito-datos-del-envio':
+					buttonText = 'Continuar';
+					break;
 
+				case 'carrito-elegir-direccion':
+					// buttonText = "Continuar a facturación"
+					buttonText = 'Continuar con el pago';
+					break;
+
+				case 'carrito-datos-del-cliente':
+					buttonText = 'Continuar con el pago';
+					break;
+			}
+
+			return buttonText;
+		},
+
+		isEnabled() {
+			let isEnabled = false;
+
+			switch (this.page) {
+				case 'carrito':
+					isEnabled = true;
+					break;
+
+				case 'carrito-elegir-direccion':
+					// isEnabled = this.$store.getters["cart/getSelectedShippingMethod"]
+					isEnabled =
+						this.$auth.user &&
+						this.$store.getters['cart/getSelectedShippingMethod'];
+					break;
+
+				case 'carrito-datos-del-cliente':
+					isEnabled = this.$auth.user;
+					break;
+			}
+
+			return isEnabled;
+		},
+	},
+
+	methods: {
+		nextStep() {
+			switch (this.$route.name) {
+				case 'carrito':
+					if (this.$auth.user) {
+						this.$router.push({ name: 'carrito-elegir-direccion' });
+					} else {
+						this.$router.push({ name: 'carrito-datos-del-envio' });
+					}
+					break;
+
+				// case "carrito-elegir-direccion":
+				// 	this.$router.push({ name: "carrito-datos-del-cliente" })
+				// break;
+			}
+		},
+	},
+};
+</script>
 
 <style lang="scss" scoped>
 * {
@@ -186,7 +185,7 @@
 	//   border-radius: 5px !important;
 	width: 100%;
 	max-width: 400px;
-	border: 1.18389px solid #000000 !important;
+	border: 1.18389px solid #f5f5f5 !important;
 	border-radius: 8.28721px !important;
 }
 

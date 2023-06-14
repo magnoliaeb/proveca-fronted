@@ -1,8 +1,8 @@
 <template>
-	<v-row tag="li" class="py-3 py-lg-4 align-stretch" no-gutters>
+	<v-row tag="li" class="py-3 mb-3 py-lg-4 align-stretch">
 		<span v-show="false">{{ item }}</span>
 
-		<v-col cols="9" sm="5" class="d-flex justify-space-between">
+		<v-col cols="8" sm="5" class="d-flex justify-space-between">
 			<v-row class="">
 				<v-col
 					cols=""
@@ -15,8 +15,8 @@
 							name: 'productos-id-slug',
 							params: {
 								id: item.product.id,
-								slug: item.product.slug
-							}
+								slug: item.product.slug,
+							},
 						}"
 					>
 						<v-img
@@ -42,100 +42,43 @@
 							</template>
 						</v-img>
 					</nuxt-link>
-					<nuxt-link
-						class="d-none d-sm-block"
-						:to="{
-							name: 'productos-id-slug',
-							params: {
-								id: item.product.id,
-								slug: item.product.slug
-							}
-						}"
-					>
-						<h4 class="mb-3">{{ item.product.name }}</h4>
-						<small v-html="$util.getVariantFormat2(variant)"></small>
-					</nuxt-link>
-					<!-- movil -->
-					<div class="d-flex d-sm-none flex-column">
+					<div class="">
 						<nuxt-link
-							class="d-block"
+							class=""
 							:to="{
 								name: 'productos-id-slug',
 								params: {
 									id: item.product.id,
-									slug: item.product.slug
-								}
+									slug: item.product.slug,
+								},
 							}"
 						>
 							<h4 class="">{{ item.product.name }}</h4>
-							<small>{{ $util.getVariantFormat(variant) }}</small>
 						</nuxt-link>
-						<div class="d-flex my-4">
-							<div class="group-input">
-								<button
-									v-ripple="{ class: `primary--text` }"
-									class="left"
-									@click="dec"
-									:disabled="false"
-								>
-									-
-								</button>
-
-								<input
-									type="number"
-									v-model="qty"
-									@change="updateQty"
-									disabled
-								/>
-
-								<button
-									v-ripple="{ class: `primary--text` }"
-									class="right"
-									@click="inc"
-									:disabled="false"
-								>
-									+
-								</button>
-							</div>
-						</div>
 						<p>
-							P. unit.
-							<span>{{ formattedUnitPrice }}</span>
+							<small v-html="$util.getVariantFormat2(variant)"></small>
 						</p>
 					</div>
 				</v-col>
 			</v-row>
 		</v-col>
 		<!-- movil -->
-		<v-col cols="3" class="d-flex d-sm-none flex-column justify-space-between">
+		<v-col cols="4" class="d-flex d-sm-none flex-column justify-space-between">
 			<h6 class="text-right">{{ formattedTotal }}</h6>
-			<div class="d-flex justify-end">
-				<v-btn
-					fab
-					x-small
-					class=""
-					depressed
-					@click="deleteItem"
-					:disabled="false"
-				>
-					<img
-						height="24px"
-						width="24px"
-						src="../assets/imgs/iconos/delete.svg"
-						alt="delete"
-					/>
+			<div class="flex-grow-0 d-flex justify-end">
+				<v-btn small text depressed @click="deleteItem" :disabled="false">
+					Eliminar
 				</v-btn>
 			</div>
 		</v-col>
 
 		<!-- web -->
-		<v-col
+		<!-- <v-col
 			cols="12"
 			sm="2"
 			md="2"
 			class="text-center d-none d-sm-flex justify-center align-center"
 		>
-			<!-- input -->
 			<div class="d-flex justify-center">
 				<div class="group-input">
 					<button
@@ -159,45 +102,98 @@
 					</button>
 				</div>
 			</div>
-		</v-col>
+		</v-col> -->
 		<!-- web -->
-
 		<v-col
-			cols="12"
-			sm="2"
-			class="d-none d-sm-flex justify-center align-center"
+			cols="auto"
+			class="d-none d-sm-flex justify-center py-0 align-center"
 		>
-			<span>{{ formattedUnitPrice }}</span>
+			<v-btn
+				v-if="qty > 1"
+				:x-small="$vuetify.breakpoint.xsOnly"
+				:small="$vuetify.breakpoint.smAndUp"
+				@click="dec"
+				icon
+				color="primary"
+				class=""
+				:loading="isBusy"
+			>
+				<v-icon
+					:x-small="$vuetify.breakpoint.xsOnly"
+					:small="$vuetify.breakpoint.smAndUp"
+				>
+					mdi-minus
+				</v-icon>
+			</v-btn>
+
+			<v-btn
+				v-else
+				:x-small="$vuetify.breakpoint.xsOnly"
+				:small="$vuetify.breakpoint.smAndUp"
+				@click="deleteItem"
+				icon
+				color="black"
+				class=""
+				:loading="isBusy"
+			>
+				<v-icon
+					:x-small="$vuetify.breakpoint.xsOnly"
+					:small="$vuetify.breakpoint.smAndUp"
+				>
+					mdi-delete
+				</v-icon>
+			</v-btn>
+
+			<span class="mx-2">
+				{{ qty }}
+			</span>
+
+			<v-btn
+				:x-small="$vuetify.breakpoint.xsOnly"
+				:small="$vuetify.breakpoint.smAndUp"
+				@click="inc"
+				icon
+				color="primary"
+				class=""
+				:loading="isBusy"
+			>
+				<v-icon
+					:x-small="$vuetify.breakpoint.xsOnly"
+					:small="$vuetify.breakpoint.smAndUp"
+				>
+					mdi-plus
+				</v-icon>
+			</v-btn>
 		</v-col>
+
 		<!-- web -->
 
 		<v-col
 			class="d-none d-sm-flex justify-space-around align-center"
 			cols="12"
-			sm="3"
-			md="3"
+			sm=""
+			md=""
 		>
-			<h6>{{ formattedTotal }}</h6>
-
-			<v-btn fab x-small depressed @click="deleteItem" :disabled="false">
-				<img
-					height="24px"
-					width="24px"
-					src="../assets/imgs/iconos/delete.svg"
-					alt="delete"
-				/>
+			<v-btn
+				small
+				text
+				class=""
+				depressed
+				@click="deleteItem"
+				:disabled="false"
+			>
+				<span class="text-decoration-underline">Eliminar</span>
 			</v-btn>
+			<h6>{{ formattedTotal }}</h6>
 		</v-col>
 	</v-row>
 </template>
 
 <script>
-import CartItemMixin from '~/mixins/CartItemMixin'
+import CartItemMixin from '~/mixins/CartItemMixin';
 
 export default {
-	mixins: [
-		CartItemMixin
-	],
+	mixins: [CartItemMixin],
 
 	computed: {
 		heightImg() {
@@ -214,7 +210,7 @@ export default {
 					return 90;
 			}
 		},
-	}
+	},
 };
 </script>
 
@@ -234,7 +230,7 @@ p {
 h6 {
 	font-weight: 700;
 	font-size: $fs-base;
-	color: #2cafe5;
+	color: #000;
 }
 
 .group-input {
@@ -255,7 +251,7 @@ h6 {
 		justify-content: center;
 		color: #000000;
 		border-radius: 50%;
-		border: 1px solid $primary;
+		// border: 1px solid $primary;
 		font-size: $fs-sm;
 	}
 	button.left {
@@ -277,17 +273,14 @@ input {
 	}
 }
 
-ul {
-	border-top: 1px solid #8e8e8e;
-	// border-bottom: 1px solid #979797;
-}
+// ul {
+// 	border-top: 1px solid #8e8e8e;
+// 	// border-bottom: 1px solid #979797;
+// }
 li {
-	border-bottom: 1px solid#E6E6E6;
+	border: 1px solid #f5f5f5;
 	&:hover {
 		cursor: pointer;
-	}
-	&:last-child {
-		border-bottom: 0;
 	}
 }
 
@@ -297,7 +290,7 @@ li {
 			cursor: pointer;
 		}
 		&:last-child {
-			border-bottom: 1px solid#E6E6E6;
+			// border-bottom: 1px solid#E6E6E6;
 			// border-bottom: 0;
 		}
 	}

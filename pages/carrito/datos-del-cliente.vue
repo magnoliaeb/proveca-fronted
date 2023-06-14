@@ -1,27 +1,35 @@
 <template>
-	<div class="content py-16">
-		<HeadingTop />
+	<div class="mt-16 pt-4 pt-sm-0">
+		<div class="content pb-16">
+			<HeadingTop />
 
-		<v-row>
-			<v-col>
-				<RequireInvoiceForm />
-			</v-col>
-		</v-row>
+			<v-row>
+				<v-col>
+					<RequireInvoiceForm />
+				</v-col>
+			</v-row>
 
-		<v-row class="align-start justify-space-between">
-			<v-col cols="12" sm="12" md="7" lg="8" class="pa-0">
-				<FormTaxData
-					v-if="$observer.confirmation.invoice_required"
-					hideSubmitButton
-					@success="$observer.confirmCart"
-				/>
-			</v-col>
+			<v-row class="align-start justify-space-between">
+				<v-col cols="12" sm="12" md="7" lg="8" class="pa-0">
+					<FormTaxData
+						v-if="$observer.confirmation.invoice_required"
+						hideSubmitButton
+						@success="$observer.confirmCart"
+					/>
+				</v-col>
 
-			<v-col cols="12" sm="12" md="5" lg="4" style="position: sticky; top: 10%">
-				<!-- resumen del carrito -->
-				<CartResumen />
-			</v-col>
-		</v-row>
+				<v-col
+					cols="12"
+					sm="12"
+					md="5"
+					lg="4"
+					style="position: sticky; top: 10%"
+				>
+					<!-- resumen del carrito -->
+					<CartResumen />
+				</v-col>
+			</v-row>
+		</div>
 	</div>
 </template>
 
@@ -33,9 +41,7 @@ import RequireInvoiceForm from '~/components/RequireInvoiceForm.vue';
 import FormTaxData from '~/components/FormTaxData.vue';
 
 export default {
-	middleware: [
-		'intended'
-	],
+	middleware: ['intended'],
 
 	components: { CartResumen, HeadingTop, RequireInvoiceForm, FormTaxData },
 

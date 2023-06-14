@@ -20,7 +20,6 @@
 							<span>{{ formattedTax }}</span>
 						</v-col>
 
-
 						<v-col cols="12" class="d-flex justify-space-between" tag="li">
 							<p class="mb-0">Descuento</p>
 							<span>{{ formattedDiscount }}</span>
@@ -127,7 +126,7 @@ export default {
 	//   border-radius: 5px !important;
 	width: 100%;
 	max-width: 400px;
-	border: 1.18389px solid #000000 !important;
+	border: 1.18389px solid #f5f5f5 !important;
 	border-radius: 8.28721px !important;
 }
 

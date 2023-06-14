@@ -31,7 +31,7 @@
 								<img src="../assets/imgs/logo-proveca.svg" alt="logo-proveca" />
 							</nuxt-link>
 						</v-col>
-						<v-col cols="12" md="auto" class="d-none d-lg-block">
+						<v-col cols="12" md="auto" lg="" xl="" class="d-none d-lg-block">
 							<SearchForm />
 						</v-col>
 						<v-col

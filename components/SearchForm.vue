@@ -1,5 +1,5 @@
 <template>
-	<div class="search-box px-1 px-sm-3 py-2 pb-1" elevation="0">
+	<div class="search-box px-1 px-sm-3 py-2" elevation="0">
 		<div class="group">
 			<v-form @submit.prevent="submit" class="fill-height">
 				<input
@@ -21,14 +21,14 @@
 			>
 				<div class="search-card">
 					<v-row class="">
-						<v-col cols="12" lg="12" class="py-2 px-3">
+						<v-col cols="12" lg="12" class="">
 							<h3 class="py-2">Productos recomendados</h3>
-							<v-row>
+							<v-row dense>
 								<v-col
-									class="px-0 pb-0"
+									class="pb-0"
 									cols="12"
 									sm="6"
-									lg="12"
+									lg="6"
 									v-for="(product, index) in products"
 									:key="index"
 								>
@@ -68,7 +68,7 @@
 												</client-only>
 											</nuxt-link>
 										</v-col>
-										<v-col cols="auto" class="py-2">
+										<v-col cols="" class="py-2">
 											<div
 												class="text-left"
 												@click="
@@ -78,7 +78,7 @@
 													})
 												"
 											>
-												<h4>{{ product.name }}</h4>
+												<h4 class="text-truncate">{{ product.name }}</h4>
 												<!-- <p>
 													{{ $util.getMoneyFormat(product.min_price) }}
 													<s v-if="product.has_discount">{{
@@ -314,7 +314,7 @@ input {
 
 @media screen and (min-width: $lg) {
 	.group {
-		width: 330px;
+		width: 100%;
 		// max-width: 662px;
 		height: 40px;
 	}
@@ -332,26 +332,13 @@ input {
 	.dialog-box {
 		position: absolute;
 		top: 55px;
-		width: 340px;
-		max-width: 340px;
-		// width: 600px;
-		// max-width: 600px;
-		// left: 0;
-		left: 0px;
+		width: 94%;
+		left: 0;
 		right: 0;
 		// max-height: 400px;
 		overflow: auto;
 		margin: 0 auto;
 		//   overflow: hidden;
-	}
-}
-@media screen and (min-width: $xl) {
-	.group {
-		width: 450px;
-	}
-	.dialog-box {
-		width: 450px;
-		max-width: 450px;
 	}
 }
 </style>

@@ -1,9 +1,10 @@
 <template>
-	<article v-if="product" class="">
-		<div
-			class="img-content"
-			:style="`width: ${heightAndWidthImg}px; height: ${heightAndWidthImg}px`"
-		>
+	<article
+		v-if="product"
+		class="mx-auto"
+		:style="`width: ${heightAndWidthImg}px`"
+	>
+		<div class="img-content">
 			<v-btn
 				absolute
 				class="d-md-none btn-float"
@@ -24,9 +25,9 @@
 			>
 				<client-only>
 					<v-img
-						:width="'80%'"
+						:width="`${heightAndWidthImg}px`"
 						transition="scale-transition"
-						:height="'80%'"
+						:height="`${heightAndWidthImg}px`"
 						:src="picture"
 						:lazy-src="picture"
 						:alt="product.name"
@@ -94,9 +95,9 @@ export default {
 		heightAndWidthImg() {
 			switch (this.$vuetify.breakpoint.name) {
 				case 'xs':
-					return 70;
+					return 90;
 				case 'sm':
-					return 100;
+					return 120;
 				case 'md':
 					return 140;
 				case 'lg':

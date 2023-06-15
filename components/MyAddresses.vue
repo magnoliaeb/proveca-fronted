@@ -17,7 +17,11 @@
 							<template v-else>
 								<v-row class="justify-end">
 									<v-col cols="auto">
-										<v-btn color="#2cafe5" text
+										<v-btn
+											color="#2cafe5"
+											text
+											id="btn-new-address"
+											@click="dialogAddress = true"
 											>Añadir una nueva dirección</v-btn
 										>
 									</v-col>
@@ -69,19 +73,25 @@
 				<v-divider style="background: #000000"></v-divider>
 			</v-col>
 		</v-row> -->
+		<DialogAddress
+			:dialogAddress="dialogAddress"
+			@close="dialogAddress = false"
+		/>
 	</section>
 </template>
 
 <script>
 import AddressItem from './AddressItem.vue';
+import DialogAddress from './DialogAddress.vue';
 export default {
-	components: { AddressItem },
+	components: { AddressItem, DialogAddress },
 	data() {
 		return {
 			icon: 'home',
 			title: 'No se encontró ninguna dirección',
 			text: 'Aún no das de alta ninguna dirección',
 			panel: 0,
+			dialogAddress: false,
 		};
 	},
 	methods: {

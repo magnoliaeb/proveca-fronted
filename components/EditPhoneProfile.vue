@@ -1,6 +1,6 @@
 <template>
-	<v-dialog :value="dialogPhone" max-width="400" v-click-outside="clickOutside">
-		<v-card>
+	<v-dialog :value="dialogPhone" max-width="430">
+		<v-card v-click-outside="clickOutside">
 			<v-btn
 				absolute
 				top

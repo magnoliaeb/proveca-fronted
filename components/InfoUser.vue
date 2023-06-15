@@ -120,14 +120,24 @@
 			:dialogBirthdate="dialogBirthdate"
 			@close="dialogBirthdate = false"
 		/>
+		<EditProfilePassword
+			:dialogPassword="dialogPassword"
+			@close="dialogPassword = false"
+		/>
 	</div>
 </template>
 <script>
 import EditBirthdateProfile from './EditBirthdateProfile.vue';
 import EditNameProfile from './EditNameProfile.vue';
 import EditPhoneProfile from './EditPhoneProfile.vue';
+import EditProfilePassword from './EditProfilePassword.vue';
 export default {
-	components: { EditPhoneProfile, EditNameProfile, EditBirthdateProfile },
+	components: {
+		EditPhoneProfile,
+		EditNameProfile,
+		EditBirthdateProfile,
+		EditProfilePassword,
+	},
 	data() {
 		return {
 			panel: 0,

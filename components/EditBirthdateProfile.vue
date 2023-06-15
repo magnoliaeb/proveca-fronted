@@ -1,10 +1,6 @@
 <template>
-	<v-dialog
-		:value="dialogBirthdate"
-		max-width="450"
-		v-click-outside="clickOutside"
-	>
-		<v-card>
+	<v-dialog :value="dialogBirthdate" max-width="430">
+		<v-card v-click-outside="clickOutside">
 			<v-btn
 				absolute
 				top

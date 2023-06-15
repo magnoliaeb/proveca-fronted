@@ -96,9 +96,10 @@
 			</div>
 		</v-slide-y-transition>
 		<div
-			class="d-flex justify-space-between align-center pt-1 d-block d-sm-none"
+			class="d-flex justify-space-between align-center pt-2 d-block d-sm-none"
 		>
 			<ShippingSelector class="" />
+			<PostcodeForm />
 		</div>
 	</div>
 </template>

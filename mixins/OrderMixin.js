@@ -54,6 +54,22 @@ export default {
 
         formattedTotal() {
             return this.$util.getMoneyFormat(this.computedOrder.amount_total)
+        },
+
+        items() {
+            return this.isFull
+                ? this.computedOrder.items
+                : []
+        },
+
+        services() {
+            return this.isFull
+                ? this.computedOrder.services
+                : []
+        },
+
+        itemsCount() {
+            return this.items.length
         }
     },
 

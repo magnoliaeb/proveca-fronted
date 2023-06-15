@@ -42,7 +42,7 @@
 			</v-col>
 			<v-col cols="" md="" class="text-left flex-grow-1">
 				<h3 class="mb-0">
-					{{ item.product.name }}
+					{{ item.name }}
 				</h3>
 				<p class="mb-0">Grande</p>
 				<p class="mb-0">Q 5.00 x Libra</p>

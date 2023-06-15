@@ -4,7 +4,7 @@
 			<InfoOrderDetail :order="order" />
 			<ListOrderDetail :order="order" class="mt-md-4" />
 
-			<SubtotalOrderDetail :order="order" />
+			<!-- <SubtotalOrderDetail :order="order" /> -->
 		</div>
 	</div>
 </template>

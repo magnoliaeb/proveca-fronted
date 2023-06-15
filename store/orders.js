@@ -104,7 +104,7 @@ export const mutations = {
         })
         */
 
-        order.services = order.items.filter(item => _.get(item, 'product.type') == null)
+        order.services = order.items.filter(item => _.get(item, 'product.type') == 'service')
             
     
         order.items = order.items.filter(item => _.get(item, 'product.type') == 'product')

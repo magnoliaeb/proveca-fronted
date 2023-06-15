@@ -31,12 +31,25 @@
 			<v-expansion-panel class="mb-4">
 				<v-expansion-panel-header color="#f5f5f5" hide-actions>
 					<v-row class="justify-space-between">
-						<v-col cols="12" sm="auto">
+						<v-col
+							v-if="computedOrder.to_picking"
+							cols="12"
+							sm="auto"
+						>
+							<h3 class="mb-2">Se recogerá el pedido en la tienda</h3>
+						</v-col>
+
+						<v-col
+							v-else
+							cols="12"
+							sm="auto"
+						>
 							<h3 class="mb-2">Fecha de entrega</h3>
 							<p class="mb-0">
-								{{ $util.getFormattedDate(computedOrder.date_order, 2) }}
+								{{ $util.getFormattedDate(computedOrder.delivery_date, 2) }}
 							</p>
 						</v-col>
+
 						<v-col
 							cols="12"
 							sm="auto"
@@ -110,11 +123,21 @@
 							<div class="">
 								<div class="d-flex justify-space-between">
 									<p>Artículo(s) subtotal</p>
-									<p>9.97</p>
+									<p>{{ formattedSubtotal }}</p>
 								</div>
+
 								<div class="d-flex justify-space-between">
-									<p>Envío</p>
-									<p>9.97</p>
+									<p>Impuestos</p>
+									<p>{{ formattedTax }}</p>
+								</div>
+
+								<div
+									v-for="service, i in services"
+									:key="i"
+									class="d-flex justify-space-between"
+								>
+									<p>{{ service.name }}</p>
+									<p>{{ $util.getMoneyFormat(service.price_total) }}</p>
 								</div>
 							</div>
 						</v-col>
@@ -223,15 +246,6 @@ export default {
 			];
 		},
 
-		clientName() {
-			return this._.get(this.order, 'partner_id.1');
-		},
-		addresses() {
-			return this.$store.getters['identity/getAddresses'];
-		},
-		deliveryDate() {
-			return this.order.shipping_label;
-		},
 		selectedBg() {
 			switch (this.order.payment_status) {
 				case 'unpaid':
@@ -247,25 +261,7 @@ export default {
 					return 'bg-gray';
 					break;
 			}
-		},
-		carrier() {
-			return this._.get(this.order, 'carrier_id.1');
-		},
-		shippingAddress() {
-			// return true;
-			return this.addresses.find(
-				(address) =>
-					address.id == this._.get(this.order, 'partner_shipping_id.0')
-			);
-		},
-		invoiceAddress() {
-			let partner_invoice_id = this._.get(
-				this.order,
-				'partner_invoice_id.0',
-				null
-			);
-			return this.addresses.find((address) => address.id == partner_invoice_id);
-		},
+		}
 	},
 	methods: {
 		goBack() {

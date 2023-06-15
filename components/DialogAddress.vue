@@ -271,7 +271,6 @@ export default {
 								id: this.address.id,
 								data: this.form,
 							})
-							.then(() => this.$router.back())
 							.finally(() => (this.isLoading = false));
 					} else {
 						await this.create();
@@ -324,8 +323,6 @@ export default {
 						address_id: address.id,
 						dontEmit: true,
 					});
-
-					this.$router.back();
 				})
 				.finally(() => (this.isLoading = false));
 		},

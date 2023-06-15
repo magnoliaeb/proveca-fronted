@@ -100,7 +100,6 @@ export default {
 
 				this.$authentication
 					.updateProfile(this.form)
-					.then(() => this.$router.back())
 					.finally(() => {
 						this.isDisabled = false;
 						this.isLoading = false;

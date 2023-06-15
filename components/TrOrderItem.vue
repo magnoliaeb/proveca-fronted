@@ -2,12 +2,27 @@
 	<v-expansion-panel class="mb-4">
 		<v-expansion-panel-header color="#f5f5f5" hide-actions>
 			<v-row class="justify-space-between">
-				<v-col cols="12" sm="auto">
+				<v-col
+					v-if="computedOrder.to_picking"
+					cols="12"
+					sm="auto"
+				>
+					<h3 class="mb-2">
+						Se recogerá el pedido en la tienda
+					</h3>
+				</v-col>
+
+				<v-col
+					v-else
+					cols="12"
+					sm="auto"
+				>
 					<h3 class="mb-2">Fecha de entrega</h3>
 					<p class="mb-0">
 						{{ $util.getFormattedDate(computedOrder.date_order, 2) }}
 					</p>
 				</v-col>
+
 				<v-col
 					cols="12"
 					sm="auto"
@@ -33,7 +48,7 @@
 		<v-expansion-panel-content class="py-4">
 			<v-row class="justify-space-between">
 				<v-col cols="auto">
-					<p>{{ 10 }} Artículos</p>
+					<p>{{ itemsCount }} Artículo(s)</p>
 				</v-col>
 				<v-col cols="auto">
 					<p class="text-left">
@@ -44,15 +59,18 @@
 			</v-row>
 
 			<v-slide-group multiple show-arrows>
-				<v-slide-item v-for="n in 20" :key="n">
+				<v-slide-item
+					v-for="item, i in items"
+					:key="i"
+				>
 					<client-only>
 						<v-img
 							:width="`${heightAndWidthImg}px`"
 							transition="scale-transition"
 							:height="`${heightAndWidthImg}px`"
-							:src="'https://proveeca.s3.amazonaws.com/odoo/88c4d24c659608e6f96c5cf40caef33ba0e76707'"
-							:lazy-src="'picture'"
-							:alt="'product.name'"
+							:src="item.picture.url"
+							:lazy-src="item.picture.url"
+							:alt="item.name"
 							aspect-ratio="1"
 							contain
 							class=""
@@ -171,6 +189,10 @@ export default {
 			}
 		},
 	},
+
+	created() {
+		this.loadFullOrder()
+	}
 };
 </script>
 

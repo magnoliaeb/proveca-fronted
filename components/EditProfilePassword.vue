@@ -152,7 +152,6 @@ export default {
 
 				this.$authentication
 					.changePassword(this.form)
-					.then(() => this.$router.back())
 					.finally(() => {
 						this.isLoading = false;
 						this.isDisabled = false;

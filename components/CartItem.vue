@@ -210,6 +210,10 @@ export default {
 					return 90;
 			}
 		},
+
+		isBusy() {
+			return this.$store.state.cart.isBusy
+		}
 	},
 };
 </script>

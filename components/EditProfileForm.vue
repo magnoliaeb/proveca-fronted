@@ -111,55 +111,52 @@
 </template>
 
 <script>
-import { ValidationProvider, ValidationObserver } from "vee-validate";
+import { ValidationProvider, ValidationObserver } from 'vee-validate';
 
 export default {
 	data() {
 		return {
 			isDisabled: false,
 			isLoading: false,
-			form: this.$util.clone(this.$auth.user)
-		}
+			form: this.$util.clone(this.$auth.user),
+		};
 	},
 
-  	components: {
-    	ValidationProvider,
-    	ValidationObserver
-  	},
+	components: {
+		ValidationProvider,
+		ValidationObserver,
+	},
 
-  	methods: {
-    	async updateProfile() {
-      		this.isDisabled = true
-      		if (await this.$refs.observer.validate()) {
-        		this.isDisabled = true
-            	this.isLoading = true
+	methods: {
+		async updateProfile() {
+			this.isDisabled = true;
+			if (await this.$refs.observer.validate()) {
+				this.isDisabled = true;
+				this.isLoading = true;
 
-				this.$authentication.updateProfile(
-					this.form
-				)
-				.then(
-					() => this.$router.back()
-				)
-				.finally(() => {
-					this.isDisabled = false
-            		this.isLoading = false
-				})
-      		} else {
-        		Object.values(this.$refs).forEach((ref) => {
-          			if (ref.hasError) ref.focus();
+				this.$authentication
+					.updateProfile(this.form)
+					.then(() => this.$router.back())
+					.finally(() => {
+						this.isDisabled = false;
+						this.isLoading = false;
+					});
+			} else {
+				Object.values(this.$refs).forEach((ref) => {
+					if (ref.hasError) ref.focus();
 				});
-      		}
-    	},
+			}
+		},
 
-    	clear() {
-      		this.form.email = ""
-      		this.form.phone = ""
-      		this.form.name = ""
-      		this.form.birthdate = ""
-      		this.$refs.observer.reset()
-    	}
-  	}
-}
+		clear() {
+			this.form.email = '';
+			this.form.phone = '';
+			this.form.name = '';
+			this.form.birthdate = '';
+			this.$refs.observer.reset();
+		},
+	},
+};
 </script>
 
 <style lang="scss" scoped>

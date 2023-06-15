@@ -18,27 +18,59 @@
 										<h4>Teléfono</h4>
 										<p>Tel. {{ $auth.user.phone }}</p>
 									</div>
-									<v-btn small color="#2cafe5" depressed text>Cambiar</v-btn>
+									<v-btn
+										@click="dialogPhone = true"
+										small
+										color="#2cafe5"
+										depressed
+										text
+										id="btn-phone"
+										>Cambiar</v-btn
+									>
 								</li>
 								<li class="d-flex align-center justify-space-between">
 									<div class="">
 										<h4>Nombre Completo</h4>
 										<p>{{ $auth.user.name }}</p>
 									</div>
-									<v-btn small color="#2cafe5" depressed text>Cambiar</v-btn>
+									<v-btn
+										@click="dialogName = true"
+										small
+										color="#2cafe5"
+										depressed
+										text
+										id="btn-name"
+										>Cambiar</v-btn
+									>
 								</li>
 								<li class="d-flex align-center justify-space-between">
 									<div class="">
 										<h4>Fecha de nacimiento</h4>
 										<p>{{ $auth.user.birthdate }}</p>
 									</div>
-									<v-btn small color="#2cafe5" depressed text>Cambiar</v-btn>
+									<v-btn
+										@click="dialogBirthdate = true"
+										small
+										color="#2cafe5"
+										depressed
+										text
+										id="btn-birthdate"
+										>Cambiar</v-btn
+									>
 								</li>
 								<li class="d-flex align-center justify-space-between">
 									<div class="">
 										<h4>Cambiar contraseña</h4>
 									</div>
-									<v-btn small color="#2cafe5" depressed text>Cambiar</v-btn>
+									<v-btn
+										@click="dialogPassword = true"
+										small
+										color="#2cafe5"
+										depressed
+										text
+										id="btn-password"
+										>Cambiar</v-btn
+									>
 								</li>
 							</ul>
 						</v-expansion-panel-content>
@@ -81,13 +113,28 @@
 				</v-row>
 			</v-col> -->
 		</v-row>
+
+		<EditPhoneProfile :dialogPhone="dialogPhone" @close="dialogPhone = false" />
+		<EditNameProfile :dialogName="dialogName" @close="dialogName = false" />
+		<EditBirthdateProfile
+			:dialogBirthdate="dialogBirthdate"
+			@close="dialogBirthdate = false"
+		/>
 	</div>
 </template>
 <script>
+import EditBirthdateProfile from './EditBirthdateProfile.vue';
+import EditNameProfile from './EditNameProfile.vue';
+import EditPhoneProfile from './EditPhoneProfile.vue';
 export default {
+	components: { EditPhoneProfile, EditNameProfile, EditBirthdateProfile },
 	data() {
 		return {
 			panel: 0,
+			dialogPhone: false,
+			dialogName: false,
+			dialogBirthdate: false,
+			dialogPassword: false,
 		};
 	},
 };

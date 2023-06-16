@@ -21,7 +21,7 @@
 											color="#2cafe5"
 											text
 											id="btn-new-address"
-											@click="dialogAddress = true"
+											@click="openDialog"
 											>Añadir una nueva dirección</v-btn
 										>
 									</v-col>
@@ -31,6 +31,7 @@
 									v-for="(item, index) in addresses"
 									:key="`address-${index}`"
 									:item="item"
+									@openDialog="openDialogEdit"
 								/>
 								<div class="">
 									<!-- <v-btn depressed height="60px" text class="">
@@ -76,6 +77,7 @@
 		<DialogAddress
 			:dialogAddress="dialogAddress"
 			@close="dialogAddress = false"
+			:address="address"
 		/>
 	</section>
 </template>
@@ -92,12 +94,21 @@ export default {
 			text: 'Aún no das de alta ninguna dirección',
 			panel: 0,
 			dialogAddress: false,
+			address: null,
 		};
 	},
 	methods: {
 		onSeleted(id) {
 			// dirreccin seleccionada
 			console.log(id);
+		},
+		openDialog() {
+			this.dialogAddress = true;
+			this.address = null;
+		},
+		openDialogEdit(item) {
+			this.dialogAddress = true;
+			this.address = item;
 		},
 	},
 

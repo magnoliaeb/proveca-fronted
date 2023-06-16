@@ -13,7 +13,16 @@
 		</v-col>
 		<v-col cols="auto" md="auto" class="">
 			<div class="">
-				<v-btn color="#2cafe5" small text :loading="isBusy"> Editar </v-btn>
+				<v-btn
+					id="btn-new-address"
+					color="#2cafe5"
+					small
+					text
+					:loading="isBusy"
+					@click="openDialog"
+				>
+					Editar
+				</v-btn>
 				<!-- <v-btn color="error" @click="deleteAddress" text :loading="isBusy">
 					Eliminar
 				</v-btn> -->
@@ -38,6 +47,9 @@ export default {
 	},
 
 	methods: {
+		openDialog() {
+			this.$emit('openDialog', this.item);
+		},
 		selecteAddress(id) {
 			this.$emit('selected', id);
 		},

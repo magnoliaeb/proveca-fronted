@@ -1,6 +1,11 @@
 <template>
-	<v-dialog :value="dialogAddress" content-class="card-dialog" max-width="430">
-		<v-card v-click-outside="clickOutside">
+	<v-dialog
+		:value="dialogAddress"
+		content-class="card-dialog"
+		max-width="430"
+		persistent
+	>
+		<v-card>
 			<v-btn
 				absolute
 				top
@@ -17,7 +22,7 @@
 			<v-card-title>
 				<v-row class="justify-center">
 					<v-col cols="12">
-						<h2 class="text-center">Crear nueva dirección</h2>
+						<h2 class="text-center">{{ titleForm }} dirección</h2>
 					</v-col>
 				</v-row>
 			</v-card-title>
@@ -204,7 +209,7 @@
 										:disabled="isLoading"
 										type="submit"
 										depressed
-										>Agregar dirección</v-btn
+										>{{ titleFormBtn }} dirección</v-btn
 									>
 								</v-col>
 							</v-row>
@@ -226,12 +231,17 @@ export default {
 			isLoading: false,
 			states: [],
 			form: {},
+			editForm: false,
 		};
 	},
 	props: {
 		dialogAddress: {
 			type: Boolean,
 			default: false,
+		},
+		address: {
+			type: Object,
+			default: null,
 		},
 	},
 
@@ -240,10 +250,16 @@ export default {
 		ValidationObserver,
 	},
 	computed: {
-		address() {
-			return this.$store.state.identity.addresses.find(
-				(a) => a.id == this.$util.getSlug()
-			);
+		// address() {
+		// 	return this.$store.state.identity.addresses.find(
+		// 		(a) => a.id == this.$util.getSlug()
+		// 	);
+		// },
+		titleForm() {
+			return this.address != null ? 'Editar' : 'Crear nueva';
+		},
+		titleFormBtn() {
+			return this.address != null ? 'Guardar' : 'Agregar';
 		},
 
 		countries() {
@@ -271,7 +287,10 @@ export default {
 								id: this.address.id,
 								data: this.form,
 							})
-							.finally(() => (this.isLoading = false));
+							.finally(() => {
+								this.isLoading = false;
+								this.close();
+							});
 					} else {
 						await this.create();
 					}
@@ -324,45 +343,54 @@ export default {
 						dontEmit: true,
 					});
 				})
-				.finally(() => (this.isLoading = false));
+				.finally(() => {
+					this.isLoading = false;
+					this.close();
+				});
 		},
 		close() {
 			this.$emit('close');
 		},
 
-		clickOutside(event) {
-			if (event.target.id !== 'btn-new-address') {
-				this.close();
-			}
-		},
+		// clickOutside(event) {
+		// 	if (event.target.id !== 'btn-new-address') {
+		// 		this.close();
+		// 	}
+		// },
 
 		clear() {
 			this.form = {};
-			// this.$refs.observer.reset();
+			this.$refs.observer.reset();
+		},
+	},
+	watch: {
+		async address(newValue, oldValue) {
+			this.clear();
+			if (newValue) {
+				console.log(this.address);
+				if (this.address) {
+					try {
+						this.form.type = this.address.type;
+						// this.form.vat = this.address.vat;
+						this.form.name = this.address.name;
+						this.form.street = this.address.street;
+						this.form.street2 = this.address.street2;
+						this.form.country_id = this.address.country_id[0];
+						this.states = await this.$axios.get(
+							`/catalog/country/${this.form.country_id}`
+						);
+						this.form.state_id = this.address.state_id[0];
+						this.form.city = this.address.city;
+						this.form.zip = this.address.zip;
+					} catch (e) {
+						this.goBack(-1);
+					}
+				}
+			}
 		},
 	},
 
-	async mounted() {
-		this.clear();
-		// if (this.address) {
-		// 	try {
-		// 		this.form.type = this.address.type;
-		// 		// this.form.vat = this.address.vat;
-		// 		this.form.name = this.address.name;
-		// 		this.form.street = this.address.street;
-		// 		this.form.street2 = this.address.street2;
-		// 		this.form.country_id = this.address.country_id[0];
-		// 		this.states = await this.$axios.get(
-		// 			`/catalog/country/${this.form.country_id}`
-		// 		);
-		// 		this.form.state_id = this.address.state_id[0];
-		// 		this.form.city = this.address.city;
-		// 		this.form.zip = this.address.zip;
-		// 	} catch (e) {
-		// 		this.goBack(-1);
-		// 	}
-		// }
-	},
+	// async created() {},
 };
 </script>
 

@@ -3,7 +3,7 @@
 		v-model="$observer.showDialogSuscribe"
 		max-width="710px"
 		persistent
-		content-class="card-dialog-contact"
+		content-class="card-dialog"
 	>
 		<v-card class="py-4" style="position: relative" height="416px">
 			<v-btn @click="closeAlert" color="#000000" text icon absolute top right>
@@ -48,9 +48,9 @@
 export default {
 	methods: {
 		closeAlert() {
-			this.$observer.showDialogSuscribe = false
-		}
-	}
+			this.$observer.showDialogSuscribe = false;
+		},
+	},
 };
 </script>
 

@@ -3,7 +3,7 @@
 		v-model="showAlert"
 		max-width="783px"
 		persistent
-		content-class="card-dialog-contact"
+		content-class="card-dialog"
 	>
 		<v-card class="py-4" style="position: relative" height="438px">
 			<v-btn @click="closeAlert" color="#000000" text icon absolute top right>

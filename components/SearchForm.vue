@@ -32,7 +32,7 @@
 									v-for="(product, index) in products"
 									:key="index"
 								>
-									<v-row class="align-center card-product rounded-lg">
+									<v-row class="align-center card-product border-radius-card">
 										<v-col cols="auto" class="py-2">
 											<nuxt-link
 												:to="{

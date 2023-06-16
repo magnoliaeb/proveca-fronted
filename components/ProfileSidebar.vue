@@ -1,5 +1,9 @@
 <template>
-	<v-dialog v-model="$observer.showProfile" max-width="360">
+	<v-dialog
+		v-model="$observer.showProfile"
+		content-class="card-dialog"
+		max-width="360"
+	>
 		<v-card class="">
 			<v-btn
 				class="btn-close"

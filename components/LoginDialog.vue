@@ -2,7 +2,7 @@
 	<v-dialog
 		v-model="$observer.showLogin"
 		max-width="500px"
-		content-class="card-dialog-contact"
+		content-class="card-dialog"
 	>
 		<v-card>
 			<v-btn
@@ -14,22 +14,22 @@
 				icon
 				depressed
 				small
-				style="z-index: 9;"
+				style="z-index: 9"
 			>
 				<v-icon>mdi-close</v-icon>
 			</v-btn>
 
-			<LoginContainer/>
+			<LoginContainer />
 		</v-card>
 	</v-dialog>
 </template>
 
 <script>
-import LoginContainer from './LoginContainer'
+import LoginContainer from './LoginContainer';
 
 export default {
 	components: {
-		LoginContainer
-	}
-}
+		LoginContainer,
+	},
+};
 </script>

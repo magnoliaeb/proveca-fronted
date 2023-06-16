@@ -33,8 +33,8 @@
 			</nuxt-link>
 		</div>
 		<div class="px-3 mt-4">
-			<div class="mb-4 mb-md-6 text-center text-md-left">
-				<div class="">
+			<div class="mb-4 mb-md-6 text-md-left">
+				<div class="text-center">
 					<h4 class="mb-0 mr-2">
 						{{ $util.getMoneyFormat(product.price) }}
 						<!--x (Unidad de medida)-->
@@ -50,14 +50,12 @@
 						</nuxt-link>
 					</h5>
 				</div>
-				<div class="d-flex justify-space-between align-center">
-					<div>
-						<h6 v-if="countVariants > 1">
-							Opciones: <span>{{ countVariants }} variantes</span>
-						</h6>
-					</div>
+				<h6 v-if="countVariants > 1" class="text-center">
+					Opciones: <span>{{ countVariants }} variantes</span>
+				</h6>
+				<div class="d-flex justify-center">
 					<v-btn
-						class="cart px-3 rounded-pill mt-3 mt-md-0"
+						class="cart px-3 rounded-pill mt-3"
 						depressed
 						:disabled="false"
 						@click="openDialogInfo"

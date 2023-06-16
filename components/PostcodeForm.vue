@@ -190,7 +190,7 @@ button.current {
 }
 
 p {
-	font-weight: 400;
+	font-weight: 800;
 	font-size: $fs-xs !important;
 
 	color: #434343;

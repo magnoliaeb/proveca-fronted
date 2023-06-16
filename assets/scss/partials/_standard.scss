@@ -116,9 +116,18 @@ button.button-danger {
 	border-radius: 24px !important;
 }
 
-.card-dialog-contact {
+.card-dialog {
 	background: #ffffff !important;
 	border-radius: 22px !important;
+}
+
+.border-radius-card {
+	border-radius: 22px !important;
+	overflow: hidden !important;
+}
+.v-expansion-panel-header {
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
 }
 
 @media screen and (min-width: $sm) {

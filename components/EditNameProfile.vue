@@ -1,5 +1,5 @@
 <template>
-	<v-dialog :value="dialogName" max-width="430">
+	<v-dialog :value="dialogName" content-class="card-dialog" max-width="430">
 		<v-card v-click-outside="clickOutside">
 			<v-btn
 				absolute
@@ -98,12 +98,10 @@ export default {
 				this.isDisabled = true;
 				this.isLoading = true;
 
-				this.$authentication
-					.updateProfile(this.form)
-					.finally(() => {
-						this.isDisabled = false;
-						this.isLoading = false;
-					});
+				this.$authentication.updateProfile(this.form).finally(() => {
+					this.isDisabled = false;
+					this.isLoading = false;
+				});
 			} else {
 				Object.values(this.$refs).forEach((ref) => {
 					if (ref.hasError) ref.focus();

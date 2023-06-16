@@ -1,5 +1,8 @@
 <template>
-	<v-row class="flex justify-space-between py-3 align-center" tag="li">
+	<v-row
+		class="flex justify-space-between py-3 align-center border-radius-card"
+		tag="li"
+	>
 		<v-col cols="12" sm="auto" class="d-flex px-0">
 			<v-col
 				cols="auto"

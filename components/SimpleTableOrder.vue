@@ -12,13 +12,7 @@
 			<v-row tag="li" v-for="(order, index) in orders" :key="index">
 			</v-row>
 		</ul> -->
-		<v-expansion-panels
-			v-model="panel"
-			flat
-			class="rounded-md"
-			multiple
-			mandatory
-		>
+		<v-expansion-panels accordion v-model="panel" flat class="" multiple>
 			<TrOrderItem
 				v-for="(order, index) in orders"
 				:key="index"
@@ -34,9 +28,14 @@ export default {
 	components: { TrOrderItem },
 
 	props: ['orders'],
+	created() {
+		this.panel = this.orders.map((item, index) => {
+			return index;
+		});
+	},
 	data() {
 		return {
-			panel: [0],
+			panel: [],
 		};
 	},
 };

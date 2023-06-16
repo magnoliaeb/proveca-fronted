@@ -1,22 +1,12 @@
 <template>
-	<v-expansion-panel class="mb-4">
+	<v-expansion-panel class="mb-4 border-radius-card">
 		<v-expansion-panel-header color="#f5f5f5" hide-actions>
 			<v-row class="justify-space-between">
-				<v-col
-					v-if="computedOrder.to_picking"
-					cols="12"
-					sm="auto"
-				>
-					<h3 class="mb-2">
-						Se recogerá el pedido en la tienda
-					</h3>
+				<v-col v-if="computedOrder.to_picking" cols="12" sm="auto">
+					<h3 class="mb-2">Se recogerá el pedido en la tienda</h3>
 				</v-col>
 
-				<v-col
-					v-else
-					cols="12"
-					sm="auto"
-				>
+				<v-col v-else cols="12" sm="auto">
 					<h3 class="mb-2">Fecha de entrega</h3>
 					<p class="mb-0">
 						{{ $util.getFormattedDate(computedOrder.date_order, 2) }}
@@ -58,35 +48,30 @@
 				</v-col>
 			</v-row>
 
-			<v-slide-group multiple show-arrows>
-				<v-slide-item
-					v-for="item, i in items"
-					:key="i"
-				>
-					<client-only>
-						<v-img
-							:width="`${heightAndWidthImg}px`"
-							transition="scale-transition"
-							:height="`${heightAndWidthImg}px`"
-							:src="item.picture.url"
-							:lazy-src="item.picture.url"
-							:alt="item.name"
-							aspect-ratio="1"
-							contain
-							class=""
-						>
-							<template v-slot:placeholder>
-								<v-row class="fill-height ma-0" align="center" justify="center">
-									<v-progress-circular
-										:size="30"
-										:width="3"
-										indeterminate
-										color="primary"
-									></v-progress-circular>
-								</v-row>
-							</template>
-						</v-img>
-					</client-only>
+			<v-slide-group show-arrows>
+				<v-slide-item v-for="(item, i) in items" :key="i">
+					<v-img
+						:max-width="`${heightAndWidthImg}px`"
+						transition="scale-transition"
+						:height="`${heightAndWidthImg}px`"
+						:src="item.picture.url"
+						:lazy-src="item.picture.url"
+						:alt="item.name"
+						aspect-ratio="1"
+						contain
+						class="img-product"
+					>
+						<template v-slot:placeholder>
+							<v-row class="fill-height ma-0" align="center" justify="center">
+								<v-progress-circular
+									:size="30"
+									:width="3"
+									indeterminate
+									color="primary"
+								></v-progress-circular>
+							</v-row>
+						</template>
+					</v-img>
 				</v-slide-item>
 			</v-slide-group>
 
@@ -191,8 +176,8 @@ export default {
 	},
 
 	created() {
-		this.loadFullOrder()
-	}
+		this.loadFullOrder();
+	},
 };
 </script>
 
@@ -212,6 +197,9 @@ p {
 	span {
 		font-weight: 800;
 	}
+}
+.img-product {
+	// border: 1px solid red !important;
 }
 
 .bg-red {

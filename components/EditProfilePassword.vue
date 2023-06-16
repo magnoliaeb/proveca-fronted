@@ -1,5 +1,5 @@
 <template>
-	<v-dialog :value="dialogPassword" max-width="430">
+	<v-dialog :value="dialogPassword" content-class="card-dialog" max-width="430">
 		<v-card v-click-outside="clickOutside">
 			<v-btn
 				absolute
@@ -150,13 +150,11 @@ export default {
 				this.isDisabled = true;
 				this.isLoading = true;
 
-				this.$authentication
-					.changePassword(this.form)
-					.finally(() => {
-						this.isLoading = false;
-						this.isDisabled = false;
-						this.clear();
-					});
+				this.$authentication.changePassword(this.form).finally(() => {
+					this.isLoading = false;
+					this.isDisabled = false;
+					this.clear();
+				});
 			}
 		},
 

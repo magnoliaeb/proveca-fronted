@@ -2,7 +2,7 @@
 	<div class="">
 		<v-row class="">
 			<v-col cols="12">
-				<v-expansion-panels flat v-model="panel" class="rounded-md">
+				<v-expansion-panels flat v-model="panel" class="border-radius-card">
 					<v-expansion-panel>
 						<v-expansion-panel-header color="#f5f5f5" hide-actions
 							><h3>Información de la cuenta</h3></v-expansion-panel-header

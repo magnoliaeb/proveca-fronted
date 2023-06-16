@@ -27,23 +27,15 @@
 				<h2 class="text-left">Detalle del pedido</h2>
 			</v-col>
 		</v-row>
-		<v-expansion-panels flat class="rounded-md" multiple mandatory>
-			<v-expansion-panel class="mb-4">
+		<v-expansion-panels disabled flat class="" multiple mandatory>
+			<v-expansion-panel class="mb-4 border-radius-card">
 				<v-expansion-panel-header color="#f5f5f5" hide-actions>
 					<v-row class="justify-space-between">
-						<v-col
-							v-if="computedOrder.to_picking"
-							cols="12"
-							sm="auto"
-						>
+						<v-col v-if="computedOrder.to_picking" cols="12" sm="auto">
 							<h3 class="mb-2">Se recogerá el pedido en la tienda</h3>
 						</v-col>
 
-						<v-col
-							v-else
-							cols="12"
-							sm="auto"
-						>
+						<v-col v-else cols="12" sm="auto">
 							<h3 class="mb-2">Fecha de entrega</h3>
 							<p class="mb-0">
 								{{ $util.getFormattedDate(computedOrder.delivery_date, 2) }}
@@ -132,7 +124,7 @@
 								</div>
 
 								<div
-									v-for="service, i in services"
+									v-for="(service, i) in services"
 									:key="i"
 									class="d-flex justify-space-between"
 								>
@@ -261,7 +253,7 @@ export default {
 					return 'bg-gray';
 					break;
 			}
-		}
+		},
 	},
 	methods: {
 		goBack() {

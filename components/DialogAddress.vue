@@ -1,5 +1,5 @@
 <template>
-	<v-dialog :value="dialogAddress" max-width="430">
+	<v-dialog :value="dialogAddress" content-class="card-dialog" max-width="430">
 		<v-card v-click-outside="clickOutside">
 			<v-btn
 				absolute

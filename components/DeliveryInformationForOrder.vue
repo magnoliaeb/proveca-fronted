@@ -1,195 +1,196 @@
 <template>
-	<v-expansion-panels
-		accordion
-		flat
-	>
-		<v-expansion-panel>
-			<v-expansion-panel-header class="px-0">
-				<div class="d-flex align-center">
-					<v-icon
-						color="#7d7d7d"
-						class="mr-3"
-						size="30px">
-						mdi-map-marker-outline
-					</v-icon>
+	<div class="">
+		<v-row>
+			<v-col cols="6">
+				<v-btn
+					tile
+					:class="[$observer.confirmation.to_picking ? 'selected' : '']"
+					depressed
+					block
+					text
+					large
+					>Reparto</v-btn
+				>
+			</v-col>
+			<v-col cols="6">
+				<v-btn
+					tile
+					depressed
+					text
+					block
+					large
+					:class="[!$observer.confirmation.to_picking ? 'selected' : '']"
+					>Recogida</v-btn
+				>
+			</v-col>
+		</v-row>
+		<v-expansion-panels accordion flat>
+			<v-expansion-panel>
+				<v-expansion-panel-header class="px-0">
+					<div class="d-flex align-center">
+						<v-icon color="#7d7d7d" class="mr-3" size="30px">
+							mdi-map-marker-outline
+						</v-icon>
 
-					<div class="">
-						<h3 class="mb-1">
-							Configurar envío del pedido
-						</h3>
+						<div class="">
+							<h3 class="mb-1">Configurar envío del pedido</h3>
 
-						<p>
-							{{ shippingTypeText }}
-						</p>
+							<p>
+								{{ shippingTypeText }}
+							</p>
+						</div>
 					</div>
-				</div>
-			</v-expansion-panel-header>
-			
-			<v-expansion-panel-content>
-				<v-radio-group
-              		v-model="$observer.confirmation.to_picking"
-              		column
-            	>
-              		<v-radio
-                		label="Quiero recibir el pedido en mi casa"
-                		:value="false"
-              		></v-radio>
-              		
-					<v-radio
-                		label="Quiero recoger mi pedido en la tienda"
-                		:value="true"
-              		></v-radio>
-            	</v-radio-group>
+				</v-expansion-panel-header>
 
-				<AddressList v-if="! $observer.confirmation.to_picking" />
-			</v-expansion-panel-content>
-		</v-expansion-panel>
+				<v-expansion-panel-content>
+					<v-radio-group v-model="$observer.confirmation.to_picking" column>
+						<v-radio
+							label="Quiero recibir el pedido en mi casa"
+							:value="false"
+						></v-radio>
 
-		<v-expansion-panel>
-			<v-expansion-panel-header class="px-0">
-				<div class="d-flex align-center">
-					<v-icon
-						color="#7d7d7d"
-						class="mr-3"
-						size="30px"
-					>
-						mdi-truck-fast-outline
-					</v-icon>
+						<v-radio
+							label="Quiero recoger mi pedido en la tienda"
+							:value="true"
+						></v-radio>
+					</v-radio-group>
 
-					<div class="">
-						<h3 class="mb-1">
-							Déjanos instrucciones en general sobre este pedido
-						</h3>
+					<AddressList v-if="!$observer.confirmation.to_picking" />
+				</v-expansion-panel-content>
+			</v-expansion-panel>
 
-						<p class="mb-0">
-							Instrucciones de entrega o recolecta del pedido
-						</p>
+			<v-expansion-panel>
+				<v-expansion-panel-header class="px-0">
+					<div class="d-flex align-center">
+						<v-icon color="#7d7d7d" class="mr-3" size="30px">
+							mdi-truck-fast-outline
+						</v-icon>
 
-						<p>
-							<small>
-								{{ $observer.confirmation.note.slice(0, 20) }}
-							</small>
-						</p>
+						<div class="">
+							<h3 class="mb-1">
+								Déjanos instrucciones en general sobre este pedido
+							</h3>
+
+							<p class="mb-0">
+								Instrucciones de entrega o recolecta del pedido
+							</p>
+
+							<p>
+								<small>
+									{{ $observer.confirmation.note.slice(0, 20) }}
+								</small>
+							</p>
+						</div>
 					</div>
-				</div>
-			</v-expansion-panel-header>
+				</v-expansion-panel-header>
 
-			<v-expansion-panel-content>
-				<v-textarea
-					outlined
-					autocomplete="off"
-					v-model.trim="$observer.confirmation.note"
-					auto-grow
-					flat
-					solo
-				></v-textarea>
-			</v-expansion-panel-content>
-		</v-expansion-panel>
+				<v-expansion-panel-content>
+					<v-textarea
+						outlined
+						autocomplete="off"
+						v-model.trim="$observer.confirmation.note"
+						auto-grow
+						flat
+						solo
+					></v-textarea>
+				</v-expansion-panel-content>
+			</v-expansion-panel>
 
-		<v-expansion-panel :disabled="$observer.confirmation.to_picking">
-			<v-expansion-panel-header class="px-0">
-				<div class="d-flex align-center">
-					<v-icon
-						color="#7d7d7d"
-						class="mr-3"
-						size="30px"
-					>
-						mdi-clock-time-eight-outline
-					</v-icon>
+			<v-expansion-panel :disabled="$observer.confirmation.to_picking">
+				<v-expansion-panel-header class="px-0">
+					<div class="d-flex align-center">
+						<v-icon color="#7d7d7d" class="mr-3" size="30px">
+							mdi-clock-time-eight-outline
+						</v-icon>
 
-					<div class="">
-						<h3 class="mb-1">
-							Tiempo de entrega
-						</h3>
+						<div class="">
+							<h3 class="mb-1">Tiempo de entrega</h3>
 
-						<p>
-							{{ dateText }}
-						</p>
+							<p>
+								{{ dateText }}
+							</p>
+						</div>
 					</div>
-				</div>
-			</v-expansion-panel-header>
+				</v-expansion-panel-header>
 
-			<v-expansion-panel-content>
-				<v-date-picker
-					v-model="$observer.confirmation.date"
-					__allowed-dates="allowedDates"
-					__min="2016-06-15"
-					__max="2018-03-20"
-				></v-date-picker>
+				<v-expansion-panel-content>
+					<v-date-picker
+						v-model="$observer.confirmation.date"
+						__allowed-dates="allowedDates"
+						__min="2016-06-15"
+						__max="2018-03-20"
+					></v-date-picker>
 
-				<v-time-picker
-					v-model="$observer.confirmation.time"
-					format="ampm"
-				></v-time-picker>
-			</v-expansion-panel-content>
-		</v-expansion-panel>
+					<v-time-picker
+						v-model="$observer.confirmation.time"
+						format="ampm"
+					></v-time-picker>
+				</v-expansion-panel-content>
+			</v-expansion-panel>
 
-		<v-expansion-panel>
-			<v-expansion-panel-header class="px-0">
-				<div class="d-flex align-center">
-					<v-icon
-						color="#7d7d7d"
-						class="mr-3"
-						size="30px">
-						mdi-phone-in-talk-outline
-					</v-icon>
+			<v-expansion-panel>
+				<v-expansion-panel-header class="px-0">
+					<div class="d-flex align-center">
+						<v-icon color="#7d7d7d" class="mr-3" size="30px">
+							mdi-phone-in-talk-outline
+						</v-icon>
 
-					<div class="">
-						<h3 class="mb-1">
-							Número de móvil
-						</h3>
+						<div class="">
+							<h3 class="mb-1">Número de móvil</h3>
 
-						<p>
-							{{ $observer.confirmation.phone }}
-						</p>
+							<p>
+								{{ $observer.confirmation.phone }}
+							</p>
+						</div>
 					</div>
-				</div>
-			</v-expansion-panel-header>
+				</v-expansion-panel-header>
 
-			<v-expansion-panel-content>
-				<v-text-field
-					height="64px"
-					color="blue-ligth"
-					v-model.trim="$observer.confirmation.phone"
-					solo
-					flat
-					outlined
-					placeholder="Teléfono"
-				/>
-			</v-expansion-panel-content>
-		</v-expansion-panel>
-	</v-expansion-panels>
+				<v-expansion-panel-content>
+					<v-text-field
+						height="64px"
+						color="blue-ligth"
+						v-model.trim="$observer.confirmation.phone"
+						solo
+						flat
+						outlined
+						placeholder="Teléfono"
+					/>
+				</v-expansion-panel-content>
+			</v-expansion-panel>
+		</v-expansion-panels>
+	</div>
 </template>
 
 <script>
 export default {
 	computed: {
 		selectedAddress() {
-            return this.$store.getters['cart/getSelectedShippingAddress']
-        },
+			return this.$store.getters['cart/getSelectedShippingAddress'];
+		},
 
 		shippingTypeText() {
-			let selectAddress = this.selectedAddress
+			let selectAddress = this.selectedAddress;
 
-			if(! this.$observer.confirmation.to_picking && selectAddress) {
-				return selectAddress.full
-			} else if(this.$observer.confirmation.to_picking) {
-				return 'Recogeré mi paquete en la tienda'
+			if (!this.$observer.confirmation.to_picking && selectAddress) {
+				return selectAddress.full;
+			} else if (this.$observer.confirmation.to_picking) {
+				return 'Recogeré mi paquete en la tienda';
 			}
 
-			return 'Aún no se ha configurado el envío'
+			return 'Aún no se ha configurado el envío';
 		},
 
 		dateText() {
 			return this.$observer.confirmation.to_picking
 				? 'N\\A'
-				: `${this.$observer.confirmation.date} ${this.$observer.confirmation.time}`
-		}
+				: `${this.$observer.confirmation.date} ${this.$observer.confirmation.time}`;
+		},
 	},
 
 	created() {
-		this.$observer.confirmation.to_picking = this.$observer.shippingType == 'pickup'
-	}
+		this.$observer.confirmation.to_picking =
+			this.$observer.shippingType == 'pickup';
+	},
 };
 </script>
 
@@ -210,5 +211,12 @@ p {
 	font-weight: 400;
 	font-size: $fs-base;
 	color: #7d7d7d;
+}
+button.selected {
+	border-bottom: 1px solid #2cafe5 !important;
+	color: #2cafe5 !important;
+}
+button {
+	font-size: $fs-base !important;
 }
 </style>

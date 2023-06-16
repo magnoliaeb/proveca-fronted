@@ -1,5 +1,5 @@
 <template>
-	<v-row tag="li" class="py-3 mb-3 py-lg-4 align-stretch">
+	<v-row tag="li" class="py-3 mb-3 py-lg-4 align-stretch border-radius-card">
 		<span v-show="false">{{ item }}</span>
 
 		<v-col cols="8" sm="5" class="d-flex justify-space-between">
@@ -212,8 +212,8 @@ export default {
 		},
 
 		isBusy() {
-			return this.$store.state.cart.isBusy
-		}
+			return this.$store.state.cart.isBusy;
+		},
 	},
 };
 </script>

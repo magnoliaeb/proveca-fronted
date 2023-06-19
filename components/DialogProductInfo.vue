@@ -35,8 +35,7 @@
 						:product="product"
 						:variant="variant"
 					/> -->
-
-						<VariantSelector :product="product" />
+						<VariantsSelector :product="product" />
 					</div>
 				</v-card-text>
 			</div>
@@ -46,11 +45,12 @@
 
 <script>
 // import PriceInfoItem from './PriceInfoItem.vue';
-import VariantSelector from './VariantSelector.vue';
+// import VariantSelector from './VariantSelector.vue';
+import VariantsSelector from './VariantsSelector.vue';
 export default {
 	components: {
 		// PriceInfoItem
-		VariantSelector,
+		VariantsSelector
 	},
 
 	computed: {

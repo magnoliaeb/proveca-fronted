@@ -62,10 +62,10 @@
 </template>
 
 <script>
-import BuyableMixin from '~/mixins/BuyableMixin';
+import VariantSelectorMixin from '~/mixins/VariantSelectorMixin';
 
 export default {
-	mixins: [BuyableMixin],
+	mixins: [VariantSelectorMixin],
 
 	watch: {
 		selected: {

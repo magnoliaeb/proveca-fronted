@@ -64,11 +64,9 @@
 
 							<div v-else>
 								<p>
-									Entrega: {{ shippingAddress.full }}
+									{{ shippingAddress.full }}
 									{{ computedOrder.shipping_label }}
 								</p>
-
-								<p>Fecha deseada: {{ order.delivery_date }}</p>
 							</div>
 						</v-col>
 						<v-col cols="12" md="4">

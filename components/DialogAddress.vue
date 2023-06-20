@@ -336,7 +336,6 @@ export default {
 				})
 				.then((address) => {
 					this.clear();
-
 					this.$store.dispatch('cart/setShippingAddress', {
 						$nuxt: this.$nuxt,
 						address_id: address.id,
@@ -365,7 +364,6 @@ export default {
 	},
 	watch: {
 		async address(newValue, oldValue) {
-			this.clear();
 			if (newValue) {
 				console.log(this.address);
 				if (this.address) {
@@ -386,6 +384,8 @@ export default {
 						this.goBack(-1);
 					}
 				}
+			} else {
+				this.clear();
 			}
 		},
 	},

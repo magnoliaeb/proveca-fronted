@@ -33,7 +33,7 @@
 			</v-col>
 		</v-row>
 		<v-expansion-panels accordion flat>
-			<v-expansion-panel>
+			<v-expansion-panel :disabled="$observer.confirmation.to_picking">
 				<v-expansion-panel-header class="px-0">
 					<div class="d-flex align-center">
 						<v-icon color="#7d7d7d" class="mr-3" size="30px">
@@ -63,19 +63,7 @@
 				</v-expansion-panel-header>
 
 				<v-expansion-panel-content>
-					<v-radio-group v-model="$observer.confirmation.to_picking" column>
-						<v-radio
-							label="Quiero recibir el pedido en mi casa"
-							:value="false"
-						></v-radio>
-
-						<v-radio
-							label="Quiero recoger mi pedido en la tienda"
-							:value="true"
-						></v-radio>
-					</v-radio-group>
-
-					<AddressList v-if="!$observer.confirmation.to_picking" />
+					<AddressList/>
 				</v-expansion-panel-content>
 			</v-expansion-panel>
 
@@ -116,7 +104,7 @@
 				</v-expansion-panel-content>
 			</v-expansion-panel>
 
-			<v-expansion-panel :disabled="$observer.confirmation.to_picking">
+			<v-expansion-panel>
 				<v-expansion-panel-header class="px-0">
 					<div class="d-flex align-center">
 						<v-icon color="#7d7d7d" class="mr-3" size="30px">
@@ -124,10 +112,18 @@
 						</v-icon>
 
 						<div class="">
-							<h3 class="mb-1">Tiempo de entrega</h3>
+							<h3 class="mb-1">
+								<span v-if="$observer.confirmation.to_picking">
+									Hora de recogida
+								</span>
+
+								<span v-else>
+									Hora de entrega
+								</span>
+							</h3>
 
 							<p>
-								{{ dateText }}
+								{{ $observer.confirmation.delivery_delivery_date }}
 							</p>
 						</div>
 					</div>
@@ -198,13 +194,7 @@ export default {
 			}
 
 			return 'Aún no se ha configurado el envío';
-		},
-
-		dateText() {
-			return this.$observer.confirmation.to_picking
-				? 'N\\A'
-				: `${this.$observer.confirmation.date} ${this.$observer.confirmation.time}`;
-		},
+		}
 	}
 };
 </script>

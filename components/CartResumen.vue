@@ -34,7 +34,7 @@
 				</div>
 
 				<v-btn
-					v-if="$route.name == 'carrito-elegir-direccion'"
+					v-if="$route.name == 'carrito-delivery' || $route.name == 'carrito-pickup'"
 					class="mt-7 button-primary"
 					depressed
 					block
@@ -113,14 +113,15 @@ export default {
 
 			switch (this.page) {
 				case 'carrito':
-					buttonText = 'Continuar';
+					buttonText = 'Continuar checkout';
 					break;
 
 				case 'carrito-datos-del-envio':
 					buttonText = 'Continuar';
 					break;
 
-				case 'carrito-elegir-direccion':
+				case 'carrito-delivery':
+				case 'carrito-pickup':
 					// buttonText = "Continuar a facturación"
 					buttonText = 'Continuar con el pago';
 					break;
@@ -141,7 +142,8 @@ export default {
 					isEnabled = true;
 					break;
 
-				case 'carrito-elegir-direccion':
+				case 'carrito-delivery':
+				case 'carrito-pickup':
 					// isEnabled = this.$store.getters["cart/getSelectedShippingMethod"]
 					isEnabled =
 						this.$auth.user &&
@@ -162,7 +164,15 @@ export default {
 			switch (this.$route.name) {
 				case 'carrito':
 					if (this.$auth.user) {
-						this.$router.push({ name: 'carrito-elegir-direccion' });
+						switch (this.$observer.shippingType) {
+							case 'delivery':
+								this.$router.push({ name: 'carrito-delivery' });		
+							break;
+
+							case 'pickup':
+								this.$router.push({ name: 'carrito-pickup' });		
+							break;
+						}
 					} else {
 						this.$router.push({ name: 'carrito-datos-del-envio' });
 					}

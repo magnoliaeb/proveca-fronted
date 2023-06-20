@@ -99,7 +99,6 @@
 			class="d-flex justify-space-between align-center pt-2 d-block d-sm-none"
 		>
 			<ShippingSelector class="" />
-			<PostcodeForm />
 		</div>
 	</div>
 </template>

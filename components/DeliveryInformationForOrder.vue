@@ -4,24 +4,32 @@
 			<v-col cols="6">
 				<v-btn
 					tile
-					:class="[$observer.confirmation.to_picking ? 'selected' : '']"
+					class="button"
+					:class="[! $observer.confirmation.to_picking ? 'selected' : '']"
 					depressed
 					block
 					text
 					large
-					>Reparto</v-btn
+					:disabled="! $observer.confirmation.to_picking"
+					to="/carrito/delivery"
 				>
+					Reparto
+				</v-btn>
 			</v-col>
 			<v-col cols="6">
 				<v-btn
 					tile
+					class="button"
 					depressed
 					text
 					block
 					large
-					:class="[!$observer.confirmation.to_picking ? 'selected' : '']"
-					>Recogida</v-btn
+					:class="[$observer.confirmation.to_picking ? 'selected' : '']"
+					:disabled="$observer.confirmation.to_picking"
+					to="/carrito/pickup"
 				>
+					Recogida
+				</v-btn>
 			</v-col>
 		</v-row>
 		<v-expansion-panels accordion flat>
@@ -32,8 +40,20 @@
 							mdi-map-marker-outline
 						</v-icon>
 
-						<div class="">
-							<h3 class="mb-1">Configurar envío del pedido</h3>
+						<div v-if="$observer.confirmation.to_picking">
+							<h3 class="mb-1">
+								Recogeré el pedido
+							</h3>
+
+							<p>
+								21A Avenida Villa Nueva, 01064, Guatemala
+							</p>
+						</div>
+
+						<div v-else>
+							<h3 class="mb-1">
+								Configurar envío del pedido
+							</h3>
 
 							<p>
 								{{ shippingTypeText }}
@@ -185,12 +205,7 @@ export default {
 				? 'N\\A'
 				: `${this.$observer.confirmation.date} ${this.$observer.confirmation.time}`;
 		},
-	},
-
-	created() {
-		this.$observer.confirmation.to_picking =
-			this.$observer.shippingType == 'pickup';
-	},
+	}
 };
 </script>
 
@@ -212,11 +227,11 @@ p {
 	font-size: $fs-base;
 	color: #7d7d7d;
 }
-button.selected {
+.button.selected {
 	border-bottom: 1px solid #2cafe5 !important;
 	color: #2cafe5 !important;
 }
-button {
+.button {
 	font-size: $fs-base !important;
 }
 </style>

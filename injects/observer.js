@@ -21,7 +21,7 @@ export default app => ({
             postcode: null,
 
             showShippingTypeDialog: false,
-            shippingType: null, //   delivery | pickup
+            shippingType: 'pickup', //   delivery | pickup
             handlerShippingType: null,
 
             confirmation: {
@@ -38,18 +38,18 @@ export default app => ({
     },
 
     computed: {
-        commitmentDate() {
+        deliveryDate() {
             return `${this.confirmation.date} ${this.confirmation.time}`
         }
     },
 
     watch: {
         'confirmation.date'() {
-            this.confirmation.delivery_date = this.commitmentDate
+            this.confirmation.delivery_date = this.deliveryDate
         },
 
         'confirmation.time'() {
-            this.confirmation.delivery_date = this.commitmentDate
+            this.confirmation.delivery_date = this.deliveryDate
         }
     },
 
@@ -178,6 +178,6 @@ export default app => ({
     created() {
         this.postcode = app.$cookies.get('postcode') ?? null
 
-        this.shippingType = app.$cookies.get('shipping_type') ?? null
+        this.shippingType = app.$cookies.get('shipping_type') ?? 'pickup'
     }
 })

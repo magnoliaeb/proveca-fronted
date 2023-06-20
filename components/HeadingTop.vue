@@ -33,7 +33,7 @@ export default {
 			let items = [
 				{
 					text: '1.Mi Carrito',
-					href: '/mi-carrito',
+					href: '/carrito',
 					disabled: false,
 				},
 				{

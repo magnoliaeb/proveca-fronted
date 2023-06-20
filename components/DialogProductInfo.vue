@@ -21,9 +21,9 @@
 				<v-card-title>
 					<v-row class="">
 						<v-col cols="12">
-							<h3 class="text-center">
+							<h2 class="text-center">
 								{{ product.name }}
-							</h3>
+							</h2>
 						</v-col>
 					</v-row>
 				</v-card-title>
@@ -50,7 +50,7 @@ import VariantsSelector from './VariantsSelector.vue';
 export default {
 	components: {
 		// PriceInfoItem
-		VariantsSelector
+		VariantsSelector,
 	},
 
 	computed: {

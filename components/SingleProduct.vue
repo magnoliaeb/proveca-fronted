@@ -49,7 +49,7 @@
 							ref="price_info_item"
 						/> -->
 
-						<VariantSelector :product="product" :key="product.id" />
+						<VariantsSelector :product="product" :key="product.id" />
 					</ul>
 				</v-col>
 			</v-row>
@@ -103,13 +103,13 @@
 <script>
 import SliderSingleProduct from './SliderSingleProduct.vue';
 // import PriceInfoItem2 from './PriceInfoItem2.vue';
-import VariantSelector from './VariantSelector.vue';
+import VariantsSelector from './VariantsSelector.vue';
 
 export default {
 	components: {
 		SliderSingleProduct,
 		// PriceInfoItem2,
-		VariantSelector,
+		VariantsSelector,
 	},
 
 	props: ['product'],

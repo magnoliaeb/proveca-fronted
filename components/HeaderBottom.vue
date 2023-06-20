@@ -7,7 +7,8 @@
 						class="mr-2"
 						alt="..."
 						:src="require(`../assets/imgs/iconos/todo.svg`)"
-						width="20px"
+						width="25px"
+						height="25px"
 					/>
 					<span> Todas </span>
 				</v-tab>

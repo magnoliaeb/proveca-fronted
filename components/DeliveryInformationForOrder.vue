@@ -187,7 +187,8 @@
 					v-model="$observer.confirmation.delivery_date"
 					label="Seleccione una fecha"
 					format="YYYY-MM-DD HH:mm"
-					:inline="showTimePicker"
+					inline
+					no-keyboard
 					minute-interval="10"
 					:disabled-weekly="[0]"
 					:disabled-hours="['00','01','02','03','04','05','17','18','19','20','21','22','23']"

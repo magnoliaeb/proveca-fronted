@@ -88,7 +88,17 @@ export default {
 			{ rel: 'icon', sizes: '32x32', href: '/favicon-32x32.png' },
 			{ rel: 'icon', sizes: '16x16', href: '/favicon-16x16.png' },
 			{ rel: 'manifest', href: '/site.webmanifest' },
+			{
+				rel: 'stylesheet',
+				href: 'https://cdn.jsdelivr.net/npm/vue-ctk-date-time-picker@2.5.0/dist/vue-ctk-date-time-picker.css',
+				type: "text/css"
+			}
 		],
+		script: [
+			{
+				src: 'https://cdn.jsdelivr.net/npm/vue-ctk-date-time-picker@2.5.0/dist/vue-ctk-date-time-picker.umd.js'
+			}
+		]
 	},
 
 	// Global CSS: https://go.nuxtjs.dev/config-css

@@ -46,7 +46,7 @@
 							</h3>
 
 							<p>
-								21A Avenida Villa Nueva, 01064, Guatemala
+								{{ shippingTypeText }}
 							</p>
 						</div>
 
@@ -104,8 +104,11 @@
 				</v-expansion-panel-content>
 			</v-expansion-panel>
 
-			<v-expansion-panel>
-				<v-expansion-panel-header class="px-0">
+			<v-expansion-panel ref="v-expansion-panel-time-picker">
+				<v-expansion-panel-header
+					class="px-0"
+					@click="showTimePicker = true"
+				>
 					<div class="d-flex align-center">
 						<v-icon color="#7d7d7d" class="mr-3" size="30px">
 							mdi-clock-time-eight-outline
@@ -123,25 +126,11 @@
 							</h3>
 
 							<p>
-								{{ $observer.confirmation.delivery_delivery_date }}
+								{{ $observer.confirmation.delivery_date }}
 							</p>
 						</div>
 					</div>
 				</v-expansion-panel-header>
-
-				<v-expansion-panel-content>
-					<v-date-picker
-						v-model="$observer.confirmation.date"
-						__allowed-dates="allowedDates"
-						__min="2016-06-15"
-						__max="2018-03-20"
-					></v-date-picker>
-
-					<v-time-picker
-						v-model="$observer.confirmation.time"
-						format="ampm"
-					></v-time-picker>
-				</v-expansion-panel-content>
 			</v-expansion-panel>
 
 			<v-expansion-panel>
@@ -174,11 +163,67 @@
 				</v-expansion-panel-content>
 			</v-expansion-panel>
 		</v-expansion-panels>
+
+		<v-dialog
+			v-model="showTimePicker"
+			max-width="783px"
+			persistent
+			content-class="card-dialog"
+		>
+			<v-card
+				class="py-4"
+				style="height: 500px;"
+			>
+				<v-btn
+					@click="showTimePicker = false; $refs['v-expansion-panel-time-picker'].toggle();"
+					color="#000000"
+					text
+					icon
+				>
+					<v-icon>mdi-close</v-icon>
+				</v-btn>
+
+				<vue-ctk-date-time-picker
+					v-model="$observer.confirmation.delivery_date"
+					label="Seleccione una fecha"
+					format="YYYY-MM-DD HH:mm"
+					:inline="showTimePicker"
+					minute-interval="10"
+					:disabled-weekly="[0]"
+					:disabled-hours="['00','01','02','03','04','05','17','18','19','20','21','22','23']"
+					no-button-now
+					:min-date="currentDateTime"
+				></vue-ctk-date-time-picker>
+
+				<div class="text-center py-4">
+					<v-btn
+						depressed
+						outlined
+						@click="showTimePicker = false; $refs['v-expansion-panel-time-picker'].toggle();"
+					>
+						Listo
+					</v-btn>
+				</div>
+			</v-card>
+		</v-dialog>
 	</div>
 </template>
 
 <script>
+import Vue from 'vue'
+
+if(process.client) {
+	Vue.component('vue-ctk-date-time-picker', window['vue-ctk-date-time-picker'])
+}
+
 export default {
+	data() {
+		return {
+			showTimePicker: false,
+			currentDateTime: new Date().toISOString().replace('T', ' ').slice(0, 16)
+		}
+	},
+
 	computed: {
 		selectedAddress() {
 			return this.$store.getters['cart/getSelectedShippingAddress'];
@@ -190,7 +235,7 @@ export default {
 			if (!this.$observer.confirmation.to_picking && selectAddress) {
 				return selectAddress.full;
 			} else if (this.$observer.confirmation.to_picking) {
-				return 'Recogeré mi paquete en la tienda';
+				return 'Recoger en: 21A Avenida Villa Nueva, 01064, Guatemala';
 			}
 
 			return 'Aún no se ha configurado el envío';

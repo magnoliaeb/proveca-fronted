@@ -30,26 +30,8 @@ export default app => ({
                 cfdi_usage: 'P01',
                 note: '',
 				phone: '',
-				date: '',
-				time: '',
                 delivery_date: null
             }
-        }
-    },
-
-    computed: {
-        deliveryDate() {
-            return `${this.confirmation.date} ${this.confirmation.time}`
-        }
-    },
-
-    watch: {
-        'confirmation.date'() {
-            this.confirmation.delivery_date = this.deliveryDate
-        },
-
-        'confirmation.time'() {
-            this.confirmation.delivery_date = this.deliveryDate
         }
     },
 

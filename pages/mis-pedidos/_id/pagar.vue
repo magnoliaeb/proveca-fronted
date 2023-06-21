@@ -1,7 +1,7 @@
 <template>
 	<div class="mt-16 pt-4 pt-sm-0">
 		<div v-if="order" class="content pb-16">
-			<HeadingTop :showBtnGoBack="true" />
+			<!-- <HeadingTop :showBtnGoBack="true" /> -->
 			<div class="mb-10">
 				<v-row class="align-start no-gutters">
 					<v-col cols="12" sm="12" md="10" lg="7" class="">

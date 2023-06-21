@@ -1,7 +1,7 @@
 <template>
 	<div class="mt-16 pt-4 pt-sm-0">
 		<div class="content pb-16">
-			<HeadingTop :showBtnGoBack="true" />
+			<!-- <HeadingTop :showBtnGoBack="true" /> -->
 			<v-row class="align-start mb-6">
 				<v-col cols="12" sm="12" md="10" lg="7" class="">
 					<!-- direccion -->
@@ -41,8 +41,10 @@ export default {
 		DeliveryInformationForOrder,
 	},
 
-	head: {
-		title: 'Elegir dirección',
+	head () {
+		return {
+			title: 'Elegir dirección'
+		}
 	},
 
 	data() {

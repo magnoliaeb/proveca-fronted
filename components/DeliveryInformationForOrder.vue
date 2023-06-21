@@ -82,12 +82,6 @@
 							<p class="mb-0">
 								Instrucciones de entrega o recolecta del pedido
 							</p>
-
-							<p>
-								<small>
-									{{ $observer.confirmation.note.slice(0, 20) }}
-								</small>
-							</p>
 						</div>
 					</div>
 				</v-expansion-panel-header>

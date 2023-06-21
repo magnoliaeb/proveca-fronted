@@ -4,41 +4,31 @@
 		v-model="$observer.showDialogInfo"
 		content-class="product-dialog-info"
 		persistent
-		max-width="480"
+		max-width="580"
+		scrollable
 	>
-		<v-card class="py-4" style="position: relative">
-			<div class="">
-				<v-btn
-					style="top: 10px; right: 10px"
-					color="#000"
-					text
-					@click="closeDialog"
-					icon
-					absolute
-				>
-					<v-icon>mdi-close</v-icon>
-				</v-btn>
-				<v-card-title>
-					<v-row class="">
-						<v-col cols="12">
-							<h2 class="text-center">
-								{{ product.name }}
-							</h2>
-						</v-col>
-					</v-row>
-				</v-card-title>
-				<v-card-text>
-					<div>
-						<!-- <PriceInfoItem
-						v-for="(variant, i) in variants"
-						:key="i"
-						:product="product"
-						:variant="variant"
-					/> -->
-						<VariantsSelector :product="product" />
-					</div>
-				</v-card-text>
-			</div>
+		<v-card class="py-sm-4" style="position: relative">
+			<v-btn
+				style="top: 10px; right: 10px"
+				color="#000"
+				text
+				@click="closeDialog"
+				icon
+				absolute
+			>
+				<v-icon>mdi-close</v-icon>
+			</v-btn>
+			<v-card-title>
+				<v-row class="" no-gutters>
+					<v-col cols="12">
+						<h2 class="text-center">
+							{{ product.name }}
+						</h2>
+					</v-col>
+				</v-row>
+			</v-card-title>
+
+			<VariantsSelector :product="product" />
 		</v-card>
 	</v-dialog>
 </template>

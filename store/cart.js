@@ -348,42 +348,49 @@ export const actions = {
     },
 
     async updateItemQty(ctx, config) {
-        try {
-            if(ctx.getters.hasShoppingCart && config.qty >= 1) {
-                const response = await this.$axios.put('/store/shopping-cart', {
-                    order_id: ctx.state.cart.id,
-                    item_id: config.item.id,
-                    qty: config.qty,
-                })
+        ctx.commit('SET_IS_BUSY')
+
+        if(ctx.rootState.auth.user) {
+            return this.$axios.put('/store/shopping-cart', {
+                order_id: ctx.state.cart.id,
+                item_id: config.item.id,
+                qty: config.qty,
+            })
+            .then(response => {
                 if(response.success == true) {
                     ctx.commit('SET_CART', response.data.shoppingCart)
                     ctx.commit('SET_SHIPPING_METHODS', response.data.quoteShipping)
-                    
-                    if(response.data.result != 'complete') {
-                        ctx.dispatch('emit', {
-                            type: 'error-notify',
-                            value: 'Algunas existencias ya no estaban disponibles. Verifica tu carrito',
-                            dontEmit: config.dontEmit
-                        })
-                    } else {
-                        ctx.dispatch('emit', {
-                            type: 'success-notify',
-                            value: 'Carrito actualizado',
-                            dontEmit: config.dontEmit
-                        })
-                    }
-                }
-                
-            }
-        } catch (e) {
-            // --
-            console.log(e);
 
-            ctx.dispatch('emit', {
-                type: 'error-notify',
-                value: 'No se pudo actualizar el carrito',
-                dontEmit: config.dontEmit
+                    ctx.dispatch('emit', {
+                        type: 'success-notify',
+                        value: 'Carrito actualizado',
+                        dontEmit: config.dontEmit
+                    })
+                    
+                    return response
+                }
+
+                ctx.dispatch('emit', {
+                    type: 'error-notify',
+                    value: 'Algunas existencias ya no estaban disponibles. Verifica tu carrito',
+                    dontEmit: config.dontEmit
+                })
+
+                return Promise.reject('Algunas existencias ya no estaban disponibles. Verifica tu carrito')
             })
+            .catch(error => {
+                ctx.dispatch('emit', {
+                    type: 'error-notify',
+                    value: 'Algunas existencias ya no estaban disponibles. Verifica tu carrito',
+                    dontEmit: config.dontEmit
+                })
+
+                return Promise.reject(error)
+            })
+            .finally(() => ctx.commit('SET_IS_AVAILABLE'))
+        } else {
+            ctx.dispatch('localcart/updateItemQty', config, {root: true})
+                .finally(() => ctx.commit('SET_IS_AVAILABLE'))
         }
     },
     

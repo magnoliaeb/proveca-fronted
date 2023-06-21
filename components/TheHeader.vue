@@ -187,7 +187,8 @@ export default {
 			return this.$auth.user;
 		},
 		itemCount() {
-			return this.$store.getters['cart/getItemCount'];
+			return this.$store.getters['cart/getItems'].length
+			// return this.$store.getters['cart/getItemCount'];
 		},
 	},
 	methods: {

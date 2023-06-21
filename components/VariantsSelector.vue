@@ -4,11 +4,11 @@
 			<div class="variants-selector">
 				<v-row class="d-none d-sm-flex">
 					<v-col
+						v-for="(variantAttribute, i) in product.variants_attributes"
+						:key="i"
 						class=""
 						cols="12"
 						sm=""
-						v-for="(variantAttribute, i) in product.variants_attributes"
-						:key="i"
 					>
 						<h4 class="text-center">
 							{{ variantAttribute.name }}
@@ -19,30 +19,21 @@
 						<h4 class="text-center">Libras</h4>
 					</v-col>
 
-					<v-col cols="12" sm="2" class="">
-						<h4 class="text-center">P. Unit</h4>
-					</v-col>
-
 					<v-col cols="12" sm="3" class="">
 						<h4 class="text-center">Total</h4>
 					</v-col>
 				</v-row>
 
-				<!-- <v-row>
-			<v-col cols="6">
-
-			</v-col>
-			<v-col cols="6">
-
-			</v-col>
-		</v-row> -->
-
-				<v-row class="align-center" v-for="(variant, i) in variants" :key="i">
+				<v-row
+					v-for="(variant, i) in variants"
+					:key="i"
+					class="align-center"
+				>
 					<v-col cols="12" sm="4" class="pa-0 d-sm-flex align-center">
 						<v-row
-							class="flex-grow-1 align-center my-0"
 							v-for="(variantAttribute, j) in product.variants_attributes"
 							:key="j"
+							class="flex-grow-1 align-center my-0"
 						>
 							<v-col class="d-sm-none" cols="6" sm="12">
 								<h4 class="text-left">
@@ -73,6 +64,7 @@
 										fab
 										@click="dec(i)"
 										depressed
+										:disabled="$store.state.cart.isBusy"
 									>
 										<v-icon>mdi-minus</v-icon>
 									</v-btn>
@@ -88,32 +80,20 @@
 										@click="inc(i)"
 										depressed
 										color="rgba(0, 0, 0, 0.12)"
+										:disabled="$store.state.cart.isBusy"
 									>
 										<v-icon>mdi-plus</v-icon>
 									</v-btn>
 								</div>
 								<small class="d-block d-sm-none text-center">
-									Precio por libra: $0.34
+									Precio por libra: {{ $util.getMoneyFormat(variant.price) }}
 								</small>
 							</v-col>
 						</v-row>
 
 						<small class="d-none d-sm-block text-center">
-							Precio por libra: $0.34
+							Precio por libra: {{ $util.getMoneyFormat(variant.price) }}
 						</small>
-					</v-col>
-
-					<v-col cols="12" sm="2" class="pa-0">
-						<v-row>
-							<v-col class="d-flex d-sm-none" cols="6" md="auto">
-								<h4>P. Unitario</h4>
-							</v-col>
-							<v-col class="py-0" cols="6" sm="12">
-								<p class="mb-0 text-center">
-									{{ $util.getMoneyFormat(variant.price) }}
-								</p>
-							</v-col>
-						</v-row>
 					</v-col>
 
 					<v-col cols="12" sm="3" class="pa-0">
@@ -121,7 +101,7 @@
 							<v-col class="d-flex d-sm-none" cols="6" md="auto">
 								<h4>Total</h4>
 							</v-col>
-							<v-col class="py-0" cols="6" sm="12">
+							<v-col cols="6" sm="12">
 								<p class="mb-0 text-center">
 									{{ $util.getMoneyFormat(variant.price * variant.qty) }}
 								</p>
@@ -132,89 +112,31 @@
 						<v-divider></v-divider>
 					</v-col>
 				</v-row>
-
-				<!-- <table>
-			<tr>
-				<th
-					v-for="(variantAttribute, i) in product.variants_attributes"
-					:key="i"
-				>
-					{{ variantAttribute.name }}
-				</th>
-
-				<th>Libras</th>
-
-				<th>P. Unitario</th>
-
-				<th>Total</th>
-			</tr>
-
-			<tr class="mb-1" v-for="(variant, i) in variants" :key="i">
-				<td
-					v-for="(variantAttribute, j) in product.variants_attributes"
-					:key="j"
-				>
-					{{ attribute(variant, variantAttribute) }}
-				</td>
-
-				<td class="">
-					<div
-						class="elevation-2 group-btns justify-space-between d-flex align-center mx-auto"
-					>
-						<v-btn color="#ffffff" tile x-small fab @click="dec(i)" depressed>
-							<v-icon>mdi-minus</v-icon>
-						</v-btn>
-
-						<span class="font-weight-medium">
-							{{ variant.qty }}
-						</span>
-
-						<v-btn
-							tile
-							x-small
-							fab
-							@click="inc(i)"
-							depressed
-							color="rgba(0, 0, 0, 0.12)"
-						>
-							<v-icon>mdi-plus</v-icon>
-						</v-btn>
-					</div>
-
-					<small> Precio por libra: $0.34 </small>
-				</td>
-
-				<td>
-					{{ $util.getMoneyFormat(variant.price) }}
-				</td>
-
-				<td>
-					{{ $util.getMoneyFormat(variant.price * variant.qty) }}
-				</td>
-			</tr>
-		</table> -->
 			</div>
 		</v-card-text>
+
 		<v-card-text class="d-none d-sm-block">
 			<div class="variants-selector overflow-x-auto">
 				<table>
 					<tr class="">
 						<th
-							class="pb-4"
 							v-for="(variantAttribute, i) in product.variants_attributes"
 							:key="i"
+							class="pb-4"
 						>
 							{{ variantAttribute.name }}
 						</th>
 
 						<th class="pb-4">Libras</th>
 
-						<th class="pb-4">P. Unitario</th>
-
 						<th class="pb-4">Total</th>
 					</tr>
 
-					<tr class="mb-1" v-for="(variant, i) in variants" :key="i">
+					<tr
+						v-for="(variant, i) in variants"
+						:key="i"
+						class="mb-1"
+					>
 						<td
 							v-for="(variantAttribute, j) in product.variants_attributes"
 							:key="j"
@@ -233,6 +155,7 @@
 									fab
 									@click="dec(i)"
 									depressed
+									:disabled="$store.state.cart.isBusy"
 								>
 									<v-icon>mdi-minus</v-icon>
 								</v-btn>
@@ -248,16 +171,13 @@
 									@click="inc(i)"
 									depressed
 									color="rgba(0, 0, 0, 0.12)"
+									:disabled="$store.state.cart.isBusy"
 								>
 									<v-icon>mdi-plus</v-icon>
 								</v-btn>
 							</div>
 
-							<small> Precio por libra: $0.34 </small>
-						</td>
-
-						<td>
-							{{ $util.getMoneyFormat(variant.price) }}
+							<small> Precio por libra: {{ $util.getMoneyFormat(variant.price) }} </small>
 						</td>
 
 						<td>
@@ -267,6 +187,7 @@
 				</table>
 			</div>
 		</v-card-text>
+
 		<v-card-actions>
 			<v-row class="align-center mt-2 justify-end">
 				<v-col cols="auto">
@@ -278,7 +199,7 @@
 						depressed
 						light
 						class="add"
-						:disabled="!Boolean(qty)"
+						:disabled="! Boolean(qty) || $store.state.cart.isBusy"
 						@click="beforeAdd"
 					>
 						<span :class="{ 'white--text': Boolean(qty) }" class="d-flex"
@@ -310,7 +231,29 @@ export default {
 				this.$observer.openShippingTypeDialog(this.add);
 			}
 		},
-	},
+
+		dec(i) {
+			let variant = this.variant(i)
+
+			let firstNumber = this.$util.extractFirstNumber(variant)
+
+            let qty = this.variant(i).qty
+
+			if (qty > 0) {
+                this.$set(this.variants[i], 'qty', qty - firstNumber)
+			}
+		},
+
+		inc(i) {
+			let variant = this.variant(i)
+
+			let firstNumber = this.$util.extractFirstNumber(variant)
+
+            let qty = variant.qty
+
+            this.$set(this.variants[i], 'qty', qty + firstNumber)
+		}
+	}
 };
 </script>
 

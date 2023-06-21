@@ -140,7 +140,26 @@ export default app => ({
             }
         
             return url.toString()
-        }
+        },
+
+        extractFirstNumber(variant) {
+            if(variant && variant.config) {
+                let config = variant.config.find(c => c.name == 'Cantidad')
+
+                if(config) {
+                    let str = config.values[0].name
+
+                    const match = str.match(/[0-9]+(\.[0-9]+)?/)
+                
+                    if (match) {
+                        const number = parseFloat(match[0]).toFixed(2)
+                        return parseFloat(number)
+                    }
+                }
+            }
+			
+			return 1
+		}
     },
 
     created() {

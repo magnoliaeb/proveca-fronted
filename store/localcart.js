@@ -74,6 +74,17 @@ export const mutations = {
 
         this.$cookies.set('localcart.products_cart', state.products_cart)
     },
+    UPDATE_PRODUCT_QUANTITY(state, payload) {
+        let item = payload.item
+        let qty = payload.qty
+
+        item.qty = qty
+        item.product_uom_qty = item.qty
+        item.price_subtotal = item.price_unit * item.qty
+        item.price_total = item.price_subtotal + item.price_tax
+
+        this.$cookies.set('localcart.products_cart', state.products_cart)
+    },
     SET_PRODUCT_QUANTITY(state, dataItem) {
         dataItem.item.qty += dataItem.qty
         dataItem.item.product_uom_qty = dataItem.item.qty
@@ -222,6 +233,16 @@ export const actions = {
     incQuantity(ctx, config) {
         // const item = ctx.state.products_cart.find((i) => i.variant.id == item.variant.id)
         ctx.commit('INCREMENT_PRODUCT_QUANTITY', config.item)
+
+        ctx.dispatch('emit', {
+            type: 'success-notify',
+            value: 'Carrito actualizado',
+            dontEmit: config.dontEmit
+        })
+    },
+
+    updateItemQty(ctx, config) {
+        ctx.commit('UPDATE_PRODUCT_QUANTITY', config)
 
         ctx.dispatch('emit', {
             type: 'success-notify',

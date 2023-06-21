@@ -66,7 +66,13 @@
 		<v-col cols="4" class="d-flex d-sm-none flex-column justify-space-between">
 			<h6 class="text-right">{{ formattedTotal }}</h6>
 			<div class="flex-grow-0 d-flex justify-end">
-				<v-btn small text depressed @click="deleteItem" :disabled="false">
+				<v-btn
+					small
+					text
+					depressed
+					@click="deleteItem"
+					:disabled="$store.state.cart.isBusy"
+				>
 					Eliminar
 				</v-btn>
 			</div>
@@ -109,7 +115,7 @@
 			class="d-none d-sm-flex justify-center py-0 align-center"
 		>
 			<v-btn
-				v-if="qty > 1"
+				v-if="getQty > interval"
 				:x-small="$vuetify.breakpoint.xsOnly"
 				:small="$vuetify.breakpoint.smAndUp"
 				@click="dec"
@@ -117,6 +123,7 @@
 				color="primary"
 				class=""
 				:loading="isBusy"
+				:disabled="! variant || $store.state.cart.isBusy"
 			>
 				<v-icon
 					:x-small="$vuetify.breakpoint.xsOnly"
@@ -135,6 +142,7 @@
 				color="black"
 				class=""
 				:loading="isBusy"
+				:disabled="$store.state.cart.isBusy"
 			>
 				<v-icon
 					:x-small="$vuetify.breakpoint.xsOnly"
@@ -145,7 +153,7 @@
 			</v-btn>
 
 			<span class="mx-2">
-				{{ qty }}
+				{{ getQty }} libras
 			</span>
 
 			<v-btn
@@ -156,6 +164,7 @@
 				color="primary"
 				class=""
 				:loading="isBusy"
+				:disabled="! variant || $store.state.cart.isBusy"
 			>
 				<v-icon
 					:x-small="$vuetify.breakpoint.xsOnly"
@@ -180,7 +189,7 @@
 				class=""
 				depressed
 				@click="deleteItem"
-				:disabled="false"
+				:disabled="$store.state.cart.isBusy"
 			>
 				<span class="text-decoration-underline">Eliminar</span>
 			</v-btn>
@@ -214,7 +223,33 @@ export default {
 		isBusy() {
 			return this.$store.state.cart.isBusy;
 		},
+
+		interval() {
+			return this.$util.extractFirstNumber(this.variant)
+		}
 	},
+
+	methods: {
+		dec() {
+			let qty = this.getQty - this.interval
+
+            if(this.qty > 1) {
+                this.$store.dispatch("cart/updateItemQty", {
+                    item: this.item,
+					qty: qty
+                })
+            }
+        },
+
+        inc() {
+			let qty = this.getQty + this.interval
+
+            this.$store.dispatch("cart/updateItemQty", {
+				item: this.item,
+				qty: qty
+			})
+        },
+	}
 };
 </script>
 

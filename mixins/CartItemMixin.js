@@ -97,6 +97,6 @@ export default {
             'products/getProductById',
             this.item.product.id
         )
-        .then(p => this.product = p)
+        .then(p => this.$set(this, 'product', p))
     }
 }

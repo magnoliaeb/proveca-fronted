@@ -85,7 +85,7 @@
 						:to="'/carrito'"
 						block
 						depressed
-						:disabled="showBtn"
+						:disabled="disabledBtn"
 					>
 						<span class="mr-2">Hacer mi pedido </span>
 						<h5 class="d-flex pa-2 rounded-lg">{{ formattedTotal }}</h5>
@@ -108,8 +108,8 @@ export default {
 		items() {
 			return this.$store.getters['cart/getItems'];
 		},
-		showBtn() {
-			return this.items.length <= 0;
+		disabledBtn() {
+			return this.items.length <= 0 || this.$store.state.cart.isBusy;
 		},
 	},
 

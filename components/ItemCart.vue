@@ -62,7 +62,7 @@
 		</v-col>
 		<v-col cols="auto" class="d-flex justify-center py-0 align-center">
 			<v-btn
-				v-if="getQty > 1"
+				v-if="getQty > interval"
 				:x-small="$vuetify.breakpoint.xsOnly"
 				:small="$vuetify.breakpoint.smAndUp"
 				@click="dec"
@@ -70,6 +70,7 @@
 				color="primary"
 				class=""
 				:loading="isBusy"
+				:disabled="! variant || $store.state.cart.isBusy"
 			>
 				<v-icon
 					:x-small="$vuetify.breakpoint.xsOnly"
@@ -88,6 +89,7 @@
 				color="black"
 				class=""
 				:loading="isBusy"
+				:disabled="$store.state.cart.isBusy"
 			>
 				<v-icon
 					:x-small="$vuetify.breakpoint.xsOnly"
@@ -98,7 +100,7 @@
 			</v-btn>
 
 			<span class="mx-2">
-				{{ getQty }}
+				{{ getQty }} libras
 			</span>
 
 			<v-btn
@@ -109,6 +111,7 @@
 				color="primary"
 				class=""
 				:loading="isBusy"
+				:disabled="! variant || $store.state.cart.isBusy"
 			>
 				<v-icon
 					:x-small="$vuetify.breakpoint.xsOnly"
@@ -151,12 +154,36 @@ export default {
 					return 70;
 			}
 		},
+
+		interval() {
+			return this.$util.extractFirstNumber(this.variant)
+		}
 	},
 
 	methods: {
 		closeCart() {
 			this.$observer.showCart = false;
 		},
+
+		dec() {
+			let qty = this.getQty - this.interval
+
+            if(this.qty > 1) {
+                this.$store.dispatch("cart/updateItemQty", {
+                    item: this.item,
+					qty: qty
+                })
+            }
+        },
+
+        inc() {
+			let qty = this.getQty + this.interval
+
+            this.$store.dispatch("cart/updateItemQty", {
+				item: this.item,
+				qty: qty
+			})
+        },
 	},
 };
 </script>

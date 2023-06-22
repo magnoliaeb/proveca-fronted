@@ -100,7 +100,7 @@
 			</v-btn>
 
 			<span class="mx-2">
-				{{ getQty }} libras
+				{{ getQty }} {{ $util.uom(product).plural }}
 			</span>
 
 			<v-btn

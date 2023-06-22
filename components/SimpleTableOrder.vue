@@ -14,8 +14,8 @@
 		</ul> -->
 		<v-expansion-panels accordion v-model="panel" flat class="" multiple>
 			<TrOrderItem
-				v-for="(order, index) in orders"
-				:key="index"
+				v-for="order in orders"
+				:key="order.id"
 				:order="order"
 			/>
 		</v-expansion-panels>

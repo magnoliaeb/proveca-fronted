@@ -9,7 +9,7 @@
 				<v-col v-else cols="12" sm="auto">
 					<h3 class="mb-2">Fecha de entrega</h3>
 					<p class="mb-0">
-						{{ $util.getFormattedDate(computedOrder.date_order, 2) }}
+						{{ $util.getFormattedDate(computedOrder.delivery_date, 3) }}
 					</p>
 				</v-col>
 

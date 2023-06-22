@@ -9,10 +9,10 @@
 						<span>{{ formattedSubtotal }}</span>
 					</li>
 
-					<li class="d-flex py-2 py-md-4 justify-space-between align-center">
+					<!-- <li class="d-flex py-2 py-md-4 justify-space-between align-center">
 						<p class="mb-0">Impuestos</p>
 						<span>{{ formattedTax }}</span>
-					</li>
+					</li> -->
 
 					<li class="d-flex py-2 py-md-4 justify-space-between align-center">
 						<p class="mb-0">Descuento</p>

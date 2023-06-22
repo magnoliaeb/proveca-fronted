@@ -38,7 +38,7 @@
 						<v-col v-else cols="12" sm="auto">
 							<h3 class="mb-2">Fecha de entrega</h3>
 							<p class="mb-0">
-								{{ $util.getFormattedDate(computedOrder.delivery_date, 2) }}
+								{{ $util.getFormattedDate(computedOrder.delivery_date, 3) }}
 							</p>
 						</v-col>
 
@@ -116,10 +116,10 @@
 									<p>{{ formattedSubtotal }}</p>
 								</div>
 
-								<div class="d-flex justify-space-between">
+								<!-- <div class="d-flex justify-space-between">
 									<p>Impuestos</p>
 									<p>{{ formattedTax }}</p>
-								</div>
+								</div> -->
 
 								<div
 									v-for="(service, i) in services"

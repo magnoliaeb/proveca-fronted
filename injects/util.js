@@ -1,5 +1,17 @@
 export default app => ({
     methods: {
+        typeof(element) {
+            let dataTypeString = Object.prototype.toString.call(element)
+    
+            const match = dataTypeString.match(/\[object\s(\w+)\]/)
+    
+            if (match && match[1]) {
+                return match[1].toLowerCase()
+            }
+
+            return ''
+        },
+
         getSlug() {
             return app.context.route.path.split('/').pop()
         },
@@ -90,6 +102,16 @@ export default app => ({
                 case 2:
                     formatted = date.toLocaleDateString('es-MX', {day: 'numeric', month: 'long', timeZone: 'UTC'})
                 break
+
+                case 3:
+                    let day = date.getDate()
+                    let month = date.toLocaleString('default', { month: 'long' })
+                    let hour = date.getHours() % 12 || 12
+                    let minutes = date.getMinutes()
+                    let period = date.getHours() < 12 ? 'am' : 'pm'
+
+                    formatted = `${day} de ${month}, ${hour}:${minutes.toString().padStart(2, '0')}${period}`
+                break
             }
 
             return formatted
@@ -159,7 +181,51 @@ export default app => ({
             }
 			
 			return 1
-		}
+		},
+
+        uom(product) {
+            let uom = this.typeof(product) == 'object'
+                ? product.uom_name
+                : product
+
+            let formatted
+
+            switch (uom) {
+                case 'Units':
+                    formatted = {
+                        original: uom,
+                        singular: 'pieza',
+                        plural: 'piezas'
+                    }
+                break;
+
+                case 'kg':
+                    formatted = {
+                        original: uom,
+                        singular: 'kilogramo',
+                        plural: 'kilogramos'
+                    }
+                break;
+
+                case 'lb':
+                    formatted = {
+                        original: uom,
+                        singular: 'libra',
+                        plural: 'libras'
+                    }
+                break;
+            
+                default:
+                    formatted = {
+                        original: uom,
+                        singular: uom,
+                        plural: uom
+                    }
+                break;
+            }
+
+            return formatted
+        }
     },
 
     created() {

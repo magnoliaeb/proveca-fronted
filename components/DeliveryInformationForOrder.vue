@@ -185,7 +185,7 @@
 					no-keyboard
 					minute-interval="10"
 					:disabled-weekly="[0]"
-					:disabled-hours="['00','01','02','03','04','05','17','18','19','20','21','22','23']"
+					:disabled-hours="['00','01','02','03','04','05','16','17','18','19','20','21','22','23']"
 					no-button-now
 					:min-date="currentDateTime"
 				></vue-ctk-date-time-picker>

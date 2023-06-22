@@ -13,14 +13,14 @@
 					<p class="mb-0">Subtotal</p>
 					<span>{{ formattedSubtotal }}</span>
 				</v-col>
-				<v-col
+				<!-- <v-col
 					tag="li"
 					cols="12"
 					class="d-flex li justify-space-between align-center"
 				>
 					<p class="mb-0">Impuestos</p>
 					<span>{{ formattedTax }}</span>
-				</v-col>
+				</v-col> -->
 				<v-col
 					tag="li"
 					cols="12"

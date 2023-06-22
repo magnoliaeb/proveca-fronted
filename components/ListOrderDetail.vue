@@ -3,7 +3,7 @@
 		<OrderItem
 			class="mb-4"
 			v-for="(item, index) in items"
-			:key="index"
+			:key="item.id"
 			:item="{ ...item, index }"
 		/>
 	</div>

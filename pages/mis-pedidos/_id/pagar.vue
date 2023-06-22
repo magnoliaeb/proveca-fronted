@@ -13,7 +13,7 @@
 						<ResumeOrder :order="order" />
 					</v-col>
 				</v-row>
-				<DataClient :order="order" class="mt-6" />
+				<!-- <DataClient :order="order" class="mt-6" /> -->
 			</div>
 		</div>
 	</div>

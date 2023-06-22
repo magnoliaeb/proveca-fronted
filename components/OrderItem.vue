@@ -47,12 +47,12 @@
 				<h3 class="mb-0">
 					{{ item.name }}
 				</h3>
-				<p class="mb-0">Grande</p>
-				<p class="mb-0">Q 5.00 x Libra</p>
+				<!-- <p class="mb-0">Grande</p> -->
+				<p class="mb-0">{{ $util.getMoneyFormat(item.price_unit) }} por {{ $util.uom(product).singular }}</p>
 			</v-col>
 		</v-col>
 		<v-col cols="6" sm="auto" md="auto" class="text-sm-right d-md-block">
-			<p class="d-block">{{ item.product_uom_qty }} Libras</p>
+			<p class="d-block">{{ item.product_uom_qty }} {{ $util.uom(product).plural }}</p>
 		</v-col>
 		<v-col cols="6" sm="auto" class="text-right text-sm-left">
 			<p>{{ formattedTotal }}</p>

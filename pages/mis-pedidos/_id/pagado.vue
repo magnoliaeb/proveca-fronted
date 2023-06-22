@@ -25,10 +25,10 @@
 										}}</span>
 									</div>
 
-									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
+									<!-- <div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
 										<p class="">Impuestos</p>
 										<span>{{ $util.getMoneyFormat(order.amount_tax) }}</span>
-									</div>
+									</div> -->
 
 									<div class="d-flex justify-space-between my-2 mx-1 mx-sm-3">
 										<p class="">Descuento</p>

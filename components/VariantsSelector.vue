@@ -16,7 +16,12 @@
 					</v-col>
 
 					<v-col cols="12" sm="3" class="">
-						<h4 class="text-center">Libras</h4>
+						<h4
+							class="text-center"
+							style="text-transform: capitalize;"
+						>
+							{{ $util.uom(product).plural }}
+						</h4>
 					</v-col>
 
 					<v-col cols="12" sm="3" class="">
@@ -51,7 +56,9 @@
 					<v-col cols="12" sm="3" class="pa-0">
 						<v-row>
 							<v-col class="d-flex d-sm-none" cols="6" md="auto">
-								<h4>Libras</h4>
+								<h4 style="text-transform: capitalize;">
+									{{ $util.uom(product).plural }}
+								</h4>
 							</v-col>
 							<v-col class="py-0" cols="6" sm="12">
 								<div
@@ -86,13 +93,13 @@
 									</v-btn>
 								</div>
 								<small class="d-block d-sm-none text-center">
-									Precio por libra: {{ $util.getMoneyFormat(variant.price) }}
+									{{ $util.getMoneyFormat(variant.price) }} por {{ $util.uom(product).singular }}
 								</small>
 							</v-col>
 						</v-row>
 
 						<small class="d-none d-sm-block text-center">
-							Precio por libra: {{ $util.getMoneyFormat(variant.price) }}
+							{{ $util.getMoneyFormat(variant.price) }} por {{ $util.uom(product).singular }}
 						</small>
 					</v-col>
 
@@ -127,7 +134,12 @@
 							{{ variantAttribute.name }}
 						</th>
 
-						<th class="pb-4">Libras</th>
+						<th
+							class="pb-4"
+							style="text-transform: capitalize;"
+						>
+							{{ $util.uom(product).plural }}
+						</th>
 
 						<th class="pb-4">Total</th>
 					</tr>
@@ -177,7 +189,9 @@
 								</v-btn>
 							</div>
 
-							<small> Precio por libra: {{ $util.getMoneyFormat(variant.price) }} </small>
+							<small>
+								{{ $util.getMoneyFormat(variant.price) }} por {{ $util.uom(product).singular }}
+							</small>
 						</td>
 
 						<td>

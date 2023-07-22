@@ -19,7 +19,6 @@
 								name="El nombre"
 								:rules="{
 									required: true,
-									min: 5,
 								}"
 							>
 								<v-text-field
@@ -29,7 +28,7 @@
 									color="blue-ligth"
 									id="name"
 									type="text"
-									v-model.trim.trim="form.name"
+									v-model.trim="form.name"
 									solo
 									flat
 									outlined
@@ -42,7 +41,10 @@
 							<validation-provider
 								v-slot="{ errors }"
 								name="El telefono"
-								rules="required"
+								:rules="{
+									required: true,
+									numeric: true,
+								}"
 							>
 								<v-text-field
 									height="64px"
@@ -51,7 +53,7 @@
 									color="blue-ligth"
 									id="phone"
 									type="text"
-									v-model.trim.trim="form.phone"
+									v-model.trim="form.phone"
 									solo
 									flat
 									outlined
@@ -73,7 +75,7 @@
 									color="blue-ligth"
 									id="email"
 									type="email"
-									v-model.trim.trim="form.email"
+									v-model.trim="form.email"
 									solo
 									flat
 									outlined
@@ -157,19 +159,20 @@ export default {
 		async sendForm() {
 			this.isDisabled = true;
 			if (await this.$refs.observer.validate()) {
-				this.isLoading = true
-				this.isDisabled = true
+				this.isLoading = true;
+				this.isDisabled = true;
 
-				this.$store.dispatch('contact/contact', this.form)
-				  .then(() => {
-				    this.clear()
-					this.showAlert = true
-				  })
-				  .catch(e => this.$swal("Error", e, "error"))
-				  .finally(() => {
-				    this.isLoading = false
-				    this.isDisabled = false
-				  });
+				this.$store
+					.dispatch('contact/contact', this.form)
+					.then(() => {
+						this.clear();
+						this.showAlert = true;
+					})
+					.catch((e) => this.$swal('Error', e, 'error'))
+					.finally(() => {
+						this.isLoading = false;
+						this.isDisabled = false;
+					});
 			} else {
 				const inputForm = Object.keys(this.form);
 				for (let i = 0; i < inputForm.length; i++) {

@@ -30,7 +30,10 @@
 							<validation-provider
 								v-slot="{ errors }"
 								name="El teléfono"
-								rules="required"
+								:rules="{
+									required: true,
+									numeric: true,
+								}"
 							>
 								<v-text-field
 									autocomplete="tel"

@@ -32,6 +32,7 @@
 										name="El teléfono"
 										:rules="{
 											required: true,
+											numeric: true,
 										}"
 									>
 										<v-text-field

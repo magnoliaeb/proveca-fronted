@@ -1,8 +1,5 @@
 <template>
-	<v-form
-		class="register-form"
-		@submit.prevent="registerUser"
-	>
+	<v-form class="register-form" @submit.prevent="registerUser">
 		<validation-observer ref="observer" v-slot="{ invalid }">
 			<div class="content-form mx-auto">
 				<v-row class="">
@@ -58,7 +55,10 @@
 							v-slot="{ errors }"
 							name="El celular"
 							autocomplete="phone"
-							rules="required"
+							:rules="{
+								required: true,
+								numeric: true,
+							}"
 						>
 							<label v-if="hasLabel" for="">Celular* </label>
 
@@ -90,9 +90,7 @@
 							<label v-if="hasLabel" for="">Contraseña* </label>
 
 							<v-text-field
-								:append-icon="
-									showPassword ? 'mdi-eye-off-outline' : 'mdi-eye'
-								"
+								:append-icon="showPassword ? 'mdi-eye-off-outline' : 'mdi-eye'"
 								@click:append="showPassword = !showPassword"
 								color="blue-ligth"
 								id="password"
@@ -165,18 +163,15 @@ export default {
 			this.isDisabled = true;
 
 			if (await this.$refs.observer.validate()) {
-				this.isLoading = true
-				this.isDisabled = true
+				this.isLoading = true;
+				this.isDisabled = true;
 
-				this.form.confirm_password = this.form.password
+				this.form.confirm_password = this.form.password;
 
-				this.$authentication.register(
-					this.form
-				)
-				.catch(error => {
-					this.isLoading = false
-					this.isDisabled = false
-				})
+				this.$authentication.register(this.form).catch((error) => {
+					this.isLoading = false;
+					this.isDisabled = false;
+				});
 			} else {
 				Object.values(this.$refs).forEach((ref) => {
 					if (ref.hasError) ref.focus();
